@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+# home.html es una plantilla que duplica las páginas por-casa — mantenga a los rastreadores en las páginas canónicas <id>.html
+Disallow: /home.html
+
+Sitemap: https://casasconfinanciamiento.com/sitemap.xml
