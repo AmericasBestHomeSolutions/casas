@@ -16,12 +16,12 @@
   <rect x="330" y="258" width="46" height="46" fill="#cfe0f2" stroke="#15315e" stroke-width="3"/>
   <rect x="456" y="258" width="46" height="46" fill="#cfe0f2" stroke="#15315e" stroke-width="3"/>
   <!-- unmistakable "not a photo" diagonal watermark -->
-  <text x="400" y="250" font-size="52" font-weight="bold" fill="#15315e" opacity="0.13"
-        text-anchor="middle" transform="rotate(-18 400 250)">SOLO ILUSTRACIÓN</text>
+  <text x="400" y="250" font-size="60" font-weight="bold" fill="#15315e" opacity="0.13"
+        text-anchor="middle" transform="rotate(-18 400 250)">FOR ILLUSTRATION ONLY</text>
   <!-- clear disclaimer pill -->
   <g>
-    <rect x="130" y="398" width="540" height="56" rx="28" fill="#15315e" opacity="0.94"/>
-    <text x="400" y="422" font-size="21" font-weight="bold" fill="#ffffff" text-anchor="middle">Foto disponible pronto</text>
-    <text x="400" y="443" font-size="14" fill="#dbe7fb" text-anchor="middle">Solo ilustración — no es la casa real</text>
+    <rect x="150" y="398" width="500" height="56" rx="28" fill="#15315e" opacity="0.94"/>
+    <text x="400" y="422" font-size="21" font-weight="bold" fill="#ffffff" text-anchor="middle">Photo coming soon</text>
+    <text x="400" y="443" font-size="14" fill="#dbe7fb" text-anchor="middle">Illustration only — not the actual home</text>
   </g>
 </svg>
