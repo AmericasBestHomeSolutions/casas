@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (169, generadas desde la web en inglés) --- */
+/* --- las casas (168, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "decatur-il-1828-main",
@@ -1237,23 +1237,6 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    ["images/sauget-il-306-isabell-1.jpg", "images/sauget-il-306-isabell-2.jpg", "images/sauget-il-306-isabell-3.jpg", "images/sauget-il-306-isabell-4.jpg", "images/sauget-il-306-isabell-5.jpg", "images/sauget-il-306-isabell-6.jpg", "images/sauget-il-306-isabell-7.jpg", "images/sauget-il-306-isabell-8.jpg", "images/sauget-il-306-isabell-9.jpg", "images/sauget-il-306-isabell-10.jpg", "images/sauget-il-306-isabell-11.jpg", "images/sauget-il-306-isabell-12.jpg", "images/sauget-il-306-isabell-13.jpg", "images/sauget-il-306-isabell-14.jpg", "images/sauget-il-306-isabell-15.jpg", "images/sauget-il-306-isabell-16.jpg", "images/sauget-il-306-isabell-17.jpg", "images/sauget-il-306-isabell-18.jpg", "images/sauget-il-306-isabell-19.jpg", "images/sauget-il-306-isabell-20.jpg", "images/sauget-il-306-isabell-21.jpg", "images/sauget-il-306-isabell-22.jpg", "images/sauget-il-306-isabell-23.jpg", "images/sauget-il-306-isabell-24.jpg", "images/sauget-il-306-isabell-25.jpg", "images/sauget-il-306-isabell-26.jpg", "images/sauget-il-306-isabell-27.jpg", "images/sauget-il-306-isabell-28.jpg", "images/sauget-il-306-isabell-29.jpg"],
-  },
-  {
-    id: "peoria-il-1615-arago",
-    address:     "1615 S Arago St",
-    zip:         "61605",
-    city:  "Peoria",
-    state: "IL",
-    beds:  1,
-    baths: 1,
-    sqft:  "592.0",
-    status: "Available",
-    monthlyPayment: 695,
-    moveIn:         2000,
-    lockedPrice:    68000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    heroPhoto: "",
-    photos:    ["images/peoria-il-1615-arago-1.jpg", "images/peoria-il-1615-arago-2.jpg", "images/peoria-il-1615-arago-3.jpg", "images/peoria-il-1615-arago-4.jpg"],
   },
   {
     id: "centralia-il-227-hickory",
