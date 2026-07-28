@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (168, generadas desde la web en inglés) --- */
+/* --- las casas (167, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "decatur-il-1828-main",
@@ -1005,26 +1005,6 @@ const HOMES = [
     photos:    [],
   },
   {
-    id: "decatur-il-2148-church",
-    address:     "2148 N Church St.",
-    zip:         "62526",
-    description: "936 pie² cabaña en buen lote con 3 rec, 1 ba y diseño clásico de una sola planta. Garaje separado de 1 auto de tamaño extra con área de banco de trabajo. El dueño de largo plazo lo ha cuidado bien, todos los sistemas funcionan, necesita refresco y renovación pero nada urgente. Los videos son pre-limpieza, las fotos están tal como están. El problema del techo mencionado en el video ha sido reparado a partir del 7/2/26 más parches interiores",
-    descriptionLang: "es",
-    city:  "Decatur",
-    state: "IL",
-    beds:  3,
-    baths: 1,
-    sqft:  "936.0",
-    status: "Available",
-    monthlyPayment: 1025,
-    moveIn:         3000,
-    lockedPrice:    93000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    features: { backyard: "yes", garage: "yes", off_street_parking: "yes" },
-    heroPhoto: "",
-    photos:    [],
-  },
-  {
     id: "stlouis-mo-3738-sylvan",
     address:     "3738 Sylvan Pl",
     zip:         "63121",
@@ -1036,9 +1016,9 @@ const HOMES = [
     baths: 1,
     sqft:  "1000.0",
     status: "Available",
-    monthlyPayment: 895,
-    moveIn:         2500,
-    lockedPrice:    99000,
+    monthlyPayment: 1025,
+    moveIn:         3000,
+    lockedPrice:    93000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    [],
