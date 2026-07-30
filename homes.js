@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (167, generadas desde la web en inglés) --- */
+/* --- las casas (166, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "hartfordcity-in-822-franklin",
@@ -1936,25 +1936,6 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    [],
-  },
-  {
-    id: "flint-mi-3618-branch",
-    address:     "3618 Branch Rd",
-    zip:         "48506",
-    description: "~950 pies cuadrados. LOS ACABADOS SON HERMOSOS. Gabinetes de cocina modernos, pisos, etc. Los servicios están funcionando",
-    descriptionLang: "es",
-    city:  "Flint",
-    state: "MI",
-    beds:  2,
-    baths: 1,
-    sqft:  "",
-    status: "Available",
-    monthlyPayment: 950,
-    moveIn:         3000,
-    lockedPrice:    89000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    heroPhoto: "",
-    photos:    ["images/flint-mi-3618-branch-1.jpg", "images/flint-mi-3618-branch-2.jpg", "images/flint-mi-3618-branch-3.jpg", "images/flint-mi-3618-branch-4.jpg", "images/flint-mi-3618-branch-5.jpg", "images/flint-mi-3618-branch-6.jpg", "images/flint-mi-3618-branch-7.jpg", "images/flint-mi-3618-branch-8.jpg", "images/flint-mi-3618-branch-9.jpg", "images/flint-mi-3618-branch-10.jpg", "images/flint-mi-3618-branch-11.jpg", "images/flint-mi-3618-branch-12.jpg", "images/flint-mi-3618-branch-13.jpg", "images/flint-mi-3618-branch-14.jpg", "images/flint-mi-3618-branch-15.jpg", "images/flint-mi-3618-branch-16.jpg", "images/flint-mi-3618-branch-17.jpg", "images/flint-mi-3618-branch-18.jpg", "images/flint-mi-3618-branch-19.jpg", "images/flint-mi-3618-branch-20.jpg", "images/flint-mi-3618-branch-21.jpg", "images/flint-mi-3618-branch-22.jpg", "images/flint-mi-3618-branch-23.jpg", "images/flint-mi-3618-branch-24.jpg"],
   },
   {
     id: "eaststlouis-il-3720-walnut",
