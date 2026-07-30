@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (166, generadas desde la web en inglés) --- */
+/* --- las casas (164, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "hartfordcity-in-822-franklin",
@@ -366,26 +366,6 @@ const HOMES = [
     lockedPrice:    230000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { backyard: "yes", fenced_yard: "yes" },
-    heroPhoto: "",
-    photos:    [],
-  },
-  {
-    id: "peoria-il-107-archer",
-    address:     "107 E Archer Ave",
-    zip:         "61603.0",
-    description: "El vendedor tiene su propia documentación. Pisos de madera (fácil mantenimiento y atractivo atemporal). * Sala grande y solario (espacio extra para relajarse o trabajar desde casa). * Distribución flexible con 2 recámaras en la planta baja y 2 arriba (perfecto para familias o privacidad adicional). * Construcción de ladrillo macizo (duradero y bajo mantenimiento). * Garaje para 2 autos (almacenamiento extra y protección).",
-    descriptionLang: "es",
-    city:  "Peoria",
-    state: "IL",
-    beds:  4,
-    baths: 1.5,
-    sqft:  "",
-    status: "Available",
-    monthlyPayment: 1394,
-    moveIn:         2500,
-    lockedPrice:    119000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    features: { garage: "yes" },
     heroPhoto: "",
     photos:    [],
   },
@@ -2686,26 +2666,6 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    [],
-  },
-  {
-    id: "granitecity-il-2317-grand",
-    address:     "2317 Grand Ave",
-    zip:         "62040.0",
-    description: "Casa de 1,124 pies cuadrados con garaje separado. La propiedad está actualmente marcada con etiqueta roja, pero estamos trabajando activamente para limpiarla",
-    descriptionLang: "es",
-    city:  "Granite City",
-    state: "IL",
-    beds:  2,
-    baths: 1,
-    sqft:  "",
-    status: "Available",
-    monthlyPayment: 750,
-    moveIn:         2000,
-    lockedPrice:    79000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    features: { garage: "yes", off_street_parking: "yes" },
-    heroPhoto: "",
-    photos:    ["images/granitecity-il-2317-grand-1.jpg", "images/granitecity-il-2317-grand-2.jpg", "images/granitecity-il-2317-grand-3.jpg", "images/granitecity-il-2317-grand-4.jpg"],
   },
   {
     id: "peoria-il-911-hurlburt",
