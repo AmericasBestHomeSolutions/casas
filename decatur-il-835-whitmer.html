@@ -186,6 +186,8 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <nav class="topnav">
       <a class="nav-hide" href="index.html">Casas</a>
       <a class="nav-hide" href="como-funciona.html">Cómo funciona</a>
+      <a class="nav-hide" href="/nosotros">Nosotros</a>
+      <a class="nav-hide" href="/contacto">Contacto</a>
       <a class="call" id="navCall" href="#">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span id="navCallText">Llámenos</span>
@@ -308,10 +310,18 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
         <option value="1-3 months">En 1–3 meses</option>
         <option value="Just looking">Solo estoy viendo por ahora</option>
       </select>
-      <label style="display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.45;color:#dbe7fb;font-weight:400;cursor:pointer;margin:4px 0 2px">
-        <input id="lfSms" name="sms_consent" type="checkbox" value="Sí" required style="margin-top:3px;width:16px;height:16px;flex-shrink:0">
-        <span>Sí, mándenme mensajes de texto sobre esta casa. Al marcar esta casilla acepto recibir mensajes de texto de Americas Best Home Solutions al número que proporcioné. Pueden aplicar tarifas de mensajes y datos; la frecuencia de mensajes varía; responda STOP para cancelar o HELP para ayuda. El consentimiento no es condición para ninguna compra.</span>
-      </label>
+<!-- ══════════════════════════════════════════════════════════════════
+             CASILLA DE CONSENTIMIENTO SMS (A2P 10DLC) — no la cambie sin leer.
+             Debe estar SIN marcar por defecto, ser lo único que autoriza, y NO
+             ser obligatoria para enviar. Por eso no lleva `checked` ni
+             `required` — déjelo así. Si cambia el texto, actualice CONSENT_TEXT
+             y CONSENT_TEXT_VERSION en consent.js.
+             ══════════════════════════════════════════════════════════════════ -->
+        <label style="display:flex;gap:11px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:#dbe7fb;font-weight:400;cursor:pointer;margin:12px 0 2px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:13px 14px">
+          <input id="lfSms" name="sms_consent" type="checkbox" value="Sí" style="margin-top:3px;width:16px;height:16px;flex-shrink:0">
+          <span>Acepto recibir mensajes de texto de Americas Best Home Solutions LLC sobre casas disponibles, citas para ver casas, ofertas y seguimiento. La frecuencia de mensajes varía. Pueden aplicar tarifas de mensajes y datos. Responda STOP para cancelar la suscripción o HELP para obtener ayuda. Consulte nuestra <a href="/politica-de-privacidad" style="color:#fff;font-weight:600">Política de Privacidad</a> y nuestros <a href="/terminos-de-mensajes" style="color:#fff;font-weight:600">Términos de Mensajes</a>.</span>
+        </label>
+        <p style="font-family:'DM Mono',monospace;font-size:12px;color:#a9bedd;margin:7px 0 0;letter-spacing:.3px">Opcional — puede enviar este formulario sin marcar la casilla.</p>
       <button type="submit" class="btn btn-primary" id="lfSubmit">Enviar mis datos</button>
       <p class="form-note" id="lfNote"></p>
     </form>
@@ -338,9 +348,17 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   <!-- FOOTER -->
   <footer class="foot">
     <div class="fb">Americas Best Home Solutions</div>
-    <p class="fcontact" style="opacity:.72;margin-top:2px">CasasConFinanciamiento.com es un servicio de Americas Best Home Solutions LLC</p>
-    <p class="fcontact">Casas con financiamiento del dueño · <a id="footCall" href="#">Llámenos o escríbanos</a></p>
-    <p class="legal" id="footLine"></p>
+    <p class="fcontact" style="opacity:.78;margin-top:2px">casasconfinanciamiento.com es operado por Americas Best Home Solutions LLC</p>
+    <address class="fcontact" style="font-style:normal;margin-top:8px">
+      30 N Gould St, Ste R, Sheridan, WY 82801<br>
+      <a href="tel:+15515509906">(551) 550-9906</a> · <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
+    </address>
+    <p class="fcontact" style="margin-top:10px">
+      <a href="/">Casas</a> · <a href="/como-funciona">Cómo funciona</a> · <a href="/nosotros">Nosotros</a> · <a href="/contacto">Contacto</a> · <a href="/politica-de-privacidad">Política de Privacidad</a> · <a href="/terminos-de-mensajes">Términos de Mensajes</a>
+    </p>
+    <p class="legal">
+      © 2026 Americas Best Home Solutions LLC. Americas Best Home Solutions LLC es una empresa de bienes raíces — no es un banco, prestamista hipotecario ni corredor hipotecario con licencia. Las casas se ofrecen mediante financiamiento del dueño (contrato de compraventa / "contract for deed"), con todos los términos detallados en un acuerdo por escrito que usted puede revisar antes de firmar. Toda la información se considera confiable pero no está garantizada y puede cambiar sin previo aviso; las casas están sujetas a venta previa y disponibilidad. Nada aquí constituye una oferta o compromiso de préstamo, ni asesoría legal, fiscal o financiera. Igualdad de Oportunidad en la Vivienda (Equal Housing Opportunity).
+    </p>
     <!-- ▼ CUMPLIMIENTO: pegue aquí las divulgaciones (en español) que le dé su RMLO / abogado, antes de compartir esta página públicamente. ▲ -->
   </footer>
 
@@ -348,6 +366,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 
 <script>window.__HOME_ID__="decatur-il-835-whitmer";</script>
 <script src="homes.js"></script>
+<script src="/consent.js"></script>
 <script>
 /* ---------- render (no editar — los datos de las casas viven en homes.js) ---------- */
 (function(){
@@ -412,7 +431,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   })();
 
   $("closerTitle").textContent = "¿Quiere verla en persona?";
-  $("footLine").textContent = `© 2026 Americas Best Home Solutions LLC. Americas Best Home Solutions LLC es una empresa de bienes raíces — no es un banco, prestamista hipotecario ni corredor hipotecario con licencia. Las casas se ofrecen mediante financiamiento del dueño (contrato de compraventa / "contract for deed"), con todos los términos detallados en un acuerdo por escrito que usted puede revisar antes de firmar. Toda la información se considera confiable pero no está garantizada y puede cambiar sin previo aviso; las casas están sujetas a venta previa y disponibilidad. Nada aquí constituye una oferta o compromiso de préstamo, ni asesoría legal, fiscal o financiera. Igualdad de Oportunidad en la Vivienda (Equal Housing Opportunity).`;
+  // (el aviso legal del pie ahora es HTML estatico — ver el bloque <footer>)
 
   $("statusTag").textContent = statusEs(C.status);
   $("heroCity").innerHTML = `<div class="c">${C.city}</div><div class="s">${C.state}</div>`;
@@ -484,8 +503,8 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   ["ctaText","ctaText2"].forEach(id=>$(id).href = `sms:${tel}?&body=${smsBody}`);
   $("navCall").href = `tel:${tel}`;
   $("navCallText").textContent = prettyPhone || "Llámenos";
-  $("footCall").href = `sms:${tel}?&body=${smsBody}`;
-  $("footCall").textContent = prettyPhone ? `Llame o escriba al ${prettyPhone}` : "Llámenos o escríbanos";
+  // (el pie de página ahora imprime el número y la dirección de forma literal —
+  //  no queda ningún enlace footCall que conectar aquí)
   $("ctaNote").textContent = `Llame o escriba al ${prettyPhone} — normalmente respondemos el mismo día.`;
 
   // lead form → Formspree (email) + Make (Notion CRM)
@@ -504,6 +523,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
       const data = new FormData(form);
       data.append("property", `${C.city}, ${C.state}`);
       data.append("source", "casasconfinanciamiento — Página de propiedad");
+      await addConsentRecord(data, form);   // evidencia de consentimiento 10DLC — ver consent.js
       data.append("language", "es");
       const targets = [];
       if (id)   targets.push(fetch(`https://formspree.io/f/${id}`, { method:"POST", headers:{ "Accept":"application/json" }, body:data }));

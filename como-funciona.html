@@ -175,6 +175,8 @@ body{
     </a>
     <nav class="topnav">
       <a class="nav-hide" href="index.html">Casas</a>
+      <a class="nav-hide" href="/nosotros">Nosotros</a>
+      <a class="nav-hide" href="/contacto">Contacto</a>
       <a class="call" id="navCall" href="#">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span id="navCallText">Llámenos</span>
@@ -313,8 +315,14 @@ body{
   <!-- FOOTER -->
   <footer class="foot">
     <div class="fb">Americas Best Home Solutions</div>
-    <p class="fcontact" style="opacity:.72;margin-top:2px">CasasConFinanciamiento.com es un servicio de Americas Best Home Solutions LLC</p>
-    <p class="fcontact">Casas con financiamiento del dueño · <a id="footCall" href="#">Llámenos o escríbanos</a></p>
+    <p class="fcontact" style="opacity:.78;margin-top:2px">casasconfinanciamiento.com es operado por Americas Best Home Solutions LLC</p>
+    <address class="fcontact" style="font-style:normal;margin-top:8px">
+      30 N Gould St, Ste R, Sheridan, WY 82801<br>
+      <a href="tel:+15515509906">(551) 550-9906</a> · <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
+    </address>
+    <p class="fcontact" style="margin-top:10px">
+      <a href="/">Casas</a> · <a href="/como-funciona">Cómo funciona</a> · <a href="/nosotros">Nosotros</a> · <a href="/contacto">Contacto</a> · <a href="/politica-de-privacidad">Política de Privacidad</a> · <a href="/terminos-de-mensajes">Términos de Mensajes</a>
+    </p>
     <p class="legal">
       <!-- ▼ CUMPLIMIENTO — SOLO BORRADOR DE BUENA FE. Haga que su RMLO / abogado revise y
            reemplace este texto (en español) antes de pautar anuncios o promover el sitio. ▲ -->
@@ -325,6 +333,7 @@ body{
 </div>
 
 <script src="homes.js"></script>
+<script src="/consent.js"></script>
 <script>
 /* ══════════════════════════════════════════════════════════════════════════
    ▼▼▼ VIDEO — cuando tenga un video explicativo, pegue su enlace de INSERCIÓN aquí.
@@ -353,8 +362,8 @@ const VIDEO_EMBED_URL = "";
     $("ctaCall").href = `sms:${tel}?&body=${smsBody}`;
     $("navCall").href = `tel:${tel}`;
     $("navCallText").textContent = pretty || "Llámenos";
-    $("footCall").href = `sms:${tel}?&body=${smsBody}`;
-    $("footCall").textContent = pretty ? `Llame o escriba al ${pretty}` : "Llámenos o escríbanos";
+  // (el pie de página ahora imprime el número y la dirección de forma literal —
+  //  no queda ningún enlace footCall que conectar aquí)
   }
 
   // scroll reveal (respeta reduced-motion vía CSS)
