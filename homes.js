@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (349, generadas desde la web en inglés) --- */
+/* --- las casas (350, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "decatur-il-1553-walnut",
@@ -3371,6 +3371,26 @@ const HOMES = [
     moveIn:         3500,
     lockedPrice:    89000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
+    heroPhoto: "",
+    photos:    [],
+  },
+  {
+    id: "belleville-il-233-11th",
+    address:     "233 N 11th St",
+    zip:         "62220",
+    description: "Casa grande de dos recámaras, un baño, garaje independiente, en esquina",
+    descriptionLang: "es",
+    city:  "Belleville",
+    state: "IL",
+    beds:  2,
+    baths: 1,
+    sqft:  "1,639",
+    status: "Available",
+    monthlyPayment: 1095,
+    moveIn:         3500,
+    lockedPrice:    89000,
+    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
+    features: { garage: "yes", off_street_parking: "yes" },
     heroPhoto: "",
     photos:    [],
   },
