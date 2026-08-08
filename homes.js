@@ -2836,7 +2836,7 @@ const HOMES = [
     lockedPrice:    88500,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/decatur-il-1303-hickory-1.jpg", "images/decatur-il-1303-hickory-2.jpg", "images/decatur-il-1303-hickory-3.jpg", "images/decatur-il-1303-hickory-4.jpg"],
   },
   {
     id: "springfield-il-905-wesley",
@@ -2856,6 +2856,6 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { backyard: "yes", garage: "yes", off_street_parking: "yes" },
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/springfield-il-905-wesley-1.jpg", "images/springfield-il-905-wesley-2.jpg", "images/springfield-il-905-wesley-3.jpg", "images/springfield-il-905-wesley-4.jpg"],
   },
 ];
