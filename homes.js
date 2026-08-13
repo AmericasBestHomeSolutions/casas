@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (149, generadas desde la web en inglés) --- */
+/* --- las casas (150, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "decatur-il-2067-maple",
@@ -1811,9 +1811,9 @@ const HOMES = [
     baths: 1,
     sqft:  "",
     status: "Available",
-    monthlyPayment: 865,
+    monthlyPayment: 795,
     moveIn:         1800,
-    lockedPrice:    79995,
+    lockedPrice:    72999,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { backyard: "yes", basement: "yes", central_air: "yes" },
     heroPhoto: "",
@@ -2879,13 +2879,13 @@ const HOMES = [
     id: "decatur-il-1303-hickory",
     address:     "1303 E. Hickory St.",
     zip:         "62526",
-    description: "Porche delantero bonito que ha sido reparado y pintado recientemente. Molduras y puertas de madera maciza original. Cocina y baño actualizados. Se completó una limpieza profunda reciente.",
+    description: "3 Recámaras / 1 Baño | 1064 pies cuadrados. Porche bonito en la entrada que ha sido reparado y pintado recientemente. Molduras y puertas de madera original. Cocina y baño actualizados. Se completó una limpieza profunda reciente. $3K de enganche. $88,500",
     descriptionLang: "es",
     city:  "Decatur",
     state: "IL",
     beds:  3,
     baths: 1,
-    sqft:  "1064",
+    sqft:  "1,064",
     status: "Available",
     monthlyPayment: 950,
     moveIn:         3000,
@@ -2893,5 +2893,25 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    ["images/decatur-il-1303-hickory-1.jpg", "images/decatur-il-1303-hickory-2.jpg", "images/decatur-il-1303-hickory-3.jpg", "images/decatur-il-1303-hickory-4.jpg"],
+  },
+  {
+    id: "saginaw-mi-2236-king",
+    address:     "2236 King St",
+    zip:         "48602",
+    description: "2 recámaras, 1 baño, patio trasero parcialmente cercado muy bonito, sótano, 806 pies cuadrados",
+    descriptionLang: "es",
+    city:  "Saginaw",
+    state: "MI",
+    beds:  2,
+    baths: 1,
+    sqft:  "806",
+    status: "Available",
+    monthlyPayment: 850,
+    moveIn:         3000,
+    lockedPrice:    79000,
+    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
+    features: { backyard: "yes", fenced_yard: "yes", basement: "yes" },
+    heroPhoto: "",
+    photos:    [],
   },
 ];
