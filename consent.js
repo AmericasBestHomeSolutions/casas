@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════════════════════════
    CONSENTIMIENTO SMS — evidencia para la verificación A2P 10DLC
-   (Spanish mirror of ~/Downloads/homes/consent.js — keep the two in step)
+   (Spanish mirror of ~/Lonchando/sites/homes/consent.js — keep the two in step)
    ══════════════════════════════════════════════════════════════════════════
    Carriers can ask us, months later, to prove that a specific number opted in,
    and that proof has to show WHAT the person actually saw. Someone who opted
