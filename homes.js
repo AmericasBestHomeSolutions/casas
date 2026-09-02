@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (150, generadas desde la web en inglés) --- */
+/* --- las casas (149, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "decatur-il-909-maffit",
@@ -1955,25 +1955,6 @@ const HOMES = [
     features: { basement: "yes" },
     heroPhoto: "",
     photos:    ["images/decatur-il-1259-whitmer-1.jpg", "images/decatur-il-1259-whitmer-2.jpg", "images/decatur-il-1259-whitmer-3.jpg", "images/decatur-il-1259-whitmer-4.jpg", "images/decatur-il-1259-whitmer-5.jpg", "images/decatur-il-1259-whitmer-6.jpg", "images/decatur-il-1259-whitmer-7.jpg", "images/decatur-il-1259-whitmer-8.jpg", "images/decatur-il-1259-whitmer-9.jpg", "images/decatur-il-1259-whitmer-10.jpg", "images/decatur-il-1259-whitmer-11.jpg", "images/decatur-il-1259-whitmer-12.jpg", "images/decatur-il-1259-whitmer-13.jpg", "images/decatur-il-1259-whitmer-14.jpg", "images/decatur-il-1259-whitmer-15.jpg", "images/decatur-il-1259-whitmer-16.jpg", "images/decatur-il-1259-whitmer-17.jpg", "images/decatur-il-1259-whitmer-18.jpg"],
-  },
-  {
-    id: "peoria-il-2710-antoinette",
-    address:     "2710 W Antoinette St",
-    zip:         "61605",
-    description: "Oportunidad para Contratista - Estructura sólida. 664 pies cuadrados. Plazo de 10 años. El pago mensual incluye impuestos",
-    descriptionLang: "es",
-    city:  "Peoria",
-    state: "IL",
-    beds:  1,
-    baths: 1,
-    sqft:  "",
-    status: "Available",
-    monthlyPayment: 225,
-    moveIn:         750,
-    lockedPrice:    15000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    heroPhoto: "",
-    photos:    ["images/peoria-il-2710-antoinette-1.jpg", "images/peoria-il-2710-antoinette-2.jpg", "images/peoria-il-2710-antoinette-3.jpg", "images/peoria-il-2710-antoinette-4.jpg", "images/peoria-il-2710-antoinette-5.jpg", "images/peoria-il-2710-antoinette-6.jpg", "images/peoria-il-2710-antoinette-7.jpg", "images/peoria-il-2710-antoinette-8.jpg", "images/peoria-il-2710-antoinette-9.jpg"],
   },
   {
     id: "flint-mi-5210-dupont",
