@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (147, generadas desde la web en inglés) --- */
+/* --- las casas (146, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "jackson-ms-434-mason",
@@ -32,7 +32,7 @@ const HOMES = [
     lockedPrice:    72500,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/jackson-ms-434-mason-1.jpg", "images/jackson-ms-434-mason-2.jpg", "images/jackson-ms-434-mason-3.jpg", "images/jackson-ms-434-mason-4.jpg"],
   },
   {
     id: "jackson-ms-293-cameron",
@@ -840,26 +840,6 @@ const HOMES = [
     features: { basement: "yes" },
     heroPhoto: "",
     photos:    ["images/danville-il-417-anderson-1.jpg", "images/danville-il-417-anderson-2.jpg", "images/danville-il-417-anderson-3.jpg", "images/danville-il-417-anderson-4.jpg", "images/danville-il-417-anderson-5.jpg", "images/danville-il-417-anderson-6.jpg", "images/danville-il-417-anderson-7.jpg", "images/danville-il-417-anderson-8.jpg", "images/danville-il-417-anderson-9.jpg", "images/danville-il-417-anderson-10.jpg", "images/danville-il-417-anderson-11.jpg", "images/danville-il-417-anderson-12.jpg", "images/danville-il-417-anderson-13.jpg", "images/danville-il-417-anderson-14.jpg"],
-  },
-  {
-    id: "springfield-il-905-wesley",
-    address:     "905 N Wesley St",
-    zip:         "62702",
-    description: "2 Recámaras/1 Baño, 700 pies cuadrados más garaje independiente. Listo para mudarse, rehabilitación recién terminada, todos los sistemas funcionando. 905 N Wesley St, Springfield, IL 62702. Lo más destacado: Rehabilitación ligera recién completada, todos los sistemas funcionan y está listo para mudarse. Casa acogedora de 700 pies cuadrados, 2 recámaras, 1 baño, garaje independiente y terreno de 4,860 pies cuadrados. El horno se ve en buen estado. Instalación eléctrica recién actualizada. Piso completamente nuevo. Techo sin goteras. Limpieza reciente completa. Ubicado en una zona muy buscada del norte de Springfield. Hay muy pocos alquileres disponibles en el área por menos de $1,200 al mes.",
-    descriptionLang: "es",
-    city:  "Springfield",
-    state: "IL",
-    beds:  2,
-    baths: 1,
-    sqft:  "700",
-    status: "Available",
-    monthlyPayment: 995,
-    moveIn:         3000,
-    lockedPrice:    99000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    features: { backyard: "yes", garage: "yes", off_street_parking: "yes" },
-    heroPhoto: "",
-    photos:    ["images/springfield-il-905-wesley-1.jpg", "images/springfield-il-905-wesley-2.jpg", "images/springfield-il-905-wesley-3.jpg", "images/springfield-il-905-wesley-4.jpg", "images/springfield-il-905-wesley-5.jpg", "images/springfield-il-905-wesley-6.jpg", "images/springfield-il-905-wesley-7.jpg", "images/springfield-il-905-wesley-8.jpg", "images/springfield-il-905-wesley-9.jpg", "images/springfield-il-905-wesley-10.jpg", "images/springfield-il-905-wesley-11.jpg", "images/springfield-il-905-wesley-12.jpg", "images/springfield-il-905-wesley-13.jpg", "images/springfield-il-905-wesley-14.jpg", "images/springfield-il-905-wesley-15.jpg", "images/springfield-il-905-wesley-16.jpg", "images/springfield-il-905-wesley-17.jpg", "images/springfield-il-905-wesley-18.jpg", "images/springfield-il-905-wesley-19.jpg"],
   },
   {
     id: "moweaqua-il-221-cherry",
@@ -2511,7 +2491,7 @@ const HOMES = [
     baths: 1,
     sqft:  "816",
     status: "Available",
-    monthlyPayment: 830,
+    monthlyPayment: 845,
     moveIn:         1000,
     lockedPrice:    82000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
