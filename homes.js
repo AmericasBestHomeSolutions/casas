@@ -2869,7 +2869,7 @@ const HOMES = [
     lockedPrice:    95000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/decatur-il-1749-college-1.jpg", "images/decatur-il-1749-college-2.jpg", "images/decatur-il-1749-college-3.jpg", "images/decatur-il-1749-college-4.jpg", "images/decatur-il-1749-college-5.jpg", "images/decatur-il-1749-college-6.jpg", "images/decatur-il-1749-college-7.jpg", "images/decatur-il-1749-college-8.jpg", "images/decatur-il-1749-college-9.jpg", "images/decatur-il-1749-college-10.jpg", "images/decatur-il-1749-college-11.jpg"],
   },
   {
     id: "decatur-il-231-grand",
@@ -2888,7 +2888,7 @@ const HOMES = [
     lockedPrice:    100000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/decatur-il-231-grand-1.jpg", "images/decatur-il-231-grand-2.jpg", "images/decatur-il-231-grand-3.jpg", "images/decatur-il-231-grand-4.jpg", "images/decatur-il-231-grand-5.jpg", "images/decatur-il-231-grand-6.jpg", "images/decatur-il-231-grand-7.jpg", "images/decatur-il-231-grand-8.jpg", "images/decatur-il-231-grand-9.jpg", "images/decatur-il-231-grand-10.jpg", "images/decatur-il-231-grand-11.jpg", "images/decatur-il-231-grand-12.jpg", "images/decatur-il-231-grand-13.jpg", "images/decatur-il-231-grand-14.jpg", "images/decatur-il-231-grand-15.jpg", "images/decatur-il-231-grand-16.jpg", "images/decatur-il-231-grand-17.jpg", "images/decatur-il-231-grand-18.jpg", "images/decatur-il-231-grand-19.jpg", "images/decatur-il-231-grand-20.jpg", "images/decatur-il-231-grand-21.jpg", "images/decatur-il-231-grand-22.jpg", "images/decatur-il-231-grand-23.jpg", "images/decatur-il-231-grand-24.jpg"],
   },
   {
     id: "peoria-il-2210-wiswall",
@@ -2907,7 +2907,7 @@ const HOMES = [
     lockedPrice:    84900,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/peoria-il-2210-wiswall-1.jpg", "images/peoria-il-2210-wiswall-2.jpg", "images/peoria-il-2210-wiswall-3.jpg", "images/peoria-il-2210-wiswall-4.jpg", "images/peoria-il-2210-wiswall-5.jpg", "images/peoria-il-2210-wiswall-6.jpg", "images/peoria-il-2210-wiswall-7.jpg", "images/peoria-il-2210-wiswall-8.jpg", "images/peoria-il-2210-wiswall-9.jpg", "images/peoria-il-2210-wiswall-10.jpg", "images/peoria-il-2210-wiswall-11.jpg", "images/peoria-il-2210-wiswall-12.jpg", "images/peoria-il-2210-wiswall-13.jpg", "images/peoria-il-2210-wiswall-14.jpg", "images/peoria-il-2210-wiswall-15.jpg", "images/peoria-il-2210-wiswall-16.jpg", "images/peoria-il-2210-wiswall-17.jpg", "images/peoria-il-2210-wiswall-18.jpg", "images/peoria-il-2210-wiswall-19.jpg", "images/peoria-il-2210-wiswall-20.jpg", "images/peoria-il-2210-wiswall-21.jpg", "images/peoria-il-2210-wiswall-22.jpg", "images/peoria-il-2210-wiswall-23.jpg"],
   },
   {
     id: "david-il-209-central",
