@@ -32,7 +32,7 @@ const HOMES = [
     lockedPrice:    80000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/cahokia-il-731-saint-1.jpg", "images/cahokia-il-731-saint-2.jpg", "images/cahokia-il-731-saint-3.jpg", "images/cahokia-il-731-saint-4.jpg", "images/cahokia-il-731-saint-5.jpg", "images/cahokia-il-731-saint-6.jpg", "images/cahokia-il-731-saint-7.jpg", "images/cahokia-il-731-saint-8.jpg", "images/cahokia-il-731-saint-9.jpg", "images/cahokia-il-731-saint-10.jpg", "images/cahokia-il-731-saint-11.jpg", "images/cahokia-il-731-saint-12.jpg", "images/cahokia-il-731-saint-13.jpg"],
   },
   {
     id: "eaststlouis-il-826-82nd",
@@ -52,7 +52,7 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { backyard: "yes", fenced_yard: "yes" },
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/eaststlouis-il-826-82nd-1.jpg", "images/eaststlouis-il-826-82nd-2.jpg", "images/eaststlouis-il-826-82nd-3.jpg", "images/eaststlouis-il-826-82nd-4.jpg", "images/eaststlouis-il-826-82nd-5.jpg", "images/eaststlouis-il-826-82nd-6.jpg", "images/eaststlouis-il-826-82nd-7.jpg", "images/eaststlouis-il-826-82nd-8.jpg", "images/eaststlouis-il-826-82nd-9.jpg", "images/eaststlouis-il-826-82nd-10.jpg", "images/eaststlouis-il-826-82nd-11.jpg", "images/eaststlouis-il-826-82nd-12.jpg", "images/eaststlouis-il-826-82nd-13.jpg"],
   },
   {
     id: "flint-mi-920-huron",
@@ -72,7 +72,7 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { backyard: "yes", basement: "yes", garage: "yes", off_street_parking: "yes" },
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/flint-mi-920-huron-1.jpg", "images/flint-mi-920-huron-2.jpg", "images/flint-mi-920-huron-3.jpg", "images/flint-mi-920-huron-4.jpg", "images/flint-mi-920-huron-5.jpg", "images/flint-mi-920-huron-6.jpg", "images/flint-mi-920-huron-7.jpg", "images/flint-mi-920-huron-8.jpg", "images/flint-mi-920-huron-9.jpg"],
   },
   {
     id: "stlouis-mo-4627-korte",
@@ -1462,7 +1462,7 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { backyard: "yes", fenced_yard: "yes" },
     heroPhoto: "",
-    photos:    ["images/montgomery-al-3355-lunceford-1.jpg", "images/montgomery-al-3355-lunceford-2.jpg", "images/montgomery-al-3355-lunceford-3.jpg", "images/montgomery-al-3355-lunceford-4.jpg", "images/montgomery-al-3355-lunceford-5.jpg", "images/montgomery-al-3355-lunceford-6.jpg", "images/montgomery-al-3355-lunceford-7.jpg", "images/montgomery-al-3355-lunceford-8.jpg", "images/montgomery-al-3355-lunceford-9.jpg", "images/montgomery-al-3355-lunceford-10.jpg", "images/montgomery-al-3355-lunceford-11.jpg", "images/montgomery-al-3355-lunceford-12.jpg", "images/montgomery-al-3355-lunceford-13.jpg", "images/montgomery-al-3355-lunceford-14.jpg", "images/montgomery-al-3355-lunceford-15.jpg", "images/montgomery-al-3355-lunceford-16.jpg", "images/montgomery-al-3355-lunceford-17.jpg", "images/montgomery-al-3355-lunceford-18.jpg", "images/montgomery-al-3355-lunceford-19.jpg", "images/montgomery-al-3355-lunceford-20.jpg", "images/montgomery-al-3355-lunceford-21.jpg", "images/montgomery-al-3355-lunceford-22.jpg", "images/montgomery-al-3355-lunceford-23.jpg", "images/montgomery-al-3355-lunceford-24.jpg"],
+    photos:    ["images/montgomery-al-3355-lunceford-1.jpg", "images/montgomery-al-3355-lunceford-2.jpg", "images/montgomery-al-3355-lunceford-3.jpg", "images/montgomery-al-3355-lunceford-4.jpg", "images/montgomery-al-3355-lunceford-5.jpg", "images/montgomery-al-3355-lunceford-6.jpg", "images/montgomery-al-3355-lunceford-7.jpg", "images/montgomery-al-3355-lunceford-8.jpg", "images/montgomery-al-3355-lunceford-9.jpg", "images/montgomery-al-3355-lunceford-10.jpg", "images/montgomery-al-3355-lunceford-11.jpg", "images/montgomery-al-3355-lunceford-12.jpg", "images/montgomery-al-3355-lunceford-13.jpg", "images/montgomery-al-3355-lunceford-14.jpg", "images/montgomery-al-3355-lunceford-15.jpg", "images/montgomery-al-3355-lunceford-16.jpg", "images/montgomery-al-3355-lunceford-17.jpg", "images/montgomery-al-3355-lunceford-18.jpg", "images/montgomery-al-3355-lunceford-19.jpg", "images/montgomery-al-3355-lunceford-20.jpg", "images/montgomery-al-3355-lunceford-21.jpg", "images/montgomery-al-3355-lunceford-22.jpg"],
   },
   {
     id: "decatur-il-1923-church",
@@ -2086,7 +2086,7 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { backyard: "yes", fenced_yard: "yes", off_street_parking: "yes", storage_shed: "yes" },
     heroPhoto: "",
-    photos:    ["images/decatur-il-1258-division-1.jpg", "images/decatur-il-1258-division-2.jpg", "images/decatur-il-1258-division-3.jpg", "images/decatur-il-1258-division-4.jpg"],
+    photos:    ["images/decatur-il-1258-division-1.jpg", "images/decatur-il-1258-division-2.jpg", "images/decatur-il-1258-division-3.jpg", "images/decatur-il-1258-division-4.jpg", "images/decatur-il-1258-division-5.jpg", "images/decatur-il-1258-division-6.jpg", "images/decatur-il-1258-division-7.jpg", "images/decatur-il-1258-division-8.jpg", "images/decatur-il-1258-division-9.jpg", "images/decatur-il-1258-division-10.jpg", "images/decatur-il-1258-division-11.jpg", "images/decatur-il-1258-division-12.jpg", "images/decatur-il-1258-division-13.jpg", "images/decatur-il-1258-division-14.jpg", "images/decatur-il-1258-division-15.jpg", "images/decatur-il-1258-division-16.jpg", "images/decatur-il-1258-division-17.jpg", "images/decatur-il-1258-division-18.jpg", "images/decatur-il-1258-division-19.jpg", "images/decatur-il-1258-division-20.jpg", "images/decatur-il-1258-division-21.jpg", "images/decatur-il-1258-division-22.jpg", "images/decatur-il-1258-division-23.jpg", "images/decatur-il-1258-division-24.jpg"],
   },
   {
     id: "decatur-il-1103-prairie",
@@ -2559,7 +2559,7 @@ const HOMES = [
     lockedPrice:    85000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    ["images/stlouis-mo-4931-plover-1.jpg", "images/stlouis-mo-4931-plover-2.jpg", "images/stlouis-mo-4931-plover-3.jpg", "images/stlouis-mo-4931-plover-4.jpg", "images/stlouis-mo-4931-plover-5.jpg", "images/stlouis-mo-4931-plover-6.jpg", "images/stlouis-mo-4931-plover-7.jpg", "images/stlouis-mo-4931-plover-8.jpg", "images/stlouis-mo-4931-plover-9.jpg", "images/stlouis-mo-4931-plover-10.jpg", "images/stlouis-mo-4931-plover-11.jpg", "images/stlouis-mo-4931-plover-12.jpg"],
+    photos:    ["images/stlouis-mo-4931-plover-1.jpg", "images/stlouis-mo-4931-plover-2.jpg", "images/stlouis-mo-4931-plover-3.jpg", "images/stlouis-mo-4931-plover-4.jpg", "images/stlouis-mo-4931-plover-5.jpg", "images/stlouis-mo-4931-plover-6.jpg", "images/stlouis-mo-4931-plover-7.jpg", "images/stlouis-mo-4931-plover-8.jpg", "images/stlouis-mo-4931-plover-9.jpg", "images/stlouis-mo-4931-plover-10.jpg", "images/stlouis-mo-4931-plover-11.jpg", "images/stlouis-mo-4931-plover-12.jpg", "images/stlouis-mo-4931-plover-13.jpg", "images/stlouis-mo-4931-plover-14.jpg", "images/stlouis-mo-4931-plover-15.jpg"],
   },
   {
     id: "eaststlouis-il-3511-converse",
@@ -2597,7 +2597,7 @@ const HOMES = [
     lockedPrice:    63950,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    ["images/decatur-il-1700-grand-1.jpg", "images/decatur-il-1700-grand-2.jpg", "images/decatur-il-1700-grand-3.jpg", "images/decatur-il-1700-grand-4.jpg", "images/decatur-il-1700-grand-5.jpg", "images/decatur-il-1700-grand-6.jpg"],
+    photos:    ["images/decatur-il-1700-grand-1.jpg", "images/decatur-il-1700-grand-2.jpg", "images/decatur-il-1700-grand-3.jpg", "images/decatur-il-1700-grand-4.jpg", "images/decatur-il-1700-grand-5.jpg", "images/decatur-il-1700-grand-6.jpg", "images/decatur-il-1700-grand-7.jpg", "images/decatur-il-1700-grand-8.jpg", "images/decatur-il-1700-grand-9.jpg", "images/decatur-il-1700-grand-10.jpg", "images/decatur-il-1700-grand-11.jpg", "images/decatur-il-1700-grand-12.jpg"],
   },
   {
     id: "decatur-il-2827-hickory",
