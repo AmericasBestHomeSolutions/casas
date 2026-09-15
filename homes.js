@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (156, generadas desde la web en inglés) --- */
+/* --- las casas (155, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "cahokia-il-731-saint",
@@ -2164,26 +2164,6 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    ["images/jackson-ms-3875-slayton-1.jpg", "images/jackson-ms-3875-slayton-2.jpg", "images/jackson-ms-3875-slayton-3.jpg", "images/jackson-ms-3875-slayton-4.jpg", "images/jackson-ms-3875-slayton-5.jpg", "images/jackson-ms-3875-slayton-6.jpg", "images/jackson-ms-3875-slayton-7.jpg"],
-  },
-  {
-    id: "decatur-il-1259-whitmer",
-    address:     "1259 E Whitmer St",
-    zip:         "62526",
-    description: "890 pies cuadrados. Todos los sistemas funcionan según lo que sabemos. Hubo un reflujo de alcantarilla en el sótano. Se ha reparado pero el sótano necesita limpieza. El inquilino anterior dejó basura por todas partes pero la mayoría en el sótano. Techo nuevo instalado en 2025. Energía y agua están desconectadas.",
-    descriptionLang: "es",
-    city:  "Decatur",
-    state: "IL",
-    beds:  2,
-    baths: 1,
-    sqft:  "890",
-    status: "Available",
-    monthlyPayment: 775,
-    moveIn:         1000,
-    lockedPrice:    69680,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    features: { basement: "yes" },
-    heroPhoto: "",
-    photos:    ["images/decatur-il-1259-whitmer-1.jpg", "images/decatur-il-1259-whitmer-2.jpg", "images/decatur-il-1259-whitmer-3.jpg", "images/decatur-il-1259-whitmer-4.jpg", "images/decatur-il-1259-whitmer-5.jpg", "images/decatur-il-1259-whitmer-6.jpg", "images/decatur-il-1259-whitmer-7.jpg", "images/decatur-il-1259-whitmer-8.jpg", "images/decatur-il-1259-whitmer-9.jpg", "images/decatur-il-1259-whitmer-10.jpg", "images/decatur-il-1259-whitmer-11.jpg", "images/decatur-il-1259-whitmer-12.jpg", "images/decatur-il-1259-whitmer-13.jpg", "images/decatur-il-1259-whitmer-14.jpg", "images/decatur-il-1259-whitmer-15.jpg", "images/decatur-il-1259-whitmer-16.jpg", "images/decatur-il-1259-whitmer-17.jpg", "images/decatur-il-1259-whitmer-18.jpg"],
   },
   {
     id: "flint-mi-5210-dupont",
