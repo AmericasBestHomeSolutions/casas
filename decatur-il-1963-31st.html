@@ -214,6 +214,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 
     <h1 class="headline" id="headline"></h1>
     <p class="prop-addr" id="propAddr" style="font-weight:600;font-size:17px;color:var(--pine,#15315e);margin:2px 0 6px"></p>
+    <p class="prop-specs" id="propSpecs" style="display:flex;gap:10px;flex-wrap:wrap;font-weight:600;font-size:16px;color:var(--ink);margin:0 0 8px"></p>
     <p class="subhead" id="subhead"></p>
 
     <div class="deal-strip">
@@ -229,11 +230,11 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <p class="cta-note" id="ctaNote"></p>
   </section>
 
-  <!-- DEAL TERMS -->
-  <section class="section reveal">
-    <div class="sec-label">Estos son los términos</div>
-    <h2 class="sec-title">Números claros y honestos</h2>
-    <div class="terms" id="termsList"></div>
+  <!-- GALLERY -->
+  <section class="section reveal" id="gallerySection">
+    <div class="sec-label">Eche un vistazo</div>
+    <h2 class="sec-title">Por dentro</h2>
+    <div class="gallery" id="gallery"></div>
   </section>
 
   <!-- ABOUT THIS HOME -->
@@ -245,7 +246,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <div class="asis-badges" style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px">
       <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Se vende tal como está</span>
       <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Financiada por el dueño</span>
-      <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Sin revisión de crédito</span>
+      <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Sin solicitud hipotecaria</span>
       <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Pago de entrada + identificación para mudarse</span>
     </div>
     <p style="font-size:15px;line-height:1.65;color:var(--ink-soft,#5b6472);background:var(--honey-soft,#eaf1fb);border-radius:14px;padding:16px 18px">
@@ -261,15 +262,22 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <p class="feat-note" id="featuresNote"></p>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- DEAL TERMS -->
   <section class="section reveal">
-    <div class="sec-label">Cómo funciona</div>
-    <h2 class="sec-title">Financiamiento del dueño, en 4 pasos</h2>
+    <div class="sec-label">Estos son los términos</div>
+    <h2 class="sec-title">Números claros y honestos</h2>
+    <div class="terms" id="termsList"></div>
+  </section>
+
+  <!-- QUÉ PASA CUANDO NOS CONTACTA -->
+  <section class="section reveal" id="nextSec">
+    <div class="sec-label">Qué pasa cuando nos contacta</div>
+    <h2 class="sec-title">Sin vueltas. Este es todo el camino.</h2>
     <div class="steps">
-      <div class="step"><div class="n">01</div><div class="body"><h3>Recorra la casa</h3><p>Llámenos o escríbanos y coordinamos una hora para que la recorra.</p></div></div>
-      <div class="step"><div class="n">02</div><div class="body"><h3>Firme un acuerdo sencillo</h3><p>Nosotros mismos la financiamos con un contrato de compraventa — sin banco, sin solicitud hipotecaria.</p></div></div>
-      <div class="step"><div class="n">03</div><div class="body"><h3>Reciba las llaves</h3><p>Haga su pago de entrada y la casa es suya para vivir.</p></div></div>
-      <div class="step"><div class="n">04</div><div class="body"><h3>Construya su propiedad</h3><p>Cada pago mensual va hacia la casa que está comprando — a un precio fijado el día que firma.</p></div></div>
+      <div class="step"><div class="n">01</div><div class="body"><h3>Escríbanos o llámenos</h3><p>Le responde una persona real — casi siempre el mismo día. Díganos cuándo le gustaría verla.</p></div></div>
+      <div class="step"><div class="n">02</div><div class="body"><h3>Recorra la casa en persona</h3><p>Las visitas son en persona, no por video — la ve exactamente como está. A todos les pedimos una identificación con foto antes de la visita; así llevamos un registro de quién ha entrado a la casa.</p></div></div>
+      <div class="step"><div class="n">03</div><div class="body"><h3>Léalo antes de firmar</h3><p>Los números de arriba quedan en un acuerdo por escrito que usted puede leer — y mostrarle a alguien de confianza — antes de firmar cualquier cosa. Nunca le pediremos dinero para "apartar" una casa que no ha visto.</p></div></div>
+      <div class="step"><div class="n">04</div><div class="body"><h3>Pago de entrada, y las llaves</h3><p>Desde ese día, cada pago mensual va hacia ser dueño de la casa — al precio que acordó.</p></div></div>
     </div>
     <p class="other-homes" style="margin-top:16px"><a href="como-funciona.html">¿Quiere todos los detalles? Vea cómo funciona el financiamiento del dueño →</a></p>
   </section>
@@ -279,17 +287,10 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <div class="sec-label">Por qué esto es diferente</div>
     <h2 class="sec-title">No es rentar</h2>
     <div class="why">
-      <div class="why-card"><h3>Usted compra, no renta</h3><p>Su nombre está en el acuerdo desde el primer día. Usted es el dueño.</p></div>
+      <div class="why-card"><h3>Usted compra, no renta</h3><p>Su nombre está en el acuerdo de compra desde el primer día. Usted es el comprador, no un inquilino — cada pago lo acerca a que la casa sea completamente suya.</p></div>
       <div class="why-card"><h3>Su pago no se mueve</h3><p>Un pago mensual fijo, por escrito. No sube cada año como la renta — solo un cambio en los impuestos o el seguro de la propiedad podría moverlo, y eso queda explicado antes de firmar.</p></div>
-      <div class="why-card"><h3>Un pago parecido a la renta</h3><p>Sea dueño de una casa por más o menos lo que le pagaría a un casero — sin la aprobación de un banco de por medio.</p></div>
+      <div class="why-card"><h3>Un pago parecido a la renta</h3><p>Más o menos lo que hoy le entrega a un casero — solo que cada día primero, este pago va construyendo una casa con su nombre.</p></div>
     </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="section reveal" id="gallerySection">
-    <div class="sec-label">Eche un vistazo</div>
-    <h2 class="sec-title">Por dentro</h2>
-    <div class="gallery" id="gallery"></div>
   </section>
 
   <!-- LEAD FORM -->
@@ -380,7 +381,8 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   const C = Object.assign({}, CONTACT, home);
 
   const $ = id => document.getElementById(id);
-  const money = n => "$" + Number(n||0).toLocaleString("en-US");
+  const money = n => "$" + Number(n||0).toLocaleString("en-US");            // exacto (tabla de términos)
+  const moneyR = n => "$" + Math.round(Number(n||0)).toLocaleString("en-US"); // dólares enteros (encabezado)
   const statusEs = s => {
     const k = (s||"").toLowerCase();
     if (k === "pending")  return "Pendiente";
@@ -391,7 +393,12 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   document.title = `Casa en ${C.city}, ${C.state} — Financiamiento del Dueño | Americas Best Home Solutions`;
 
   $("headline").innerHTML = `Sea dueño de una casa en <em>${C.city}</em>.<br>Sin banco.`;
-  $("subhead").textContent = "Esto es comprar, no rentar. Un pago mensual fijo parecido a la renta — y cada primero de mes, ese pago va construyendo una casa que es suya.";
+  $("subhead").textContent = "Esto es comprar, no rentar. Un pago mensual fijo parecido a la renta — y cada día primero, ese pago va construyendo una casa que es suya.";
+  $("propSpecs").innerHTML = [
+    C.beds ? `<span>${C.beds} habitaci${Number(C.beds)===1?"ón":"ones"}</span>` : "",
+    C.baths ? `<span>${C.baths} baño${Number(C.baths)===1?"":"s"}</span>` : "",
+    C.sqft ? `<span style="font-weight:500;color:var(--ink-soft)">${Number(C.sqft).toLocaleString("en-US")} pies²</span>` : ""
+  ].filter(Boolean).join(`<span style="color:var(--line)">·</span>`);
   (function(){
     const addrText = [C.address, `${C.city}, ${C.state}${C.zip?" "+C.zip:""}`].filter(Boolean).join(", ");
     const mapQ = encodeURIComponent(addrText);
@@ -437,9 +444,9 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   $("heroCity").innerHTML = `<div class="c">${C.city}</div><div class="s">${C.state}</div>`;
 
   const moveInText = C.moveIn ? money(C.moveIn) : "Pregúntenos";
-  $("dMonthly").textContent = money(C.monthlyPayment);
+  $("dMonthly").textContent = moneyR(C.monthlyPayment);
   $("dMoveIn").textContent  = moveInText;
-  $("dPrice").textContent   = money(C.lockedPrice);
+  $("dPrice").textContent   = moneyR(C.lockedPrice);
 
   // hero photo — uses heroPhoto if set, otherwise auto-tries images/<id>.jpg;
   // falls back to the branded navy face + city label if there's no photo.
@@ -460,7 +467,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     };
   })();
 
-  const beds = `${C.beds} rec · ${C.baths} baño${Number(C.baths)===1?"":"s"}${C.sqft?` · ${Number(C.sqft).toLocaleString("en-US")} pie²`:""}`;
+  const beds = `${C.beds} hab · ${C.baths} baño${Number(C.baths)===1?"":"s"}${C.sqft?` · ${Number(C.sqft).toLocaleString("en-US")} pies²`:""}`;
   const terms = [
     ["Su pago mensual", money(C.monthlyPayment), true],
     ["Pago de entrada", moveInText, false],
@@ -489,16 +496,20 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   if (C.photos && C.photos.length){
     g.innerHTML = C.photos.map(src=>tile(src, true)).join("");
   } else {
-    g.innerHTML = [1,2,3,4].map(i=>tile(`images/${C.id}-${i}.jpg`, true)).join("");
-    for (let i=5;i<=MAX_GALLERY;i++){
-      const src = `images/${C.id}-${i}.jpg`;
-      g.insertAdjacentHTML("beforeend", tile(src, false));
-    }
+    // probe -1.jpg, -2.jpg… in order and stop at the first miss; nothing → section hides
+    $("gallerySection").hidden = true;
+    (function probe(i){
+      if (i > MAX_GALLERY) return;
+      const src = `images/${C.id}-${i}.jpg`, im = new Image();
+      im.onload  = () => { g.insertAdjacentHTML("beforeend", tile(src, false)); $("gallerySection").hidden = false; probe(i+1); };
+      im.onerror = () => {};
+      im.src = src;
+    })(1);
   }
 
   const tel = (C.phone||"").replace(/[^\d+]/g,"");
   const prettyPhone = tel.length===10 ? `(${tel.slice(0,3)}) ${tel.slice(3,6)}-${tel.slice(6)}` : C.phone;
-  const smsBody = encodeURIComponent(`Hola ${C.contactName}, vi la casa en ${C.city} y me gustaría visitarla.`);
+  const smsBody = encodeURIComponent(`Hola, vi ${C.address ? C.address + " en " : ""}${C.city}, ${C.state} en su sitio y me gustaría visitarla.`);
   ["ctaCall","ctaCall2"].forEach(id=>$(id).href = `tel:${tel}`);
   ["ctaText","ctaText2"].forEach(id=>$(id).href = `sms:${tel}?&body=${smsBody}`);
   $("navCall").href = `tel:${tel}`;
