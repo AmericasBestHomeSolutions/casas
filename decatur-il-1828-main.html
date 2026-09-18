@@ -280,7 +280,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <h2 class="sec-title">No es rentar</h2>
     <div class="why">
       <div class="why-card"><h3>Usted compra, no renta</h3><p>Su nombre está en el acuerdo desde el primer día. Usted es el dueño.</p></div>
-      <div class="why-card"><h3>El precio queda fijo</h3><p>No sube mientras lo va pagando. Lo que acuerda hoy es lo que paga.</p></div>
+      <div class="why-card"><h3>Su pago no se mueve</h3><p>Un pago mensual fijo, por escrito. No sube cada año como la renta — solo un cambio en los impuestos o el seguro de la propiedad podría moverlo, y eso queda explicado antes de firmar.</p></div>
       <div class="why-card"><h3>Un pago parecido a la renta</h3><p>Sea dueño de una casa por más o menos lo que le pagaría a un casero — sin la aprobación de un banco de por medio.</p></div>
     </div>
   </section>
@@ -391,7 +391,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   document.title = `Casa en ${C.city}, ${C.state} — Financiamiento del Dueño | Americas Best Home Solutions`;
 
   $("headline").innerHTML = `Sea dueño de una casa en <em>${C.city}</em>.<br>Sin banco.`;
-  $("subhead").textContent = "Financiamiento del dueño con un precio fijo y un pago mensual parecido a la renta.";
+  $("subhead").textContent = "Esto es comprar, no rentar. Un pago mensual fijo parecido a la renta — y cada primero de mes, ese pago va construyendo una casa que es suya.";
   (function(){
     const addrText = [C.address, `${C.city}, ${C.state}${C.zip?" "+C.zip:""}`].filter(Boolean).join(", ");
     const mapQ = encodeURIComponent(addrText);
