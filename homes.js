@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (170, generadas desde la web en inglés) --- */
+/* --- las casas (171, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "stlouis-mo-6580-saint",
@@ -3250,6 +3250,26 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    ["images/peoria-il-422-louisa-1.jpg", "images/peoria-il-422-louisa-2.jpg", "images/peoria-il-422-louisa-3.jpg", "images/peoria-il-422-louisa-4.jpg", "images/peoria-il-422-louisa-5.jpg", "images/peoria-il-422-louisa-6.jpg", "images/peoria-il-422-louisa-7.jpg", "images/peoria-il-422-louisa-8.jpg", "images/peoria-il-422-louisa-9.jpg", "images/peoria-il-422-louisa-10.jpg", "images/peoria-il-422-louisa-11.jpg", "images/peoria-il-422-louisa-12.jpg", "images/peoria-il-422-louisa-13.jpg", "images/peoria-il-422-louisa-14.jpg", "images/peoria-il-422-louisa-15.jpg", "images/peoria-il-422-louisa-16.jpg", "images/peoria-il-422-louisa-17.jpg", "images/peoria-il-422-louisa-18.jpg", "images/peoria-il-422-louisa-19.jpg", "images/peoria-il-422-louisa-20.jpg", "images/peoria-il-422-louisa-21.jpg", "images/peoria-il-422-louisa-22.jpg", "images/peoria-il-422-louisa-23.jpg", "images/peoria-il-422-louisa-24.jpg"],
+  },
+  {
+    id: "marion-in-1615-9th",
+    address:     "1615 W 9th St",
+    zip:         "46953",
+    description: "$925 al mes y $3,000 para mudarse le abren la puerta a esta casa de rancho de 2 recámaras y 1 baño en Marion, con 839 pies cuadrados en un terreno doble y espacioso. Atrás, un patio completamente cercado y una bodega le dan espacio para expandirse. En una noche cálida puede sentarse allá sabiendo que nadie más decide si se queda. Adentro encontrará aire central, calefacción de aire forzado a gas, un calentador de agua nuevo y una cocina con comedor, con la estufa a gas, microondas, refrigerador, lavadora y secadora todos incluidos. El precio de compra es $89,000, escrito en su acuerdo desde el principio, con financiamiento del dueño y sin banco de por medio. La casa se vende tal como está, así que venga a recorrerla y juzgue cada cuarto con sus propios ojos. Un pago como este no va a esperar. Mándenos un texto ahora para ponerse en la lista de visitas.",
+    descriptionLang: "es",
+    city:  "Marion",
+    state: "IN",
+    beds:  2,
+    baths: 1,
+    sqft:  "839",
+    status: "Available",
+    monthlyPayment: 925,
+    moveIn:         3000,
+    lockedPrice:    89000,
+    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
+    features: { backyard: "yes", fenced_yard: "yes", basement: "no", central_air: "yes", storage_shed: "yes" },
+    heroPhoto: "",
+    photos:    [],
   },
   {
     id: "david-il-209-central",
