@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (203, generadas desde la web en inglés) --- */
+/* --- las casas (202, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "decatur-il-933-elmhurst",
@@ -1637,7 +1637,7 @@ const HOMES = [
     beds:  3,
     baths: 1,
     sqft:  "1064",
-    status: "Available",
+    status: "Pending",
     monthlyPayment: 925,
     moveIn:         2500,
     lockedPrice:    88500,
@@ -2655,7 +2655,7 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { basement: "yes" },
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/peoria-il-1205-sheridan-1.jpg", "images/peoria-il-1205-sheridan-2.jpg", "images/peoria-il-1205-sheridan-3.jpg", "images/peoria-il-1205-sheridan-4.jpg", "images/peoria-il-1205-sheridan-5.jpg", "images/peoria-il-1205-sheridan-6.jpg", "images/peoria-il-1205-sheridan-7.jpg", "images/peoria-il-1205-sheridan-8.jpg", "images/peoria-il-1205-sheridan-9.jpg", "images/peoria-il-1205-sheridan-10.jpg", "images/peoria-il-1205-sheridan-11.jpg", "images/peoria-il-1205-sheridan-12.jpg", "images/peoria-il-1205-sheridan-13.jpg", "images/peoria-il-1205-sheridan-14.jpg", "images/peoria-il-1205-sheridan-15.jpg", "images/peoria-il-1205-sheridan-16.jpg", "images/peoria-il-1205-sheridan-17.jpg", "images/peoria-il-1205-sheridan-18.jpg", "images/peoria-il-1205-sheridan-19.jpg", "images/peoria-il-1205-sheridan-20.jpg", "images/peoria-il-1205-sheridan-21.jpg", "images/peoria-il-1205-sheridan-22.jpg", "images/peoria-il-1205-sheridan-23.jpg", "images/peoria-il-1205-sheridan-24.jpg"],
   },
   {
     id: "decatur-il-462-leafland",
@@ -3711,25 +3711,6 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    ["images/stlouis-mo-3422-lucas-1.jpg", "images/stlouis-mo-3422-lucas-2.jpg", "images/stlouis-mo-3422-lucas-3.jpg", "images/stlouis-mo-3422-lucas-4.jpg", "images/stlouis-mo-3422-lucas-5.jpg", "images/stlouis-mo-3422-lucas-6.jpg", "images/stlouis-mo-3422-lucas-7.jpg", "images/stlouis-mo-3422-lucas-8.jpg", "images/stlouis-mo-3422-lucas-9.jpg", "images/stlouis-mo-3422-lucas-10.jpg", "images/stlouis-mo-3422-lucas-11.jpg", "images/stlouis-mo-3422-lucas-12.jpg", "images/stlouis-mo-3422-lucas-13.jpg", "images/stlouis-mo-3422-lucas-14.jpg", "images/stlouis-mo-3422-lucas-15.jpg", "images/stlouis-mo-3422-lucas-16.jpg", "images/stlouis-mo-3422-lucas-17.jpg", "images/stlouis-mo-3422-lucas-18.jpg", "images/stlouis-mo-3422-lucas-19.jpg", "images/stlouis-mo-3422-lucas-20.jpg", "images/stlouis-mo-3422-lucas-21.jpg", "images/stlouis-mo-3422-lucas-22.jpg", "images/stlouis-mo-3422-lucas-23.jpg", "images/stlouis-mo-3422-lucas-24.jpg"],
-  },
-  {
-    id: "stlouis-mo-2528-avis",
-    address:     "2528 Avis St",
-    zip:         "63136",
-    description: "$795 al mes y $2,000 para mudarse: eso es lo que se necesita para empezar a ser dueño de esta casa de dos recámaras y un baño en St. Louis. Sin banco, sin solicitud de hipoteca, sin esperar a que alguien en una oficina decida su futuro. Este es financiamiento del dueño, simple y directo, a través de Americas Best Home Solutions. Su pago mensual está escrito en el contrato desde el principio, así que no tiene que preocuparse de que el casero suba la renta cada año. Sabrá exactamente cuánto debe, mes tras mes, y cada uno de esos pagos va hacia un lugar con su nombre. El precio de compra es $69,000, acordado por escrito el día que firme. La casa se vende tal como está, así que venga a caminar por ella en persona y sienta cada habitación antes de decidir. No deje que ésta se le pase. Mándenos un texto o mensaje ahora para programar su recorrido.",
-    descriptionLang: "es",
-    city:  "St. Louis",
-    state: "MO",
-    beds:  2,
-    baths: 1,
-    sqft:  "",
-    status: "Available",
-    monthlyPayment: 795,
-    moveIn:         2000,
-    lockedPrice:    69000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    heroPhoto: "",
-    photos:    [],
   },
   {
     id: "stlouis-mo-1338-gregan",
