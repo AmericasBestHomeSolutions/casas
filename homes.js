@@ -35,7 +35,7 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { backyard: "yes", fenced_yard: "yes", storage_shed: "yes" },
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/decatur-il-933-elmhurst-1.jpg", "images/decatur-il-933-elmhurst-2.jpg", "images/decatur-il-933-elmhurst-3.jpg", "images/decatur-il-933-elmhurst-4.jpg", "images/decatur-il-933-elmhurst-5.jpg", "images/decatur-il-933-elmhurst-6.jpg", "images/decatur-il-933-elmhurst-7.jpg", "images/decatur-il-933-elmhurst-8.jpg", "images/decatur-il-933-elmhurst-9.jpg", "images/decatur-il-933-elmhurst-10.jpg"],
   },
   {
     id: "decatur-il-765-division",
@@ -54,7 +54,7 @@ const HOMES = [
     lockedPrice:    90000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/decatur-il-765-division-1.jpg", "images/decatur-il-765-division-2.jpg", "images/decatur-il-765-division-3.jpg", "images/decatur-il-765-division-4.jpg", "images/decatur-il-765-division-5.jpg", "images/decatur-il-765-division-6.jpg", "images/decatur-il-765-division-7.jpg", "images/decatur-il-765-division-8.jpg", "images/decatur-il-765-division-9.jpg", "images/decatur-il-765-division-10.jpg", "images/decatur-il-765-division-11.jpg", "images/decatur-il-765-division-12.jpg", "images/decatur-il-765-division-13.jpg", "images/decatur-il-765-division-14.jpg", "images/decatur-il-765-division-15.jpg", "images/decatur-il-765-division-16.jpg", "images/decatur-il-765-division-17.jpg", "images/decatur-il-765-division-18.jpg", "images/decatur-il-765-division-19.jpg", "images/decatur-il-765-division-20.jpg", "images/decatur-il-765-division-21.jpg", "images/decatur-il-765-division-22.jpg", "images/decatur-il-765-division-23.jpg", "images/decatur-il-765-division-24.jpg"],
   },
   {
     id: "stlouis-mo-605-fremont",
@@ -3331,7 +3331,7 @@ const HOMES = [
     lockedPrice:    29000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/granitecity-il-2209-edwards-1.jpg", "images/granitecity-il-2209-edwards-2.jpg", "images/granitecity-il-2209-edwards-3.jpg", "images/granitecity-il-2209-edwards-4.jpg", "images/granitecity-il-2209-edwards-5.jpg", "images/granitecity-il-2209-edwards-6.jpg", "images/granitecity-il-2209-edwards-7.jpg", "images/granitecity-il-2209-edwards-8.jpg", "images/granitecity-il-2209-edwards-9.jpg", "images/granitecity-il-2209-edwards-10.jpg", "images/granitecity-il-2209-edwards-11.jpg", "images/granitecity-il-2209-edwards-12.jpg", "images/granitecity-il-2209-edwards-13.jpg", "images/granitecity-il-2209-edwards-14.jpg", "images/granitecity-il-2209-edwards-15.jpg", "images/granitecity-il-2209-edwards-16.jpg", "images/granitecity-il-2209-edwards-17.jpg", "images/granitecity-il-2209-edwards-18.jpg", "images/granitecity-il-2209-edwards-19.jpg", "images/granitecity-il-2209-edwards-20.jpg", "images/granitecity-il-2209-edwards-21.jpg", "images/granitecity-il-2209-edwards-22.jpg", "images/granitecity-il-2209-edwards-23.jpg", "images/granitecity-il-2209-edwards-24.jpg"],
   },
   {
     id: "stlouis-mo-10068-royal",
