@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (202, generadas desde la web en inglés) --- */
+/* --- las casas (203, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "decatur-il-933-elmhurst",
@@ -3407,7 +3407,7 @@ const HOMES = [
     lockedPrice:    79000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/eaststlouis-il-725-39th-1.jpg", "images/eaststlouis-il-725-39th-2.jpg", "images/eaststlouis-il-725-39th-3.jpg", "images/eaststlouis-il-725-39th-4.jpg", "images/eaststlouis-il-725-39th-5.jpg", "images/eaststlouis-il-725-39th-6.jpg", "images/eaststlouis-il-725-39th-7.jpg", "images/eaststlouis-il-725-39th-8.jpg", "images/eaststlouis-il-725-39th-9.jpg", "images/eaststlouis-il-725-39th-10.jpg", "images/eaststlouis-il-725-39th-11.jpg", "images/eaststlouis-il-725-39th-12.jpg", "images/eaststlouis-il-725-39th-13.jpg", "images/eaststlouis-il-725-39th-14.jpg", "images/eaststlouis-il-725-39th-15.jpg", "images/eaststlouis-il-725-39th-16.jpg", "images/eaststlouis-il-725-39th-17.jpg", "images/eaststlouis-il-725-39th-18.jpg", "images/eaststlouis-il-725-39th-19.jpg", "images/eaststlouis-il-725-39th-20.jpg", "images/eaststlouis-il-725-39th-21.jpg", "images/eaststlouis-il-725-39th-22.jpg", "images/eaststlouis-il-725-39th-23.jpg", "images/eaststlouis-il-725-39th-24.jpg"],
   },
   {
     id: "stlouis-mo-5124-northland",
@@ -3487,6 +3487,24 @@ const HOMES = [
     photos:    ["images/westfrankfort-il-1310-poplar-1.jpg", "images/westfrankfort-il-1310-poplar-2.jpg", "images/westfrankfort-il-1310-poplar-3.jpg", "images/westfrankfort-il-1310-poplar-4.jpg", "images/westfrankfort-il-1310-poplar-5.jpg", "images/westfrankfort-il-1310-poplar-6.jpg", "images/westfrankfort-il-1310-poplar-7.jpg", "images/westfrankfort-il-1310-poplar-8.jpg", "images/westfrankfort-il-1310-poplar-9.jpg", "images/westfrankfort-il-1310-poplar-10.jpg", "images/westfrankfort-il-1310-poplar-11.jpg", "images/westfrankfort-il-1310-poplar-12.jpg", "images/westfrankfort-il-1310-poplar-13.jpg", "images/westfrankfort-il-1310-poplar-14.jpg", "images/westfrankfort-il-1310-poplar-15.jpg", "images/westfrankfort-il-1310-poplar-16.jpg", "images/westfrankfort-il-1310-poplar-17.jpg", "images/westfrankfort-il-1310-poplar-18.jpg", "images/westfrankfort-il-1310-poplar-19.jpg", "images/westfrankfort-il-1310-poplar-20.jpg", "images/westfrankfort-il-1310-poplar-21.jpg", "images/westfrankfort-il-1310-poplar-22.jpg", "images/westfrankfort-il-1310-poplar-23.jpg", "images/westfrankfort-il-1310-poplar-24.jpg"],
   },
   {
+    id: "eaststlouis-il-6000-old",
+    address:     "6000 Old Missouri Ave",
+    description: "$650 al mes y $2,500 para empezar. Eso es lo que necesita para comenzar a ser dueño de esta casa en East St. Louis, sin que ningún banco se interponga entre usted y la puerta principal. Este es financiamiento del dueño a través de un contrato de compraventa, lo que significa sin solicitud de hipoteca y sin esperar a que un oficial de préstamos le diga que sí. Su pago mensual está escrito en el acuerdo desde el principio, así que en lugar de preocuparse cada año porque el casero suba la renta, sabrá exactamente cuánto debe pagar. Cada pago va hacia una casa que usted está comprando, no hacia el alquiler de otra persona. El precio de compra es $59,000, arreglado el día que firma. La casa se vende tal como está, así que venga a recorrerla en persona y sienta cómo es antes de decidirse. Las casas a este precio no duran mucho tiempo en el mercado. Mándenos un mensaje de texto o un mensaje ahora y déjenos ayudarle a entrar.",
+    descriptionLang: "es",
+    city:  "East St. Louis",
+    state: "IL",
+    beds:  "",
+    baths: "",
+    sqft:  "",
+    status: "Available",
+    monthlyPayment: 650,
+    moveIn:         2500,
+    lockedPrice:    59000,
+    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
+    heroPhoto: "",
+    photos:    [],
+  },
+  {
     id: "stlouis-mo-1920-prior",
     address:     "1920 Prior Dr",
     zip:         "63136",
@@ -3560,7 +3578,7 @@ const HOMES = [
     lockedPrice:    59000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/eaststlouis-il-634-8th-1.jpg", "images/eaststlouis-il-634-8th-2.jpg", "images/eaststlouis-il-634-8th-3.jpg", "images/eaststlouis-il-634-8th-4.jpg", "images/eaststlouis-il-634-8th-5.jpg", "images/eaststlouis-il-634-8th-6.jpg", "images/eaststlouis-il-634-8th-7.jpg", "images/eaststlouis-il-634-8th-8.jpg", "images/eaststlouis-il-634-8th-9.jpg", "images/eaststlouis-il-634-8th-10.jpg", "images/eaststlouis-il-634-8th-11.jpg", "images/eaststlouis-il-634-8th-12.jpg", "images/eaststlouis-il-634-8th-13.jpg", "images/eaststlouis-il-634-8th-14.jpg", "images/eaststlouis-il-634-8th-15.jpg", "images/eaststlouis-il-634-8th-16.jpg", "images/eaststlouis-il-634-8th-17.jpg", "images/eaststlouis-il-634-8th-18.jpg", "images/eaststlouis-il-634-8th-19.jpg", "images/eaststlouis-il-634-8th-20.jpg", "images/eaststlouis-il-634-8th-21.jpg", "images/eaststlouis-il-634-8th-22.jpg", "images/eaststlouis-il-634-8th-23.jpg", "images/eaststlouis-il-634-8th-24.jpg"],
   },
   {
     id: "decatur-il-1527-oakland",
