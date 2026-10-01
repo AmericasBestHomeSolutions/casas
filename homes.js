@@ -131,7 +131,7 @@ const HOMES = [
     lockedPrice:    79000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/peoria-il-1811-millman-1.jpg", "images/peoria-il-1811-millman-2.jpg", "images/peoria-il-1811-millman-3.jpg", "images/peoria-il-1811-millman-4.jpg", "images/peoria-il-1811-millman-5.jpg", "images/peoria-il-1811-millman-6.jpg", "images/peoria-il-1811-millman-7.jpg", "images/peoria-il-1811-millman-8.jpg", "images/peoria-il-1811-millman-9.jpg", "images/peoria-il-1811-millman-10.jpg", "images/peoria-il-1811-millman-11.jpg", "images/peoria-il-1811-millman-12.jpg", "images/peoria-il-1811-millman-13.jpg", "images/peoria-il-1811-millman-14.jpg", "images/peoria-il-1811-millman-15.jpg", "images/peoria-il-1811-millman-16.jpg", "images/peoria-il-1811-millman-17.jpg", "images/peoria-il-1811-millman-18.jpg", "images/peoria-il-1811-millman-19.jpg", "images/peoria-il-1811-millman-20.jpg", "images/peoria-il-1811-millman-21.jpg", "images/peoria-il-1811-millman-22.jpg", "images/peoria-il-1811-millman-23.jpg", "images/peoria-il-1811-millman-24.jpg"],
   },
   {
     id: "stlouis-mo-2207-oakdale",
