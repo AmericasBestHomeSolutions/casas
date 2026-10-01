@@ -3918,7 +3918,7 @@ const HOMES = [
     lockedPrice:    69000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/jackson-ms-533-stillwood-1.jpg", "images/jackson-ms-533-stillwood-2.jpg", "images/jackson-ms-533-stillwood-3.jpg", "images/jackson-ms-533-stillwood-4.jpg", "images/jackson-ms-533-stillwood-5.jpg", "images/jackson-ms-533-stillwood-6.jpg"],
   },
   {
     id: "stlouis-mo-3422-lucas",
