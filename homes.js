@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (217, generadas desde la web en inglés) --- */
+/* --- las casas (216, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "peoria-il-2421-lincoln",
@@ -1481,25 +1481,6 @@ const HOMES = [
     photos:    ["images/stlouis-mo-5508-beacon-1.jpg", "images/stlouis-mo-5508-beacon-2.jpg", "images/stlouis-mo-5508-beacon-3.jpg", "images/stlouis-mo-5508-beacon-4.jpg", "images/stlouis-mo-5508-beacon-5.jpg", "images/stlouis-mo-5508-beacon-6.jpg", "images/stlouis-mo-5508-beacon-7.jpg", "images/stlouis-mo-5508-beacon-8.jpg", "images/stlouis-mo-5508-beacon-9.jpg", "images/stlouis-mo-5508-beacon-10.jpg", "images/stlouis-mo-5508-beacon-11.jpg", "images/stlouis-mo-5508-beacon-12.jpg", "images/stlouis-mo-5508-beacon-13.jpg", "images/stlouis-mo-5508-beacon-14.jpg", "images/stlouis-mo-5508-beacon-15.jpg", "images/stlouis-mo-5508-beacon-16.jpg"],
   },
   {
-    id: "stlouis-mo-5930-shulte",
-    address:     "5930 Shulte Avenue",
-    zip:         "63136",
-    description: "Tres recámaras en St. Louis a $850 al mes, y $2,500 pone las llaves en su mano. Esta casa de 3 recámaras y 1 baño viene con financiamiento del dueño, lo que significa sin banco, sin solicitud de hipoteca, y sin oficial de crédito diciéndole que intente el próximo año. Tres recámaras le dan espacio para todos bajo un mismo techo, y esta vez las cajas de mudanza se aplanan y se guardan para siempre, porque no está de paso. El precio de compra es $69,000, fijo por escrito el día que firme, sin banco en ningún lugar. La casa se vende tal como está, así que venga a caminar por cada cuarto y juzguela con sus propios ojos. Si esta es la que ha estado esperando, no deje que otro llegue primero. Mándenos un texto y pongamos su cita.",
-    descriptionLang: "es",
-    city:  "St. Louis",
-    state: "MO",
-    beds:  3,
-    baths: 1,
-    sqft:  "",
-    status: "Available",
-    monthlyPayment: 850,
-    moveIn:         2500,
-    lockedPrice:    69000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    heroPhoto: "",
-    photos:    ["images/stlouis-mo-5930-shulte-1.jpg", "images/stlouis-mo-5930-shulte-2.jpg", "images/stlouis-mo-5930-shulte-3.jpg", "images/stlouis-mo-5930-shulte-4.jpg", "images/stlouis-mo-5930-shulte-5.jpg", "images/stlouis-mo-5930-shulte-6.jpg", "images/stlouis-mo-5930-shulte-7.jpg", "images/stlouis-mo-5930-shulte-8.jpg", "images/stlouis-mo-5930-shulte-9.jpg", "images/stlouis-mo-5930-shulte-10.jpg", "images/stlouis-mo-5930-shulte-11.jpg", "images/stlouis-mo-5930-shulte-12.jpg", "images/stlouis-mo-5930-shulte-13.jpg", "images/stlouis-mo-5930-shulte-14.jpg", "images/stlouis-mo-5930-shulte-15.jpg"],
-  },
-  {
     id: "bethalto-il-319-corbin",
     address:     "319 W Corbin St",
     zip:         "62010",
@@ -2824,7 +2805,7 @@ const HOMES = [
     lockedPrice:    84999,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    ["images/peoria-il-1610-lydia-1.jpg", "images/peoria-il-1610-lydia-2.jpg", "images/peoria-il-1610-lydia-3.jpg", "images/peoria-il-1610-lydia-4.jpg", "images/peoria-il-1610-lydia-5.jpg", "images/peoria-il-1610-lydia-6.jpg", "images/peoria-il-1610-lydia-7.jpg", "images/peoria-il-1610-lydia-8.jpg", "images/peoria-il-1610-lydia-9.jpg", "images/peoria-il-1610-lydia-10.jpg", "images/peoria-il-1610-lydia-11.jpg", "images/peoria-il-1610-lydia-12.jpg", "images/peoria-il-1610-lydia-13.jpg", "images/peoria-il-1610-lydia-14.jpg", "images/peoria-il-1610-lydia-15.jpg", "images/peoria-il-1610-lydia-16.jpg", "images/peoria-il-1610-lydia-17.jpg", "images/peoria-il-1610-lydia-18.jpg", "images/peoria-il-1610-lydia-19.jpg", "images/peoria-il-1610-lydia-20.jpg", "images/peoria-il-1610-lydia-21.jpg", "images/peoria-il-1610-lydia-22.jpg"],
+    photos:    ["images/peoria-il-1610-lydia-1.jpg", "images/peoria-il-1610-lydia-2.jpg", "images/peoria-il-1610-lydia-3.jpg", "images/peoria-il-1610-lydia-4.jpg", "images/peoria-il-1610-lydia-5.jpg", "images/peoria-il-1610-lydia-6.jpg", "images/peoria-il-1610-lydia-7.jpg", "images/peoria-il-1610-lydia-8.jpg", "images/peoria-il-1610-lydia-9.jpg", "images/peoria-il-1610-lydia-10.jpg", "images/peoria-il-1610-lydia-11.jpg", "images/peoria-il-1610-lydia-12.jpg", "images/peoria-il-1610-lydia-13.jpg", "images/peoria-il-1610-lydia-14.jpg", "images/peoria-il-1610-lydia-15.jpg", "images/peoria-il-1610-lydia-16.jpg", "images/peoria-il-1610-lydia-17.jpg", "images/peoria-il-1610-lydia-18.jpg", "images/peoria-il-1610-lydia-19.jpg", "images/peoria-il-1610-lydia-20.jpg", "images/peoria-il-1610-lydia-21.jpg"],
   },
   {
     id: "decatur-il-1505-walnut",
@@ -3788,7 +3769,7 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     features: { garage: "yes", off_street_parking: "yes" },
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/eaststlouis-il-3129-converse-1.jpg", "images/eaststlouis-il-3129-converse-2.jpg", "images/eaststlouis-il-3129-converse-3.jpg", "images/eaststlouis-il-3129-converse-4.jpg", "images/eaststlouis-il-3129-converse-5.jpg", "images/eaststlouis-il-3129-converse-6.jpg", "images/eaststlouis-il-3129-converse-7.jpg", "images/eaststlouis-il-3129-converse-8.jpg", "images/eaststlouis-il-3129-converse-9.jpg", "images/eaststlouis-il-3129-converse-10.jpg", "images/eaststlouis-il-3129-converse-11.jpg", "images/eaststlouis-il-3129-converse-12.jpg", "images/eaststlouis-il-3129-converse-13.jpg", "images/eaststlouis-il-3129-converse-14.jpg", "images/eaststlouis-il-3129-converse-15.jpg", "images/eaststlouis-il-3129-converse-16.jpg", "images/eaststlouis-il-3129-converse-17.jpg", "images/eaststlouis-il-3129-converse-18.jpg", "images/eaststlouis-il-3129-converse-19.jpg", "images/eaststlouis-il-3129-converse-20.jpg", "images/eaststlouis-il-3129-converse-21.jpg", "images/eaststlouis-il-3129-converse-22.jpg", "images/eaststlouis-il-3129-converse-23.jpg", "images/eaststlouis-il-3129-converse-24.jpg"],
   },
   {
     id: "decatur-il-1527-oakland",
