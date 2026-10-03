@@ -542,7 +542,7 @@ body{
   <section class="lead reveal" id="get-started">
     <div class="lead-inner">
       <h2>Esto no es para todos.</h2>
-      <p class="sub">Tomamos un número limitado de compradores a la vez — y buscamos gente seria. Si está listo para dejar de rentar y empezar a ser dueño, aplique abajo y nos comunicamos con usted.</p>
+      <p class="sub">Tomamos un número limitado de compradores a la vez — y buscamos gente seria. Si está listo para dejar de rentar y empezar a ser dueño, cuéntenos un poco sobre usted abajo y nos comunicamos con usted.</p>
       <form id="leadForm">
         <label for="lfName">Nombre</label>
         <input id="lfName" name="name" type="text" autocomplete="name" required>
@@ -571,11 +571,11 @@ body{
           <span>Acepto recibir mensajes de texto de Americas Best Home Solutions LLC sobre casas disponibles, citas para ver casas, ofertas y seguimiento. La frecuencia de mensajes varía. Pueden aplicar tarifas de mensajes y datos. Responda STOP para cancelar la suscripción o HELP para obtener ayuda. Consulte nuestra <a href="/politica-de-privacidad" style="color:#fff;font-weight:600">Política de Privacidad</a> y nuestros <a href="/terminos-de-mensajes" style="color:#fff;font-weight:600">Términos de Mensajes</a>.</span>
         </label>
         <p style="font-family:'DM Mono',monospace;font-size:12px;color:#a9bedd;margin:7px 0 0;letter-spacing:.3px">Opcional — puede enviar este formulario sin marcar la casilla.</p>
-        <button type="submit" class="btn btn-lime" id="lfSubmit">Aplicar ahora — toma 1 minuto</button>
+        <button type="submit" class="btn btn-lime" id="lfSubmit">Mostrarme mis opciones — toma 1 minuto</button>
         <p class="form-note" id="lfNote"></p>
       </form>
       <div class="thanks">
-        <h3>Solicitud recibida — buena decisión.</h3>
+        <h3>Recibido — buena decisión.</h3>
         <p>Acaba de hacer lo que muchos solo hablan de hacer. Nos comunicaremos pronto — mientras tanto, puede llamarnos o escribirnos abajo.</p>
       </div>
     </div>
@@ -896,7 +896,7 @@ body{
       const results = await Promise.allSettled(targets);
       const ok = results.some(r => r.status === "fulfilled" && r.value.ok);
       if (ok){ section.classList.add("sent"); }
-      else { btn.disabled = false; btn.textContent = "Aplicar ahora — toma 1 minuto"; note.textContent = "Algo salió mal — por favor llámenos o escríbanos."; }
+      else { btn.disabled = false; btn.textContent = "Mostrarme mis opciones — toma 1 minuto"; note.textContent = "Algo salió mal — por favor llámenos o escríbanos."; }
     });
   })();
 
