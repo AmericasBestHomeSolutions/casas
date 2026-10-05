@@ -328,7 +328,13 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     </form>
     <div class="thanks">
       <h3>¡Listo — gracias!</h3>
-      <p>Nos comunicaremos pronto. Mientras tanto, puede llamarnos o escribirnos abajo.</p>
+      <p>Nos comunicaremos pronto. La forma más rápida de apartar una visita es llamarnos o escribirnos ahora.</p>
+      <div class="cta-group" style="max-width:400px;margin:14px 0 6px">
+        <a class="btn btn-primary" id="thanksCall" href="#">Llámenos</a>
+        <a class="btn btn-secondary" id="thanksText" href="#">Escríbanos</a>
+      </div>
+      <p style="margin-top:14px"><strong>Su ruta personal ya está lista.</strong> Muestra cada paso hasta sus llaves y se actualiza conforme avanza. (La página está en inglés por ahora; llámenos y le ayudamos en español.)</p>
+      <a class="btn btn-secondary" id="thanksRoadmap" href="#" style="max-width:400px;margin-top:6px">Ver mi ruta</a>
     </div>
   </section>
 
@@ -512,11 +518,24 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   const smsBody = encodeURIComponent(`Hola, vi ${C.address ? C.address + " en " : ""}${C.city}, ${C.state} en su sitio y me gustaría visitarla.`);
   ["ctaCall","ctaCall2"].forEach(id=>$(id).href = `tel:${tel}`);
   ["ctaText","ctaText2"].forEach(id=>$(id).href = `sms:${tel}?&body=${smsBody}`);
+  $("thanksCall").href = `tel:${tel}`;
+  $("thanksText").href = `sms:${tel}?&body=${smsBody}`;
   $("navCall").href = `tel:${tel}`;
   $("navCallText").textContent = prettyPhone || "Llámenos";
   // (el pie de página ahora imprime el número y la dirección de forma literal —
   //  no queda ningún enlace footCall que conectar aquí)
   $("ctaNote").textContent = `Llame o escriba al ${prettyPhone} — normalmente respondemos el mismo día.`;
+
+  // Opaque per-buyer roadmap code. Reused on a resubmit so one buyer keeps one link.
+  function getDealCode(homeId){
+    const k = "dealCode:" + homeId;
+    try { const v = localStorage.getItem(k); if (/^[a-z0-9]{10}$/.test(v||"")) return v; } catch(e){}
+    const A = "abcdefghjkmnpqrstvwxyz23456789", r = new Uint8Array(10);
+    crypto.getRandomValues(r);
+    const code = Array.from(r, b => A[b % A.length]).join("");
+    try { localStorage.setItem(k, code); } catch(e){}
+    return code;
+  }
 
   // lead form → Formspree (email) + Make (Notion CRM)
   (function(){
@@ -534,6 +553,9 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
       const data = new FormData(form);
       data.append("property", [C.address, `${C.city}, ${C.state}${C.zip?" "+C.zip:""}`].filter(Boolean).join(", "));
       data.append("source", "casasconfinanciamiento — Página de propiedad");
+      data.append("property_id", C.id);
+      const dealCode = getDealCode(C.id);
+      data.append("deal_code", dealCode);   // registered into the Deal Room sheet by the inquiry sweep
       await addConsentRecord(data, form);   // evidencia de consentimiento 10DLC — ver consent.js
       data.append("language", "es");
       const targets = [];
@@ -541,7 +563,10 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
       if (hook) targets.push(fetch(hook, { method:"POST", body:data }));
       const results = await Promise.allSettled(targets);
       const ok = results.some(r => r.status === "fulfilled" && r.value.ok);
-      if (ok) { section.classList.add("sent"); }
+      if (ok) {
+        $("thanksRoadmap").href = `https://getownerfinancedhomes.com/next-steps.html?home=${encodeURIComponent(C.id)}&deal=${dealCode}`;
+        section.classList.add("sent");
+      }
       else { btn.disabled = false; btn.textContent = "Enviar mis datos"; note.textContent = "Algo salió mal — por favor llámenos o escríbanos."; }
     });
   })();
