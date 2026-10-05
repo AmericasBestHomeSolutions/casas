@@ -519,7 +519,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
       if (!id && !hook) { note.textContent = "⚠ El formulario aún no está conectado — agregue un Formspree ID o webhook de Make en homes.js."; return; }
       btn.disabled = true; btn.textContent = "Enviando…";
       const data = new FormData(form);
-      data.append("property", `${C.city}, ${C.state}`);
+      data.append("property", [C.address, `${C.city}, ${C.state}${C.zip?" "+C.zip:""}`].filter(Boolean).join(", "));
       data.append("source", "casasconfinanciamiento — Página de propiedad");
       await addConsentRecord(data, form);   // evidencia de consentimiento 10DLC — ver consent.js
       data.append("language", "es");
