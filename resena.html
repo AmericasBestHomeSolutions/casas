@@ -167,6 +167,12 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--pine);box-
       </div>
 
       <div class="q">
+        <label class="q-label" for="privateNote">¿Algo que quiera decirnos en privado?</label>
+        <p class="q-help">Opcional. Solo nuestro equipo lo lee. Nunca se comparte ni se publica.</p>
+        <textarea id="privateNote" maxlength="1500"></textarea>
+      </div>
+
+      <div class="q">
         <label class="q-label" for="referral">¿Conoce a alguien que podría necesitar nuestra ayuda?</label>
         <p class="q-help">Opcional. Comparta un nombre y número y nos comunicaremos con amabilidad.</p>
         <input type="text" id="referral" maxlength="160">
@@ -185,7 +191,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--pine);box-
     <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17.5 19 7"/></svg></div>
     <h1>¡Gracias!</h1>
     <p class="tagline" style="margin:0 auto">Significa mucho para nosotros. Leemos cada palabra, y ayuda a que la próxima familia se sienta segura de dar el paso que usted acaba de dar.</p>
-    <div class="fb-card">
+    <div class="fb-card" id="fbCard" hidden>
       <h2>Su historia podría ser la razón por la que la próxima familia encuentre su hogar.</h2>
       <p class="tagline">Ahora mismo, alguien está justo donde usted estaba hace unos meses. El banco le dijo que no, y se pregunta si es posible. Sus palabras pueden ser las que le digan que sí. Toque abajo y copiaremos lo que escribió. Usted solo lo pega en nuestra página de Facebook. Unos 20 segundos.</p>
       <button class="btn btn-primary" id="fbBtn" type="button">Copiar mis palabras y ayudar a la próxima familia &rarr;</button>
@@ -214,7 +220,8 @@ const REVIEW = {
   formEntries: {
     home: "entry.1697158524", stars: "entry.206791860", stood: "entry.561921975",
     liked: "entry.1310665719", better: "entry.348634605",
-    share: "entry.1133547505", shareName: "entry.1948218212", referral: "entry.967666002"
+    share: "entry.1133547505", shareName: "entry.1948218212", referral: "entry.967666002",
+    privateNote: "entry.1315471687"
   },
   shareValue: "Yes, you may share it (first name and city only)",
   chips: [["Comunicación","Communication"],["Respuestas rápidas","Fast responses"],["Transparencia","Transparency"],["Siempre disponibles","Always available"],["Cada paso del proceso","Every step of the process"]],
@@ -260,8 +267,11 @@ const REVIEW = {
 
   // Already sent from this browser? Say so instead of inviting a duplicate.
   const sentKey = "abhs_review_sent_" + homeId;
-  function wasSent(){ try { return localStorage.getItem(sentKey) === "1"; } catch(e){ return false; } }
-  function markSent(){ try { localStorage.setItem(sentKey, "1"); } catch(e){} }
+  function wasSent(){ try { return !!localStorage.getItem(sentKey); } catch(e){ return false; } }
+  function sentRating(){ try { return parseInt(localStorage.getItem(sentKey), 10) || 0; } catch(e){ return 0; } }
+  function markSent(r){ try { localStorage.setItem(sentKey, String(r || 1)); } catch(e){} }
+  // Facebook solo para reseñas de 4-5 estrellas (decisión de Joe 2026-10-09).
+  function showThanks(r){ $("fbCard").hidden = !(r >= 4); show("thanks"); }
 
   // ── form widgets ───────────────────────────────────────────
   let rating = 0, lastComment = "";
@@ -311,10 +321,11 @@ const REVIEW = {
     if ($("liked").value.trim()) body.append(F.liked, $("liked").value.trim());
     if ($("better").value.trim()) body.append(F.better, $("better").value.trim());
     if ($("canShare").checked){ body.append(F.share, REVIEW.shareValue); if ($("shareName").value.trim()) body.append(F.shareName, $("shareName").value.trim()); }
+    if ($("privateNote").value.trim()) body.append(F.privateNote, $("privateNote").value.trim());
     if ($("referral").value.trim()) body.append(F.referral, $("referral").value.trim());
     try {
       await fetch(REVIEW.formPostUrl, { method:"POST", mode:"no-cors", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body: body.toString() });
-      markSent(); lastComment = $("liked").value.trim(); show("thanks");
+      markSent(rating); lastComment = $("liked").value.trim(); showThanks(rating);
     } catch (err){
       btn.disabled = false; btn.textContent = "Enviar mi reseña";
       $("err").textContent = "No se pudo enviar. Intente de nuevo, o use el formulario sencillo de abajo."; $("err").hidden = false;
@@ -341,7 +352,7 @@ const REVIEW = {
   // ── boot: fail closed unless keys are recorded for THIS deal ─
   (async function(){
     if (!validHome || !dealCode) return lock("Este enlace no está completo", `Por favor use el enlace que le enviamos por texto, o llámenos al ${pretty}.`);
-    if (wasSent()){ show("thanks"); return; }
+    if (wasSent()){ showThanks(sentRating()); return; }
     let ok = false;
     try { ok = await keysDelivered(); }
     catch(e){ return lock("No pudimos cargar esto en este momento", "Por favor actualice en un minuto, o llámenos."); }
