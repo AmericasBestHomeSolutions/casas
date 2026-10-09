@@ -154,11 +154,6 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--pine);box-
       </div>
 
       <div class="q">
-        <label class="q-label" for="better">¿Qué podríamos mejorar?</label>
-        <textarea id="better" maxlength="1500"></textarea>
-      </div>
-
-      <div class="q">
         <label class="share"><input type="checkbox" id="canShare"><span>Pueden compartir mi comentario en su sitio web<small>Solo primer nombre y ciudad. Nunca mostramos su dirección.</small></span></label>
         <div id="nameWrap" hidden>
           <label class="q-help" for="shareName" style="display:block">¿Cómo debemos mostrar su nombre? (primer nombre, inicial del apellido, ciudad)</label>
@@ -167,7 +162,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--pine);box-
       </div>
 
       <div class="q">
-        <label class="q-label" for="privateNote">¿Algo que quiera decirnos en privado?</label>
+        <label class="q-label" for="privateNote">¿Algo que quiera decirnos en privado? Por ejemplo, algo que podríamos mejorar.</label>
         <p class="q-help">Opcional. Solo nuestro equipo lo lee. Nunca se comparte ni se publica.</p>
         <textarea id="privateNote" maxlength="1500"></textarea>
       </div>
@@ -219,7 +214,7 @@ const REVIEW = {
   formPostUrl: "https://docs.google.com/forms/d/e/1FAIpQLScjH4sn1KLvV25t7GAlA_CAaZPwewq7wJNS4JUp0WdnqmfLFA/formResponse",
   formEntries: {
     home: "entry.1697158524", stars: "entry.206791860", stood: "entry.561921975",
-    liked: "entry.1310665719", better: "entry.348634605",
+    liked: "entry.1310665719",
     share: "entry.1133547505", shareName: "entry.1948218212", referral: "entry.967666002",
     privateNote: "entry.1315471687"
   },
@@ -319,7 +314,6 @@ const REVIEW = {
     body.append(F.home, homeId); body.append(F.stars, String(rating));
     [...chipsEl.children].filter(b => b.getAttribute("aria-pressed") === "true").forEach(b => body.append(F.stood, b.dataset.v));
     if ($("liked").value.trim()) body.append(F.liked, $("liked").value.trim());
-    if ($("better").value.trim()) body.append(F.better, $("better").value.trim());
     if ($("canShare").checked){ body.append(F.share, REVIEW.shareValue); if ($("shareName").value.trim()) body.append(F.shareName, $("shareName").value.trim()); }
     if ($("privateNote").value.trim()) body.append(F.privateNote, $("privateNote").value.trim());
     if ($("referral").value.trim()) body.append(F.referral, $("referral").value.trim());
