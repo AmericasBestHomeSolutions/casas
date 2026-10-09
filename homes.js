@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (219, generadas desde la web en inglés) --- */
+/* --- las casas (220, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "westfrankfort-il-407-saint",
@@ -973,6 +973,26 @@ const HOMES = [
     features: { basement: "yes", garage: "yes", off_street_parking: "yes" },
     heroPhoto: "",
     photos:    ["images/decatur-il-1117-packard-1.jpg", "images/decatur-il-1117-packard-2.jpg", "images/decatur-il-1117-packard-3.jpg", "images/decatur-il-1117-packard-4.jpg", "images/decatur-il-1117-packard-5.jpg", "images/decatur-il-1117-packard-6.jpg", "images/decatur-il-1117-packard-7.jpg", "images/decatur-il-1117-packard-8.jpg", "images/decatur-il-1117-packard-9.jpg", "images/decatur-il-1117-packard-10.jpg", "images/decatur-il-1117-packard-11.jpg", "images/decatur-il-1117-packard-12.jpg", "images/decatur-il-1117-packard-13.jpg", "images/decatur-il-1117-packard-14.jpg", "images/decatur-il-1117-packard-15.jpg", "images/decatur-il-1117-packard-16.jpg", "images/decatur-il-1117-packard-17.jpg", "images/decatur-il-1117-packard-18.jpg", "images/decatur-il-1117-packard-19.jpg", "images/decatur-il-1117-packard-20.jpg", "images/decatur-il-1117-packard-21.jpg", "images/decatur-il-1117-packard-22.jpg", "images/decatur-il-1117-packard-23.jpg", "images/decatur-il-1117-packard-24.jpg"],
+  },
+  {
+    id: "eaststlouis-il-802-71st",
+    address:     "802 N 71st St",
+    zip:         "62203",
+    description: "$800 al mes y $2,500 para tener las llaves de una casa de dos recámaras en East St. Louis que sea suya, no del casero. Adentro va a encontrar dos recámaras, un baño, y un sótano grande con mucho espacio para guardar cosas, hacer proyectos, o lo que usted decida. Lo que más le puede importar es el pago: $800 al mes, escrito en su contrato, lo mismo este año que el próximo, sin sorpresas de que suba. El precio de compra es $70,000, fijo cuando firma, con financiamiento del dueño y sin ningún banco de por medio. La casa se vende tal como está, así que venga a recorrerla en persona y júzguela con sus propios ojos. Una casa con este pago no va a esperar para siempre, así que mándenos un mensaje ahora y la ayudamos a entrar.",
+    descriptionLang: "es",
+    city:  "East St. Louis",
+    state: "IL",
+    beds:  2,
+    baths: 1,
+    sqft:  "",
+    status: "Available",
+    monthlyPayment: 800,
+    moveIn:         2500,
+    lockedPrice:    70000,
+    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
+    features: { basement: "yes" },
+    heroPhoto: "",
+    photos:    ["images/eaststlouis-il-802-71st-1.jpg", "images/eaststlouis-il-802-71st-2.jpg", "images/eaststlouis-il-802-71st-3.jpg", "images/eaststlouis-il-802-71st-4.jpg", "images/eaststlouis-il-802-71st-5.jpg", "images/eaststlouis-il-802-71st-6.jpg", "images/eaststlouis-il-802-71st-7.jpg", "images/eaststlouis-il-802-71st-8.jpg", "images/eaststlouis-il-802-71st-9.jpg", "images/eaststlouis-il-802-71st-10.jpg", "images/eaststlouis-il-802-71st-11.jpg", "images/eaststlouis-il-802-71st-12.jpg", "images/eaststlouis-il-802-71st-13.jpg", "images/eaststlouis-il-802-71st-14.jpg", "images/eaststlouis-il-802-71st-15.jpg", "images/eaststlouis-il-802-71st-16.jpg", "images/eaststlouis-il-802-71st-17.jpg", "images/eaststlouis-il-802-71st-18.jpg", "images/eaststlouis-il-802-71st-19.jpg", "images/eaststlouis-il-802-71st-20.jpg", "images/eaststlouis-il-802-71st-21.jpg", "images/eaststlouis-il-802-71st-22.jpg", "images/eaststlouis-il-802-71st-23.jpg", "images/eaststlouis-il-802-71st-24.jpg"],
   },
   {
     id: "decatur-il-1204-jordan",
@@ -3504,7 +3524,7 @@ const HOMES = [
     lockedPrice:    110000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/eaststlouis-il-351-26th-1.jpg", "images/eaststlouis-il-351-26th-2.jpg", "images/eaststlouis-il-351-26th-3.jpg", "images/eaststlouis-il-351-26th-4.jpg", "images/eaststlouis-il-351-26th-5.jpg", "images/eaststlouis-il-351-26th-6.jpg", "images/eaststlouis-il-351-26th-7.jpg", "images/eaststlouis-il-351-26th-8.jpg", "images/eaststlouis-il-351-26th-9.jpg", "images/eaststlouis-il-351-26th-10.jpg", "images/eaststlouis-il-351-26th-11.jpg", "images/eaststlouis-il-351-26th-12.jpg", "images/eaststlouis-il-351-26th-13.jpg", "images/eaststlouis-il-351-26th-14.jpg", "images/eaststlouis-il-351-26th-15.jpg", "images/eaststlouis-il-351-26th-16.jpg", "images/eaststlouis-il-351-26th-17.jpg", "images/eaststlouis-il-351-26th-18.jpg", "images/eaststlouis-il-351-26th-19.jpg", "images/eaststlouis-il-351-26th-20.jpg", "images/eaststlouis-il-351-26th-21.jpg", "images/eaststlouis-il-351-26th-22.jpg", "images/eaststlouis-il-351-26th-23.jpg", "images/eaststlouis-il-351-26th-24.jpg"],
   },
   {
     id: "jackson-ms-1415-geeston",
@@ -3813,7 +3833,7 @@ const HOMES = [
     lockedPrice:    62000,
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
-    photos:    [],
+    photos:    ["images/eaststlouis-il-724-82nd-1.jpg", "images/eaststlouis-il-724-82nd-2.jpg", "images/eaststlouis-il-724-82nd-3.jpg", "images/eaststlouis-il-724-82nd-4.jpg", "images/eaststlouis-il-724-82nd-5.jpg", "images/eaststlouis-il-724-82nd-6.jpg", "images/eaststlouis-il-724-82nd-7.jpg", "images/eaststlouis-il-724-82nd-8.jpg", "images/eaststlouis-il-724-82nd-9.jpg", "images/eaststlouis-il-724-82nd-10.jpg", "images/eaststlouis-il-724-82nd-11.jpg", "images/eaststlouis-il-724-82nd-12.jpg", "images/eaststlouis-il-724-82nd-13.jpg", "images/eaststlouis-il-724-82nd-14.jpg", "images/eaststlouis-il-724-82nd-15.jpg", "images/eaststlouis-il-724-82nd-16.jpg", "images/eaststlouis-il-724-82nd-17.jpg", "images/eaststlouis-il-724-82nd-18.jpg", "images/eaststlouis-il-724-82nd-19.jpg", "images/eaststlouis-il-724-82nd-20.jpg", "images/eaststlouis-il-724-82nd-21.jpg", "images/eaststlouis-il-724-82nd-22.jpg", "images/eaststlouis-il-724-82nd-23.jpg", "images/eaststlouis-il-724-82nd-24.jpg"],
   },
   {
     id: "stlouis-mo-1920-prior",
