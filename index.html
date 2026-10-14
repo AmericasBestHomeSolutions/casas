@@ -651,6 +651,7 @@ body{
 </div>
 
 <script src="homes.js"></script>
+<script src="homes-map.js"></script>
 <script src="/consent.js"></script>
 <script>
 /* ---------- render (no editar — los datos de las casas viven en homes.js) ---------- */
@@ -733,6 +734,7 @@ body{
           <div class="mini"><div class="k">Precio fijo</div><div class="v">${h.lockedPrice ? money(h.lockedPrice) : "Pregúntanos"}</div></div>
         </div>
         <div class="card-specs">${specs}</div>
+        ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin:-4px 0 8px">📍 ${h._dist.toFixed(1)} mi de distancia</div>`:""}
         ${h.address ? `<div class="card-addr" style="font-size:13.5px;color:var(--ink-soft);margin-bottom:12px">${h.address}, ${h.city}, ${h.state}${h.zip?` ${h.zip}`:""}</div>` : ""}
         <span class="card-cta">Ver esta casa →</span>
       </div>
@@ -771,7 +773,7 @@ body{
       (photoReady.has(b.id) - photoReady.has(a.id)) ||
       ((b.address?1:0) - (a.address?1:0))
     );
-    return list;
+    return window.HomesMap ? HomesMap.applyGeo(list) : list;
   }
 
   function render(scroll){
@@ -787,6 +789,7 @@ body{
       ? `Mostrando ${start}–${end} de ${shown.length} casa${shown.length===1?"":"s"}`
       : "";
     renderPager(pages);
+    if (window.HomesMap) HomesMap.update(shown);
     if (scroll) document.getElementById("listings").scrollIntoView({block:"start", behavior:"smooth"});
   }
 
@@ -831,6 +834,7 @@ body{
   function syncURL(){
     const p = new URLSearchParams();
     Object.entries(URL_KEYS).forEach(([id,key]) => { const v = $(id).value; if (v) p.set(key, v); });
+    if (window.HomesMap) HomesMap.toURL(p);
     const qs = p.toString();
     history.replaceState(null, "", qs ? "?" + qs : location.pathname);
   }
@@ -854,8 +858,10 @@ body{
     });
   })();
 
+  if (window.HomesMap) HomesMap.mount({ rerender: render, sync: syncURL });
   applyURL();
   render();
+  if (window.HomesMap) HomesMap.fromURL(new URLSearchParams(location.search));
 
   // ¿llega desde un enlace de búsqueda compartido? deja claro que se aplicó el
   // filtro: renombra la sección y salta directo a los resultados (no al hero).
