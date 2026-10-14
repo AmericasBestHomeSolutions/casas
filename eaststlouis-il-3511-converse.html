@@ -10,13 +10,13 @@
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Americas Best Home Solutions"/>
 <meta property="og:locale" content="es_US"/>
-<meta property="og:title" content="3 rec 1 baño en East St. Louis, IL — $915/mes"/>
-<meta property="og:description" content="3511 Converse Ave. · $915/mes · $1,600 para mudarse · $76,500 precio fijo. Financiamiento del dueño — sin banco, sin solicitud hipotecaria."/>
+<meta property="og:title" content="3 rec 1 baño en East St. Louis, IL — $895/mes"/>
+<meta property="og:description" content="3511 Converse Ave. · $895/mes · $1,600 para mudarse · $76,500 precio fijo. Financiamiento del dueño — sin banco, sin solicitud hipotecaria."/>
 <meta property="og:image" content="https://casasconfinanciamiento.com/images/eaststlouis-il-3511-converse.jpg"/>
 <meta property="og:url" content="https://casasconfinanciamiento.com/eaststlouis-il-3511-converse.html"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="3 rec 1 baño en East St. Louis, IL — $915/mes"/>
-<meta name="twitter:description" content="3511 Converse Ave. · $915/mes · $1,600 para mudarse · $76,500 precio fijo. Financiamiento del dueño — sin banco, sin solicitud hipotecaria."/>
+<meta name="twitter:title" content="3 rec 1 baño en East St. Louis, IL — $895/mes"/>
+<meta name="twitter:description" content="3511 Converse Ave. · $895/mes · $1,600 para mudarse · $76,500 precio fijo. Financiamiento del dueño — sin banco, sin solicitud hipotecaria."/>
 <meta name="twitter:image" content="https://casasconfinanciamiento.com/images/eaststlouis-il-3511-converse.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -454,7 +454,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   const moveInText = C.moveIn ? money(C.moveIn) : "Pregúntenos";
   $("dMonthly").textContent = moneyR(C.monthlyPayment);
   $("dMoveIn").textContent  = moveInText;
-  $("dPrice").textContent   = moneyR(C.lockedPrice);
+  $("dPrice").textContent   = C.lockedPrice ? moneyR(C.lockedPrice) : "Pregúntanos";
 
   // hero photo — uses heroPhoto if set, otherwise auto-tries images/<id>.jpg;
   // falls back to the branded navy face + city label if there's no photo.
@@ -479,7 +479,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   const terms = [
     ["Su pago mensual", money(C.monthlyPayment), true],
     ["Pago de entrada", moveInText, false],
-    ["Precio de compra fijo", money(C.lockedPrice), false],
+    ["Precio de compra fijo", C.lockedPrice ? money(C.lockedPrice) : "Pregúntanos", false],
     ["Financiamiento", C.termText, false],
     ["La casa", beds, false],
     ["Ubicación", `${C.address?C.address+", ":""}${C.city}, ${C.state}${C.zip?" "+C.zip:""}`, false],
