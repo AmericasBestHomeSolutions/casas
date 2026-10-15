@@ -652,6 +652,7 @@ body{
 
 <script src="homes.js"></script>
 <script src="homes-map.js"></script>
+<script src="homes-cart.js"></script>
 <script src="/consent.js"></script>
 <script>
 /* ---------- render (no editar — los datos de las casas viven en homes.js) ---------- */
@@ -724,6 +725,7 @@ body{
         <span class="scrim"></span>
         <span class="status-tag${pending}">${statusEs(h.status)}</span>
         <span class="of-tag">Financiamiento del dueño</span>
+        ${window.HomesCart?HomesCart.heart(h):""}
         ${houseMark}
         <div class="fcity"><div class="c">${h.city}</div><div class="s">${h.state}</div></div>
       </div>
@@ -736,6 +738,7 @@ body{
         <div class="card-specs">${specs}</div>
         ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin:-4px 0 8px">📍 ${h._dist.toFixed(1)} mi de distancia</div>`:""}
         ${h.address ? `<div class="card-addr" style="font-size:13.5px;color:var(--ink-soft);margin-bottom:12px">${h.address}, ${h.city}, ${h.state}${h.zip?` ${h.zip}`:""}</div>` : ""}
+        ${window.HomesCart?HomesCart.compare(h):""}
         <span class="card-cta">Ver esta casa →</span>
       </div>
     </a>`;
@@ -790,6 +793,7 @@ body{
       : "";
     renderPager(pages);
     if (window.HomesMap) HomesMap.update(shown);
+    if (window.HomesCart) HomesCart.sync();
     if (scroll) document.getElementById("listings").scrollIntoView({block:"start", behavior:"smooth"});
   }
 
