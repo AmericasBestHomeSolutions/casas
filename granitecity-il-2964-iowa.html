@@ -526,7 +526,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 
   const tel = (C.phone||"").replace(/[^\d+]/g,"");
   const prettyPhone = tel.length===10 ? `(${tel.slice(0,3)}) ${tel.slice(3,6)}-${tel.slice(6)}` : C.phone;
-  const smsBody = encodeURIComponent(`Hola, vi ${C.address ? C.address + " en " : ""}${C.city}, ${C.state} en su sitio y me gustaría visitarla.`);
+  const smsBody = encodeURIComponent(`Hola, vi ${C.address ? C.address + " en " : ""}${C.city}, ${C.state} en su sitio y me gustaría visitarla.\n\nhttps://casasconfinanciamiento.com/${C.id}.html`);
   ["ctaCall","ctaCall2"].forEach(id=>$(id).href = `tel:${tel}`);
   ["ctaText","ctaText2"].forEach(id=>$(id).href = `sms:${tel}?&body=${smsBody}`);
   $("thanksCall").href = `tel:${tel}`;
