@@ -782,7 +782,7 @@ body{
           <div class="mini"><div class="k">Precio fijo</div><div class="v">${h.lockedPrice ? money(h.lockedPrice) : "Pregúntanos"}</div></div>
         </div>
         <div class="card-specs">${specs}</div>
-        ${h.contractor?`<div class="cs-note">Necesita reparaciones mayores${typeof h.contractor==="string"?" (en inglés): "+h.contractor:""}. Para inversionistas y contratistas.</div>`:""}
+        ${h.contractor?`<div class="cs-note">Necesita reparaciones mayores${typeof h.contractor==="string"?" (en inglés) — "+h.contractor:""}. Para inversionistas y contratistas.</div>`:""}
         ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin:-4px 0 8px">📍 ${h._dist.toFixed(1)} mi de distancia</div>`:""}
         ${h.address ? `<div class="card-addr" style="font-size:13.5px;color:var(--ink-soft);margin-bottom:12px">${h.address}, ${h.city}, ${h.state}${h.zip?` ${h.zip}`:""}</div>` : ""}
         ${window.HomesCart?HomesCart.compare(h):""}
@@ -960,6 +960,7 @@ body{
     });
   }
   applyURL();
+  chips();
   // ── destacadas + vendidas recientemente (datos de homes.js) ─────────────
   (function spotlight(){
     const feats = HOMES.filter(h => h.featured && (h.status||"").toLowerCase()!=="pending")

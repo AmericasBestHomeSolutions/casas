@@ -465,7 +465,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   $("statusTag").textContent = statusEs(C.status);
   if (home && home.contractor){
     $("csBanner").hidden = false;
-    $("csWhat").textContent = typeof home.contractor === "string" ? "Trabajo mayor necesario (en inglés): " + home.contractor : "";
+    $("csWhat").textContent = typeof home.contractor === "string" ? "Problemas conocidos (en inglés): " + home.contractor : "";
     if (!$("csWhat").textContent) $("csWhat").hidden = true;
   }
   $("heroCity").innerHTML = `<div class="c">${C.city}</div><div class="s">${C.state}</div>`;
