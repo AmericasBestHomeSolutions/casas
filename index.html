@@ -282,6 +282,10 @@ body{
 .reveal{opacity:0;transform:translateY(16px)}
 .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} html{scroll-behavior:auto} }
+.searchbar{position:relative;margin:0 0 14px;width:100%;flex:1 1 100%;max-width:none}
+.searchbar .mag{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:17px;opacity:.55;pointer-events:none}
+.searchbar input{width:100%;box-sizing:border-box;font:600 17px 'DM Sans',sans-serif;padding:15px 16px 15px 46px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink);box-shadow:0 4px 16px rgba(15,36,68,.06)}
+.searchbar input:focus{outline:none;border-color:var(--pine,#15315e);box-shadow:0 0 0 3px rgba(21,49,94,.15)}
 </style>
 </head>
 <body>
@@ -370,6 +374,7 @@ body{
       <h2 class="sec-title">Encuentre su casa</h2>
     </div>
     <div class="listings-head narrow" style="max-width:100%">
+      <div class="searchbar"><span class="mag" aria-hidden="true">&#128269;</span><input id="fQ" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" list="qHints" placeholder="Busque dirección, ciudad, código postal — o “contratista”" aria-label="Buscar"><datalist id="qHints"></datalist></div>
       <div class="filters">
         <div class="filter">
           <label for="fState">Estado</label>
@@ -810,6 +815,11 @@ body{
     const payLo = Number($("fPayMin").value)||0, payHi = Number($("fPayMax").value)||0;
     const prLo = Number($("fPriceMin").value)||0, prHi = Number($("fPriceMax").value)||0;
     const downHi = Number($("fDown").value)||0;
+    // free-text: every word must appear in address/city/state/zip; "contractor"/"fixer" flips on Contractor Specials
+    const CSW = /^(contractor|contratista|contratistas|special|specials|especial|especiales|fixer|investor)$/;
+    let words = ($("fQ").value||"").toLowerCase().replace(/[.,#]/g," ").split(/\s+/).filter(Boolean);
+    const csQ = words.some(w => CSW.test(w));
+    words = words.filter(w => !CSW.test(w));
     const list = HOMES.filter(h =>
       (!state || h.state === state) &&
       (!city || h.city === city) &&
@@ -818,7 +828,8 @@ body{
       rng(Number(h.monthlyPayment)||0, payLo, payHi) &&
       rng(Number(h.lockedPrice)||0, prLo, prHi) &&
       (!downHi || (Number(h.moveIn)||0) <= downHi) &&
-      (type === "all" || (type === "contractor" ? !!h.contractor : !h.contractor))
+      (csQ ? !!h.contractor : (words.length || type === "all" || (type === "contractor" ? !!h.contractor : !h.contractor))) &&
+      (!words.length || (hay => words.every(w => hay.includes(w)))(((h.address||"")+" "+(h.city||"")+" "+(h.state||"")+" "+(h.zip||"")).toLowerCase().replace(/[.,#]/g," ")))
     );
     const num = (v, fallback=0) => Number(v) || fallback;
     if (sort === "monthly-asc")   list.sort((a,b) => num(a.monthlyPayment,Infinity) - num(b.monthlyPayment,Infinity));
@@ -877,8 +888,8 @@ body{
   // ── enlaces de búsqueda para compartir ────────────────────────────────
   // filtros ⇄ query string, para poder enviar una búsqueda (p. ej. Flint, MI)
   // como un enlace que abre ya filtrado.
-  const URL_KEYS = { fState:"state", fCity:"city", fBeds:"beds", fBaths:"baths", fPayMin:"payMin", fPayMax:"payMax", fPriceMin:"priceMin", fPriceMax:"priceMax", fDown:"down", fType:"type", fSort:"sort" };
-  const FILTER_IDS = ["fCity","fBeds","fBaths","fPayMin","fPayMax","fPriceMin","fPriceMax","fDown","fType","fSort"];
+  const URL_KEYS = { fState:"state", fCity:"city", fBeds:"beds", fBaths:"baths", fPayMin:"payMin", fPayMax:"payMax", fPriceMin:"priceMin", fPriceMax:"priceMax", fDown:"down", fType:"type", fSort:"sort", fQ:"q" };
+  const FILTER_IDS = ["fCity","fBeds","fBaths","fPayMin","fPayMax","fPriceMin","fPriceMax","fDown","fType","fSort","fQ"];
   function applyURL(){
     const p = new URLSearchParams(location.search);
     if (p.get("state")) $("fState").value = p.get("state");
@@ -905,6 +916,14 @@ body{
     page = 1; render(true); syncURL(); chips();
   }));
 
+  (function(){
+    const q = $("fQ"), dl = $("qHints"); let t;
+    q.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { page = 1; render(false); syncURL(); chips(); }, 160); });
+    q.addEventListener("keydown", e => { if (e.key === "Enter"){ q.blur(); render(true); } });
+    const cities = [...new Set(LISTINGS.map(h => h.city + ", " + h.state))].sort();
+    dl.innerHTML = cities.map(c => `<option value="${c}">`).join("");
+  })();
+
   // etiquetas de filtros activos (toque una para quitarla)
   function chips(){
     const m = n => "$" + Number(n).toLocaleString("en-US");
@@ -913,6 +932,7 @@ body{
       ["fPayMin", v=>"Desde "+m(v)+"/mes"], ["fPayMax", v=>"Hasta "+m(v)+"/mes"],
       ["fPriceMin", v=>"Desde "+m(v)], ["fPriceMax", v=>"Hasta "+m(v)],
       ["fDown", v=>"Mudarse con "+m(v)+" o menos"],
+      ["fQ", v=>"Buscar: "+v],
       ["fType", v=>v==="contractor"?"Para contratistas":"Todas las casas"]
     ];
     const box = $("chips");
