@@ -216,6 +216,11 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <p class="prop-addr" id="propAddr" style="font-weight:600;font-size:17px;color:var(--pine,#15315e);margin:2px 0 6px"></p>
     <p class="prop-specs" id="propSpecs" style="display:flex;gap:10px;flex-wrap:wrap;font-weight:600;font-size:16px;color:var(--ink);margin:0 0 8px"></p>
     <p class="subhead" id="subhead"></p>
+    <div id="csBanner" hidden style="background:#fff7ed;border:1.5px solid #fdba74;border-radius:14px;padding:14px 16px;margin:0 0 16px;color:#7c2d12">
+      <strong style="display:block;font-size:16px;margin-bottom:4px">🔨 Casa para contratistas — necesita reparaciones mayores</strong>
+      <span id="csWhat" style="display:block;font-weight:600"></span>
+      <span style="display:block;font-size:14px;margin-top:4px">Esta casa es para inversionistas y contratistas. Necesita trabajo estructural o de sistemas y se vende tal como está. Inspecciónela usted mismo y calcule el costo de las reparaciones antes de comprometerse.</span>
+    </div>
 
     <div class="deal-strip">
       <div class="deal-cell hero-cell"><div class="num" id="dMonthly"></div><div class="lab">por mes</div></div>
@@ -458,6 +463,11 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   // (el aviso legal del pie ahora es HTML estatico — ver el bloque <footer>)
 
   $("statusTag").textContent = statusEs(C.status);
+  if (home && home.contractor){
+    $("csBanner").hidden = false;
+    $("csWhat").textContent = typeof home.contractor === "string" ? "Trabajo mayor necesario (en inglés): " + home.contractor : "";
+    if (!$("csWhat").textContent) $("csWhat").hidden = true;
+  }
   $("heroCity").innerHTML = `<div class="c">${C.city}</div><div class="s">${C.state}</div>`;
 
   const moveInText = C.moveIn ? money(C.moveIn) : "Pregúntenos";
