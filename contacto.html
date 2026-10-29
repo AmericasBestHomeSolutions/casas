@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/pages.css">
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
 <div class="wrap">
@@ -25,26 +26,30 @@
       </svg>
       <span class="bn">Americas Best Home Solutions<small>Casas con Financiamiento</small></span>
     </a>
-    <nav class="topnav">
-      <a href="/">Casas</a>
-      <a href="/como-funciona">Cómo funciona</a>
-      <a href="/nosotros">Nosotros</a>
-      <a href="/contacto" aria-current="page">Contacto</a>
-      <a class="call" href="tel:+15515509906">(551) 550-9906</a>
+    <nav class="topnav" aria-label="Sitio">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteMenu"><span class="nav-bars" aria-hidden="true"></span><span class="nav-word">Menú</span></button>
+      <div class="site-menu" id="siteMenu">
+        <a href="/#listings">Casas</a>
+        <a href="/como-funciona.html">Cómo funciona</a>
+        <a href="/#por-que">Comprar o rentar</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/#faq">Preguntas</a>
+        <a class="nav-es" href="https://getownerfinancedhomes.com/">English</a>
+      </div>
     </nav>
   </header>
 
   <section class="phead">
     <span class="eyebrow">Contacto</span>
     <h1>Hable con una persona real.</h1>
-    <p class="lead">Ya sea que esté viendo una de nuestras casas o que tenga una propiedad que quiera vendernos, así nos puede contactar. Las llamadas y los mensajes llegan a nuestro equipo, no a una grabadora.</p>
+    <p class="lead">Si está viendo una casa, agende una visita en su página. Si tiene una propiedad para vendernos, escriba al correo de abajo. Le contesta una persona del equipo.</p>
   </section>
 
   <div class="facts">
     <div class="fact">
-      <div class="k">Teléfono y texto</div>
-      <div class="v"><a href="tel:+15515509906">(551) 550-9906</a></div>
-      <div class="note">Mandar un mensaje de texto suele ser la forma más rápida de localizarnos. Hablamos español.</div>
+      <div class="k">Visitas</div>
+      <div class="v"><a href="/#listings">Agende una visita</a></div>
+      <div class="note">Elija la casa y una hora. Le abrimos la puerta. Hablamos español.</div>
     </div>
     <div class="fact">
       <div class="k">Correo electrónico</div>
@@ -64,7 +69,7 @@
   </div>
 
   <section class="formcard" id="contacto">
-    <h2>Mándenos un mensaje</h2>
+    <h2>Cuéntenos</h2>
     <p class="sub">Díganos qué está buscando — o qué está vendiendo — y le daremos una respuesta directa.</p>
 
     <form id="leadForm" novalidate>
@@ -73,9 +78,6 @@
 
       <label for="lfEmail">Correo electrónico</label>
       <input id="lfEmail" name="email" type="email" autocomplete="email" required>
-
-      <label for="lfPhone">Teléfono</label>
-      <input id="lfPhone" name="phone" type="tel" autocomplete="tel" required>
 
       <!-- ══════════════════════════════════════════════════════════════════
            CASILLA DE CONSENTIMIENTO SMS (A2P 10DLC) — no la cambie sin leer.
@@ -104,7 +106,7 @@
 
     <div class="thanks">
       <h3>Mensaje recibido.</h3>
-      <p>Gracias — le responderemos pronto. Si es urgente, llámenos o escríbanos al (551) 550-9906.</p>
+      <p>Gracias — le responderemos pronto. Si algo no sale, inténtelo de nuevo en un momento.</p>
     </div>
   </section>
 
@@ -123,7 +125,7 @@
     <p class="fcontact fentity">casasconfinanciamiento.com es operado por <a href="https://americasbesthomesolutions.com">Americas Best Home Solutions LLC</a></p>
     <address class="fcontact faddr">
       30 N Gould St, Ste R, Sheridan, WY 82801<br>
-      <a href="tel:+15515509906">(551) 550-9906</a> · <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
+      <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
     </address>
     <p class="fcontact flinks">
       <a href="/">Casas</a> · <a href="/como-funciona">Cómo funciona</a> · <a href="/nosotros">Nosotros</a> · <a href="/contacto">Contacto</a> · <a href="/politica-de-privacidad">Política de Privacidad</a> · <a href="/terminos-de-mensajes">Términos de Mensajes</a> · <a href="https://owner.getownerfinancedhomes.com" rel="nofollow noopener">Acceso de propietarios</a>
@@ -153,7 +155,7 @@
     e.preventDefault();
 
     // Validamos a mano para que la casilla opcional nunca bloquee el envío.
-    const missing = ["lfName","lfEmail","lfPhone"].find(f => !$(f).value.trim());
+    const missing = ["lfName","lfEmail"].find(f => !$(f).value.trim());
     if (missing) { $(missing).focus(); note.textContent = "Por favor complete su nombre, correo y teléfono."; return; }
     if (!id && !hook) { note.textContent = "⚠ El formulario aún no está conectado — agregue un ID de Formspree o webhook de Make en homes.js."; return; }
 
@@ -168,9 +170,10 @@
     const results = await Promise.allSettled(targets);
 
     if (results.some(r => r.status === "fulfilled" && r.value.ok)) { card.classList.add("sent"); }
-    else { btn.disabled = false; btn.textContent = "Enviar mensaje"; note.textContent = "Algo salió mal — por favor llámenos o escríbanos al (551) 550-9906."; }
+    else { btn.disabled = false; btn.textContent = "Enviar mensaje"; note.textContent = "Algo salió mal — inténtelo de nuevo en un momento."; }
   });
 })();
 </script>
+<script src="/site-chrome.js"></script>
 </body>
 </html>

@@ -158,6 +158,7 @@ body{
 }
 @media (min-width:560px){ body{font-size:18px} }
 </style>
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
 
@@ -173,14 +174,16 @@ body{
       </svg>
       <span class="bn">Americas Best Home Solutions<small>Casas con Financiamiento</small></span>
     </a>
-    <nav class="topnav">
-      <a class="nav-hide" href="index.html">Casas</a>
-      <a class="nav-hide" href="/nosotros">Nosotros</a>
-      <a class="nav-hide" href="/contacto">Contacto</a>
-      <a class="call" id="navCall" href="#">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span id="navCallText">Llámenos</span>
-      </a>
+    <nav class="topnav" aria-label="Sitio">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteMenu"><span class="nav-bars" aria-hidden="true"></span><span class="nav-word">Menú</span></button>
+      <div class="site-menu" id="siteMenu">
+        <a href="/#listings">Casas</a>
+        <a href="/como-funciona.html">Cómo funciona</a>
+        <a href="/#por-que">Comprar o rentar</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/#faq">Preguntas</a>
+        <a class="nav-es" href="https://getownerfinancedhomes.com/">English</a>
+      </div>
     </nav>
   </header>
 
@@ -218,9 +221,9 @@ body{
   <!-- PROCESS -->
   <section class="section reveal">
     <div class="sec-label">Paso a paso</div>
-    <h2 class="sec-title">De la primera llamada a las llaves</h2>
+    <h2 class="sec-title">De la primera visita a las llaves</h2>
     <div class="steps">
-      <div class="step"><div class="n">01</div><div class="body"><h3>Contáctenos y recorra la casa</h3><p>Llámenos o escríbanos sobre una casa que le guste y coordinamos una hora para recorrerla juntos.</p></div></div>
+      <div class="step"><div class="n">01</div><div class="body"><h3>Agende una visita</h3><p>Elija una hora en la página de la casa y coordinamos el recorrido juntos.</p></div></div>
       <div class="step"><div class="n">02</div><div class="body"><h3>Acuerden los números</h3><p>Repasamos el pago de entrada, el pago mensual y el precio fijo — todo en palabras claras, sin sorpresas.</p></div></div>
       <div class="step"><div class="n">03</div><div class="body"><h3>Firme un acuerdo sencillo</h3><p>El dueño la financia con un contrato de compraventa. Sin banco, sin solicitud hipotecaria, sin un largo proceso de aprobación.</p></div></div>
       <div class="step"><div class="n">04</div><div class="body"><h3>Reciba las llaves y múdese</h3><p>Haga su pago de entrada y la casa es suya para vivir desde el primer día.</p></div></div>
@@ -263,7 +266,7 @@ body{
         <div><h3>Trátela como suya</h3><p>Porque lo es. Cuídela como cuidaría cualquier cosa que está construyendo para ser dueño por completo.</p></div>
       </div>
     </div>
-    <p class="resp-note">¿No está seguro si esto es para usted? Para eso es justamente una llamada rápida.</p>
+    <p class="resp-note">¿No está seguro si esto es para usted? Para eso es justamente una visita, sin compromiso.</p>
   </section>
 
   <!-- FAQ -->
@@ -273,11 +276,11 @@ body{
     <div class="faq">
       <details>
         <summary>¿Esto es legítimo — o es una estafa?</summary>
-        <div class="ans">Es una pregunta justa, y preferimos que la haga. Americas Best Home Solutions LLC es una empresa registrada en Wyoming, establecida en 2023, y cada casa que publicamos tiene una dirección real, un precio real y un pago mensual real. Así se protege con nosotros — y con cualquiera: visita la casa en persona antes de comprometerse, recibe cada número y cada término por escrito, y siempre habla con una persona real. Nunca le pediremos que transfiera dinero para "apartar" una casa que no ha visto, y nunca lo apuraremos. Si algo alguna vez se siente raro, deténgase y llámenos directamente al número de este sitio.</div>
+        <div class="ans">Es una pregunta justa, y preferimos que la haga. Americas Best Home Solutions LLC es una empresa registrada en Wyoming, establecida en 2023, y cada casa que publicamos tiene una dirección real, un precio real y un pago mensual real. Así se protege con nosotros — y con cualquiera: visita la casa en persona antes de comprometerse, recibe cada número y cada término por escrito, y siempre habla con una persona real. Nunca le pediremos que transfiera dinero para "apartar" una casa que no ha visto, y nunca lo apuraremos. Si algo alguna vez se siente raro, deténgase y no entregue dinero. Agende una visita y vea la casa usted mismo.</div>
       </details>
       <details>
         <summary>¿Necesito un banco para comprar una de estas casas?</summary>
-        <div class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Llámenos y hablamos de su situación con honestidad.</div>
+        <div class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Agende una visita y hablamos de su situación con honestidad.</div>
       </details>
       <details>
         <summary>¿Es lo mismo que rentar?</summary>
@@ -305,10 +308,9 @@ body{
   <!-- CLOSER -->
   <section class="closer reveal">
     <h2>¿Listo para encontrar su casa?</h2>
-    <p>Vea nuestras casas disponibles, o llame y cuéntenos qué está buscando.</p>
+    <p>Vea las casas disponibles y agende una visita en la que quiera recorrer.</p>
     <div class="cta-group" style="max-width:400px;margin:0 auto">
-      <a class="btn btn-primary" href="index.html">Ver casas disponibles</a>
-      <a class="btn btn-secondary" id="ctaCall" href="#">Llámenos o escríbanos</a>
+      <a class="btn btn-primary" href="/#listings">Agende una visita</a>
     </div>
   </section>
 
@@ -318,7 +320,7 @@ body{
     <p class="fcontact" style="opacity:.78;margin-top:2px">casasconfinanciamiento.com es operado por <a href="https://americasbesthomesolutions.com">Americas Best Home Solutions LLC</a></p>
     <address class="fcontact" style="font-style:normal;margin-top:8px">
       30 N Gould St, Ste R, Sheridan, WY 82801<br>
-      <a href="tel:+15515509906">(551) 550-9906</a> · <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
+      <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
     </address>
     <p class="fcontact" style="margin-top:10px">
       <a href="/">Casas</a> · <a href="/como-funciona">Cómo funciona</a> · <a href="/nosotros">Nosotros</a> · <a href="/contacto">Contacto</a> · <a href="/politica-de-privacidad">Política de Privacidad</a> · <a href="/terminos-de-mensajes">Términos de Mensajes</a> · <a href="https://owner.getownerfinancedhomes.com" rel="nofollow noopener">Acceso de propietarios</a>
@@ -354,18 +356,6 @@ const VIDEO_EMBED_URL = "";
     wrap.innerHTML = `<iframe src="${VIDEO_EMBED_URL.trim()}" title="Cómo funciona el financiamiento del dueño" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
   }
 
-  // enlaces de contacto — reutilizan la configuración CONTACT de homes.js
-  if (typeof CONTACT !== "undefined"){
-    const tel = (CONTACT.phone||"").replace(/[^\d+]/g,"");
-    const pretty = tel.length===10 ? `(${tel.slice(0,3)}) ${tel.slice(3,6)}-${tel.slice(6)}` : (CONTACT.phone||"");
-    const smsBody = encodeURIComponent(`Hola ${CONTACT.contactName}, tengo una pregunta sobre cómo funciona el financiamiento del dueño.`);
-    $("ctaCall").href = `sms:${tel}?&body=${smsBody}`;
-    $("navCall").href = `tel:${tel}`;
-    $("navCallText").textContent = pretty || "Llámenos";
-  // (el pie de página ahora imprime el número y la dirección de forma literal —
-  //  no queda ningún enlace footCall que conectar aquí)
-  }
-
   // scroll reveal (respeta reduced-motion vía CSS)
   if ("IntersectionObserver" in window){
     const io = new IntersectionObserver((entries)=>{
@@ -377,5 +367,6 @@ const VIDEO_EMBED_URL = "";
   }
 })();
 </script>
+<script src="/site-chrome.js"></script>
 </body>
 </html>

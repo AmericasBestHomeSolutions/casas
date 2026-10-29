@@ -12,10 +12,10 @@
   const ES = (document.documentElement.lang || "en").toLowerCase().startsWith("es");
   const T = ES ? {
     list:"Lista", map:"Mapa", near:"Cerca de", nearPh:"Ciudad o código postal", within:"Dentro de",
-    mi:"mi", go:"Buscar", loc:"Usar mi ubicación", clear:"Quitar", searchArea:"Buscar en esta área",
+    mi:"millas", go:"Buscar", loc:"Usar mi ubicación", clear:"Quitar", searchArea:"Buscar en esta área",
     areaChip:"Solo el área del mapa", notFound:"No encontramos ese lugar — pruebe con una ciudad o código postal.",
     locDenied:"No pudimos obtener su ubicación.", mo:"/mes", moveIn:"Para mudarse", view:"Ver esta casa →",
-    bed:"hab.", bath:"baños", away:"mi de distancia", approx:"Ubicación aproximada",
+    bed:"hab.", bath:"baños", away:"millas de distancia", approx:"Ubicación aproximada",
     noPins:"Ninguna de estas casas tiene ubicación en el mapa todavía.", shown:"en el mapa",
     fit:"Ver todas", where:"Dónde está", openG:"Abrir en Google Maps", nearby:"Otras casas cerca",
     attrib:"© OpenStreetMap contributors", you:"Usted está aquí", legendA:"Disponible",
@@ -246,8 +246,10 @@
     S.sync && S.sync();
   }
 
-  async function initMap(){
-    if (S.map) return;
+  function initMap(){
+    if (S.map) return Promise.resolve();
+    if (S._boot) return S._boot;
+    S._boot = (async () => {
     await loadLib(true);
     const L = window.L;
     S.map = L.map("hmMapEl", { scrollWheelZoom:true, tap:true }).setView([38.6, -89.5], 7);
@@ -257,6 +259,8 @@
       iconCreateFunction: c => L.divIcon({ html:`<div class="hm-cl" style="width:38px;height:38px">${c.getChildCount()}</div>`, className:"", iconSize:[38,38] })
     }).addTo(S.map);
     S.map.on("moveend", () => { if (S.view==="map" && !S._fitting && S.ready){ S.dirty = true; $("hmArea").hidden = false; } });
+    })();
+    return S._boot;
   }
 
   function drawPins(list){

@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/pages.css">
+<link rel="stylesheet" href="/nav.css">
 </head>
 <body>
 <div class="wrap">
@@ -25,12 +26,16 @@
       </svg>
       <span class="bn">Americas Best Home Solutions<small>Casas con Financiamiento</small></span>
     </a>
-    <nav class="topnav">
-      <a href="/">Casas</a>
-      <a href="/como-funciona">Cómo funciona</a>
-      <a href="/nosotros">Nosotros</a>
-      <a href="/contacto">Contacto</a>
-      <a class="call" href="tel:+15515509906">(551) 550-9906</a>
+    <nav class="topnav" aria-label="Sitio">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteMenu"><span class="nav-bars" aria-hidden="true"></span><span class="nav-word">Menú</span></button>
+      <div class="site-menu" id="siteMenu">
+        <a href="/#listings">Casas</a>
+        <a href="/como-funciona.html">Cómo funciona</a>
+        <a href="/#por-que">Comprar o rentar</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/#faq">Preguntas</a>
+        <a class="nav-es" href="https://getownerfinancedhomes.com/">English</a>
+      </div>
     </nav>
   </header>
 
@@ -155,5 +160,6 @@
   </footer>
 
 </div>
+<script src="/site-chrome.js"></script>
 </body>
 </html>

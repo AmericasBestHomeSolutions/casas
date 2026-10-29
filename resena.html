@@ -115,7 +115,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--pine);box-
       </svg>
       <span class="bn">Americas Best Home Solutions<small>Financiamiento del dueño</small></span>
     </a>
-    <nav class="topnav"><a class="call" id="navCall" href="#">Llámenos</a></nav>
+    <nav class="topnav" aria-label="Sitio"><a href="/">Casas</a></nav>
   </header>
 
   <!-- LOADING -->
@@ -124,7 +124,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--pine);box-
   <!-- LOCKED: not eligible yet / bad link / error. Never shows the form. -->
   <div class="card center" id="locked" hidden>
     <h1 id="lockedTitle">Esto se abre cuando reciba sus llaves</h1>
-    <p class="tagline" id="lockedBody" style="margin:0 auto 18px">Le enviaremos un texto en cuanto esté listo. Gracias por confiarnos su hogar.</p>
+    <p class="tagline" id="lockedBody" style="margin:0 auto 18px">Le avisaremos en cuanto esté listo. Gracias por confiarnos su hogar.</p>
     <a class="btn btn-secondary" id="backRoadmap" href="#" hidden>Volver a su ruta</a>
   </div>
 
@@ -232,10 +232,6 @@ const REVIEW = {
   const rawDeal = qs.get("deal") || "";
   const dealCode = /^[a-z0-9]{6,32}$/i.test(rawDeal) ? rawDeal : "";
   const validHome = /^[a-z0-9]+-[a-z]{2}-[a-z0-9-]+$/i.test(homeId);
-  const tel = REVIEW.phone.replace(/\D/g, "");
-  const pretty = tel.length === 10 ? `(${tel.slice(0,3)}) ${tel.slice(3,6)}-${tel.slice(6)}` : REVIEW.phone;
-  $("navCall").href = "tel:" + tel; $("navCall").textContent = pretty;
-
   const roadmapHref = validHome && dealCode ? `https://getownerfinancedhomes.com/next-steps.html?home=${encodeURIComponent(homeId)}&deal=${encodeURIComponent(dealCode)}` : "";
   ["backRoadmap","backRoadmap2"].forEach(i => { if (roadmapHref){ $(i).href = roadmapHref; $(i).hidden = false; } });
   $("plainForm").href = `${REVIEW.formViewUrl}?usp=pp_url&${REVIEW.formEntries.home}=${encodeURIComponent(homeId)}`;
@@ -341,10 +337,10 @@ const REVIEW = {
 
   // ── boot: fail closed unless keys are recorded for THIS deal ─
   (async function(){
-    if (!validHome || !dealCode) return lock("Este enlace no está completo", `Por favor use el enlace que le enviamos por texto, o llámenos al ${pretty}.`);
+    if (!validHome || !dealCode) return lock("Este enlace no está completo", "Por favor use el enlace que le enviamos.");
     let ok = false;
     try { ok = await keysDelivered(); }
-    catch(e){ return lock("No pudimos cargar esto en este momento", "Por favor actualice en un minuto, o llámenos."); }
+    catch(e){ return lock("No pudimos cargar esto en este momento", "Por favor actualice en un minuto."); }
     if (!ok) return lock();
     if (typeof HOMES !== "undefined"){
       const h = HOMES.find(x => x.id === homeId);
