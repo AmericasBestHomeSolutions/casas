@@ -221,9 +221,9 @@ body{
   <!-- PROCESS -->
   <section class="section reveal">
     <div class="sec-label">Paso a paso</div>
-    <h2 class="sec-title">De la primera llamada a las llaves</h2>
+    <h2 class="sec-title">De la primera visita a las llaves</h2>
     <div class="steps">
-      <div class="step"><div class="n">01</div><div class="body"><h3>Contáctenos y recorra la casa</h3><p>Llámenos o escríbanos sobre una casa que le guste y coordinamos una hora para recorrerla juntos.</p></div></div>
+      <div class="step"><div class="n">01</div><div class="body"><h3>Agende una visita</h3><p>Elija una hora en la página de la casa y coordinamos el recorrido juntos.</p></div></div>
       <div class="step"><div class="n">02</div><div class="body"><h3>Acuerden los números</h3><p>Repasamos el pago de entrada, el pago mensual y el precio fijo — todo en palabras claras, sin sorpresas.</p></div></div>
       <div class="step"><div class="n">03</div><div class="body"><h3>Firme un acuerdo sencillo</h3><p>El dueño la financia con un contrato de compraventa. Sin banco, sin solicitud hipotecaria, sin un largo proceso de aprobación.</p></div></div>
       <div class="step"><div class="n">04</div><div class="body"><h3>Reciba las llaves y múdese</h3><p>Haga su pago de entrada y la casa es suya para vivir desde el primer día.</p></div></div>
@@ -266,7 +266,7 @@ body{
         <div><h3>Trátela como suya</h3><p>Porque lo es. Cuídela como cuidaría cualquier cosa que está construyendo para ser dueño por completo.</p></div>
       </div>
     </div>
-    <p class="resp-note">¿No está seguro si esto es para usted? Para eso es justamente una llamada rápida.</p>
+    <p class="resp-note">¿No está seguro si esto es para usted? Para eso es justamente una visita, sin compromiso.</p>
   </section>
 
   <!-- FAQ -->
@@ -276,11 +276,11 @@ body{
     <div class="faq">
       <details>
         <summary>¿Esto es legítimo — o es una estafa?</summary>
-        <div class="ans">Es una pregunta justa, y preferimos que la haga. Americas Best Home Solutions LLC es una empresa registrada en Wyoming, establecida en 2023, y cada casa que publicamos tiene una dirección real, un precio real y un pago mensual real. Así se protege con nosotros — y con cualquiera: visita la casa en persona antes de comprometerse, recibe cada número y cada término por escrito, y siempre habla con una persona real. Nunca le pediremos que transfiera dinero para "apartar" una casa que no ha visto, y nunca lo apuraremos. Si algo alguna vez se siente raro, deténgase y llámenos directamente al número de este sitio.</div>
+        <div class="ans">Es una pregunta justa, y preferimos que la haga. Americas Best Home Solutions LLC es una empresa registrada en Wyoming, establecida en 2023, y cada casa que publicamos tiene una dirección real, un precio real y un pago mensual real. Así se protege con nosotros — y con cualquiera: visita la casa en persona antes de comprometerse, recibe cada número y cada término por escrito, y siempre habla con una persona real. Nunca le pediremos que transfiera dinero para "apartar" una casa que no ha visto, y nunca lo apuraremos. Si algo alguna vez se siente raro, deténgase y no entregue dinero. Agende una visita y vea la casa usted mismo.</div>
       </details>
       <details>
         <summary>¿Necesito un banco para comprar una de estas casas?</summary>
-        <div class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Llámenos y hablamos de su situación con honestidad.</div>
+        <div class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Agende una visita y hablamos de su situación con honestidad.</div>
       </details>
       <details>
         <summary>¿Es lo mismo que rentar?</summary>
@@ -308,10 +308,9 @@ body{
   <!-- CLOSER -->
   <section class="closer reveal">
     <h2>¿Listo para encontrar su casa?</h2>
-    <p>Vea nuestras casas disponibles, o llame y cuéntenos qué está buscando.</p>
+    <p>Vea las casas disponibles y agende una visita en la que quiera recorrer.</p>
     <div class="cta-group" style="max-width:400px;margin:0 auto">
-      <a class="btn btn-primary" href="index.html">Ver casas disponibles</a>
-      <a class="btn btn-secondary" id="ctaCall" href="#">Llámenos o escríbanos</a>
+      <a class="btn btn-primary" href="/#listings">Agende una visita</a>
     </div>
   </section>
 
@@ -355,18 +354,6 @@ const VIDEO_EMBED_URL = "";
   if (VIDEO_EMBED_URL && VIDEO_EMBED_URL.trim()){
     const wrap = $("videoWrap");
     wrap.innerHTML = `<iframe src="${VIDEO_EMBED_URL.trim()}" title="Cómo funciona el financiamiento del dueño" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
-  }
-
-  // enlaces de contacto — reutilizan la configuración CONTACT de homes.js
-  if (typeof CONTACT !== "undefined"){
-    const tel = (CONTACT.phone||"").replace(/[^\d+]/g,"");
-    const pretty = tel.length===10 ? `(${tel.slice(0,3)}) ${tel.slice(3,6)}-${tel.slice(6)}` : (CONTACT.phone||"");
-    const smsBody = encodeURIComponent(`Hola ${CONTACT.contactName}, tengo una pregunta sobre cómo funciona el financiamiento del dueño.`);
-    $("ctaCall").href = `sms:${tel}?&body=${smsBody}`;
-    if ($("navCall")) $("navCall").href = `tel:${tel}`;
-    if ($("navCallText")) $("navCallText").textContent = pretty || "Llámenos";
-  // (el pie de página ahora imprime el número y la dirección de forma literal —
-  //  no queda ningún enlace footCall que conectar aquí)
   }
 
   // scroll reveal (respeta reduced-motion vía CSS)

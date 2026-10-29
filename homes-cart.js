@@ -20,7 +20,7 @@
     anyDay:"Cualquier día", anyTime:"Cualquier hora", times:["Mañana (9–12)","Tarde (12–4)","Noche (4–7)"],
     send:"Pedir estas visitas", sending:"Enviando…", back:"← Volver", close:"Seguir viendo",
     thanksH:"¡Listo — gracias!", thanksP:"Nos comunicaremos pronto para fijar una hora para estas casas.",
-    fail:"Algo salió mal — por favor llámenos o escríbanos.", maxTours:"Puede visitar hasta 5 casas a la vez.",
+    fail:"Algo salió mal — inténtelo de nuevo en un momento.", maxTours:"Puede visitar hasta 5 casas a la vez.",
     optional:"Opcional — puede enviar sin marcar la casilla.", mo:"/mes", pay:"Pago mensual", moveIn:"Para mudarse", price:"Precio",
     beds:"Habitaciones", baths:"Baños", sqft:"Pies²", where:"Ubicación", status:"Estado", feats:"Detalles del anuncio",
     avail:"Disponible", pend:"Pendiente", ask:"Consúltenos", best:"Más bajo", featNote:"Detalles tomados del anuncio que recibimos; no hemos inspeccionado las casas. Recorra la casa y verifique todo usted mismo.",
@@ -36,8 +36,8 @@
     reqTours:"Request tours", yourTours:"Your tours", book:"Book a Tour", name:"Name", phone:"Phone", email:"Email", pref:"Best day & time",
     anyDay:"Any day", anyTime:"Any time", times:["Morning (9–12)","Afternoon (12–4)","Evening (4–7)"],
     send:"Request these tours", sending:"Sending…", back:"← Back", close:"Keep browsing",
-    thanksH:"Got it — thank you!", thanksP:"We'll text or call you shortly to lock in a time for these homes.",
-    fail:"Something went wrong — please call or text us instead.", maxTours:"You can tour up to 5 homes at a time.",
+    thanksH:"Got it — thank you!", thanksP:"We'll be in touch shortly to lock in a time for these homes.",
+    fail:"Something went wrong — please try again in a moment.", maxTours:"You can tour up to 5 homes at a time.",
     optional:"Optional — you can submit without checking the box.", mo:"/mo", pay:"Monthly payment", moveIn:"To move in", price:"Price",
     beds:"Bedrooms", baths:"Bathrooms", sqft:"Sq ft", where:"Location", status:"Status", feats:"From the listing",
     avail:"Available", pend:"Pending", ask:"Ask us", best:"Lowest", featNote:"Details come from the listing we were given — we haven't inspected these homes. Walk through the home and check everything yourself.",
@@ -295,12 +295,12 @@
      scripts/alerts.py (Filling repo) turns those submissions into subscribers. An alert IS a text,
      so the SMS opt-in box is REQUIRED here (everywhere else it's optional). */
   const TA = ES ? {
-    btn:"🔔 Avíseme por texto de casas nuevas", h:"Avíseme cuando salga una casa así", lead:"Le escribimos solo cuando entra una casa nueva que cumple con lo que pide. Sin spam — puede cancelar con STOP en cualquier momento.",
+    btn:"🔔 Avíseme de casas nuevas", h:"Avíseme cuando salga una casa así", lead:"Le avisamos solo cuando entra una casa nueva que cumple con lo que pide. Sin spam — puede cancelar cuando quiera.",
     near:"Cerca de (ciudad o código postal)", within:"Dentro de", state:"o elija un estado", anyState:"Cualquier estado", pay:"Pago mensual máximo", down:"Efectivo máximo para mudarse",
     beds:"Habitaciones (mínimo)", any:"Cualquiera", go:"Activar mis alertas", sending:"Enviando…", needWhere:"Escriba una ciudad o código postal, o elija un estado.",
-    noPlace:"Todavía no tenemos casas ahí — pruebe con una ciudad cercana o elija un estado.", needConsent:"Marque la casilla de mensajes de texto — las alertas se envían por texto.",
-    doneH:"¡Listo — está en la lista!", doneP:"Le enviaremos un texto de confirmación y luego avisaremos cada vez que entre una casa que cumpla.", mi:"mi",
-    required:"Necesaria para recibir alertas por texto."
+    noPlace:"Todavía no tenemos casas ahí — pruebe con una ciudad cercana o elija un estado.", needConsent:"Marque la casilla de consentimiento — es necesaria para las alertas.",
+    doneH:"¡Listo — está en la lista!", doneP:"Le confirmaremos y luego le avisaremos cada vez que entre una casa que cumpla.", mi:"mi",
+    required:"Necesaria para recibir alertas."
   } : {
     btn:"🔔 Text me new homes like this", h:"Text me when a home like this comes in", lead:"We only text when a new home fits what you ask for. No spam — reply STOP anytime.",
     near:"Near (city or zip)", within:"Within", state:"or pick a state", anyState:"Any state", pay:"Max monthly payment", down:"Max cash to move in",

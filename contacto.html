@@ -42,14 +42,14 @@
   <section class="phead">
     <span class="eyebrow">Contacto</span>
     <h1>Hable con una persona real.</h1>
-    <p class="lead">Ya sea que esté viendo una de nuestras casas o que tenga una propiedad que quiera vendernos, así nos puede contactar. Las llamadas y los mensajes llegan a nuestro equipo, no a una grabadora.</p>
+    <p class="lead">Si está viendo una casa, agende una visita en su página. Si tiene una propiedad para vendernos, escriba al correo de abajo. Le contesta una persona del equipo.</p>
   </section>
 
   <div class="facts">
     <div class="fact">
-      <div class="k">Teléfono y texto</div>
-      <div class="v"><a href="tel:+15515509906">(551) 550-9906</a></div>
-      <div class="note">Mandar un mensaje de texto suele ser la forma más rápida de localizarnos. Hablamos español.</div>
+      <div class="k">Visitas</div>
+      <div class="v"><a href="/#listings">Agende una visita</a></div>
+      <div class="note">Elija la casa y una hora. Le abrimos la puerta. Hablamos español.</div>
     </div>
     <div class="fact">
       <div class="k">Correo electrónico</div>
@@ -69,7 +69,7 @@
   </div>
 
   <section class="formcard" id="contacto">
-    <h2>Mándenos un mensaje</h2>
+    <h2>Cuéntenos</h2>
     <p class="sub">Díganos qué está buscando — o qué está vendiendo — y le daremos una respuesta directa.</p>
 
     <form id="leadForm" novalidate>
@@ -106,7 +106,7 @@
 
     <div class="thanks">
       <h3>Mensaje recibido.</h3>
-      <p>Gracias — le responderemos pronto. Si es urgente, llámenos o escríbanos al (551) 550-9906.</p>
+      <p>Gracias — le responderemos pronto. Si algo no sale, inténtelo de nuevo en un momento.</p>
     </div>
   </section>
 
@@ -170,7 +170,7 @@
     const results = await Promise.allSettled(targets);
 
     if (results.some(r => r.status === "fulfilled" && r.value.ok)) { card.classList.add("sent"); }
-    else { btn.disabled = false; btn.textContent = "Enviar mensaje"; note.textContent = "Algo salió mal — por favor llámenos o escríbanos al (551) 550-9906."; }
+    else { btn.disabled = false; btn.textContent = "Enviar mensaje"; note.textContent = "Algo salió mal — inténtelo de nuevo en un momento."; }
   });
 })();
 </script>
