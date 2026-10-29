@@ -12,10 +12,10 @@
   const ES = (document.documentElement.lang || "en").toLowerCase().startsWith("es");
   const T = ES ? {
     list:"Lista", map:"Mapa", near:"Cerca de", nearPh:"Ciudad o código postal", within:"Dentro de",
-    mi:"millas", go:"Buscar", loc:"Usar mi ubicación", clear:"Quitar", searchArea:"Buscar en esta área",
+    mi:"mi", go:"Buscar", loc:"Usar mi ubicación", clear:"Quitar", searchArea:"Buscar en esta área",
     areaChip:"Solo el área del mapa", notFound:"No encontramos ese lugar — pruebe con una ciudad o código postal.",
     locDenied:"No pudimos obtener su ubicación.", mo:"/mes", moveIn:"Para mudarse", view:"Ver esta casa →",
-    bed:"hab.", bath:"baños", away:"millas de distancia", approx:"Ubicación aproximada",
+    bed:"hab.", bath:"baños", away:"mi de distancia", approx:"Ubicación aproximada",
     noPins:"Ninguna de estas casas tiene ubicación en el mapa todavía.", shown:"en el mapa",
     fit:"Ver todas", where:"Dónde está", openG:"Abrir en Google Maps", nearby:"Otras casas cerca",
     attrib:"© OpenStreetMap contributors", you:"Usted está aquí", legendA:"Disponible",
