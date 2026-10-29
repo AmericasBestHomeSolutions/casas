@@ -364,7 +364,7 @@ body{
       <label>Precio mín. <select id="fPriceMin"><option value="">Sin mín.</option><option value="40000">$40,000</option><option value="60000">$60,000</option><option value="80000">$80,000</option><option value="100000">$100,000</option><option value="150000">$150,000</option></select></label>
       <label>Precio máx. <select id="fPriceMax"><option value="">Sin máx.</option><option value="60000">$60,000</option><option value="80000">$80,000</option><option value="100000">$100,000</option><option value="150000">$150,000</option></select></label>
       <label id="fTypeWrap" hidden>Tipo <select id="fType"><option value="">Listas para mudarse</option><option value="contractor">Para contratistas</option><option value="all">Todas</option></select></label>
-      <label>Dentro de <select id="fMiles"><option value="10">10 mi</option><option value="25" selected>25 mi</option><option value="50">50 mi</option><option value="100">100 mi</option></select></label>
+      <label>Dentro de <select id="fMiles"><option value="10">10 millas</option><option value="25" selected>25 millas</option><option value="50">50 millas</option><option value="100">100 millas</option></select></label>
       <button type="button" class="near sheet-wide" id="nearMe">Cerca de mí</button>
     </div>
   </header>
@@ -422,6 +422,17 @@ body{
     <div class="cards" id="featuredCards"></div>
   </section>
 
+  <section class="whyband" id="why-strip" aria-label="Por qué comprar en vez de rentar">
+    <h2>Por qué comprar en vez de rentar</h2>
+    <ul>
+      <li>Es dueño desde el primer día</li>
+      <li>Su pago no se mueve</li>
+      <li>Un pago parecido a la renta</li>
+      <li>Sin banco de por medio</li>
+    </ul>
+  </section>
+
+  <section class="section" id="listings">
     <div class="cards" id="cards"></div>
     <button type="button" class="view-toggle" id="mapToggle" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="2"/></svg><span>Mapa</span></button>
 
@@ -430,7 +441,7 @@ body{
     <div class="empty" id="empty">
       <h3>Ninguna casa coincide con esos filtros — todavía</h3>
       <p>Cada semana entran casas nuevas. Quite un filtro o amplíe el pago mensual o el inicial.</p>
-          </div>
+    </div>
   </section>
 
   <section class="section" id="soldSec" style="margin-top:48px" hidden>
@@ -444,13 +455,12 @@ body{
       <div class="sec-label" style="color:#ffb3b3">Con quién va a hablar</div>
       <h2>Un número. Un equipo. Todas las casas de este sitio.</h2>
       <ul>
-        <li><span class="m">✓</span><span><strong>Sabrá exactamente con quién trata.</strong> Llame o escriba a un solo número y le contestan las mismas personas que abren la puerta y le muestran la casa — casi siempre el mismo día.</span></li>
+        <li><span class="m">✓</span><span><strong>Sabrá exactamente con quién trata.</strong> Agende una visita y conocerá a las mismas personas que abren la puerta y le muestran la casa — casi siempre el mismo día.</span></li>
         <li><span class="m">✓</span><span><strong>La ve con sus propios ojos antes de decidir.</strong> Cada casa se recorre en persona, y nunca le pediremos dinero para "apartar" una casa en la que no ha estado.</span></li>
         <li><span class="m">✓</span><span><strong>Si la que quería se vende, no empieza de cero.</strong> <span id="otHomes">—</span> casas en <span id="otCities">—</span> ciudades y pueblos, actualizadas cada semana — díganos qué necesita y le mandamos la siguiente.</span></li>
       </ul>
       <div class="hero-cta">
-        <a class="btn btn-lime" id="oneteamText" href="#">Escríbanos qué está buscando</a>
-        <a class="btn btn-ghost" id="oneteamCall" href="#">Llame al <span id="oneteamPhone"></span></a>
+        <a class="btn btn-lime" href="/#listings">Ver las casas</a>
       </div>
     </div>
   </section>
@@ -519,7 +529,7 @@ body{
       var box=document.getElementById("quotes");
       list.slice().reverse().forEach(function(v){
         var q=document.createElement("div");q.className="quote";
-        var s=document.createElement("div");s.className="stars";s.textContent="★".repeat(v.stars)+"☆".repeat(5-v.stars);s.setAttribute("aria-label",v.stars+" out of 5 stars");
+        var s=document.createElement("div");s.className="stars";s.textContent="★".repeat(v.stars)+"☆".repeat(5-v.stars);s.setAttribute("aria-label",v.stars+" de 5 estrellas");
         var p=document.createElement("p");p.textContent="\u201C"+v.text+"\u201D";
         var w=document.createElement("div");w.className="who";
         var av=document.createElement("div");av.className="av";av.textContent=(v.name||"?").trim().charAt(0).toUpperCase();

@@ -428,7 +428,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   const moveInText = C.moveIn ? money(C.moveIn) : "Pregúntenos";
   $("dMonthly").textContent = moneyR(C.monthlyPayment);
   $("dMoveIn").textContent  = moveInText;
-  $("dPrice").textContent   = C.lockedPrice ? moneyR(C.lockedPrice) : "Pregúntanos";
+  $("dPrice").textContent   = C.lockedPrice ? moneyR(C.lockedPrice) : "Pregúntenos";
 
   // hero photo — uses heroPhoto if set, otherwise auto-tries images/<id>.jpg;
   // falls back to the branded navy face + city label if there's no photo.
@@ -453,7 +453,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   const terms = [
     ["Su pago mensual", money(C.monthlyPayment), true],
     ["Pago de entrada", moveInText, false],
-    ["Precio de compra fijo", C.lockedPrice ? money(C.lockedPrice) : "Pregúntanos", false],
+    ["Precio de compra fijo", C.lockedPrice ? money(C.lockedPrice) : "Pregúntenos", false],
     ["Financiamiento", C.termText, false],
     ["La casa", beds, false],
     ["Ubicación", `${C.address?C.address+", ":""}${C.city}, ${C.state}${C.zip?" "+C.zip:""}`, false],
@@ -541,11 +541,11 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 #gallery img,#heroImg{cursor:zoom-in}
 </style>
 <div id="stickyTour" aria-hidden="true"><div class="st-p"><span id="stPay"></span><small id="stLab"></small></div><a id="stBtn" href="#"></a></div>
-<div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Close">&#10005;</button><button class="pv" aria-label="Previous">&#8249;</button><img alt=""><button class="nx" aria-label="Next">&#8250;</button><div class="ct"></div></div>
+<div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Cerrar">&#10005;</button><button class="pv" aria-label="Anterior">&#8249;</button><img alt=""><button class="nx" aria-label="Siguiente">&#8250;</button><div class="ct"></div></div>
 <script>
 (function(){
   const $=id=>document.getElementById(id);
-  // sticky "Schedule a tour" — appears once the main button scrolls out of view
+  // barra fija de "Agende una visita": aparece cuando el botón principal sale de la pantalla
   const main=$("ctaText"), bar=$("stickyTour");
   function fill(){ $("stBtn").href=main.href; $("stBtn").textContent=main.textContent; $("stPay").textContent=($("dMonthly").textContent||"").trim(); $("stLab").textContent=($("dMonthly").nextElementSibling||{}).textContent||""; }
   if(main && "IntersectionObserver" in window){
