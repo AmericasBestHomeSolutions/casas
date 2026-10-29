@@ -58,8 +58,8 @@ box.addEventListener("change", () => {
 let saved = [];
 try { saved = JSON.parse(localStorage.getItem("savedHomes") || "[]"); } catch (e) {}
 const list = document.getElementById("savedList");
-const homes = (window.HOMES || []).filter(h => saved.includes(h.id));
-list.innerHTML = homes.length ? homes.map(h => `<div class="card"><a href="${h.id}.html"><img src="images/${h.id}.jpg" alt=""></a><div><a href="${h.id}.html"><div class="pay">$${Math.round(h.monthlyPayment).toLocaleString()}/mo</div></a><div>$${(h.moveIn||0).toLocaleString()} para mudarse</div><div>${h.city}, ${h.state}</div><div><a href="https://owner.casasconfinanciamiento.com/book?home=${encodeURIComponent(h.id)}&lang=es" >Agende una visita</a></div></div></div>`).join("") : "<p>Todavía no hay casas guardadas.</p>";
+const homes = (typeof HOMES !== "undefined" ? HOMES : []).filter(h => saved.includes(h.id));
+list.innerHTML = homes.length ? homes.map(h => `<div class="card"><a href="${h.id}.html"><img src="images/${h.id}.jpg" alt=""></a><div><a href="${h.id}.html"><div class="pay">$${Math.round(h.monthlyPayment).toLocaleString()}/mes</div></a><div>$${(h.moveIn||0).toLocaleString()} para mudarse</div><div>${h.city}, ${h.state}</div><div><a href="https://owner.getownerfinancedhomes.com/book?home=${encodeURIComponent(h.id)}&lang=es">Agende una visita</a></div></div></div>`).join("") : "<p>Todavía no hay casas guardadas.</p>";
 const q = new URLSearchParams(location.search);
 const bits = [q.get("q") || q.get("city"), q.get("payMin") && q.get("payMax") ? `$${q.get("payMin")}–$${q.get("payMax")}/mo` : ""].filter(Boolean);
 if (bits.length) document.getElementById("searchSum").textContent = bits.join(" · ");
