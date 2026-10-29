@@ -294,6 +294,7 @@ body{
 @media(hover:none){.card-face .pg{opacity:.9;width:30px;height:30px}}
 </style>
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="nav.css">
 </head>
 <body class="page-search">
 
@@ -301,7 +302,8 @@ body{
 
   <!-- TOP BAR -->
   <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Americas Best Home Solutions — inicio">
+    <div class="zhead-row">
+    <a class="brand" href="/#listings" aria-label="Americas Best Home Solutions — inicio">
       <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
         <path d="M24 3 41 9V23C41 33 33 41 24 45 15 41 7 33 7 23V9Z" fill="#15315e"/>
         <path d="M15 26 24 18 33 26Z" fill="#e23b3b"/>
@@ -310,22 +312,61 @@ body{
       </svg>
       <span class="bn">Americas Best Home Solutions<small>casasconfinanciamiento.com</small></span>
     </a>
-    <form class="hdr-search" role="search" action="index.html">
-      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <input id="fQ" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" list="qHints" placeholder="Ciudad o código postal" aria-label="Ciudad o código postal">
-      <datalist id="qHints"></datalist>
-      <button type="submit" id="qGo">Buscar</button>
-    </form>
-    <nav class="topnav">
-      <a class="nav-hide" href="index.html">Casas</a>
-      <a class="nav-hide" href="como-funciona.html">Cómo funciona</a>
-      <a class="nav-hide" href="/nosotros">Nosotros</a>
-      <a class="nav-hide" href="/contacto">Contacto</a>
-      <a class="call" id="navCall" href="#">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span id="navCallText">Escríbanos</span>
-      </a>
+    <nav class="topnav" aria-label="Sitio">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteMenu"><span class="nav-bars" aria-hidden="true"></span><span class="nav-word">Menú</span></button>
+      <div class="site-menu" id="siteMenu">
+        <a href="/#listings">Casas</a>
+        <a href="/como-funciona.html">Cómo funciona</a>
+        <a href="/#por-que">Comprar o rentar</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/#faq">Preguntas</a>
+        <a class="nav-es" href="https://getownerfinancedhomes.com/">English</a>
+      </div>
     </nav>
+    </div>
+    <form class="hdr-search" role="search" action="/">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="fQ" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" list="qHints" placeholder="Ciudad, código postal o dirección" aria-label="Ciudad, código postal o dirección">
+      <datalist id="qHints"></datalist>
+      <button type="button" class="filter-btn" id="filterBtn" aria-expanded="false" aria-controls="filterSheet" aria-label="Filtros">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="7" r="2.2" fill="currentColor"/><circle cx="15" cy="12" r="2.2" fill="currentColor"/><circle cx="10" cy="17" r="2.2" fill="currentColor"/></svg>
+        <span class="fcount" id="fCount" hidden>0</span>
+      </button>
+    </form>
+    <div class="z-chips" id="chips"></div>
+    <div class="z-sort">
+      <p class="count" id="count"></p>
+      <label class="sort-pill">Orden
+        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="monthly-asc">Mensual ↑</option><option value="down-asc">Inicial ↑</option><option value="price-asc">Precio ↑</option></select>
+      </label>
+    </div>
+    <div class="filter-sheet" id="filterSheet" hidden>
+      <label>Mensual mín.
+        <select id="fPayMin" aria-label="Pago mensual mínimo"><option value="">Sin mín.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option></select>
+      </label>
+      <label>Mensual máx.
+        <select id="fPayMax" aria-label="Pago mensual máximo"><option value="">Sin máx.</option><option value="600">$600</option><option value="800">$800</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option><option value="1800">$1,800</option></select>
+      </label>
+      <label>Inicial mín.
+        <select id="fDownMin" aria-label="Pago inicial mínimo"><option value="">Sin mín.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option></select>
+      </label>
+      <label>Inicial máx.
+        <select id="fDown" aria-label="Pago inicial máximo"><option value="">Sin máx.</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
+      </label>
+      <label>Habitaciones
+        <select id="fBeds" aria-label="Habitaciones"><option value="">Cualquiera</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select>
+      </label>
+      <label>Baños
+        <select id="fBaths" aria-label="Baños"><option value="">Cualquiera</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select>
+      </label>
+      <label>Estado <select id="fState"><option value="">Todos los estados</option></select></label>
+      <label>Ciudad <select id="fCity"><option value="">Todas las ciudades</option></select></label>
+      <label>Precio mín. <select id="fPriceMin"><option value="">Sin mín.</option><option value="40000">$40,000</option><option value="60000">$60,000</option><option value="80000">$80,000</option><option value="100000">$100,000</option><option value="150000">$150,000</option></select></label>
+      <label>Precio máx. <select id="fPriceMax"><option value="">Sin máx.</option><option value="60000">$60,000</option><option value="80000">$80,000</option><option value="100000">$100,000</option><option value="150000">$150,000</option></select></label>
+      <label id="fTypeWrap" hidden>Tipo <select id="fType"><option value="">Listas para mudarse</option><option value="contractor">Para contratistas</option><option value="all">Todas</option></select></label>
+      <label>Dentro de <select id="fMiles"><option value="10">10 mi</option><option value="25" selected>25 mi</option><option value="50">50 mi</option><option value="100">100 mi</option></select></label>
+      <button type="button" class="near sheet-wide" id="nearMe">Cerca de mí</button>
+    </div>
   </header>
 
   <!-- HERO -->
@@ -337,7 +378,7 @@ body{
       <p class="reassure">Su pasado no tiene por qué decidir su futuro. Si los bancos le han cerrado la puerta, esto se hizo para usted.</p>
       <div class="hero-cta">
         <a class="btn btn-lime" href="#listings">Ver las casas</a>
-        <a class="btn btn-ghost" href="#get-started">Comience hoy</a>
+        <a class="btn btn-ghost" href="/#por-que">Comprar o rentar</a>
       </div>
     </div>
     <svg class="hero-art" viewBox="0 88 960 112" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
@@ -381,66 +422,15 @@ body{
     <div class="cards" id="featuredCards"></div>
   </section>
 
-  <div class="chipbar" role="group" aria-label="Filtros">
-    <label class="range">Mensual
-      <select id="fPayMin" aria-label="Pago mensual mínimo"><option value="">Sin mín.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option></select>
-      <span>–</span>
-      <select id="fPayMax" aria-label="Pago mensual máximo"><option value="">Sin máx.</option><option value="600">$600</option><option value="800">$800</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option><option value="1800">$1,800</option></select>
-    </label>
-    <label class="range">Inicial
-      <select id="fDownMin" aria-label="Pago inicial mínimo"><option value="">Sin mín.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option></select>
-      <span>–</span>
-      <select id="fDown" aria-label="Pago inicial máximo"><option value="">Sin máx.</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
-    </label>
-    <label class="range">Hab
-      <select id="fBeds" aria-label="Habitaciones"><option value="">Cualquiera</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4+</option></select>
-    </label>
-    <label class="range">Baños
-      <select id="fBaths" aria-label="Baños"><option value="">Cualquiera</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select>
-    </label>
-    <button type="button" class="near" id="nearMe">Cerca de mí</button>
-    <details class="more">
-      <summary>Más</summary>
-      <div class="more-panel">
-        <label>Estado <select id="fState"><option value="">Todos los estados</option></select></label>
-        <label>Ciudad <select id="fCity"><option value="">Todas las ciudades</option></select></label>
-        <label>Precio mín. <select id="fPriceMin"><option value="">Sin mín.</option><option value="40000">$40,000</option><option value="60000">$60,000</option><option value="80000">$80,000</option><option value="100000">$100,000</option><option value="150000">$150,000</option></select></label>
-        <label>Precio máx. <select id="fPriceMax"><option value="">Sin máx.</option><option value="60000">$60,000</option><option value="80000">$80,000</option><option value="100000">$100,000</option><option value="150000">$150,000</option></select></label>
-        <label id="fTypeWrap" hidden>Tipo <select id="fType"><option value="">Listas para mudarse</option><option value="contractor">Para contratistas</option><option value="all">Todas</option></select></label>
-        <label>Orden <select id="fSort"><option value="">Destacadas</option><option value="monthly-asc">Menor pago</option><option value="down-asc">Menor inicial</option><option value="price-asc">Menor precio</option></select></label>
-        <label>Dentro de <select id="fMiles"><option value="10">10 mi</option><option value="25" selected>25 mi</option><option value="50">50 mi</option><option value="100">100 mi</option></select></label>
-      </div>
-    </details>
-  </div>
-
-  <section class="whyband" aria-label="Por qué comprar en vez de rentar">
-    <h2>Por qué comprar en vez de rentar</h2>
-    <ul>
-      <li>Es dueño desde el primer día</li>
-      <li>Su pago no se mueve</li>
-      <li>Un pago parecido a la renta</li>
-      <li>Sin banco de por medio</li>
-    </ul>
-  </section>
-
-  <section class="section" id="listings">
-    <div class="listings-head">
-      <p class="count" id="count"></p>
-      <button id="alertBtn" type="button">Avisos de esta búsqueda</button>
-      <button id="copyLink" type="button" style="display:none">Compartir esta búsqueda</button>
-      <div class="filter-chips" id="chips"></div>
-    </div>
-
     <div class="cards" id="cards"></div>
-    <button type="button" class="view-toggle" id="mapToggle">Mapa</button>
+    <button type="button" class="view-toggle" id="mapToggle" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="2"/></svg><span>Mapa</span></button>
 
     <nav class="pager" id="pager" style="display:none;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px"></nav>
 
     <div class="empty" id="empty">
       <h3>Ninguna casa coincide con esos filtros — todavía</h3>
-      <p>Cada semana entran casas nuevas. Afloje un filtro, o escríbanos qué necesita y le mandamos las que coincidan en cuanto lleguen.</p>
-      <p style="margin-top:14px"><a id="emptyText" href="#" class="btn btn-lime" style="font-size:15px;padding:12px 18px">Escríbanos qué está buscando</a></p>
-    </div>
+      <p>Cada semana entran casas nuevas. Quite un filtro o amplíe el pago mensual o el inicial.</p>
+          </div>
   </section>
 
   <section class="section" id="soldSec" style="margin-top:48px" hidden>
@@ -503,7 +493,7 @@ body{
       <p class="sec-sub">Sin largas aprobaciones. Sin vueltas. Este es todo el camino.</p>
     </div>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Contáctenos</h3><p>Llámenos o mándenos un mensaje, o deje sus datos abajo. Cuéntenos qué está buscando.</p></div>
+      <div class="step"><div class="n">1</div><h3>Elija una casa</h3><p>Vea la lista y agende una visita en la casa que quiere recorrer.</p></div>
       <div class="step"><div class="n">2</div><h3>Visite una casa</h3><p>Elija una casa que le guste y coordinamos una hora para recorrerla juntos.</p></div>
       <div class="step"><div class="n">3</div><h3>Firme un acuerdo sencillo</h3><p>Nosotros mismos la financiamos con un contrato de compraventa — en lenguaje claro, sin sorpresas.</p></div>
       <div class="step"><div class="n">4</div><h3>Reciba las llaves</h3><p>Haga su pago de entrada y la casa es suya para vivir desde el primer día.</p></div>
@@ -542,7 +532,7 @@ body{
   </script>
 
   <!-- THE OPPORTUNITY — rent vs own + the market story -->
-  <section class="section reveal" id="opportunity">
+  <section class="section reveal" id="por-que">
     <div class="sec-head">
       <div class="sec-label">Haga las cuentas</div>
       <h2 class="sec-title">Cada mes usted paga por una casa.<br>La única pregunta es de quién.</h2>
@@ -577,7 +567,7 @@ body{
       <p class="fine">Cada casa y cada mercado es diferente — lo que pasó antes no garantiza el valor futuro. Lo que sí está garantizado es lo que dice su acuerdo por escrito: su precio fijo y sus términos.</p>
     </div>
     <div class="opp-cta">
-      <a href="#get-started">Voy en serio — hablemos →</a>
+      <a href="/#listings">Ver las casas →</a>
     </div>
   </section>
 
@@ -609,49 +599,6 @@ body{
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       Empiece su camino a ser dueño
     </a>
-  </section>
-
-  <!-- LEAD FORM / GET STARTED -->
-  <section class="lead reveal" id="get-started">
-    <div class="lead-inner">
-      <h2>Esto no es para todos.</h2>
-      <p class="sub">Tomamos un número limitado de compradores a la vez — y buscamos gente seria. Si está listo para dejar de rentar y empezar a ser dueño, cuéntenos un poco sobre usted abajo y nos comunicamos con usted.</p>
-      <form id="leadForm">
-        <label for="lfName">Nombre</label>
-        <input id="lfName" name="name" type="text" autocomplete="name" required>
-        <label for="lfPhone">Teléfono</label>
-        <input id="lfPhone" name="phone" type="tel" autocomplete="tel" required>
-        <label for="lfEmail">Correo electrónico</label>
-        <input id="lfEmail" name="email" type="email" autocomplete="email" required>
-        <label for="lfWhere">¿En qué zona está buscando?</label>
-        <input id="lfWhere" name="area" type="text" placeholder="ej. Decatur, IL — o “abierto a cualquier lugar”">
-        <label for="lfMoveIn">¿Qué tan pronto quiere mudarse?</label>
-        <select id="lfMoveIn" name="move_in" required>
-          <option value="" disabled selected>Elija una…</option>
-          <option value="ASAP">Lo antes posible</option>
-          <option value="1-3 months">En 1–3 meses</option>
-          <option value="Just looking">Solo estoy viendo por ahora</option>
-        </select>
-<!-- ══════════════════════════════════════════════════════════════════
-             CASILLA DE CONSENTIMIENTO SMS (A2P 10DLC) — no la cambie sin leer.
-             Debe estar SIN marcar por defecto, ser lo único que autoriza, y NO
-             ser obligatoria para enviar. Por eso no lleva `checked` ni
-             `required` — déjelo así. Si cambia el texto, actualice CONSENT_TEXT
-             y CONSENT_TEXT_VERSION en consent.js.
-             ══════════════════════════════════════════════════════════════════ -->
-        <label style="display:flex;gap:11px;align-items:flex-start;font-family:'DM Sans',system-ui,sans-serif;text-transform:none;letter-spacing:0;font-size:13px;line-height:1.5;color:#dbe7fb;font-weight:400;cursor:pointer;margin:12px 0 2px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:13px 14px">
-          <input id="lfSms" name="sms_consent" type="checkbox" value="Sí" style="margin-top:3px;width:16px;height:16px;flex-shrink:0">
-          <span>Acepto recibir mensajes de texto de Americas Best Home Solutions LLC sobre casas disponibles, citas para ver casas, ofertas y seguimiento. La frecuencia de mensajes varía. Pueden aplicar tarifas de mensajes y datos. Responda STOP para cancelar la suscripción o HELP para obtener ayuda. Consulte nuestra <a href="/politica-de-privacidad" style="color:#fff;font-weight:600">Política de Privacidad</a> y nuestros <a href="/terminos-de-mensajes" style="color:#fff;font-weight:600">Términos de Mensajes</a>.</span>
-        </label>
-        <p style="font-family:'DM Mono',monospace;font-size:12px;color:#a9bedd;margin:7px 0 0;letter-spacing:.3px">Opcional — puede enviar este formulario sin marcar la casilla.</p>
-        <button type="submit" class="btn btn-lime" id="lfSubmit">Mostrarme mis opciones — toma 1 minuto</button>
-        <p class="form-note" id="lfNote"></p>
-      </form>
-      <div class="thanks">
-        <h3>Recibido — buena decisión.</h3>
-        <p>Acaba de hacer lo que muchos solo hablan de hacer. Nos comunicaremos pronto — mientras tanto, puede llamarnos o escribirnos abajo.</p>
-      </div>
-    </div>
   </section>
 
   <!-- LEGITIMACY STRIP -->
@@ -687,9 +634,9 @@ body{
       <article><h3>Sin banco de por medio</h3><p>Sin solicitud hipotecaria y sin un banco decidiendo si le dan una casa.</p></article>
     </div>
     <p class="lede">Su pasado no tiene por qué decidir su futuro. Si los bancos le han cerrado la puerta, esto se hizo para usted.</p>
-    <div class="faq">
+    <div class="faq" id="faq">
       <details open><summary>¿Es lo mismo que rentar?</summary><p class="ans">No. Cuando renta, el dinero se va y la casa sigue siendo del casero. Aquí, usted es el comprador desde el primer día y cada pago va hacia ser dueño de la casa a un precio fijo.</p></details>
-      <details><summary>¿Necesito un banco para comprar una de estas casas?</summary><p class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Llámenos y hablamos de su situación con honestidad.</p></details>
+      <details><summary>¿Necesito un banco para comprar una de estas casas?</summary><p class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Agende una visita y recorra la casa usted mismo.</p></details>
       <details><summary>¿Qué pago para mudarme?</summary><p class="ans">Cada casa muestra su pago de entrada y su pago mensual justo en su página. No hay números escondidos — repasamos todo con usted.</p></details>
       <details><summary>¿Puedo pintar, arreglar o mejorar la casa?</summary><p class="ans">Sí — es su casa. A muchos compradores les encanta hacerla suya. Cubrimos cualquier detalle específico en su acuerdo.</p></details>
     </div>
@@ -699,7 +646,7 @@ body{
     <p class="fcontact" style="opacity:.78;margin-top:2px">casasconfinanciamiento.com es operado por <a href="https://americasbesthomesolutions.com">Americas Best Home Solutions LLC</a></p>
     <address class="fcontact" style="font-style:normal;margin-top:8px">
       30 N Gould St, Ste R, Sheridan, WY 82801<br>
-      <a href="tel:+15515509906">(551) 550-9906</a> · <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
+      <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
     </address>
     <p class="fcontact" style="margin-top:10px">
       <a href="/">Casas</a> · <a href="/como-funciona">Cómo funciona</a> · <a href="/nosotros">Nosotros</a> · <a href="/contacto">Contacto</a> · <a href="/politica-de-privacidad">Política de Privacidad</a> · <a href="/terminos-de-mensajes">Términos de Mensajes</a> · <a href="https://owner.getownerfinancedhomes.com" rel="nofollow noopener">Acceso de propietarios</a>
@@ -718,7 +665,6 @@ body{
 <script src="homes.js"></script>
 <script src="homes-map.js"></script>
 <script src="homes-cart.js"></script>
-<script src="/consent.js"></script>
 <script src="site-chrome.js"></script>
 <script>
 /* ---------- render (no editar — los datos de las casas viven en homes.js) ---------- */
@@ -780,45 +726,40 @@ body{
   $("otHomes").textContent = HOMES.length;
   $("otCities").textContent = allCities.length;
 
+  function featureTag(h){
+    if (isNewHome(h)) return "Nuevo";
+    if (h.contractor) return "Para contratistas";
+    const order = ["backyard","fenced_yard","basement","garage","central_air","attic","storage_shed","off_street_parking"];
+    const labels = {backyard:"Patio", fenced_yard:"Patio cercado", basement:"Sótano", garage:"Garaje", central_air:"Aire central", attic:"Ático", storage_shed:"Cobertizo", off_street_parking:"Estacionamiento"};
+    const f = h.features || {};
+    const key = order.find(k => f[k] === "yes");
+    return key ? labels[key] : "";
+  }
   function cardHTML(h, opts){
     const [a,b] = faceFor(h.city + h.state);
-    const isPend = (h.status||"").toLowerCase()==="pending";
-    const pending = isPend ? " pending" : "";
     const specs = [
-      h.beds ? `<span>${h.beds} habitaci${Number(h.beds)===1?"ón":"ones"}</span>` : "",
-      h.baths ? `<span>${h.baths} baño${Number(h.baths)===1?"":"s"}</span>` : "",
-      h.sqft ? `<span style="font-weight:500;color:var(--ink-soft)">${Number(h.sqft).toLocaleString("en-US")} pies²</span>` : ""
-    ].filter(Boolean).join(`<span class="dot">·</span>`);
-    const photoSrc = h.heroPhoto || `images/${h.id}.jpg`;   // drop images/<id>.jpg in and it shows automatically
+      h.beds ? `${h.beds} hab` : "",
+      h.baths ? `${h.baths} ba` : "",
+      (h.sqft && Number(h.sqft)) ? `${Number(h.sqft).toLocaleString("en-US")} pies²` : ""
+    ].filter(Boolean).join(" | ");
+    const photoSrc = h.heroPhoto || `images/${h.id}.jpg`;
+    const tag = (opts && opts.featured && h.featured) ? "Destacada" : featureTag(h);
+    const where = [h.address, h.city, h.state].filter(Boolean).join(", ");
     return `
-    <a class="card${isPend?" is-pending":""}${h.contractor?" is-cs":""}" data-hid="${h.id}" href="${encodeURIComponent(h.id)}.html">
+    <a class="card${h.contractor?" is-cs":""}" data-hid="${h.id}" href="${encodeURIComponent(h.id)}.html">
       <div class="card-face" style="background:linear-gradient(135deg,${a},${b})">
         <img src="${photoSrc}" alt="Casa en ${h.city}, ${h.state}" loading="lazy" data-sv="images/sv/${h.id}.jpg" style="opacity:0;transition:opacity .3s ease" onload="this.style.opacity=1" onerror="window.__svFallback(this)">
         <span class="sv-badge" hidden>Vista de calle · © Google</span>
-        <span class="scrim"></span>
-        ${(h.photos||[]).length>1?`<button type="button" class="pg pv" aria-label="Previous photo">‹</button><button type="button" class="pg nx" aria-label="Next photo">›</button><span class="pdots">${Array.from({length:Math.min(6,h.photos.length)},(_,k)=>`<i${k?"":" class=\"on\""}></i>`).join("")}</span>`:""}
-        <span class="status-tag${pending}">${statusEs(h.status)}</span>
-        ${isNewHome(h) ? `<span class="badge-new">Nuevo</span>` : ""}
-        ${h.contractor?`<span class="cs-tag">Para contratistas</span>`:""}
-        ${opts && opts.featured && h.featured ? `<span class="feat-tag">★ Destacada</span>` : `<span class="of-tag">Financiamiento del dueño</span>`}
+        ${(h.photos||[]).length>1?`<button type="button" class="pg pv" aria-label="Foto anterior">‹</button><button type="button" class="pg nx" aria-label="Foto siguiente">›</button><span class="pdots">${Array.from({length:Math.min(6,(h.photos||[]).length)},(_,k)=>`<i${k?"":" class=\"on\""}></i>`).join("")}</span>`:""}
+        ${tag ? `<span class="z-feat">${tag}</span>` : ""}
         ${window.HomesCart?HomesCart.heart(h):""}
-        ${houseMark}
-        <div class="fcity"><div class="c">${h.city}</div><div class="s">${h.state}</div></div>
       </div>
       <div class="card-body">
         <div class="card-price"><span class="num">${money(h.monthlyPayment)}</span><span class="per">/mes</span></div>
-        <div class="card-down">${h.moveIn ? money(h.moveIn) + " para mudarse" : "Pregúntenos"}</div>
         <div class="card-specs">${specs}</div>
-        <div class="card-where">${h.city}, ${h.state}</div>
-        ${h.address ? `<div class="card-addr" style="font-size:14.5px;color:var(--ink-soft);margin-bottom:12px">${h.address}, ${h.city}, ${h.state}${h.zip?` ${h.zip}`:""}</div>` : ""}
-        <div class="card-mini">
-          <div class="mini"><div class="k">Para mudarse</div><div class="v">${h.moveIn ? money(h.moveIn) : "Pregúntenos"}</div></div>
-          <div class="mini"><div class="k">Precio fijo</div><div class="v">${h.lockedPrice ? money(h.lockedPrice) : "Pregúntanos"}</div></div>
-        </div>
-        ${h.contractor?`<div class="cs-note">Necesita reparaciones mayores${typeof h.contractor==="string"?" — "+h.contractor:""}. Para inversionistas y contratistas.</div>`:""}
-        ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin:-4px 0 8px">📍 ${h._dist.toFixed(1)} mi de distancia</div>`:""}
-        ${isPend?`<div class="pend-note">Depósito recibido en esta casa</div>`:""}
-        <span class="card-cta">${isPend?"Pregunte por esta casa →":"Ver esta casa →"}</span>
+        <div class="card-where">${where}</div>
+        ${h.moveIn ? `<div class="card-down">${money(h.moveIn)} para mudarse</div>` : ""}
+        ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin-top:4px">${h._dist.toFixed(1)} mi</div>`:""}
       </div>
     </a>`;
   }
@@ -849,7 +790,7 @@ body{
     const list = HOMES.filter(h =>
       (!state || h.state === state) &&
       (!city || h.city === city) &&
-      (!bedsVal || (bedsVal >= 4 ? (Number(h.beds)||0) >= 4 : (Number(h.beds)||0) === bedsVal)) &&
+      (!bedsVal || (Number(h.beds)||0) >= bedsVal) &&
       (!bathsVal || (Number(h.baths)||0) >= bathsVal) &&
       rng(Number(h.monthlyPayment)||0, payLo, payHi) &&
       rng(Number(h.lockedPrice)||0, prLo, prHi) &&
@@ -884,6 +825,9 @@ body{
     renderPager(pages);
     if (window.HomesMap) HomesMap.update(shown);
     if (window.HomesCart) HomesCart.sync();
+    chips();
+    const head = document.querySelector("body.page-search .topbar");
+    if (head) document.documentElement.style.setProperty("--zhead", (head.offsetHeight + 8) + "px");
     if (scroll) document.getElementById("listings").scrollIntoView({block:"start", behavior:"smooth"});
   }
 
@@ -989,21 +933,44 @@ body{
   // etiquetas de filtros activos (toque una para quitarla)
   function chips(){
     const m = n => "$" + Number(n).toLocaleString("en-US");
-    const def = [
-      ["fState", v=>v], ["fCity", v=>v], ["fBeds", v=>v+(v==="4"?"+":"")+" hab."], ["fBaths", v=>v+"+ baños"],
-      ["fPayMin", v=>"Desde "+m(v)+"/mes"], ["fPayMax", v=>"Hasta "+m(v)+"/mes"],
-      ["fPriceMin", v=>"Desde "+m(v)], ["fPriceMax", v=>"Hasta "+m(v)],
-      ["fDownMin", v=>m(v)+" mínimo"], ["fDown", v=>"Hasta "+m(v)],
-      ["fQ", v=>"Buscar: "+v],
-      ["fType", v=>v==="contractor"?"Para contratistas":"Todas las casas"]
-    ];
     const box = $("chips");
-    box.innerHTML = def.filter(([id]) => $(id).value).map(([id,f]) => `<button type="button" data-c="${id}">${f($(id).value)} ✕</button>`).join("");
-    box.querySelectorAll("button").forEach(b => b.onclick = () => {
-      const id = b.dataset.c; $(id).value = "";
-      if (id === "fState") fillCities();
-      page = 1; render(true); syncURL(); chips();
+    if (!box) return;
+    const bits = [];
+    const addRange = (loId, hiId, unit) => {
+      const lo = $(loId).value, hi = $(hiId).value;
+      if (lo && hi) bits.push({ids:[loId, hiId], label:`${m(lo)}–${m(hi)}${unit}`});
+      else if (lo) bits.push({ids:[loId], label:`${m(lo)}+${unit}`});
+      else if (hi) bits.push({ids:[hiId], label:`Hasta ${m(hi)}${unit}`});
+    };
+    addRange("fPayMin", "fPayMax", "/mes");
+    addRange("fDownMin", "fDown", " inicial");
+    addRange("fPriceMin", "fPriceMax", "");
+    if ($("fBeds").value) bits.push({ids:["fBeds"], label: $("fBeds").value + "+ habitaciones"});
+    if ($("fBaths").value) bits.push({ids:["fBaths"], label: $("fBaths").value + "+ baños"});
+    if ($("fState").value) bits.push({ids:["fState"], label: $("fState").value});
+    if ($("fCity").value) bits.push({ids:["fCity"], label: $("fCity").value});
+    if ($("fQ").value) bits.push({ids:["fQ"], label: $("fQ").value});
+    if ($("fType").value === "contractor") bits.push({ids:["fType"], label: "Para contratistas"});
+    else if ($("fType").value === "all") bits.push({ids:["fType"], label: "Todas las casas"});
+    if (window.HomesMap && HomesMap.active && HomesMap.active()) {
+      const ns = HomesMap.nearState && HomesMap.nearState();
+      bits.push({ids:["near"], label: ns ? ("Cerca de " + ns.label) : "Cerca de mí"});
+    }
+    box.innerHTML = bits.map((b,i) => `<button type="button" data-i="${i}">${b.label} <span aria-hidden="true">×</span></button>`).join("");
+    box.querySelectorAll("button").forEach(btn => btn.onclick = () => {
+      const b = bits[Number(btn.dataset.i)];
+      if (b.ids[0] === "near") {
+        const c = document.getElementById("hmClear");
+        if (c) c.click();
+      } else {
+        b.ids.forEach(id => { $(id).value = ""; });
+        if (b.ids.includes("fState")) fillCities();
+      }
+      page = 1; render(false); syncURL();
     });
+    const count = bits.filter(b => b.ids[0] !== "fQ").length;
+    const badge = $("fCount");
+    if (badge) { badge.hidden = !count; badge.textContent = String(count); }
   }
 
   // "Copiar enlace de estos resultados" — busca para un cliente, toca, pega en un mensaje
@@ -1020,6 +987,7 @@ body{
     });
   })();
 
+  applyURL();
   if (window.HomesMap) HomesMap.mount({ rerender: render, sync: syncURL });
   // escritorio: mapa junto a las casas (vista dividida). En el teléfono queda el botón Lista / Mapa.
   (function(){
@@ -1038,10 +1006,6 @@ body{
   })();
   chips();
   (function(){
-    const ab = $("alertBtn");
-    ab.textContent = "Avisos de esta búsqueda";
-    ab.style.display = "inline-block";
-    ab.addEventListener("click", () => { location.href = "account.html#alerts"; });
     const near = $("nearMe");
     if (near) near.addEventListener("click", () => { if (window.HomesMap && HomesMap.locate) HomesMap.locate(); });
     const miles = $("fMiles");
@@ -1051,10 +1015,18 @@ body{
     });
     const qForm = document.querySelector(".hdr-search");
     if (qForm) qForm.addEventListener("submit", (e) => { e.preventDefault(); page = 1; render(false); syncURL(); });
+    const filterBtn = $("filterBtn"), sheet = $("filterSheet");
+    if (filterBtn && sheet) filterBtn.addEventListener("click", () => {
+      const open = sheet.hasAttribute("hidden");
+      if (open) sheet.removeAttribute("hidden"); else sheet.setAttribute("hidden", "");
+      filterBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
     const mapToggle = document.getElementById("mapToggle");
     if (mapToggle) mapToggle.addEventListener("click", () => {
       const on = document.body.classList.toggle("show-map");
-      mapToggle.textContent = on ? "Lista" : "Mapa";
+      const label = mapToggle.querySelector("span");
+      if (label) label.textContent = on ? "Lista" : "Mapa";
+      mapToggle.setAttribute("aria-pressed", on ? "true" : "false");
       const btn = $(on ? "hmMap" : "hmList");
       if (btn) btn.click();
     });
@@ -1080,7 +1052,14 @@ body{
     if (window.HomesCart) HomesCart.sync();
   })();
 
+  function revealHash(){
+    const id = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ block: "start" });
+  }
   render();
+  revealHash();
   if (window.HomesMap) HomesMap.fromURL(new URLSearchParams(location.search));
 
   // ¿llega desde un enlace de búsqueda compartido? deja claro que se aplicó el
@@ -1096,7 +1075,7 @@ body{
       const h = sec.querySelector(".sec-title");
       if (h) h.textContent = ci ? `Casas en ${ci}, ${st}` : `Casas en ${st}`;
     }
-    requestAnimationFrame(() => sec.scrollIntoView({ block: "start" }));
+    if (!location.hash) requestAnimationFrame(() => sec.scrollIntoView({ block: "start" }));
   })();
   // detect which homes have a real cover photo (no homes.js editing needed — just
   // drop images/<id>.jpg and it auto-prioritizes), then re-sort photo homes to the top
@@ -1106,54 +1085,6 @@ body{
     im.onerror = () => res();
     im.src = h.heroPhoto || `images/${h.id}.jpg`;
   }))).then(() => render());
-
-  // contact links (shared CONTACT settings from homes.js)
-  const tel = (CONTACT.phone||"").replace(/[^\d+]/g,"");
-  const pretty = tel.length===10 ? `(${tel.slice(0,3)}) ${tel.slice(3,6)}-${tel.slice(6)}` : (CONTACT.phone||"");
-  const smsBody = encodeURIComponent(`Hola ${CONTACT.contactName}, estoy buscando una casa con financiamiento del dueño.`);
-  $("navCall").href = `sms:${tel}?&body=${smsBody}`;
-  $("navCallText").textContent = "Escríbanos";
-  // (el pie de página ahora imprime el número y la dirección de forma literal —
-  //  no queda ningún enlace footCall que conectar aquí)
-  $("aboutText").href = `sms:${tel}?&body=${smsBody}`;
-  $("oneteamText").href = `sms:${tel}?&body=${smsBody}`;
-  $("oneteamCall").href = `tel:${tel}`;
-  $("oneteamPhone").textContent = pretty;
-  // empty-state text is pre-filled with what they just searched for
-  $("emptyText").addEventListener("click", e => {
-    const want = [
-      $("fBeds").value ? `${$("fBeds").value}${$("fBeds").value==="4"?"+":""} habitaciones` : "",
-      $("fCity").value || $("fState").value || "",
-      $("fPayMax").value ? "hasta $" + Number($("fPayMax").value).toLocaleString("en-US") + "/mes" : "",
-      $("fDownMin").value || $("fDown").value ? "inicial $" + ($("fDownMin").value ? Number($("fDownMin").value).toLocaleString("en-US") : "0") + "–$" + ($("fDown").value ? Number($("fDown").value).toLocaleString("en-US") : "") : ""
-    ].filter(Boolean).join(", ");
-    e.currentTarget.href = `sms:${tel}?&body=${encodeURIComponent(`Hola, busco una casa con financiamiento del dueño${want?" — "+want:""}. ¿Me pueden mandar lo que tienen?`)}`;
-  });
-
-  // lead form → Formspree (email) + Make (Notion CRM)  [same wiring as the property page]
-  (function(){
-    const form = $("leadForm"), note = $("lfNote"), btn = $("lfSubmit"), section = $("get-started");
-    const id = (CONTACT.formspreeId||"").trim();
-    const hook = (CONTACT.makeWebhook||"").trim();
-    note.textContent = (id || hook) ? "Normalmente respondemos el mismo día." :
-      "⚠ El formulario aún no está conectado — agregue un Formspree ID o webhook de Make en homes.js.";
-    form.addEventListener("submit", async (e)=>{
-      e.preventDefault();
-      if (!id && !hook){ note.textContent = "⚠ El formulario aún no está conectado — agregue un Formspree ID o webhook de Make en homes.js."; return; }
-      btn.disabled = true; btn.textContent = "Enviando…";
-      const data = new FormData(form);
-      data.append("source", "casasconfinanciamiento — Comience hoy");
-      await addConsentRecord(data, form);   // evidencia de consentimiento 10DLC — ver consent.js
-      data.append("language", "es");
-      const targets = [];
-      if (id)   targets.push(fetch(`https://formspree.io/f/${id}`, { method:"POST", headers:{ "Accept":"application/json" }, body:data }));
-      if (hook) targets.push(fetch(hook, { method:"POST", body:data }));
-      const results = await Promise.allSettled(targets);
-      const ok = results.some(r => r.status === "fulfilled" && r.value.ok);
-      if (ok){ section.classList.add("sent"); }
-      else { btn.disabled = false; btn.textContent = "Mostrarme mis opciones — toma 1 minuto"; note.textContent = "Algo salió mal — por favor llámenos o escríbanos."; }
-    });
-  })();
 
   // scroll reveal (respects reduced-motion via CSS)
   if ("IntersectionObserver" in window){

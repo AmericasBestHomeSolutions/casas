@@ -169,6 +169,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 @media (min-width:560px){ body{font-size:18px} }
 </style>
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="nav.css">
 </head>
 <body class="page-home">
 
@@ -184,15 +185,16 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
       </svg>
       <span class="bn">Americas Best Home Solutions<small>Casas con Financiamiento</small></span>
     </a>
-    <nav class="topnav">
-      <a class="nav-hide" href="index.html">Casas</a>
-      <a class="nav-hide" href="como-funciona.html">Cómo funciona</a>
-      <a class="nav-hide" href="/nosotros">Nosotros</a>
-      <a class="nav-hide" href="/contacto">Contacto</a>
-      <a class="call" id="navCall" href="#">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span id="navCallText">Escríbanos</span>
-      </a>
+    <nav class="topnav" aria-label="Sitio">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteMenu"><span class="nav-bars" aria-hidden="true"></span><span class="nav-word">Menú</span></button>
+      <div class="site-menu" id="siteMenu">
+        <a href="/#listings">Casas</a>
+        <a href="/como-funciona.html">Cómo funciona</a>
+        <a href="/#por-que">Comprar o rentar</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/#faq">Preguntas</a>
+        <a class="nav-es" href="https://getownerfinancedhomes.com/">English</a>
+      </div>
     </nav>
   </header>
 
@@ -232,7 +234,6 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 
     <div class="cta-group">
       <a class="btn btn-primary" id="ctaText" href="#">Agende una visita</a>
-      <a class="btn btn-secondary" id="ctaCall" href="#">O llame</a>
     </div>
     <p class="cta-note" id="ctaNote"></p>
     <ul class="why-compact">
@@ -296,7 +297,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <div class="sec-label">Qué pasa cuando nos contacta</div>
     <h2 class="sec-title">Sin vueltas. Este es todo el camino.</h2>
     <div class="steps">
-      <div class="step"><div class="n">01</div><div class="body"><h3>Escríbanos o llámenos</h3><p>Le responde una persona real — casi siempre el mismo día. Díganos cuándo le gustaría verla.</p></div></div>
+      <div class="step"><div class="n">01</div><div class="body"><h3>Agende una visita</h3><p>Elija una hora en esta página. Una persona real confirma — casi siempre el mismo día.</p></div></div>
       <div class="step"><div class="n">02</div><div class="body"><h3>Recorra la casa en persona</h3><p>Las visitas son en persona, no por video — la ve exactamente como está. A todos les pedimos una identificación con foto antes de la visita; así llevamos un registro de quién ha entrado a la casa.</p></div></div>
       <div class="step"><div class="n">03</div><div class="body"><h3>Sus términos por escrito</h3><p>Los números de arriba — precio, pago de entrada, pago mensual, tasa fija, sin penalidad por pago anticipado — le llegan en un desglose claro por escrito junto con su factura del pago de entrada. Nunca le pediremos dinero para "apartar" una casa que no ha visto.</p></div></div>
       <div class="step"><div class="n">04</div><div class="body"><h3>Pago de entrada, y las llaves</h3><p>Desde ese día, cada pago mensual va hacia ser dueño de la casa — al precio que acordó.</p></div></div>
@@ -316,58 +317,12 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   </section>
 
   <!-- LEAD FORM -->
-  <section class="section faq">
+  <section class="section faq" id="faq">
     <h2 class="sec-title">Respuestas directas</h2>
     <details><summary>¿Es esto lo mismo que rentar?</summary><p class="ans">No. Cuando renta, el dinero se va y la casa sigue siendo del casero. Aquí, usted es el comprador desde el primer día y cada pago va hacia ser dueño de la casa a un precio fijo.</p></details>
     <details><summary>¿Necesito un banco para comprar una de estas casas?</summary><p class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño.</p></details>
     <details><summary>¿Puedo pintar, arreglar o mejorar la casa?</summary><p class="ans">Sí — es su casa. A muchos compradores les encanta hacerla suya. Los detalles quedan en su acuerdo.</p></details>
   </section>
-  <section class="lead reveal" id="leadSection">
-    <h2>¿Le interesa? Hablemos.</h2>
-    <p class="sub">Deje sus datos y nos comunicamos para coordinar una visita. Sin presión, sin banco.</p>
-    <form id="leadForm">
-      <label for="lfName">Nombre</label>
-      <input id="lfName" name="name" type="text" autocomplete="name" required>
-      <label for="lfPhone">Teléfono</label>
-      <input id="lfPhone" name="phone" type="tel" autocomplete="tel" required>
-      <label for="lfEmail">Correo electrónico</label>
-      <input id="lfEmail" name="email" type="email" autocomplete="email" required>
-      <label for="lfMoveIn">¿Qué tan pronto quiere mudarse?</label>
-      <select id="lfMoveIn" name="move_in" required>
-        <option value="" disabled selected>Elija una…</option>
-        <option value="ASAP">Lo antes posible</option>
-        <option value="1-3 months">En 1–3 meses</option>
-        <option value="Just looking">Solo estoy viendo por ahora</option>
-      </select>
-<!-- ══════════════════════════════════════════════════════════════════
-             CASILLA DE CONSENTIMIENTO SMS (A2P 10DLC) — no la cambie sin leer.
-             Debe estar SIN marcar por defecto, ser lo único que autoriza, y NO
-             ser obligatoria para enviar. Por eso no lleva `checked` ni
-             `required` — déjelo así. Si cambia el texto, actualice CONSENT_TEXT
-             y CONSENT_TEXT_VERSION en consent.js.
-             ══════════════════════════════════════════════════════════════════ -->
-        <label style="display:flex;gap:11px;align-items:flex-start;font-family:'DM Sans',system-ui,sans-serif;text-transform:none;letter-spacing:0;font-size:13px;line-height:1.5;color:var(--ink-soft,#5b6577);font-weight:400;cursor:pointer;margin:12px 0 2px;background:var(--paper,#f4f7fc);border:1px solid var(--line,#e2e8f2);border-radius:12px;padding:13px 14px">
-          <input id="lfSms" name="sms_consent" type="checkbox" value="Sí" style="margin-top:3px;width:16px;height:16px;flex-shrink:0">
-          <span>Acepto recibir mensajes de texto de Americas Best Home Solutions LLC sobre casas disponibles, citas para ver casas, ofertas y seguimiento. La frecuencia de mensajes varía. Pueden aplicar tarifas de mensajes y datos. Responda STOP para cancelar la suscripción o HELP para obtener ayuda. Consulte nuestra <a href="/politica-de-privacidad" style="color:var(--pine,#15315e);font-weight:600">Política de Privacidad</a> y nuestros <a href="/terminos-de-mensajes" style="color:var(--pine,#15315e);font-weight:600">Términos de Mensajes</a>.</span>
-        </label>
-        <p style="font-family:'DM Mono',monospace;font-size:12px;color:var(--ink-soft,#5b6577);margin:7px 0 0;letter-spacing:.3px">Opcional — puede enviar este formulario sin marcar la casilla.</p>
-      <button type="submit" class="btn btn-primary" id="lfSubmit">Enviar mis datos</button>
-      <p class="form-note" id="lfNote"></p>
-    </form>
-    <div class="thanks">
-      <h3>¡Listo — gracias!</h3>
-      <p>Nos comunicaremos pronto. La forma más rápida de apartar una visita es llamarnos o escribirnos ahora.</p>
-      <div class="cta-group" style="max-width:400px;margin:14px auto 6px">
-        <a class="btn btn-primary" id="thanksText" href="#">Escríbanos</a>
-        <a class="btn btn-secondary" id="thanksCall" href="#">O llame</a>
-      </div>
-      <p style="margin-top:14px"><strong>Su ruta personal ya está lista.</strong> Muestra cada paso hasta sus llaves y se actualiza conforme avanza. (La página está en inglés por ahora; llámenos y le ayudamos en español.)</p>
-      <div class="cta-group" style="max-width:400px;margin:10px auto 0">
-        <a class="btn btn-secondary" id="thanksRoadmap" href="#">Ver mi ruta</a>
-      </div>
-    </div>
-  </section>
-
   <!-- SEE OTHER HOMES -->
   <p class="other-homes reveal">
     <a href="index.html">¿Esta casa no es lo que busca? Vea nuestras otras casas →</a>
@@ -375,10 +330,9 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 
   <section class="closer reveal">
     <h2 id="closerTitle"></h2>
-    <p>Llámenos o escríbanos y coordinamos una hora para recorrerla. Sin presión, sin banco.</p>
+    <p>Agende una visita y coordinamos una hora para recorrerla. Sin presión, sin banco.</p>
     <div class="cta-group" style="max-width:400px;margin:0 auto">
       <a class="btn btn-primary" id="ctaText2" href="#">Agende una visita</a>
-      <a class="btn btn-secondary" id="ctaCall2" href="#">O llame</a>
     </div>
   </section>
 
@@ -388,7 +342,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <p class="fcontact" style="opacity:.78;margin-top:2px">casasconfinanciamiento.com es operado por <a href="https://americasbesthomesolutions.com">Americas Best Home Solutions LLC</a></p>
     <address class="fcontact" style="font-style:normal;margin-top:8px">
       30 N Gould St, Ste R, Sheridan, WY 82801<br>
-      <a href="tel:+15515509906">(551) 550-9906</a> · <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
+      <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
     </address>
     <p class="fcontact" style="margin-top:10px">
       <a href="/">Casas</a> · <a href="/como-funciona">Cómo funciona</a> · <a href="/nosotros">Nosotros</a> · <a href="/contacto">Contacto</a> · <a href="/politica-de-privacidad">Política de Privacidad</a> · <a href="/terminos-de-mensajes">Términos de Mensajes</a> · <a href="https://owner.getownerfinancedhomes.com" rel="nofollow noopener">Acceso de propietarios</a>
@@ -404,7 +358,6 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 <script src="listed-dates.js"></script>
 <script>window.__HOME_ID__="stlouis-mo-6582-saint";</script>
 <script src="homes.js"></script>
-<script src="/consent.js"></script>
 <script>
 /* ---------- render (no editar — los datos de las casas viven en homes.js) ---------- */
 (function(){
@@ -549,64 +502,8 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     })(1);
   }
 
-  const tel = (C.phone||"").replace(/[^\d+]/g,"");
-  const prettyPhone = tel.length===10 ? `(${tel.slice(0,3)}) ${tel.slice(3,6)}-${tel.slice(6)}` : C.phone;
-  const smsBody = encodeURIComponent(`Hola, vi ${C.address ? C.address + " en " : ""}${C.city}, ${C.state} en su sitio y me gustaría visitarla.\n\nhttps://casasconfinanciamiento.com/${C.id}.html`);
-  ["ctaCall","ctaCall2"].forEach(id=>$(id).href = `tel:${tel}`);
-  // "Schedule a tour" opens the self-serve booking page (CRM portal) with this home pre-picked; texting stays in the nav + note.
   ["ctaText","ctaText2"].forEach(id=>$(id).href = `https://owner.getownerfinancedhomes.com/book?home=${encodeURIComponent(C.id)}&lang=es`);
-  $("thanksCall").href = `tel:${tel}`;
-  $("thanksText").href = `sms:${tel}?&body=${smsBody}`;
-  $("navCall").href = `sms:${tel}?&body=${smsBody}`;
-  $("navCallText").textContent = "Escríbanos";
-  // (el pie de página ahora imprime el número y la dirección de forma literal —
-  //  no queda ningún enlace footCall que conectar aquí)
-  $("ctaNote").textContent = `Escriba al ${prettyPhone} — normalmente respondemos el mismo día. ¿Prefiere hablar? Toque “O llame”.`;
-
-  // Opaque per-buyer roadmap code. Reused on a resubmit so one buyer keeps one link.
-  function getDealCode(homeId){
-    const k = "dealCode:" + homeId;
-    try { const v = localStorage.getItem(k); if (/^[a-z0-9]{10}$/.test(v||"")) return v; } catch(e){}
-    const A = "abcdefghjkmnpqrstvwxyz23456789", r = new Uint8Array(10);
-    crypto.getRandomValues(r);
-    const code = Array.from(r, b => A[b % A.length]).join("");
-    try { localStorage.setItem(k, code); } catch(e){}
-    return code;
-  }
-
-  // lead form → Formspree (email) + Make (Notion CRM)
-  (function(){
-    const form = $("leadForm"), note = $("lfNote"), btn = $("lfSubmit");
-    const section = $("leadSection");
-    const id = (C.formspreeId||"").trim();
-    const hook = (C.makeWebhook||"").trim();
-    note.textContent = (id || hook) ? "Normalmente respondemos el mismo día." :
-      "⚠ El formulario aún no está conectado — agregue un Formspree ID o webhook de Make en homes.js.";
-
-    form.addEventListener("submit", async (e)=>{
-      e.preventDefault();
-      if (!id && !hook) { note.textContent = "⚠ El formulario aún no está conectado — agregue un Formspree ID o webhook de Make en homes.js."; return; }
-      btn.disabled = true; btn.textContent = "Enviando…";
-      const data = new FormData(form);
-      data.append("property", [C.address, `${C.city}, ${C.state}${C.zip?" "+C.zip:""}`].filter(Boolean).join(", "));
-      data.append("source", "casasconfinanciamiento — Página de propiedad");
-      data.append("property_id", C.id);
-      const dealCode = getDealCode(C.id);
-      data.append("deal_code", dealCode);   // registered into the Deal Room sheet by the inquiry sweep
-      await addConsentRecord(data, form);   // evidencia de consentimiento 10DLC — ver consent.js
-      data.append("language", "es");
-      const targets = [];
-      if (id)   targets.push(fetch(`https://formspree.io/f/${id}`, { method:"POST", headers:{ "Accept":"application/json" }, body:data }));
-      if (hook) targets.push(fetch(hook, { method:"POST", body:data }));
-      const results = await Promise.allSettled(targets);
-      const ok = results.some(r => r.status === "fulfilled" && r.value.ok);
-      if (ok) {
-        $("thanksRoadmap").href = `https://getownerfinancedhomes.com/next-steps.html?home=${encodeURIComponent(C.id)}&deal=${dealCode}`;
-        section.classList.add("sent");
-      }
-      else { btn.disabled = false; btn.textContent = "Enviar mis datos"; note.textContent = "Algo salió mal — por favor escríbanos o llámenos."; }
-    });
-  })();
+  $("ctaNote").textContent = "Las visitas son en persona. Elija una hora y nos vemos allá.";
 
   if ("IntersectionObserver" in window){
     const io = new IntersectionObserver((entries)=>{
