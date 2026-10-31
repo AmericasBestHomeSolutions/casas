@@ -119,5 +119,31 @@ class SanitizerTests(unittest.TestCase):
         self.assertIn("<p>Envíenos un texto ahora.</p>", got)
 
 
+class InclusiveCopyTests(unittest.TestCase):
+    def test_spanish_and_english_family_phrases_are_rewritten(self):
+        cases = {
+            ("Biblioteca Pública de West Frankfort. ¡Perfecta para familias!", "es"):
+                "Biblioteca Pública de West Frankfort. ¡Con espacio de sobra!",
+            ("Cuarto de bonificación (perfecto para oficina, niños o espacio flexible).", "es"):
+                "Cuarto de bonificación (perfecto para oficina, pasatiempos o espacio flexible).",
+            ("una distribución funcional perfecta para una familia pequeña o un inversionista inteligente", "es"):
+                "una distribución funcional perfecta para quien compra su primera casa o un inversionista inteligente",
+            ("2 recámaras en la planta baja y 2 arriba (perfecto para familias o privacidad adicional).", "es"):
+                "2 recámaras en la planta baja y 2 arriba (con espacio de sobra o privacidad adicional).",
+            ("2 bedrooms on the main floor and 2 upstairs (perfect for families or added privacy)", "en"):
+                "2 bedrooms on the main floor and 2 upstairs (room to spread out or added privacy)",
+        }
+        for (src, lang), want in cases.items():
+            got, n = build.sanitize_prose(src, lang)
+            self.assertEqual(got, want)
+            self.assertEqual(n, 1)
+            self.assertEqual(build.family_words_left(got), [])
+
+    def test_property_types_are_left_alone(self):
+        src = "Esta casa de una sola familia ofrece 1,202 pies²."
+        self.assertEqual(build.sanitize_prose(src, "es"), (src, 0))
+        self.assertEqual(build.family_words_left(src), [])
+
+
 if __name__ == "__main__":
     unittest.main()
