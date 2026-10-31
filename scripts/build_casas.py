@@ -20,6 +20,10 @@ homes.js. This script does three things that pass must keep doing:
    rest of the sentence. Legal pages and the SMS consent checkbox are not
    touched. The seller owner-review page is left alone.
 
+4. Write the short booking links, /agendar/<slug>/index.html, for every live
+   home (scripts/book_links.py, same file as in the homes repo). Spanish buyer
+   texts carry these instead of the booking app's URL.
+
 Run from the repo root:  python3 scripts/build_casas.py
 """
 from __future__ import annotations
@@ -376,10 +380,14 @@ def main() -> None:
     ids = home_ids()
     stamp_dates(ids)
     n = emit_pages()
+    import book_links   # /agendar/<slug>/ redirect pages: the short booking links buyer texts carry
+    # the English site's slugs win (data/book-links.json in ../homes on the Mac, _homes in the daily sync)
+    b = book_links.build(ROOT, "es", extra=(ROOT.parent / "homes", ROOT / "_homes"))
     print(
         f"sanitized {phrases} invitations in {fields} home descriptions "
         f"and {json_phrases} in {json_fields} translation strings, "
-        f"recorded {len(ids)} homes, rewrote {n} listing pages"
+        f"recorded {len(ids)} homes, rewrote {n} listing pages, "
+        f"booking links for {b['homes']} homes ({b['short']} short, {b['gone']} retired)"
     )
 
 
