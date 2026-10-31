@@ -364,6 +364,13 @@ def emit_pages() -> int:
 
 
 def main() -> None:
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import excluded_homes   # data/excluded-homes.json: junk/duplicate ids the master list keeps re-adding
+    # the English clone's list too, when it sits next to this one (the Mac: ~/Lonchando/sites/homes)
+    gone = excluded_homes.apply(ROOT, "es", extra=(ROOT.parent / "homes", ROOT / "_homes"))
+    if gone:
+        print("excluded (data/excluded-homes.json): " + ", ".join(gone))
     _cleaned, fields, phrases = sanitize_homes_js()
     json_fields, json_phrases = sanitize_descriptions_json()
     ids = home_ids()
