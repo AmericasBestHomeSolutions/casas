@@ -13,7 +13,9 @@ homes.js. This script does three things that pass must keep doing:
    Graph block and window.__HOME_ID__.
 
 3. Rewrite buyer-facing invitations to text, call, or message us into
-   "Agende una visita". The daily refresh puts those words back into the
+   "Agende una visita", and remove seller-to-team notes ("Hi Team, ...
+   Thank you so much!", a seller's preference about who lives there,
+   requests for occupants' social security numbers). Those stay internal. The daily refresh puts those words back into the
    descriptions, so this post-pass swaps only the invitation and leaves the
    rest of the sentence. Legal pages and the SMS consent checkbox are not
    touched. The seller owner-review page is left alone.
@@ -149,6 +151,51 @@ def _phrase_re(phrases: tuple[str, ...]) -> re.Pattern[str]:
 _PHRASE_RE = {"es": _phrase_re(_PHRASES_ES), "en": _phrase_re(_PHRASES_EN)}
 _TOUR = {"es": ("Agende una visita", "agende una visita"), "en": ("Book a Tour", "book a Tour")}
 
+# Seller-to-team notes that reach the public description through the master list.
+# They stay internal in the master sheet but must never show on the site: a note to
+# "Hi Team" with its sign-off, a seller's preference about who lives there, or a
+# request for occupants' social security numbers. Only those pieces are removed;
+# the rest of the description stays word for word.
+_TEAM_NOTE = re.compile(
+    r"(?is)\b(?:hi|hello|hey|dear)\s+team\b[\s,.!:]*.{0,600}?"
+    r"\b(?:thank you so much|thank you|thanks so much|thanks)\b[\s.!,]*"
+    r"(?-i:[A-Z][a-z'-]{0,20}(?:\s+[A-Z][a-z'-]{0,20})?\.(?=\s|$)\s*)?"
+)
+_TEAM_GREETING = re.compile(r"(?i)\b(?:hi|hello|hey|dear)\s+team\b[\s,.!:]*|\bhola\s+equipo\b[\s,.!:]*")
+_INTERNAL = re.compile(
+    r"(?i)prefer to put (?:in )?a family in this house|social security|seguro social|\bSSN\b|\d{3}-\d{2}-\d{4}"
+    r"|please ask for (?:these|this|them) from the buyer|\bI require answering\b"
+)
+_SEGMENT = re.compile(r"[^.!?\n*•]*(?:[.!?]+|\n|\*|•|$)")
+
+
+def strip_internal_notes(text: str) -> tuple[str, int]:
+    """Remove seller-to-team notes. Returns the text and how many pieces were removed."""
+    if not text:
+        return text, 0
+    count = 0
+
+    def drop(_match: re.Match) -> str:
+        nonlocal count
+        count += 1
+        return ""
+
+    out = _TEAM_NOTE.sub(drop, text)
+    out = _TEAM_GREETING.sub(drop, out)
+    kept = []
+    for match in _SEGMENT.finditer(out):
+        piece = match.group(0)
+        if piece and _INTERNAL.search(piece):
+            count += 1
+            continue
+        kept.append(piece)
+    out = "".join(kept)
+    if count:
+        out = re.sub(r"[ \t]{2,}", " ", out).strip()
+        out = re.sub(r"^[\s.,;:*•-]+", "", out)
+        out = re.sub(r"[\s,;:*•-]+$", "", out)
+    return out, count
+
 
 def sanitize_prose(text: str, lang: str = "es") -> tuple[str, int]:
     """Replace each text/call/message invitation. The words around it stay.
@@ -180,7 +227,9 @@ def sanitize_prose(text: str, lang: str = "es") -> tuple[str, int]:
         return pattern.sub(repl, src)
 
     out = apply(_TEXT_ONLY, text)
-    return apply(phrase_re, out), count
+    out = apply(phrase_re, out)
+    out, notes = strip_internal_notes(out)
+    return out, count + notes
 
 
 def sanitize_homes_js(text: str | None = None) -> tuple[str, int, int]:

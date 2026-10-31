@@ -119,5 +119,22 @@ class SanitizerTests(unittest.TestCase):
         self.assertIn("<p>Envíenos un texto ahora.</p>", got)
 
 
+class InternalNoteTests(unittest.TestCase):
+    def test_team_note_and_seller_preferences_are_removed(self):
+        src = ("Hi Team,. So please ask for these from the buyer. Thank you so much!. An. Separate family room. "
+               "Welcome to 138 S 18th Street in Decatur!")
+        self.assertEqual(build.sanitize_prose(src, "en"),
+                         ("Separate family room. Welcome to 138 S 18th Street in Decatur!", 1))
+        src = "Patio grande. Hola equipo, el vendedor pide el número de seguro social de todos. Cocina nueva."
+        self.assertEqual(build.sanitize_prose(src, "es")[0], "Patio grande. Cocina nueva.")
+        src = "Nice yard. PREFER TO PUT IN A FAMILY IN THIS HOUSE - require social security numbers. Big kitchen."
+        self.assertEqual(build.sanitize_prose(src, "en")[0], "Nice yard. Big kitchen.")
+
+    def test_family_wording_is_left_alone(self):
+        for src, lang in (("¡Perfecta para familias!", "es"), ("perfecta para una familia pequeña", "es"),
+                          ("Perfect for families!", "en"), ("Esta casa de una sola familia ofrece 1,202 pies².", "es")):
+            self.assertEqual(build.sanitize_prose(src, lang), (src, 0))
+
+
 if __name__ == "__main__":
     unittest.main()
