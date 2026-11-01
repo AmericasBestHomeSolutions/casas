@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (258, generadas desde la web en inglés) --- */
+/* --- las casas (259, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "eaststlouis-il-2008-61st",
@@ -5771,6 +5771,30 @@ const HOMES = [
 
     heroPhoto: "",
     photos:    ["images/peoria-il-2315-ann-1.jpg", "images/peoria-il-2315-ann-2.jpg", "images/peoria-il-2315-ann-3.jpg", "images/peoria-il-2315-ann-4.jpg", "images/peoria-il-2315-ann-5.jpg", "images/peoria-il-2315-ann-6.jpg", "images/peoria-il-2315-ann-7.jpg", "images/peoria-il-2315-ann-8.jpg", "images/peoria-il-2315-ann-9.jpg", "images/peoria-il-2315-ann-10.jpg", "images/peoria-il-2315-ann-11.jpg", "images/peoria-il-2315-ann-12.jpg", "images/peoria-il-2315-ann-13.jpg", "images/peoria-il-2315-ann-14.jpg", "images/peoria-il-2315-ann-15.jpg", "images/peoria-il-2315-ann-16.jpg", "images/peoria-il-2315-ann-17.jpg", "images/peoria-il-2315-ann-18.jpg", "images/peoria-il-2315-ann-19.jpg", "images/peoria-il-2315-ann-20.jpg", "images/peoria-il-2315-ann-21.jpg", "images/peoria-il-2315-ann-22.jpg", "images/peoria-il-2315-ann-23.jpg", "images/peoria-il-2315-ann-24.jpg"],
+  },
+  {
+    id: "stlouis-mo-4519-june",
+    address:     "4519 June Ave",
+    zip:         "63121",
+    description: "$910 al mes y $3,000 para mudarse. Esta casa de 2 recámaras y 1 baño en St. Louis, MO con unos 925 pies cuadrados le da espacio de sobra y un lugar que de verdad es suyo, sin un casero que decida si se queda. El precio de compra es $79,000, fijado por escrito cuando firma, con financiamiento del dueño y ningún banco en el medio. Se vende tal como está, así que venga a recorrer cada cuarto y júzguela con sus propios ojos. Casas a este pago no se quedan mucho tiempo, así que agende una visita y reserve su horario. Se debe instalar un medidor de gas antes de la inspección de ocupación; la casa necesita algunos trabajos de acabado.",
+    descriptionLang: "es",
+    city:  "St. Louis",
+    state: "MO",
+    beds:  2,
+    baths: 1,
+    sqft:  "925",
+    lat:   38.703315,
+    lng:   -90.275645,
+    geo:   "exact",
+    status: "Available",
+
+    monthlyPayment: 910,
+    moveIn:         3000,
+    lockedPrice:    79000,
+    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
+
+    heroPhoto: "",
+    photos:    [],
   },
 ];
 
