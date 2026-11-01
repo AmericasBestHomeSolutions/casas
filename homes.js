@@ -5711,7 +5711,7 @@ const HOMES = [
     id: "stlouis-mo-4519-june",
     address:     "4519 June Ave",
     zip:         "63121",
-    description: "$910 al mes y $3,000 para mudarse. Esta casa de 2 recámaras y 1 baño en St. Louis, MO con unos 925 pies cuadrados le da espacio de sobra y un lugar que de verdad es suyo, sin un casero que decida si se queda. El precio de compra es $79,000, fijado por escrito cuando firma, con financiamiento del dueño y ningún banco en el medio. Se vende tal como está, así que venga a recorrer cada cuarto y júzguela con sus propios ojos. Casas a este pago no se quedan mucho tiempo, así que agende una visita y reserve su horario. Se debe instalar un medidor de gas antes de la inspección de ocupación; la casa necesita algunos trabajos de acabado.",
+    description: "$910 al mes y $3,000 para mudarse. Esta casa de 2 recámaras y 1 baño en St. Louis, MO con unos 925 pies cuadrados le da espacio de sobra y un lugar que de verdad es suyo, sin un casero que decida si se queda. El precio de compra es $79,000, fijado por escrito cuando firma, con financiamiento del dueño y ningún banco en el medio. Se vende tal como está, así que venga a recorrer cada cuarto y júzguela con sus propios ojos. Casas a este pago no se quedan mucho tiempo, así que agende una visita y reserve su horario. Se debe instalar un medidor de gas antes de la inspección de ocupación; la casa necesita algunos trabajos de acabado. El comprador debe tener seguro de propietario; de lo contrario, se agrega un cargo de seguro de $125 al mes.",
     descriptionLang: "es",
     city:  "St. Louis",
     state: "MO",
