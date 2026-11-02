@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (256, generadas desde la web en inglés) --- */
+/* --- las casas (255, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "eaststlouis-il-2008-61st",
@@ -2971,30 +2971,6 @@ const HOMES = [
     termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
     heroPhoto: "",
     photos:    ["images/centreville-il-112-88th-1.jpg", "images/centreville-il-112-88th-2.jpg", "images/centreville-il-112-88th-3.jpg", "images/centreville-il-112-88th-4.jpg", "images/centreville-il-112-88th-5.jpg", "images/centreville-il-112-88th-6.jpg", "images/centreville-il-112-88th-7.jpg", "images/centreville-il-112-88th-8.jpg", "images/centreville-il-112-88th-9.jpg", "images/centreville-il-112-88th-10.jpg", "images/centreville-il-112-88th-11.jpg", "images/centreville-il-112-88th-12.jpg", "images/centreville-il-112-88th-13.jpg", "images/centreville-il-112-88th-14.jpg", "images/centreville-il-112-88th-15.jpg", "images/centreville-il-112-88th-16.jpg", "images/centreville-il-112-88th-17.jpg", "images/centreville-il-112-88th-18.jpg", "images/centreville-il-112-88th-19.jpg", "images/centreville-il-112-88th-20.jpg", "images/centreville-il-112-88th-21.jpg", "images/centreville-il-112-88th-22.jpg", "images/centreville-il-112-88th-23.jpg", "images/centreville-il-112-88th-24.jpg"],
-  },
-  {
-    id: "middletown-oh-3117-finley",
-    address:     "3117 Finley st",
-    zip:         "45045",
-    description: "$1,120 al mes y $3,000 para mudarse le abre la puerta a una casa de dos recámaras en Middletown en más de un cuarto de acre. Adentro hay 720 pies cuadrados con dos recámaras y un baño. Afuera, un largo camino de entrada le da mucho espacio para estacionar fuera de la calle, y un cobertizo de almacenamiento separado guarda las herramientas y cosas que nunca caben en el armario de un apartamento. Su pago mensual está escrito en su contrato, así que no pasará cada año preguntándose si el número subirá o si alguien más decide su próximo movimiento. El precio de compra es $119,000, fijo cuando firma, con financiamiento del dueño y ningún banco en el medio. La casa se vende tal como está, y la mejor manera de verla es caminar por los cuartos y el patio en persona. Casas como esta se notan rápido, así que agende una visita ahora y reserve su cita.",
-    descriptionLang: "es",
-    city:  "Middletown",
-    state: "OH",
-    beds:  2,
-    baths: 1,
-    sqft:  "720",
-    lat:   39.481952,
-    lng:   -84.398809,
-    geo:   "exact",
-    status: "Available",
-    featured: "top",
-    monthlyPayment: 1120,
-    moveIn:         3000,
-    lockedPrice:    119000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    features: { off_street_parking: "yes", storage_shed: "yes" },
-    heroPhoto: "",
-    photos:    ["images/middletown-oh-3117-finley-1.jpg", "images/middletown-oh-3117-finley-2.jpg", "images/middletown-oh-3117-finley-3.jpg", "images/middletown-oh-3117-finley-4.jpg", "images/middletown-oh-3117-finley-5.jpg", "images/middletown-oh-3117-finley-6.jpg", "images/middletown-oh-3117-finley-7.jpg", "images/middletown-oh-3117-finley-8.jpg", "images/middletown-oh-3117-finley-9.jpg", "images/middletown-oh-3117-finley-10.jpg", "images/middletown-oh-3117-finley-11.jpg"],
   },
   {
     id: "decatur-il-2081-college",
