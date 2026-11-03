@@ -503,7 +503,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     })(1);
   }
 
-  ["ctaText","ctaText2"].forEach(id=>$(id).href = (typeof bookHref === "function" ? bookHref(C.id) : `/agendar/${encodeURIComponent(C.id)}`));
+  ["ctaText","ctaText2"].forEach(id=>$(id).href = (typeof bookHref === "function" ? bookHref(C.id) : `https://owner.getownerfinancedhomes.com/book?home=${encodeURIComponent(C.id)}&lang=es`));
   $("ctaNote").textContent = "Las visitas son en persona. Elija una hora y nos vemos allá.";
 
   if ("IntersectionObserver" in window){

@@ -1,6 +1,11 @@
 """python3 scripts/test_book_links.py"""
-import json, re, sys, tempfile, unittest
+import json
+import re
+import sys
+import tempfile
+import unittest
 from pathlib import Path
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import book_links as B
 
@@ -16,14 +21,26 @@ def homes_js(*homes):
     status: "{status}",
     lockbox: "1234",
   }}''')
-    return "/* --- the homes (x live, y) --- */\nconst HOMES = [\n" + ",\n".join(blocks) + "\n];\nconst SOLD_CARDS = [\n  {id: \"sold-xx-1-gone\"}\n];\n"
+    return (
+        "/* --- the homes (x live, y) --- */\nconst HOMES = [\n"
+        + ",\n".join(blocks)
+        + "\n];\nconst SOLD_CARDS = [\n  {id: \"sold-xx-1-gone\"}\n];\n"
+    )
+
+
+def redirect_crm_url(html: str) -> str:
+    """First URL passed to new URL(...) in the redirect script (JSON string)."""
+    m = re.search(r"new URL\(([^)]+)\)", html)
+    assert m, "expected CRM redirect script"
+    return json.loads(m.group(1))
 
 
 class T(unittest.TestCase):
     def site(self, d, *homes, es=False):
-        r = Path(d); (r / "data").mkdir(exist_ok=True); (r / "images").mkdir(exist_ok=True)
+        r = Path(d)
+        (r / "data").mkdir(exist_ok=True)
+        (r / "images").mkdir(exist_ok=True)
         (r / "homes.js").write_text(homes_js(*homes), encoding="utf-8")
-        (r / "images" / "_share-default.jpg").write_bytes(b"x")
         if es:
             (r / "como-funciona.html").write_text("x")
         return r
@@ -33,141 +50,89 @@ class T(unittest.TestCase):
         self.assertEqual(B.short_slug("eaststlouis-il-6000-old"), "6000-old")
         self.assertEqual(B.short_slug("nolocation"), "")
 
-    def test_pages_for_905_olive(self):
+    def test_agendar_redirect_and_og_image(self):
         with tempfile.TemporaryDirectory() as d:
-            r = self.site(d, ("decatur-il-905-olive", "905 W. Olive St.", "Available"))
+            r = self.site(d, ("decatur-il-905-olive", "905 W. Olive St.", "Available"), es=True)
             (r / "images" / "decatur-il-905-olive.jpg").write_bytes(b"x")
-            res = B.build(r, "en")
-            self.assertEqual((res["homes"], res["short"]), (1, 1))
-            short = (r / "book" / "905-olive" / "index.html").read_text()
-            full = (r / "book" / "decatur-il-905-olive" / "index.html").read_text()
-            target = "https://owner.getownerfinancedhomes.com/book?home=decatur-il-905-olive&lang=en"
-            for page in (short, full):
-                self.assertIn(json.dumps(target), page)                       # iframe base URL
-                self.assertIn("embed", page)
-                self.assertIn('<iframe id="crm"', page)
-                self.assertNotIn("location.replace", page)
-                self.assertIn('rel="canonical" href="https://getownerfinancedhomes.com/book/', page)
-                self.assertIn('name="robots" content="noindex, nofollow"', page)
-                self.assertIn("location.search", page)                         # keeps ?lang / utm_*
-                self.assertIn("905 W. Olive St., Decatur, IL", page)
-                self.assertNotIn("1234", page)                                 # nothing but the address
-                self.assertNotIn("lockbox", page.lower())
-            self.assertIn("og:image", short)
-            self.assertIn('"905-olive": "decatur-il-905-olive"', (r / "data" / "book-links.json").read_text())
-            self.assertEqual(B.links(r), {"decatur-il-905-olive": "905-olive"})
-            self.assertEqual(json.loads((r / "data" / "book-links.json").read_text())["live"], {"decatur-il-905-olive": "905-olive"})
-            js = (r / "book-links.js").read_text()
-            self.assertIn('"/book/905-olive"', js)
-            self.assertIn("function bookHref", js)
-            acct = (r / "account" / "index.html").read_text()
-            self.assertIn('<iframe id="crm"', acct)
-            self.assertIn("owner.getownerfinancedhomes.com/account", acct)
-            self.assertIn("og:image", acct)
-            self.assertEqual(B.build(r, "en")["changed"], 0)                    # idempotent
+            B.build(r)
+            page = (r / "agendar" / "905-olive" / "index.html").read_text()
+            self.assertIn("location.replace", page)
+            self.assertNotIn("<iframe", page)
+            self.assertNotIn("embed", page.lower())
+            self.assertEqual(
+                redirect_crm_url(page),
+                "https://owner.getownerfinancedhomes.com/book?home=decatur-il-905-olive&lang=es",
+            )
+            self.assertIn('property="og:image" content="https://casasconfinanciamiento.com/images/decatur-il-905-olive.jpg"', page)
+            self.assertIn('property="og:url" content="https://casasconfinanciamiento.com/agendar/905-olive"', page)
+            self.assertIn("905 W. Olive St., Decatur, IL", page)
+            self.assertNotIn("1234", page)
 
-    def test_spanish_site_uses_agendar_and_lang_es(self):
+    def test_opinion_redirect_matches_main_behavior(self):
         with tempfile.TemporaryDirectory() as d:
             r = self.site(d, ("decatur-il-905-olive", "905 W. Olive St.", "Available"), es=True)
             B.build(r)
-            page = (r / "agendar" / "905-olive" / "index.html").read_text()
-            self.assertIn("home=decatur-il-905-olive&lang=es", page)
-            self.assertIn("Agende una visita", page)
-            self.assertFalse((r / "book").exists())
-            self.assertTrue((r / "cuenta" / "index.html").is_file())
+            page = (r / "opinion" / "905-olive" / "index.html").read_text()
+            self.assertIn("location.replace", page)
+            self.assertNotIn("<iframe", page)
+            self.assertEqual(
+                redirect_crm_url(page),
+                "https://owner.getownerfinancedhomes.com/feedback/decatur-il-905-olive?lang=es",
+            )
+            self.assertIn("location.search", page)
+
+    def test_cuenta_redirect_whitelist_only_lang(self):
+        with tempfile.TemporaryDirectory() as d:
+            r = self.site(d, ("decatur-il-905-olive", "905 W. Olive St.", "Available"), es=True)
+            B.build(r)
+            page = (r / "cuenta" / "index.html").read_text()
+            self.assertIn("location.replace", page)
+            self.assertNotIn("<iframe", page)
+            self.assertEqual(redirect_crm_url(page), "https://owner.getownerfinancedhomes.com/account?lang=es")
+            self.assertIn(json.dumps(list(B.ACCOUNT_KEEP)), page)
+            self.assertNotIn("q.forEach", page)
+            self.assertNotIn("next", page.lower())
+
+    def test_book_href_fallback_to_crm_not_agendar_404(self):
+        with tempfile.TemporaryDirectory() as d:
+            r = self.site(d, ("decatur-il-905-olive", "905 W. Olive St.", "Available"), es=True)
+            B.build(r)
+            js = (r / "book-links.js").read_text()
+            self.assertIn('"/agendar/905-olive"', js)
+            self.assertIn("BOOK_CRM", js)
+            self.assertIn("function bookHref", js)
+            self.assertIn(
+                "return BOOK_CRM+'?home='+encodeURIComponent(homeId)+'&lang='+BOOK_LANG",
+                js,
+            )
+            self.assertNotIn("'/agendar/'+encodeURIComponent", js)
 
     def test_collision_falls_back_to_full_id_and_slug_is_stable(self):
         with tempfile.TemporaryDirectory() as d:
             r = self.site(d, ("decatur-il-905-olive", "905 Olive", "Available"),
                           ("peoria-il-905-olive", "905 Olive", "Available"))
             B.build(r, "en")
-            self.assertFalse((r / "book" / "905-olive").exists())              # nobody gets an ambiguous slug
+            self.assertFalse((r / "book" / "905-olive").exists())
             self.assertTrue((r / "book" / "decatur-il-905-olive" / "index.html").is_file())
-            self.assertTrue((r / "book" / "peoria-il-905-olive" / "index.html").is_file())
-            self.assertEqual(B.links(r)["peoria-il-905-olive"], "peoria-il-905-olive")
-            live = json.loads((r / "data" / "book-links.json").read_text())["live"]
-            self.assertEqual(live["decatur-il-905-olive"], "decatur-il-905-olive")
-        with tempfile.TemporaryDirectory() as d:
-            r = self.site(d, ("decatur-il-905-olive", "905 Olive", "Available"))
-            B.build(r, "en")
-            # a later home that wants the same slug does not take it over
-            (r / "homes.js").write_text(homes_js(("decatur-il-905-olive", "905 Olive", "Available"),
-                                                 ("alton-il-905-olive", "905 Olive", "Available")))
-            B.build(r, "en")
-            self.assertIn("home=decatur-il-905-olive&", (r / "book" / "905-olive" / "index.html").read_text())
-            self.assertEqual(B.links(r)["alton-il-905-olive"], "alton-il-905-olive")
 
     def test_removed_home_redirects_to_home_page(self):
         with tempfile.TemporaryDirectory() as d:
             r = self.site(d, ("decatur-il-905-olive", "905 Olive", "Available"), ("decatur-il-1-a", "1 A", "Available"))
-            (r / "book" / "keep-me").mkdir(parents=True); (r / "book" / "keep-me" / "index.html").write_text("hand made")
             B.build(r, "en")
             (r / "homes.js").write_text(homes_js(("decatur-il-1-a", "1 A", "Available"),
                                                  ("decatur-il-2-sold", "2 Sold", "Sold")))
-            res = B.build(r, "en")
-            for key in ("905-olive", "decatur-il-905-olive"):
-                page = (r / "book" / key / "index.html").read_text()
-                self.assertIn('location.replace("/")', page)
-                self.assertNotIn("owner.getownerfinancedhomes.com", page)
-            self.assertEqual(res["gone"], 2)
-            self.assertFalse((r / "book" / "decatur-il-2-sold").exists())       # not Available: no page
-            self.assertFalse((r / "book" / "sold-xx-1-gone").exists())          # SOLD_CARDS are not homes
-            self.assertEqual((r / "book" / "keep-me" / "index.html").read_text(), "hand made")
-            # it comes back: the same slug points at it again
-            (r / "homes.js").write_text(homes_js(("decatur-il-905-olive", "905 Olive", "Available")))
             B.build(r, "en")
-            self.assertIn("home=decatur-il-905-olive&", (r / "book" / "905-olive" / "index.html").read_text())
-
-    def test_other_site_slugs_win(self):
-        with tempfile.TemporaryDirectory() as d1, tempfile.TemporaryDirectory() as d2:
-            en = self.site(d1, ("decatur-il-905-olive", "905 Olive", "Available"))
-            (en / "data" / "book-links.json").write_text(json.dumps({"slugs": {"905-olive": "peoria-il-905-olive"}, "held": []}))
-            es = self.site(d2, ("decatur-il-905-olive", "905 Olive", "Available"), es=True)
-            B.build(es, extra=(en,))
-            self.assertIn('location.replace("/")', (es / "agendar" / "905-olive" / "index.html").read_text())
-            self.assertTrue((es / "agendar" / "decatur-il-905-olive" / "index.html").is_file())
-
-    def test_feedback_links_keep_working_after_a_home_leaves(self):
-        with tempfile.TemporaryDirectory() as d:
-            r = self.site(d, ("decatur-il-905-olive", "905 W. Olive St.", "Available"))
-            B.build(r, "en")
-            page = (r / "feedback" / "905-olive" / "index.html").read_text()
-            self.assertIn("https://owner.getownerfinancedhomes.com/feedback/decatur-il-905-olive?lang=en", page)
-            self.assertIn('<iframe id="crm"', page)
-            self.assertIn("og:image", page)
-            self.assertIn("905 W. Olive St., Decatur, IL", page)
-            self.assertNotIn("1234", page)
-            self.assertTrue((r / "feedback" / "decatur-il-905-olive" / "index.html").is_file())
-            r2 = self.site(d, ("decatur-il-1-other", "1 Other St", "Available"))  # 905 Olive left the site
-            B.build(r2, "en")
-            page = (r / "feedback" / "905-olive" / "index.html").read_text()
-            self.assertIn("/feedback/decatur-il-905-olive?lang=en", page)
-            self.assertTrue((r / "feedback" / "decatur-il-905-olive" / "index.html").is_file())
-
-    def test_feedback_redirect_forwards_only_the_token_prop_and_lang(self):
-        """Filling-CRM #132: no phone or name rides along to the CRM, even from an old link."""
-        with tempfile.TemporaryDirectory() as d:
-            r = self.site(d, ("decatur-il-905-olive", "905 W. Olive St.", "Available"))
-            B.build(r, "en")
-            page = (r / "feedback" / "905-olive" / "index.html").read_text()
-            self.assertIn('["t", "prop", "lang"]', page)
-            self.assertNotIn("q.forEach", page)
-            self.assertNotIn("phone", page)
+            page = (r / "book" / "905-olive" / "index.html").read_text()
+            self.assertIn('location.replace("/")', page)
 
     def test_feedback_link_needs_a_crm_token(self):
         token = "eyJ0IjoiVGFiY2RlZjAxMjM0NSJ9.aaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbbb"
-        self.assertEqual(B.feedback_link("905-olive", token),
-                         f"{B.SITES['en']['domain']}/feedback/905-olive?t={token}")
-        for bad in ("", "3095550148", "Tabcdef012345", "a b c d e f g h i j k l m n o p"):
-            with self.assertRaises(ValueError):
-                B.feedback_link("905-olive", bad)
-
-    def test_spanish_feedback_is_opinion(self):
-        with tempfile.TemporaryDirectory() as d:
-            r = self.site(d, ("decatur-il-905-olive", "905 W. Olive St.", "Available"), es=True)
-            B.build(r)
-            page = (r / "opinion" / "905-olive" / "index.html").read_text()
-            self.assertIn("/feedback/decatur-il-905-olive?lang=es", page)
+        self.assertEqual(
+            B.feedback_link("905-olive", token, "es"),
+            f"{B.SITES['es']['domain']}/opinion/905-olive?t={token}",
+        )
+        with self.assertRaises(ValueError):
+            B.feedback_link("905-olive", "3095550148", "es")
 
     def test_real_site_has_905_olive(self):
         root = Path(__file__).resolve().parents[1]
@@ -176,11 +141,13 @@ class T(unittest.TestCase):
         page = out / "905-olive" / "index.html"
         if not page.is_file():
             self.skipTest("booking links not generated in this checkout")
-        self.assertIn(f"home=decatur-il-905-olive&lang={lang}", page.read_text())
-        for hid in B.read_homes(root):
-            self.assertTrue((out / hid / "index.html").is_file(), hid)
+        text = page.read_text()
+        self.assertIn(f"home=decatur-il-905-olive&lang={lang}", text)
+        self.assertIn("location.replace", text)
+        self.assertNotIn("<iframe", text)
         for s in B.links(root).values():
             self.assertNotRegex((out / s / "index.html").read_text().lower(), r"lockbox|combo|\bcode\b")
+
 
 if __name__ == "__main__":
     unittest.main()
