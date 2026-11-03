@@ -360,6 +360,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 </div>
 
 <script src="listed-dates.js"></script>
+<script src="book-links.js"></script>
 <script>window.__HOME_ID__="jackson-ms-35223524-martin";</script>
 <script src="homes.js"></script>
 <script>
@@ -515,7 +516,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     })(1);
   }
 
-  ["ctaText","ctaText2"].forEach(id=>$(id).href = `https://owner.getownerfinancedhomes.com/book?home=${encodeURIComponent(C.id)}&lang=es`);
+  ["ctaText","ctaText2"].forEach(id=>$(id).href = (typeof bookHref === "function" ? bookHref(C.id) : `/agendar/${encodeURIComponent(C.id)}`));
   $("ctaNote").textContent = "Las visitas son en persona. Elija una hora y nos vemos allá.";
 
   if ("IntersectionObserver" in window){

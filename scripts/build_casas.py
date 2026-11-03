@@ -380,7 +380,7 @@ def main() -> None:
     ids = home_ids()
     stamp_dates(ids)
     n = emit_pages()
-    import book_links   # /agendar/<slug>/ redirect pages: the short booking links buyer texts carry
+    import book_links   # /agendar/<slug>/ embed pages: short booking links buyer texts carry
     # the English site's slugs win (data/book-links.json in ../homes on the Mac, _homes in the daily sync)
     b = book_links.build(ROOT, "es", extra=(ROOT.parent / "homes", ROOT / "_homes"))
     print(
