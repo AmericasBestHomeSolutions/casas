@@ -60,6 +60,8 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 .hero-photo .fcity .c{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.5px;line-height:1}
 .hero-photo .fcity .s{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:4px}
 .status-tag{position:absolute;top:14px;left:14px;z-index:2;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;background:var(--lime);color:var(--pine-deep);padding:6px 11px;border-radius:999px;font-weight:500}
+.status-tag.pending{background:#c2410c;color:#fff}
+.pending-note{background:#fff7ed;border:1.5px solid #fdba74;color:#7c2d12;border-radius:14px;padding:14px 16px;font-weight:600;margin:0;line-height:1.45}
 .headline{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(30px,8vw,46px);line-height:1.05;letter-spacing:-1px;margin:22px 0 8px;color:var(--ink)}
 .headline em{font-style:normal;color:var(--pine)}
 .subhead{font-size:18px;color:var(--ink-soft);max-width:34ch}
@@ -322,7 +324,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 
   <section class="closer reveal">
     <h2 id="closerTitle"></h2>
-    <p>Agende una visita y coordinamos una hora para recorrerla. Sin presión, sin banco.</p>
+    <p id="closerLead">Agende una visita y coordinamos una hora para recorrerla. Sin presión, sin banco.</p>
     <div class="cta-group" style="max-width:400px;margin:0 auto">
       <a class="btn btn-primary" id="ctaText2" href="#">Agende una visita</a>
     </div>
@@ -355,6 +357,11 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 (function(){
   const wantedId = window.__HOME_ID__ || new URLSearchParams(location.search).get("home");
   const home = (typeof HOMES !== "undefined") ? HOMES.find(h => h.id === wantedId) : null;
+  // Las casas vendidas salen de la página. Pendiente se queda, con las visitas cerradas más abajo.
+  if (home && /^sold$/i.test(String(home.status||"").trim())){
+    location.replace("/");
+    return;
+  }
   if (!home){
     // casa desconocida o faltante → mande al visitante a la página de todas las casas
     location.replace("index.html");
@@ -422,7 +429,9 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   $("closerTitle").textContent = "¿Quiere verla en persona?";
   // (el aviso legal del pie ahora es HTML estatico — ver el bloque <footer>)
 
-  $("statusTag").textContent = statusEs(C.status);
+  const pending = /^pending$/i.test(String(C.status || "").trim());
+  $("statusTag").textContent = pending ? "Pendiente" : statusEs(C.status);
+  if (pending) $("statusTag").classList.add("pending");
   if (home && home.contractor){
     $("csBanner").hidden = false;
     $("csWhat").textContent = typeof home.contractor === "string" ? "Problemas conocidos (en inglés): " + home.contractor : "";
@@ -503,8 +512,28 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     })(1);
   }
 
-  ["ctaText","ctaText2"].forEach(id=>$(id).href = (typeof bookHref === "function" ? bookHref(C.id) : `https://owner.getownerfinancedhomes.com/book?home=${encodeURIComponent(C.id)}&lang=es`));
-  $("ctaNote").textContent = "Las visitas son en persona. Elija una hora y nos vemos allá.";
+  if (pending) {
+    const pendingNote = "Esta casa está pendiente. Ya hay un depósito, así que no se agendan visitas nuevas.";
+    ["ctaText","ctaText2"].forEach(id => {
+      const el = $(id);
+      if (!el) return;
+      const note = document.createElement("p");
+      note.className = "pending-note";
+      note.textContent = pendingNote;
+      el.replaceWith(note);
+    });
+    $("ctaNote").textContent = "";
+    $("closerTitle").textContent = "Esta casa está pendiente";
+    if ($("closerLead")) $("closerLead").textContent = "Ya hay un depósito, así que no se agendan visitas nuevas.";
+    const step = document.querySelector("#nextSec .step h3");
+    if (step) {
+      step.textContent = "Esta casa está pendiente";
+      if (step.nextElementSibling) step.nextElementSibling.textContent = "Ya hay un depósito, así que no se agendan visitas nuevas.";
+    }
+  } else {
+    ["ctaText","ctaText2"].forEach(id=>$(id).href = (typeof bookHref === "function" ? bookHref(C.id) : `https://owner.getownerfinancedhomes.com/book?home=${encodeURIComponent(C.id)}&lang=es`));
+    $("ctaNote").textContent = "Las visitas son en persona. Elija una hora y nos vemos allá.";
+  }
 
   if ("IntersectionObserver" in window){
     const io = new IntersectionObserver((entries)=>{

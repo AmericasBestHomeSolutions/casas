@@ -115,6 +115,28 @@ class T(unittest.TestCase):
             self.assertFalse((r / "book" / "905-olive").exists())
             self.assertTrue((r / "book" / "decatur-il-905-olive" / "index.html").is_file())
 
+    def test_pending_home_shows_note_instead_of_booking(self):
+        with tempfile.TemporaryDirectory() as d:
+            r = self.site(d, ("granitecity-il-2539-28th", "2539 E. 28th St.", "Available"), es=True)
+            B.build(r)
+            (r / "homes.js").write_text(homes_js(("granitecity-il-2539-28th", "2539 E. 28th St.", "Pending")))
+            B.build(r)
+            for key in ("2539-28th", "granitecity-il-2539-28th"):
+                page = (r / "agendar" / key / "index.html").read_text()
+                self.assertIn("Esta casa está pendiente", page)
+                self.assertIn("no se agendan visitas nuevas", page)
+                self.assertNotIn("owner.getownerfinancedhomes.com", page)
+                self.assertNotIn("location.replace", page)
+            js = (r / "book-links.js").read_text()
+            self.assertIn("granitecity-il-2539-28th", js)
+            self.assertIn("BOOK_CLOSED", js)
+            self.assertNotIn('"/agendar/2539-28th"', js)
+            live = json.loads((r / "data" / "book-links.json").read_text())["live"]
+            self.assertNotIn("granitecity-il-2539-28th", live)
+            opinion = (r / "opinion" / "2539-28th" / "index.html").read_text()
+            self.assertIn("2539 E. 28th St.", opinion)
+            self.assertIn("location.replace", opinion)
+
     def test_removed_home_redirects_to_home_page(self):
         with tempfile.TemporaryDirectory() as d:
             r = self.site(d, ("decatur-il-905-olive", "905 Olive", "Available"), ("decatur-il-1-a", "1 A", "Available"))
