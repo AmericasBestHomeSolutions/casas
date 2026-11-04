@@ -147,7 +147,6 @@ const BOOK_HREF = {
   "flint-mi-628-home": "/agendar/628-home",
   "granitecity-il-1734-spruce": "/agendar/1734-spruce",
   "granitecity-il-2317-grand": "/agendar/2317-grand",
-  "granitecity-il-2539-28th": "/agendar/2539-28th",
   "granitecity-il-2820-ralph": "/agendar/2820-ralph",
   "granitecity-il-2964-iowa": "/agendar/2964-iowa",
   "hammond-il-809-don": "/agendar/809-don",
@@ -261,9 +260,11 @@ const BOOK_HREF = {
   "winchester-in-542-wall": "/agendar/542-wall",
   "woodriver-il-46-eckhard": "/agendar/46-eckhard"
 };
+const BOOK_CLOSED = ["granitecity-il-2539-28th"];
 const BOOK_CRM = "https://owner.getownerfinancedhomes.com/book";
 const BOOK_LANG = "es";
 function bookHref(homeId){
+  if (BOOK_CLOSED.indexOf(homeId) !== -1) return encodeURIComponent(homeId) + '.html';
   if (BOOK_HREF[homeId]) return BOOK_HREF[homeId];
   return BOOK_CRM+'?home='+encodeURIComponent(homeId)+'&lang='+BOOK_LANG;
 }
