@@ -18,7 +18,7 @@
     bed:"hab.", bath:"baños", away:"mi de distancia", approx:"Ubicación aproximada",
     noPins:"Ninguna de estas casas tiene ubicación en el mapa todavía.", shown:"en el mapa",
     fit:"Ver todas", where:"Dónde está", openG:"Abrir en Google Maps", nearby:"Otras casas cerca",
-    attrib:"© OpenStreetMap contributors", you:"Usted está aquí", legendA:"Disponible", legendP:"Pendiente",
+    attrib:"© OpenStreetMap contributors",     you:"Usted está aquí", legendA:"Disponible", legendP:"Pendiente",
     pinNote:"Los precios en los pines son el pago mensual."
   } : {
     list:"List", map:"Map", near:"Near", nearPh:"City or zip code", within:"Within",
@@ -28,7 +28,7 @@
     bed:"bd", bath:"ba", away:"mi away", approx:"Approximate location",
     noPins:"None of these homes have a map location yet.", shown:"on the map",
     fit:"Show all", where:"Where it is", openG:"Open in Google Maps", nearby:"Other homes nearby",
-    attrib:"© OpenStreetMap contributors", you:"You are here", legendA:"Available", legendP:"Pending",
+    attrib:"© OpenStreetMap contributors",     you:"You are here", legendA:"Available", legendP:"Pending",
     pinNote:"Prices on the pins are the monthly payment."
   };
 
@@ -122,9 +122,9 @@
       <div class="pr">${money(h.monthlyPayment)}<small> ${T.mo}</small></div>
       <div class="sp">${esc(specs)}</div>${dist}
       <div class="ad">${esc(h.address||"")}${h.address?", ":""}${esc(h.city)}, ${esc(h.state)}</div>
+      ${isPending(h) ? `<div class="ap">${esc(T.legendP)} — ${ES ? "no hay visitas nuevas" : "new tours are not open"}</div>` : ""}
       <a class="go" href="${encodeURIComponent(h.id)}.html">${T.view}</a>
       ${window.HomesCart?`<div style="display:flex;gap:8px;margin-top:8px;align-items:center">${HomesCart.heart(h,true)}${HomesCart.compare(h)}</div>`:""}
-      ${isPending(h) ? `<div class="ap">${esc(T.legendP)} — ${ES ? "no hay visitas nuevas" : "new tours are not open"}</div>` : ""}
       ${h.geo==="approx"?`<div class="ap">${T.approx}</div>`:""}
     </div>`;
   }

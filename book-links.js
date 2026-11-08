@@ -17,6 +17,7 @@ const BOOK_HREF = {
   "cahokia-il-1320-williams": "/agendar/1320-williams",
   "cahokia-il-1322-williams": "/agendar/1322-williams",
   "cahokia-il-1414-richard": "/agendar/1414-richard",
+  "cahokia-il-1432-richard": "/agendar/1432-richard",
   "cahokia-il-1613-parklane": "/agendar/1613-parklane",
   "cahokia-il-1922-harvest": "/agendar/1922-harvest",
   "cahokia-il-34-saint": "/agendar/34-saint",
@@ -113,6 +114,8 @@ const BOOK_HREF = {
   "detroit-mi-10122-cedarlawn": "/agendar/10122-cedarlawn",
   "detroit-mi-15344-blackstone": "/agendar/15344-blackstone",
   "detroit-mi-15871-fairmount": "/agendar/15871-fairmount",
+  "detroit-mi-19459-harned": "/agendar/19459-harned",
+  "detroit-mi-5085-lillibridge": "/agendar/5085-lillibridge",
   "detroit-mi-8577-mark": "/agendar/8577-mark",
   "duquoin-il-322-cole": "/agendar/322-cole",
   "eastalton-il-136-illinois": "/agendar/136-illinois",
@@ -156,6 +159,8 @@ const BOOK_HREF = {
   "granitecity-il-2820-ralph": "/agendar/2820-ralph",
   "granitecity-il-2964-iowa": "/agendar/2964-iowa",
   "hammond-il-809-don": "/agendar/809-don",
+  "hillsdale-mo-2123-rosebud": "/agendar/2123-rosebud",
+  "ildecatur-il-1929-prairie": "/agendar/ildecatur-il-1929-prairie",
   "jackson-ms-1546-david": "/agendar/1546-david",
   "jackson-ms-1753-mcgee": "/agendar/1753-mcgee",
   "jackson-ms-1765-casteel": "/agendar/1765-casteel",
@@ -166,6 +171,7 @@ const BOOK_HREF = {
   "lewistown-il-714-adams": "/agendar/714-adams",
   "litchfield-il-707-madison": "/agendar/707-madison",
   "macomb-il-437-pierce": "/agendar/437-pierce",
+  "macomb-il-526-chandler": "/agendar/526-chandler",
   "madison-il-1532-5th": "/agendar/1532-5th",
   "madison-il-1541-5th": "/agendar/1541-5th",
   "madison-il-2021-edwardsville": "/agendar/2021-edwardsville",
@@ -174,13 +180,16 @@ const BOOK_HREF = {
   "montgomery-al-801-patton": "/agendar/801-patton",
   "moweaqua-il-221-cherry": "/agendar/221-cherry",
   "muncie-in-1630-elm": "/agendar/1630-elm",
+  "newbern-nc-2000-aycock": "/agendar/2000-aycock",
   "nokomis-il-304-spruce": "/agendar/304-spruce",
   "nokomis-il-524-albert": "/agendar/524-albert",
+  "nokomis-il-623-spruce": "/agendar/623-spruce",
   "oblong-il-807-illinois": "/agendar/807-illinois",
   "peoria-il-1205-sheridan": "/agendar/1205-sheridan",
   "peoria-il-1610-lydia": "/agendar/1610-lydia",
   "peoria-il-1709-faraday": "/agendar/1709-faraday",
   "peoria-il-1811-millman": "/agendar/1811-millman",
+  "peoria-il-1815-butler": "/agendar/1815-butler",
   "peoria-il-1825-idaho": "/agendar/1825-idaho",
   "peoria-il-1829-stanley": "/agendar/1829-stanley",
   "peoria-il-2012-marquette": "/agendar/2012-marquette",
@@ -261,7 +270,7 @@ const BOOK_HREF = {
   "winchester-in-542-wall": "/agendar/542-wall",
   "woodriver-il-46-eckhard": "/agendar/46-eckhard"
 };
-const BOOK_CLOSED = ["decatur-il-1947-sir", "granitecity-il-2539-28th", "peoria-il-1521-westmoreland", "stlouis-mo-4103-beachwood", "stlouis-mo-5639-wilborn"];
+const BOOK_CLOSED = [];
 const BOOK_CRM = "https://owner.getownerfinancedhomes.com/book";
 const BOOK_LANG = "es";
 function bookHref(homeId){
