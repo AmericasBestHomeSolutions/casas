@@ -2531,6 +2531,7 @@ const HOMES = [
     lng:   -89.643506,
     geo:   "exact",
     status: "Available",
+    featured: "top",
     monthlyPayment: 895,
     moveIn:         2500,
     lockedPrice:    85000,
