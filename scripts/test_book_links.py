@@ -164,9 +164,16 @@ class T(unittest.TestCase):
         if not page.is_file():
             self.skipTest("booking links not generated in this checkout")
         text = page.read_text()
-        self.assertIn(f"home=decatur-il-905-olive&lang={lang}", text)
-        self.assertIn("location.replace", text)
+        # 905 Olive left the catalog; /agendar/905-olive stays as a redirect with no booking URL.
+        if "ya no está disponible" in text or "no longer available" in text:
+            self.assertIn('location.replace("/")', text)
+            self.assertNotIn("owner.getownerfinancedhomes.com/book", text)
+        else:
+            self.assertIn(f"home=decatur-il-905-olive&lang={lang}", text)
+            self.assertIn("location.replace", text)
         self.assertNotIn("<iframe", text)
+        for hid in B.read_homes(root):
+            self.assertTrue((out / hid / "index.html").is_file(), hid)
         for s in B.links(root).values():
             self.assertNotRegex((out / s / "index.html").read_text().lower(), r"lockbox|combo|\bcode\b")
 
