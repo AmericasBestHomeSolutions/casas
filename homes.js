@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (256, generadas desde la web en inglés) --- */
+/* --- las casas (254, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "eaststlouis-il-2008-61st",
