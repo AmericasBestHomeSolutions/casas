@@ -1,0 +1,13 @@
+name: Access instruction guard
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject access instructions in served files
+        run: python3 scripts/test_access_codes.py && python3 scripts/check_access_codes.py
