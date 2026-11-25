@@ -102,17 +102,36 @@
     return qs ? url + (url.indexOf("?") >= 0 ? "&" : "?") + qs : url;
   }
 
+  document.querySelectorAll(".brand .bn").forEach(function (bn) {
+    if (bn.querySelector(".brand-rest")) return;
+    bn.childNodes.forEach(function (node) {
+      if (node.nodeType !== 3) return;
+      if (!/Home Solutions/.test(node.textContent || "")) return;
+      node.textContent = "Americas Best";
+      const rest = document.createElement("span");
+      rest.className = "brand-rest";
+      rest.textContent = " Home Solutions";
+      bn.insertBefore(rest, node.nextSibling);
+    });
+  });
+
   const esLink = nav.querySelector(".nav-es");
   if (esLink) {
     const tail = id ? "/" + id + ".html" : ((file === "index.html" || file === "") ? "/" : path);
     esLink.href = withSearch(there + tail);
     esLink.textContent = es ? "English" : "Español";
     esLink.hreflang = es ? "en" : "es";
+    const toggle = nav.querySelector(".nav-toggle");
+    if (esLink.parentElement !== nav && toggle) nav.insertBefore(esLink, toggle);
   }
 
   const tail = id ? "/" + id + ".html" : ((file === "index.html" || file === "") ? "/" : path);
+  const hasLangLink = nav.querySelector(".nav-es, .nav-lang");
   let lang = nav.querySelector(".lang");
-  if (!lang && !nav.querySelector(".nav-lang")) {
+  if (hasLangLink && lang) {
+    lang.remove();
+    lang = null;
+  } else if (!lang && !hasLangLink) {
     lang = document.createElement("div");
     lang.className = "lang";
     lang.setAttribute("role", "group");
@@ -124,7 +143,7 @@
     if (toggle) nav.insertBefore(lang, toggle);
     else nav.append(lang);
   }
-  const langLinks = lang.querySelectorAll("a");
+  const langLinks = lang ? lang.querySelectorAll("a") : [];
   if (langLinks[0]) {
     langLinks[0].href = withSearch(here + tail);
     langLinks[0].textContent = es ? "ES" : "EN";
@@ -150,7 +169,7 @@
     saved.innerHTML = (es ? "Guardados" : "Saved") + (savedCount ? '<span class="count">' + savedCount + "</span>" : "");
     menu.append(saved);
   }
-  if (!nav.querySelector("a.acct-out")) {
+  if (!nav.querySelector("a.acct-out, a.nav-account")) {
     // Buyer account (sign in with an email code; see and change tours) lives on the CRM.
     const acct = document.createElement("a");
     acct.className = "acct-out";

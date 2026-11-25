@@ -104,8 +104,13 @@
     const tag = pending ? "" : ((opts && opts.featured && h.featured) ? "Destacada" : featureTag(h));
     const where = [h.address, h.city, h.state].filter(Boolean).join(", ");
     const eager = opts && opts.eager;
-    const photo = meta.card
-      ? `<img src="${meta.card}" alt="Casa en ${h.city}, ${h.state}" width="${meta.w}" height="${meta.h}" loading="${eager?"eager":"lazy"}" decoding="async"${eager?' fetchpriority="high"':""}>`
+    const CARD_SIZES = "(max-width: 860px) calc(100vw - 20px), 480px";
+    const w = Number(h.cardWidth) || 480, ht = Number(h.cardHeight) || 360;
+    const webp = [];
+    if (Number(h.cardW320)) webp.push(`images/cards/${h.id}-320.webp ${Number(h.cardW320)}w`);
+    if (h.cardPhoto && w) webp.push(`images/cards/${h.id}-480.webp ${w}w`);
+    const photo = webp.length
+      ? `<picture><source type="image/webp" srcset="${webp.join(", ")}" sizes="${CARD_SIZES}"><img src="images/cards/${h.id}-480.webp" alt="Casa en ${h.city}, ${h.state}" width="${w}" height="${ht}" ${eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}></picture>`
       : "";
     const book = (typeof bookHref === "function")
       ? bookHref(h.id)

@@ -151,3 +151,16 @@ a.nav-account,a.acct-out{white-space:nowrap;font-size:14px;font-weight:800}
 .filter-summary .edit{text-decoration:underline}
 .buyer-panel[hidden],#filterPanel[hidden]{display:none !important}
 .chip-label{margin:4px 0 0;font:700 11px "DM Sans",system-ui,sans-serif;letter-spacing:.12em;color:#5b6577}
+@media (max-width:980px){
+  .brand{flex:0 0 auto;min-width:0}
+  .brand .bn{font-size:15px;white-space:nowrap}
+  .brand-rest,.brand .bn small{display:none !important}
+  .topbar{flex-wrap:nowrap;align-items:center;padding:8px 0;min-height:0}
+  .topnav{flex-wrap:nowrap;gap:6px}
+  .topnav .lang{display:none !important}
+  .topnav a.nav-account,.topnav a.acct-out,.topnav a.nav-es{padding:0 2px;font-size:14px;font-weight:800;color:var(--pine,#15315e);text-decoration:none;white-space:nowrap}
+  .nav-toggle{padding:4px 8px}
+  .wrap{padding:0 12px}
+  .brand .mark{width:22px;height:22px}
+  .topnav{gap:4px}
+}
