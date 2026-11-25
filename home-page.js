@@ -95,7 +95,7 @@
     const [a,b] = faceFor(h.city + h.state);
     const rec = Number(h.beds);
     const specs = [
-      rec ? `${rec} recámara${rec===1?"":"s"}` : "",
+      rec ? `${rec} recámara${rec===1?"":"s"}` : "recámaras no indicadas",
       h.baths ? `${h.baths} ba` : "",
       (h.sqft && Number(h.sqft)) ? `${Number(h.sqft).toLocaleString("en-US")} pies²` : ""
     ].filter(Boolean).join(" | ");
@@ -288,25 +288,49 @@
     const pending = match.filter(isPending).sort(defaultOrder());
     const parts = [];
     const paint = (list, opts) => list.map((h,i) => cardHTML(h, Object.assign({eager: i===0}, opts||{}))).join("");
-    if (match.length) parts.push(available.concat(pending).map((h,i) => cardHTML(h, {eager: i===0})).join(""));
+    if (available.length) parts.push(swipeBlock("Disponibles ahora", paint(available)));
+    if (pending.length) parts.push(swipeBlock("Pendiente: visitas cerradas", paint(pending)));
     if (available.length < 3 && origin){
       const near = pool.filter(h => !isPending(h) && fitsBudget(h) && !inPlace(h, place, origin)).map(h => {
         const p = pointOf(h);
         return p ? {h, d: milesBetween(origin, p)} : null;
       }).filter(x => x && x.d <= 50).sort((a,b) => a.d - b.d);
       if (near.length){
-        parts.push(`<h2 class="result-group">Casas cercanas dentro de su presupuesto</h2>`);
-        parts.push(near.map((x,i) => cardHTML(x.h, {away: Math.round(x.d), eager: !match.length && i===0})).join(""));
+        parts.push(swipeBlock("Casas cercanas dentro de su presupuesto", near.map((x,i) => cardHTML(x.h, {away: Math.round(x.d), eager: !match.length && i===0})).join("")));
       }
     }
     const over = here.filter(h => justOver(h)).sort(defaultOrder());
     if (over.length){
-      parts.push(`<h2 class="result-group">Un poco arriba de su presupuesto</h2>`);
-      parts.push(paint(over));
+      parts.push(swipeBlock("Un poco arriba de su presupuesto", paint(over)));
     }
     return {html: parts.join(""), count: match.length + (parts.length ? 0 : 0), any: parts.length > 0, shown: available.length + pending.length};
   }
 
+  function swipeBlock(title, html, compact){
+    if (!html) return "";
+    return `<section class="swipe-block${compact?" is-compact":""}"><div class="swipe-head"><h2>${title}</h2><div class="swipe-nav"><button type="button" class="swipe-prev" aria-label="Anterior">‹</button><button type="button" class="swipe-next" aria-label="Siguiente">›</button></div></div><div class="swipe-row">${html}</div></section>`;
+  }
+  function wireSwipe(root){
+    (root || document).querySelectorAll(".swipe-block").forEach(block => {
+      const row = block.querySelector(".swipe-row");
+      const prev = block.querySelector(".swipe-prev");
+      const next = block.querySelector(".swipe-next");
+      if (!row || !prev || !next || prev.dataset.wired) return;
+      prev.dataset.wired = "1";
+      const step = () => Math.max(220, row.clientWidth * 0.8);
+      prev.addEventListener("click", () => row.scrollBy({left: -step(), behavior: "smooth"}));
+      next.addEventListener("click", () => row.scrollBy({left: step(), behavior: "smooth"}));
+    });
+  }
+  function syncBeds(){
+    const row = $("bedRow");
+    if (!row) return;
+    const place = findPlace($("fQ").value);
+    const on = !!($("fCity").value || (place && place.kind === "city"));
+    row.hidden = !on;
+    const val = $("fBeds").value || "";
+    row.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", (b.dataset.beds || "") === val ? "true" : "false"));
+  }
   function render(scroll){
     const place = findPlace($("fQ").value);
     if (place){
@@ -320,23 +344,29 @@
       if (window.HomesMap) HomesMap.update([]);
       if (window.HomesCart) HomesCart.sync();
       chips();
+      wireSwipe($("cards"));
+      syncBeds();
       const head = document.querySelector("body.page-search .topbar");
       if (head) document.documentElement.style.setProperty("--zhead", (head.offsetHeight + 8) + "px");
       if (scroll) document.getElementById("listings").scrollIntoView({block:"start", behavior:"smooth"});
       return;
     }
     const shown = filtered();
-    const pages = Math.max(1, Math.ceil(shown.length / PER_PAGE));
-    if (page > pages) page = 1;
-    const slice = shown.slice((page-1)*PER_PAGE, page*PER_PAGE);
-    $("cards").innerHTML = slice.map((h, i) => cardHTML(h, {eager: page===1 && i===0})).join("");
+    const available = shown.filter(h => !isPending(h) && !isSold(h));
+    const pending = shown.filter(isPending);
+    const sold = shown.filter(isSold);
+    const blocks = [
+      swipeBlock("Disponibles ahora", available.map((h,i) => cardHTML(h, {eager: i===0})).join("")),
+      swipeBlock("Pendiente: visitas cerradas", pending.map(h => cardHTML(h)).join("")),
+      swipeBlock("Vendidas recientemente", sold.map(h => cardHTML(h)).join(""), true)
+    ].join("");
+    $("cards").innerHTML = blocks;
     $("empty").style.display = shown.length ? "none" : "block";
-    const start = shown.length ? (page-1)*PER_PAGE+1 : 0;
-    const end = Math.min(page*PER_PAGE, shown.length);
-    $("count").textContent = shown.length
-      ? `Mostrando ${start}–${end} de ${shown.length} casa${shown.length===1?"":"s"}`
-      : "";
-    renderPager(pages);
+    $("count").textContent = shown.length ? `${shown.length} casa${shown.length===1?"":"s"}` : "";
+    $("pager").style.display = "none";
+    $("pager").innerHTML = "";
+    wireSwipe($("cards"));
+    syncBeds();
     if (window.HomesMap) HomesMap.update(shown);
     if (window.HomesCart) HomesCart.sync();
     chips();
@@ -574,6 +604,7 @@
     const sold = (typeof RECENTLY_SOLD !== "undefined" && RECENTLY_SOLD) || [];
     if (sold.length){
       const mo = d => { const t = new Date(d + "T12:00:00"); return t.toLocaleDateString("es-US", {month:"long"}) + " " + t.getFullYear(); };
+      $("soldStrip").classList.add("swipe-row");
       $("soldStrip").innerHTML = sold.map(x =>
         `<div class="sold-card"><span class="ribbon">Vendida</span><div class="c">${x.city}, ${x.state}</div><div class="d">Vendida ${mo(x.soldOn)}</div></div>`).join("");
       $("soldSec").hidden = false;
@@ -594,6 +625,26 @@
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ block: "start" });
   }
+  const bedRow = $("bedRow");
+  if (bedRow) bedRow.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    $("fBeds").value = b.dataset.beds || "";
+    page = 1; render(false); syncURL();
+  });
+  document.querySelectorAll(".city-pills a").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const label = a.textContent.replace(/\s+\d+\s*$/, "").trim();
+      const city = label.split(",")[0].trim();
+      const st = (label.split(",")[1] || "").trim();
+      $("fQ").value = label;
+      if (st) $("fState").value = st;
+      fillCities();
+      if ([...$("fCity").options].some(o => o.value === city)) $("fCity").value = city;
+      page = 1; render(true); syncURL();
+    });
+  });
   render();
   revealHash();
   if (window.HomesMap) HomesMap.fromURL(new URLSearchParams(location.search));

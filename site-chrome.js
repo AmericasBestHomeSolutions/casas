@@ -162,3 +162,75 @@
     else nav.append(acct);
   }
 })();
+
+/* City pages: one swipeable row, a bedroom filter, and the real photo on each card. */
+(function () {
+  const list = document.getElementById("cityHomes");
+  if (!list) return;
+  if (!document.querySelector('link[href="/site.css"], link[href="site.css"]')) {
+    const css = document.createElement("link");
+    css.rel = "stylesheet";
+    css.href = "/site.css";
+    document.head.appendChild(css);
+  }
+  const form = document.getElementById("buyerSearch");
+  if (form && !form.querySelector("#cityBeds")) {
+    const bar = document.createElement("div");
+    bar.className = "bed-row";
+    bar.id = "cityBeds";
+    bar.innerHTML = '<span>Recámaras</span>'
+      + '<button type="button" data-beds="" aria-pressed="true">Cualquiera</button>'
+      + '<button type="button" data-beds="1">1+</button>'
+      + '<button type="button" data-beds="2">2+</button>'
+      + '<button type="button" data-beds="3">3+</button>'
+      + '<button type="button" data-beds="4">4+</button>';
+    list.before(bar);
+  }
+  const empty = document.createElement("p");
+  empty.className = "need-line";
+  empty.hidden = true;
+  empty.textContent = "Ninguna casa coincide. Elija Cualquiera o Borrar filtros en el inicio.";
+  list.after(empty);
+  const items = Array.prototype.slice.call(list.children);
+  items.forEach(function (li) {
+    const meta = li.querySelector(".meta");
+    const text = meta ? meta.textContent : "";
+    const found = text.match(/(\d+(?:\.\d+)?)\s+recámara/);
+    li.dataset.beds = found ? String(parseInt(found[1], 10)) : "";
+    if (!found && meta && text.indexOf("recámaras no indicadas") < 0) {
+      meta.appendChild(document.createTextNode(" · recámaras no indicadas"));
+    }
+    const id = li.getAttribute("data-id");
+    if (id && li.getAttribute("data-photo") === "1" && !li.querySelector("img")) {
+      const img = document.createElement("img");
+      img.src = "/images/cards/" + id + "-480.webp";
+      img.alt = "";
+      img.width = 320;
+      img.height = 200;
+      img.loading = "lazy";
+      img.decoding = "async";
+      li.insertBefore(img, li.firstChild);
+    }
+  });
+  const pending = items.filter(function (li) { return /pending/i.test(li.getAttribute("data-status") || ""); });
+  const available = items.filter(function (li) { return pending.indexOf(li) < 0; });
+  available.concat(pending).forEach(function (li) { list.appendChild(li); });
+  list.classList.add("swipe-row");
+  function applyBeds(min) {
+    let shown = 0;
+    items.forEach(function (li) {
+      const beds = parseInt(li.dataset.beds || "0", 10) || 0;
+      const hide = !!min && (!beds || beds < min);
+      li.hidden = hide;
+      if (!hide) shown += 1;
+    });
+    empty.hidden = shown > 0;
+  }
+  const bar = document.getElementById("cityBeds");
+  if (bar) bar.addEventListener("click", function (e) {
+    const b = e.target.closest("button");
+    if (!b) return;
+    bar.querySelectorAll("button").forEach(function (btn) { btn.setAttribute("aria-pressed", btn === b ? "true" : "false"); });
+    applyBeds(parseInt(b.dataset.beds || "0", 10) || 0);
+  });
+})();

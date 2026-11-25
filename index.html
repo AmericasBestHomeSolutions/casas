@@ -10,19 +10,19 @@
 <!-- lcp-preload:end -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M24 3 41 9V23C41 33 33 41 24 45 15 41 7 33 7 23V9Z' fill='%2315315e'/><path d='M15 26 24 18 33 26Z' fill='%23e23b3b'/><rect x='17.5' y='26' width='13' height='9' fill='white'/><rect x='22' y='30' width='4' height='5' fill='%2315315e'/></svg>"/>
 <title>Casas con Financiamiento del Dueño — Sin Banco | Americas Best Home Solutions</title>
-<meta name="description" content="Sea dueño de una casa sin pasar por el banco. Financiamiento directo del dueño en Illinois, Missouri, Michigan, Alabama y más — un precio fijo y un pago mensual parecido a la renta. Vea las casas disponibles."/>
+<meta name="description" content="Sea dueño de una casa sin pasar por el banco. Financiamiento directo del dueño en Illinois, Missouri, Michigan, Alabama y más — un enganche y una mensualidad que usted puede ver en cada anuncio. Vea las casas disponibles."/>
 <link rel="canonical" href="https://casasconfinanciamiento.com/"/>
 <!-- seo-social:start -->
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Americas Best Home Solutions"/>
 <meta property="og:locale" content="es_US"/>
 <meta property="og:title" content="Casas con Financiamiento del Dueño — Sin Banco | Americas Best Home Solutions"/>
-<meta property="og:description" content="Sea dueño de una casa sin pasar por el banco. Financiamiento directo del dueño en Illinois, Missouri, Michigan, Alabama y más — un precio fijo y un pago mensual parecido a la renta. Vea las casas disponibles."/>
+<meta property="og:description" content="Sea dueño de una casa sin pasar por el banco. Financiamiento directo del dueño en Illinois, Missouri, Michigan, Alabama y más — un enganche y una mensualidad que usted puede ver en cada anuncio. Vea las casas disponibles."/>
 <meta property="og:url" content="https://casasconfinanciamiento.com/"/>
 <meta property="og:image" content="https://casasconfinanciamiento.com/images/_share-default.jpg"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Casas con Financiamiento del Dueño — Sin Banco | Americas Best Home Solutions"/>
-<meta name="twitter:description" content="Sea dueño de una casa sin pasar por el banco. Financiamiento directo del dueño en Illinois, Missouri, Michigan, Alabama y más — un precio fijo y un pago mensual parecido a la renta. Vea las casas disponibles."/>
+<meta name="twitter:description" content="Sea dueño de una casa sin pasar por el banco. Financiamiento directo del dueño en Illinois, Missouri, Michigan, Alabama y más — un enganche y una mensualidad que usted puede ver en cada anuncio. Vea las casas disponibles."/>
 <meta name="twitter:image" content="https://casasconfinanciamiento.com/images/_share-default.jpg"/>
 <!-- seo-social:end -->
 <link rel="alternate" hreflang="en" href="https://getownerfinancedhomes.com/"/>
@@ -355,9 +355,7 @@ body.page-search .card-body{min-height:124px}
 body.page-search #cities{margin:0;padding:14px 16px 16px;background:#fff;border-bottom:1px solid var(--line,#e2e8f2)}
 @media(max-width:860px){
   body.page-search .topbar{min-height:92px}
-  body.page-search .card{min-height:440px}
-  body.page-search #cards{min-height:5400px}
-  body.page-search #cities{min-height:1080px}
+  body.page-search .card-face{min-height:180px}
 }
 body.page-search #cities .sec-title{font-size:clamp(22px,3vw,28px)}
 body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
@@ -400,11 +398,17 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
         <input id="fQ" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" list="qHints" placeholder="Springfield o 62703" aria-label="Ciudad o código postal">
       </label>
       <datalist id="qHints"></datalist>
-      <label class="bs-field"><span>Enganche máximo</span>
-        <select id="fDown" aria-label="Enganche máximo"><option value="">Cualquiera</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="2500">$2,500</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
+      <label class="bs-field"><span>Enganche</span>
+        <span class="bs-range">
+          <select id="fDownMin" aria-label="Enganche desde"><option value="">Mín.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="2500">$2,500</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
+          <select id="fDown" aria-label="Enganche hasta"><option value="">Máx.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="2500">$2,500</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
+        </span>
       </label>
-      <label class="bs-field"><span>Mensualidad máxima</span>
-        <select id="fPayMax" aria-label="Mensualidad máxima"><option value="">Cualquiera</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1100">$1,100</option><option value="1200">$1,200</option><option value="1300">$1,300</option><option value="1400">$1,400</option><option value="1500">$1,500</option><option value="1600">$1,600</option><option value="1700">$1,700</option><option value="1800">$1,800</option></select>
+      <label class="bs-field"><span>Mensualidad</span>
+        <span class="bs-range">
+          <select id="fPayMin" aria-label="Mensualidad desde"><option value="">Mín.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option></select>
+          <select id="fPayMax" aria-label="Mensualidad hasta"><option value="">Máx.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1100">$1,100</option><option value="1200">$1,200</option><option value="1300">$1,300</option><option value="1400">$1,400</option><option value="1500">$1,500</option><option value="1600">$1,600</option><option value="1700">$1,700</option><option value="1800">$1,800</option></select>
+        </span>
       </label>
       <button type="button" class="filter-btn" id="filterBtn" aria-expanded="false" aria-controls="filterSheet" aria-label="Filtros">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="7" r="2.2" fill="currentColor"/><circle cx="15" cy="12" r="2.2" fill="currentColor"/><circle cx="10" cy="17" r="2.2" fill="currentColor"/></svg>
@@ -418,7 +422,15 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <label class="qf"><span>Precio desde</span><select id="fPriceMin" aria-label="Precio mínimo"><option value="">Sin mín.</option><option value="40000">$40k+</option><option value="50000">$50k+</option><option value="60000">$60k+</option><option value="70000">$70k+</option><option value="80000">$80k+</option><option value="90000">$90k+</option><option value="100000">$100k+</option><option value="150000">$150k+</option></select></label>
       <label class="qf"><span>Precio hasta</span><select id="fPriceMax" aria-label="Precio máximo"><option value="">Sin máx.</option><option value="50000">Hasta $50k</option><option value="60000">Hasta $60k</option><option value="70000">Hasta $70k</option><option value="80000">Hasta $80k</option><option value="90000">Hasta $90k</option><option value="100000">Hasta $100k</option><option value="150000">Hasta $150k</option></select></label>
       <button type="button" class="qf-more" id="moreFilters" aria-controls="filterSheet">Más filtros</button>
-      <button type="button" class="qf-clear" id="clearFilters" hidden>Borrar todo</button>
+      <button type="button" class="qf-clear" id="clearFilters">Borrar filtros</button>
+    </div>
+    <div class="bed-row" id="bedRow" hidden>
+      <span>Recámaras</span>
+      <button type="button" data-beds="" aria-pressed="true">Cualquiera</button>
+      <button type="button" data-beds="1">1+</button>
+      <button type="button" data-beds="2">2+</button>
+      <button type="button" data-beds="3">3+</button>
+      <button type="button" data-beds="4">4+</button>
     </div>
     <div class="z-chips" id="chips"></div>
     <div class="z-sort">
@@ -428,12 +440,6 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       </label>
     </div>
     <div class="filter-sheet" id="filterSheet" hidden>
-      <label>Mensualidad mín.
-        <select id="fPayMin" aria-label="Mensualidad mínima"><option value="">Sin mín.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option></select>
-      </label>
-      <label>Enganche mín.
-        <select id="fDownMin" aria-label="Enganche mínimo"><option value="">Sin mín.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option></select>
-      </label>
       <label>Baños
         <select id="fBaths" aria-label="Baños"><option value="">Cualquiera</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select>
       </label>
@@ -488,7 +494,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   <div class="stats">
     <div class="stat"><div class="n" id="statHomes">—</div><div class="l">Casas disponibles</div></div>
     <div class="stat"><div class="n">Sin banco</div><div class="l">Sin solicitud hipotecaria</div></div>
-    <div class="stat"><div class="n">Pago fijo</div><div class="l">Cada mes</div></div>
+    <div class="stat"><div class="n">Visita</div><div class="l">Antes de decidir</div></div>
     <div class="stat"><div class="n" id="statCities">—</div><div class="l">Ciudades y pueblos</div></div>
   </div>
 
@@ -530,8 +536,8 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <nav class="pager" id="pager" style="display:none;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px"></nav>
 
     <div class="empty" id="empty">
-      <h3>Ninguna casa coincide con esos filtros — todavía</h3>
-      <p>Cada semana entran casas nuevas. Quite un filtro o amplíe la mensualidad o el enganche.</p>
+      <h3>Ninguna casa coincide con esos filtros</h3>
+      <p>Toque <strong>Borrar filtros</strong> o amplíe el enganche y la mensualidad. Cada semana entran casas nuevas.</p>
     </div>
   </section>
 
@@ -645,8 +651,8 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       </div>
       <div class="trust-card">
         <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e23b3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-        <h3>El precio queda fijo</h3>
-        <p>Una mensualidad fija, por escrito. No sube cada año como la renta.</p>
+        <h3>Lo que necesita</h3>
+        <p>Una identificación válida, el enganche y una mensualidad que le quede cómoda.</p>
       </div>
       <div class="trust-card">
         <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e23b3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -664,23 +670,15 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <p class="sec-sub">El dueño es el vendedor. No hay banco ni solicitud hipotecaria.</p>
     </div>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Visite y elija la casa</h3><p>Agende una visita, recorra la casa y elija la que quiere.</p></div>
+      <div class="step"><div class="n">1</div><h3>Elija una casa y visítela</h3><p>Agende una visita, recorra la casa y elija la que quiere.</p></div>
       <div class="step"><div class="n">2</div><h3>Le enviamos un paquete de bienvenida</h3><p>Después de la visita le mandamos el paquete de bienvenida.</p></div>
-      <div class="step"><div class="n">3</div><h3>Usted envía el enganche o el depósito</h3><p>Usted manda el enganche publicado, o el depósito.</p></div>
+      <div class="step"><div class="n">3</div><h3>Usted envía el enganche o depósito</h3><p>Usted manda el enganche publicado, o el depósito.</p></div>
       <div class="step"><div class="n">4</div><h3>Hacemos el papeleo</h3><p>Preparamos los documentos. Los términos finales se confirman ahí.</p></div>
-      <div class="step"><div class="n">5</div><h3>Las llaves</h3><p>En Illinois, después de firmar hay un derecho de cancelación de 3 días y luego entregamos las llaves. En los demás estados, las llaves se entregan enseguida después de firmar.</p></div>
+      <div class="step"><div class="n">5</div><h3>Recibe las llaves</h3><p>En Illinois hay 3 días de derecho de rescisión después de firmar. En los demás estados, las llaves se entregan al firmar.</p></div>
     </div>
+    <p class="need-line">Lo que necesita: una identificación válida, el enganche y una mensualidad que le quede cómoda.</p>
     <!-- finance-stats:start -->El enganche más bajo entre las casas disponibles es $500. 181 casas disponibles piden $2,500 de enganche o menos.<!-- finance-stats:end -->
     <p style="text-align:center;margin-top:18px"><a href="como-funciona.html" style="font-weight:700;color:var(--pine);text-decoration:none;border-bottom:2px solid var(--go);padding-bottom:2px">Vea exactamente cómo funciona el financiamiento del dueño →</a></p>
-  </section>
-
-  <section class="section reveal" id="que-necesita">
-    <div class="sec-head">
-      <div class="sec-label">Para comprar</div>
-      <h2 class="sec-title">Qué necesita para comprar</h2>
-    </div>
-    <p>No necesita préstamo de banco. Lo hacemos sencillo: si el enganche y la mensualidad le funcionan, le guiamos en los siguientes pasos.</p>
-    <p>Lo que necesita: una identificación válida, el enganche y una mensualidad que le funcione.</p>
   </section>
 
   <section class="section" id="stories">
@@ -728,7 +726,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <p>Esto es lo que hemos visto pasar, mercado tras mercado: los vecindarios donde ofrecemos estas casas no se quedan abajo para siempre. Con los años, muchos se recuperan. Los bancos que antes le decían "no" a la zona vuelven a prestar ahí. Y las personas que aguantaron — que siguieron pagando esa mensualidad — son las que hoy tienen una casa a un precio que fijaron años atrás, en un vecindario que ahora vale más. Algunas refinanciaron. Otras vendieron y salieron adelante. Todas fueron dueñas de algo real.</p>
       <p>Por eso lo tratamos como una oportunidad de oro — y por eso no se la ofrecemos a cualquiera. Tomamos un número limitado de compradores a la vez, y buscamos gente seria que entienda la responsabilidad que viene con las llaves, y que quiera la recompensa que viene con ella.</p>
       <p>Nadie le puede prometer el futuro. Pero una cosa es segura: <strong>la renta nunca le devuelve nada.</strong></p>
-      <p class="fine">Cada casa y cada mercado es diferente — lo que pasó antes no garantiza el valor futuro. Lo que sí está garantizado es lo que dice su acuerdo por escrito: su precio fijo y sus términos.</p>
+      <p class="fine">Cada casa y cada mercado es diferente — lo que pasó antes no garantiza el valor futuro. Los términos finales se confirman en sus documentos.</p>
     </div>
     <div class="opp-cta">
       <a href="/#listings">Ver las casas →</a>
@@ -756,7 +754,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="sig">— El equipo de Americas Best Home Solutions</div>
     <div class="chips">
       <span class="chip">Pagos comparables a la renta</span>
-      <span class="chip">Pago fijo por escrito</span>
+      <span class="chip">Enganche y mensualidad en cada anuncio</span>
       <span class="chip">Casas en IL · MO · MI · AL</span>
     </div>
     <a class="abtn" id="aboutText" href="#">
@@ -799,7 +797,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </div>
     <p class="lede">Su pasado no tiene por qué decidir su futuro. Si los bancos le han cerrado la puerta, esto se hizo para usted.</p>
     <div class="faq" id="faq">
-      <details open><summary>¿Es lo mismo que rentar?</summary><p class="ans">No. Cuando renta, el dinero se va y la casa sigue siendo del casero. Aquí, usted es el comprador desde el primer día y cada pago va hacia ser dueño de la casa a un precio fijo.</p></details>
+      <details open><summary>¿Es lo mismo que rentar?</summary><p class="ans">No. Cuando renta, el dinero se va y la casa sigue siendo del casero. Aquí, usted es el comprador desde el primer día y cada pago va hacia ser dueño de la casa.</p></details>
       <details><summary>¿Necesito un banco para comprar una de estas casas?</summary><p class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Agende una visita y recorra la casa usted mismo.</p></details>
       <details><summary>¿Cuál es el enganche?</summary><p class="ans">Cada casa muestra su enganche y su mensualidad justo en su página. No hay números escondidos — repasamos todo con usted.</p></details>
       <details><summary>¿Puedo pintar, arreglar o mejorar la casa?</summary><p class="ans">Sí — es su casa. A muchos compradores les encanta hacerla suya. Cubrimos cualquier detalle específico en su acuerdo.</p></details>
