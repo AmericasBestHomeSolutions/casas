@@ -322,6 +322,25 @@
       next.addEventListener("click", () => row.scrollBy({left: step(), behavior: "smooth"}));
     });
   }
+  function shortMoney(n){
+    n = Number(n);
+    if (!n) return "";
+    if (n % 1000 === 0) return "$" + (n / 1000) + "k";
+    return "$" + n.toLocaleString("en-US");
+  }
+  function syncSummary(){
+    const node = $("filterSummaryText");
+    if (!node) return;
+    const place = ($("fQ").value || $("fCity").value || "Todas las ciudades").split(",")[0].trim();
+    const bits = [place || "Todas las ciudades"];
+    const dlo = $("fDownMin").value, dhi = $("fDown").value;
+    const plo = $("fPayMin").value, phi = $("fPayMax").value;
+    const beds = $("fBeds").value;
+    if (dlo || dhi) bits.push("enganche " + (dlo && dhi ? shortMoney(dlo) + "–" + shortMoney(dhi) : dlo ? shortMoney(dlo) + "+" : "hasta " + shortMoney(dhi)));
+    if (plo || phi) bits.push((plo && phi ? shortMoney(plo) + "–" + shortMoney(phi) : plo ? shortMoney(plo) + "+" : "hasta " + shortMoney(phi)) + "/mes");
+    if (beds) bits.push(beds + "+ rec.");
+    node.textContent = bits.join(" · ");
+  }
   function syncBeds(){
     const row = $("bedRow");
     if (!row) return;
@@ -346,6 +365,7 @@
       chips();
       wireSwipe($("cards"));
       syncBeds();
+      syncSummary();
       const head = document.querySelector("body.page-search .topbar");
       if (head) document.documentElement.style.setProperty("--zhead", (head.offsetHeight + 8) + "px");
       if (scroll) document.getElementById("listings").scrollIntoView({block:"start", behavior:"smooth"});
@@ -367,6 +387,7 @@
     $("pager").innerHTML = "";
     wireSwipe($("cards"));
     syncBeds();
+    syncSummary();
     if (window.HomesMap) HomesMap.update(shown);
     if (window.HomesCart) HomesCart.sync();
     chips();
@@ -625,6 +646,8 @@
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ block: "start" });
   }
+  const summaryBtn = $("filterSummary");
+  if (summaryBtn) summaryBtn.addEventListener("click", () => { if (summaryBtn.getAttribute("aria-expanded") !== "true") syncSummary(); });
   const bedRow = $("bedRow");
   if (bedRow) bedRow.addEventListener("click", (e) => {
     const b = e.target.closest("button");

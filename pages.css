@@ -144,3 +144,10 @@ body{
 .foot .flinks{margin-top:10px}
 .foot .flinks a{margin:0 2px}
 .foot .legal{max-width:60ch;margin:14px auto 0;font-size:12px;color:#8b93a3}
+.topbar{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+.topbar .bn small{display:none}
+a.nav-account,a.acct-out{white-space:nowrap;font-size:14px;font-weight:800}
+.filter-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;margin:8px 0;padding:8px 12px;border-radius:999px;border:1.5px solid #15315e;background:#fff;color:#15315e;font:700 14px "DM Sans",system-ui,sans-serif;text-align:left;cursor:pointer}
+.filter-summary .edit{text-decoration:underline}
+.buyer-panel[hidden],#filterPanel[hidden]{display:none !important}
+.chip-label{margin:4px 0 0;font:700 11px "DM Sans",system-ui,sans-serif;letter-spacing:.12em;color:#5b6577}

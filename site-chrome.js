@@ -156,81 +156,76 @@
     acct.className = "acct-out";
     acct.href = "https://owner.getownerfinancedhomes.com/account?lang=" + (es ? "es" : "en");
     acct.rel = "noopener";
-    acct.textContent = es ? "Mi cuenta: visitas y documentos" : "My account: tours and paperwork";
+    acct.textContent = es ? "Mi cuenta" : "My account";
+    acct.setAttribute("aria-label", es ? "Mi cuenta: visitas y documentos" : "My account: tours and paperwork");
     const toggle = nav.querySelector(".nav-toggle");
     if (toggle) nav.insertBefore(acct, toggle);
     else nav.append(acct);
   }
+  nav.querySelectorAll("a.acct-out, a.nav-account").forEach(function (a) {
+    if (!es) return;
+    a.textContent = "Mi cuenta";
+    a.setAttribute("aria-label", "Mi cuenta: visitas y documentos");
+  });
 })();
 
-/* City pages: one swipeable row, a bedroom filter, and the real photo on each card. */
+/* City pages: collapse the filter block to one line until Editar. */
 (function () {
-  const list = document.getElementById("cityHomes");
-  if (!list) return;
-  if (!document.querySelector('link[href="/site.css"], link[href="site.css"]')) {
-    const css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = "/site.css";
-    document.head.appendChild(css);
-  }
   const form = document.getElementById("buyerSearch");
-  if (form && !form.querySelector("#cityBeds")) {
-    const bar = document.createElement("div");
-    bar.className = "bed-row";
-    bar.id = "cityBeds";
-    bar.innerHTML = '<span>Recámaras</span>'
-      + '<button type="button" data-beds="" aria-pressed="true">Cualquiera</button>'
-      + '<button type="button" data-beds="1">1+</button>'
-      + '<button type="button" data-beds="2">2+</button>'
-      + '<button type="button" data-beds="3">3+</button>'
-      + '<button type="button" data-beds="4">4+</button>';
-    list.before(bar);
+  if (!form || !form.querySelector(".range-chips") || document.getElementById("filterSummary")) return;
+  const beds = form.querySelector("#bedChips");
+  if (beds && !beds.previousElementSibling?.classList.contains("chip-label")) {
+    const label = document.createElement("p");
+    label.className = "chip-label";
+    label.textContent = "RECÁMARAS";
+    beds.before(label);
   }
-  const empty = document.createElement("p");
-  empty.className = "need-line";
-  empty.hidden = true;
-  empty.textContent = "Ninguna casa coincide. Elija Cualquiera o Borrar filtros en el inicio.";
-  list.after(empty);
-  const items = Array.prototype.slice.call(list.children);
-  items.forEach(function (li) {
-    const meta = li.querySelector(".meta");
-    const text = meta ? meta.textContent : "";
-    const found = text.match(/(\d+(?:\.\d+)?)\s+recámara/);
-    li.dataset.beds = found ? String(parseInt(found[1], 10)) : "";
-    if (!found && meta && text.indexOf("recámaras no indicadas") < 0) {
-      meta.appendChild(document.createTextNode(" · recámaras no indicadas"));
-    }
-    const id = li.getAttribute("data-id");
-    if (id && li.getAttribute("data-photo") === "1" && !li.querySelector("img")) {
-      const img = document.createElement("img");
-      img.src = "/images/cards/" + id + "-480.webp";
-      img.alt = "";
-      img.width = 320;
-      img.height = 200;
-      img.loading = "lazy";
-      img.decoding = "async";
-      li.insertBefore(img, li.firstChild);
-    }
-  });
-  const pending = items.filter(function (li) { return /pending/i.test(li.getAttribute("data-status") || ""); });
-  const available = items.filter(function (li) { return pending.indexOf(li) < 0; });
-  available.concat(pending).forEach(function (li) { list.appendChild(li); });
-  list.classList.add("swipe-row");
-  function applyBeds(min) {
-    let shown = 0;
-    items.forEach(function (li) {
-      const beds = parseInt(li.dataset.beds || "0", 10) || 0;
-      const hide = !!min && (!beds || beds < min);
-      li.hidden = hide;
-      if (!hide) shown += 1;
-    });
-    empty.hidden = shown > 0;
+  const summary = document.createElement("button");
+  summary.type = "button";
+  summary.className = "filter-summary";
+  summary.id = "filterSummary";
+  summary.setAttribute("aria-expanded", "false");
+  summary.setAttribute("aria-controls", "buyerSearch");
+  const text = document.createElement("span");
+  const edit = document.createElement("span");
+  edit.className = "edit";
+  edit.textContent = "Editar";
+  summary.append(text, edit);
+  form.before(summary);
+  form.hidden = true;
+  function money(n) {
+    n = Number(n);
+    if (!n) return "";
+    if (n % 1000 === 0) return "$" + (n / 1000) + "k";
+    return "$" + n.toLocaleString("en-US");
   }
-  const bar = document.getElementById("cityBeds");
-  if (bar) bar.addEventListener("click", function (e) {
-    const b = e.target.closest("button");
-    if (!b) return;
-    bar.querySelectorAll("button").forEach(function (btn) { btn.setAttribute("aria-pressed", btn === b ? "true" : "false"); });
-    applyBeds(parseInt(b.dataset.beds || "0", 10) || 0);
+  function pressed(group) {
+    return group ? group.querySelector("button[aria-pressed='true']") : null;
+  }
+  function line() {
+    const q = (form.querySelector("#fQ") || {}).value || "";
+    const city = q.split(",")[0].trim() || "Todas las ciudades";
+    const bits = [city];
+    const down = pressed(form.querySelector("[data-min='chipDownMin']"));
+    const pay = pressed(form.querySelector("[data-max='chipPayMax']"));
+    const bed = pressed(form.querySelector("#bedChips"));
+    if (down && (down.getAttribute("data-min") || down.getAttribute("data-max"))) {
+      const lo = down.getAttribute("data-min"), hi = down.getAttribute("data-max");
+      bits.push("enganche " + (lo && hi ? money(lo) + "–" + money(hi) : lo ? money(lo) + "+" : "hasta " + money(hi)));
+    }
+    if (pay && (pay.getAttribute("data-min") || pay.getAttribute("data-max"))) {
+      const lo = pay.getAttribute("data-min"), hi = pay.getAttribute("data-max");
+      bits.push((lo && hi ? money(lo) + "–" + money(hi) : lo ? money(lo) + "+" : "hasta " + money(hi)) + "/mes");
+    }
+    if (bed && bed.getAttribute("data-min")) bits.push(bed.getAttribute("data-min") + "+ rec.");
+    text.textContent = bits.join(" · ");
+  }
+  line();
+  form.addEventListener("change", line);
+  summary.addEventListener("click", function () {
+    const open = form.hidden;
+    form.hidden = !open;
+    summary.setAttribute("aria-expanded", open ? "true" : "false");
+    if (!open) line();
   });
 })();

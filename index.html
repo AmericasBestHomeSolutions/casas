@@ -381,7 +381,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </a>
     <nav class="topnav" aria-label="Sitio">
       <div class="lang" role="group" aria-label="Idioma"><a href="/" hreflang="es" aria-current="page">ES</a><a href="https://getownerfinancedhomes.com/" hreflang="en">EN</a></div>
-      <a class="acct-out" href="https://owner.getownerfinancedhomes.com/account?lang=es" rel="noopener">Mi cuenta: visitas y documentos</a>
+      <a class="acct-out" href="https://owner.getownerfinancedhomes.com/account?lang=es" rel="noopener" aria-label="Mi cuenta: visitas y documentos">Mi cuenta</a>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="siteMenu"><span class="nav-bars" aria-hidden="true"></span><span class="nav-word">Menú</span></button>
       <div class="site-menu" id="siteMenu">
         <a href="/#listings">Casas</a>
@@ -393,6 +393,11 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       </div>
     </nav>
     </div>
+    <button type="button" class="filter-summary" id="filterSummary" aria-expanded="false" aria-controls="filterPanel">
+      <span id="filterSummaryText">Todas las ciudades</span>
+      <span class="edit">Editar</span>
+    </button>
+    <div id="filterPanel" hidden>
     <form class="hdr-search buyer-search" id="buyerSearch" role="search" action="/">
       <label class="bs-field bs-q"><span>Ciudad o código postal</span>
         <input id="fQ" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" list="qHints" placeholder="Springfield o 62703" aria-label="Ciudad o código postal">
@@ -425,7 +430,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <button type="button" class="qf-clear" id="clearFilters">Borrar filtros</button>
     </div>
     <div class="bed-row" id="bedRow" hidden>
-      <span>Recámaras</span>
+      <span class="chip-label">RECÁMARAS</span>
       <button type="button" data-beds="" aria-pressed="true">Cualquiera</button>
       <button type="button" data-beds="1">1+</button>
       <button type="button" data-beds="2">2+</button>
@@ -449,6 +454,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <label id="fTypeWrap" hidden>Tipo de trabajo <select id="fType" aria-label="Tipo de trabajo"><option value="">Menos trabajo</option><option value="contractor">Proyectos más grandes</option><option value="all">Todas</option></select></label>
       <label>Dentro de <select id="fMiles"><option value="10">10 millas</option><option value="25" selected>25 millas</option><option value="50">50 millas</option><option value="100">100 millas</option></select></label>
       <button type="button" class="near sheet-wide" id="nearMe">Cerca de mí</button>
+    </div>
     </div>
   </header>
 
@@ -706,7 +712,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
           <li><span class="m">✕</span>Su dinero se va el día 1 — no lo vuelve a ver</li>
           <li><span class="m">✕</span>Está pagando la propiedad <em>del casero</em>, no la suya</li>
           <li><span class="m">✕</span>La renta sube, y usted no lo puede evitar</li>
-          <li><span class="m">✕</span>Después de 10, 20, 30 años — nada a cambio</li>
+          <li><span class="m">✕</span>Después de muchos años — nada a cambio</li>
           <li><span class="m">✕</span>Nada que sea suyo para conservar</li>
         </ul>
       </div>
@@ -823,6 +829,15 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
 
 </div>
 
+<script>
+document.getElementById("filterSummary").addEventListener("click", function () {
+  var panel = document.getElementById("filterPanel");
+  var open = panel.hasAttribute("hidden");
+  if (open) panel.removeAttribute("hidden");
+  else panel.setAttribute("hidden", "");
+  this.setAttribute("aria-expanded", open ? "true" : "false");
+});
+</script>
 <script>
 /* Paint the static cards first. Search, homes.js and the ZIP file wait
    until the buyer uses the search, or until a shared search link is opened. */
