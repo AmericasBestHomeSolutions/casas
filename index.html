@@ -50,8 +50,8 @@
   --lime:#ffffff;          /* white accent on navy (steps/tags) */
   --honey:#e23b3b;         /* RED accent (section labels)       */
   --honey-soft:#eaf1fb;    /* soft blue tint (icon backgrounds) */
-  --go:#e23b3b;            /* RED call-to-action buttons        */
-  --go-hover:#c92f2f;      /* darker red on hover               */
+  --go:#d32f2f;            /* RED call-to-action, white text >= 4.5:1 */
+  --go-hover:#b71c1c;      /* darker red on hover               */
   --radius:18px;
 }
 html{scroll-behavior:smooth}
@@ -333,7 +333,12 @@ body{
 .city-pills a{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line,#e2e8f2);border-radius:999px;padding:8px 14px;font-weight:700;font-size:14.5px;color:var(--pine,#15315e);text-decoration:none}
 .city-pills a:hover{border-color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb)}
 .city-pills .n{font-weight:600;color:var(--ink-soft,#5b6577)}
+body.page-search .hero,body.page-search .stats,body.page-search #featuredSec,body.page-search .whyband{display:none}
 body.page-search #cities{margin:0;padding:14px 16px 16px;background:#fff;border-bottom:1px solid var(--line,#e2e8f2)}
+@media(max-width:860px){
+  body.page-search .topbar{min-height:92px}
+  body.page-search #cards{min-height:280px}
+}
 body.page-search #cities .sec-title{font-size:clamp(22px,3vw,28px)}
 body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
 </style>
@@ -380,10 +385,10 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="z-quick" id="quickFilters" role="group" aria-label="Filtrar casas">
       <label class="qf"><span>Estado</span><select id="fState" aria-label="Estado"><option value="">Todos los estados</option></select></label>
       <label class="qf"><span>Ciudad</span><select id="fCity" aria-label="Ciudad"><option value="">Todas las ciudades</option></select></label>
-      <label class="qf"><span>Habitaciones</span><select id="fBeds" aria-label="Habitaciones"><option value="">Cualquiera</option><option value="1">1+ hab.</option><option value="2">2+ hab.</option><option value="3">3+ hab.</option><option value="4">4+ hab.</option></select></label>
+      <label class="qf"><span>Recámaras</span><select id="fBeds" aria-label="Recámaras"><option value="">Cualquiera</option><option value="1">1+ rec.</option><option value="2">2+ rec.</option><option value="3">3+ rec.</option><option value="4">4+ rec.</option></select></label>
       <label class="qf"><span>Precio desde</span><select id="fPriceMin" aria-label="Precio mínimo"><option value="">Sin mín.</option><option value="40000">$40k+</option><option value="50000">$50k+</option><option value="60000">$60k+</option><option value="70000">$70k+</option><option value="80000">$80k+</option><option value="90000">$90k+</option><option value="100000">$100k+</option><option value="150000">$150k+</option></select></label>
       <label class="qf"><span>Precio hasta</span><select id="fPriceMax" aria-label="Precio máximo"><option value="">Sin máx.</option><option value="50000">Hasta $50k</option><option value="60000">Hasta $60k</option><option value="70000">Hasta $70k</option><option value="80000">Hasta $80k</option><option value="90000">Hasta $90k</option><option value="100000">Hasta $100k</option><option value="150000">Hasta $150k</option></select></label>
-      <label class="qf"><span>Mensual</span><select id="fPayMax" aria-label="Pago mensual máximo"><option value="">Cualquiera</option><option value="600">Hasta $600</option><option value="800">Hasta $800</option><option value="1000">Hasta $1,000</option><option value="1200">Hasta $1,200</option><option value="1500">Hasta $1,500</option><option value="1800">Hasta $1,800</option></select></label>
+      <label class="qf"><span>Mensualidad</span><select id="fPayMax" aria-label="Mensualidad máxima"><option value="">Cualquiera</option><option value="600">Hasta $600</option><option value="800">Hasta $800</option><option value="1000">Hasta $1,000</option><option value="1200">Hasta $1,200</option><option value="1500">Hasta $1,500</option><option value="1800">Hasta $1,800</option></select></label>
       <button type="button" class="qf-more" id="moreFilters" aria-controls="filterSheet">Más filtros</button>
       <button type="button" class="qf-clear" id="clearFilters" hidden>Borrar todo</button>
     </div>
@@ -391,18 +396,18 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="z-sort">
       <p class="count" id="count"></p>
       <label class="sort-pill">Orden
-        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="monthly-asc">Mensual ↑</option><option value="down-asc">Inicial ↑</option><option value="price-asc">Precio ↑</option></select>
+        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="monthly-asc">Mensualidad ↑</option><option value="down-asc">Enganche ↑</option><option value="price-asc">Precio ↑</option></select>
       </label>
     </div>
     <div class="filter-sheet" id="filterSheet" hidden>
-      <label>Mensual mín.
-        <select id="fPayMin" aria-label="Pago mensual mínimo"><option value="">Sin mín.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option></select>
+      <label>Mensualidad mín.
+        <select id="fPayMin" aria-label="Mensualidad mínima"><option value="">Sin mín.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option></select>
       </label>
-      <label>Inicial mín.
-        <select id="fDownMin" aria-label="Pago inicial mínimo"><option value="">Sin mín.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option></select>
+      <label>Enganche mín.
+        <select id="fDownMin" aria-label="Enganche mínimo"><option value="">Sin mín.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option></select>
       </label>
-      <label>Inicial máx.
-        <select id="fDown" aria-label="Pago inicial máximo"><option value="">Sin máx.</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
+      <label>Enganche máx.
+        <select id="fDown" aria-label="Enganche máximo"><option value="">Sin máx.</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
       </label>
       <label>Baños
         <select id="fBaths" aria-label="Baños"><option value="">Cualquiera</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select>
@@ -421,7 +426,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="hero-inner">
       <span class="eyebrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2 3 7v6c0 5 3.8 8.4 9 11 5.2-2.6 9-6 9-11V7l-9-5z"/></svg> Financiamiento del Dueño · Sin Banco</span>
       <h1>Sea dueño de la casa.<br><em>Sin pasar por el banco.</em></h1>
-      <p class="hero-lead">Casas con financiamiento del dueño en Illinois, Missouri, Michigan, Alabama y más — un pago mensual fijo, parecido a lo que hoy le entrega a un casero. La diferencia: el día primero de cada mes, ese pago regresa a usted como una casa que es suya.</p>
+      <p class="hero-lead">Casas con financiamiento del dueño en Illinois, Missouri, Michigan, Alabama y más — una mensualidad fija, parecida a lo que hoy le entrega a un casero. La diferencia: el día primero de cada mes, esa mensualidad regresa a usted como una casa que es suya.</p>
       <p class="reassure">Su pasado no tiene por qué decidir su futuro. Si los bancos le han cerrado la puerta, esto se hizo para usted.</p>
       <div class="hero-cta">
         <a class="btn btn-lime" href="#listings">Ver las casas</a>
@@ -479,7 +484,31 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </ul>
   </section>
 
-  <!-- city-landings:start -->
+  
+
+  <section class="section" id="listings">
+    <div class="buyer-intro">
+      <h2>Casas con financiamiento del dueño. Enganche bajo. Sin banco.</h2>
+      <p>Les vendemos casas a personas trabajadoras y honestas, incluso a quienes el banco les ha dicho que no. Todas las casas se venden tal como están: usted la arregla a su manera, la hace suya y se queda por mucho tiempo. Más adelante puede rentarla, o conservarla como un lugar verdaderamente suyo a largo plazo. Es su casa.</p>
+      <ul>
+        <li>Nosotros le financiamos, no un banco</li>
+        <li>Enganche bajo</li>
+        <li>Es dueño desde el primer día</li>
+      </ul>
+      <p class="bi-cta">Encuentre una casa que le guste aquí abajo y toque <strong>Agende una visita</strong> en su página. <a href="como-funciona.html">Cómo funciona</a></p>
+    </div>
+    <div class="cards" id="cards"></div>
+    <button type="button" class="view-toggle" id="mapToggle" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="2"/></svg><span>Mapa</span></button>
+
+    <nav class="pager" id="pager" style="display:none;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px"></nav>
+
+    <div class="empty" id="empty">
+      <h3>Ninguna casa coincide con esos filtros — todavía</h3>
+      <p>Cada semana entran casas nuevas. Quite un filtro o amplíe la mensualidad o el enganche.</p>
+    </div>
+  </section>
+
+<!-- city-landings:start -->
   <section class="section" id="cities">
     <div class="sec-label">Por ciudad</div>
     <h2 class="sec-title">Casas con financiamiento del dueño por ciudad</h2>
@@ -534,28 +563,6 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   </section>
 <!-- city-landings:end -->
 
-  <section class="section" id="listings">
-    <div class="buyer-intro">
-      <h2>Casas con financiamiento del dueño. Pago inicial bajo. Sin banco.</h2>
-      <p>Les vendemos casas a personas trabajadoras y honestas, incluso a quienes el banco les ha dicho que no. Todas las casas se venden tal como están: usted la arregla a su manera, la hace suya y se queda por mucho tiempo. Más adelante puede rentarla, o conservarla como un lugar verdaderamente suyo a largo plazo. Es su casa.</p>
-      <ul>
-        <li>Nosotros le financiamos, no un banco</li>
-        <li>Pago inicial bajo</li>
-        <li>Es dueño desde el primer día</li>
-      </ul>
-      <p class="bi-cta">Encuentre una casa que le guste aquí abajo y toque <strong>Agende una visita</strong> en su página. <a href="como-funciona.html">Cómo funciona</a></p>
-    </div>
-    <div class="cards" id="cards"></div>
-    <button type="button" class="view-toggle" id="mapToggle" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="2"/></svg><span>Mapa</span></button>
-
-    <nav class="pager" id="pager" style="display:none;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px"></nav>
-
-    <div class="empty" id="empty">
-      <h3>Ninguna casa coincide con esos filtros — todavía</h3>
-      <p>Cada semana entran casas nuevas. Quite un filtro o amplíe el pago mensual o el inicial.</p>
-    </div>
-  </section>
-
   <section class="section" id="soldSec" style="margin-top:48px" hidden>
     <div class="spot-head"><h2>Vendidas recientemente</h2><span class="spot-sub">Estas casas ya encontraron a su comprador. La próxima podría ser suya.</span></div>
     <div class="sold-strip" id="soldStrip"></div>
@@ -597,7 +604,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <div class="trust-card">
         <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e23b3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <h3>El precio queda fijo</h3>
-        <p>Un pago mensual fijo, por escrito. No sube cada año como la renta — lo único que podría moverlo es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p>
+        <p>Una mensualidad fija, por escrito. No sube cada año como la renta — lo único que podría moverla es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p>
       </div>
       <div class="trust-card">
         <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e23b3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -618,7 +625,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <div class="step"><div class="n">1</div><h3>Elija una casa</h3><p>Vea la lista y agende una visita en la casa que quiere recorrer.</p></div>
       <div class="step"><div class="n">2</div><h3>Visite una casa</h3><p>Elija una casa que le guste y coordinamos una hora para recorrerla juntos.</p></div>
       <div class="step"><div class="n">3</div><h3>Firme un acuerdo sencillo</h3><p>Nosotros mismos la financiamos con un contrato de compraventa — en lenguaje claro, sin sorpresas.</p></div>
-      <div class="step"><div class="n">4</div><h3>Reciba las llaves</h3><p>Haga su pago de entrada y la casa es suya para vivir desde el primer día.</p></div>
+      <div class="step"><div class="n">4</div><h3>Reciba las llaves</h3><p>Haga su enganche y la casa es suya para vivir desde el primer día.</p></div>
     </div>
     <p style="text-align:center;margin-top:18px"><a href="como-funciona.html" style="font-weight:700;color:var(--pine);text-decoration:none;border-bottom:2px solid var(--go);padding-bottom:2px">Vea exactamente cómo funciona el financiamiento del dueño →</a></p>
   </section>
@@ -674,7 +681,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
         <h3>Cuando es dueño</h3>
         <ul>
           <li><span class="m">✓</span>Cada pago lo acerca a una casa que es <strong>suya</strong></li>
-          <li><span class="m">✓</span>Su pago mensual queda <strong>fijo por escrito</strong> — no sube cada año como la renta</li>
+          <li><span class="m">✓</span>Su mensualidad queda <strong>fija por escrito</strong> — no sube cada año como la renta</li>
           <li><span class="m">✓</span>Píntela, arréglela, hágala suya — es su propiedad</li>
           <li><span class="m">✓</span>Un bien — algo <strong>verdaderamente suyo</strong>, para conservar a largo plazo</li>
           <li><span class="m">✓</span>Si su vecindario sube de valor, esa ganancia es <strong>suya</strong></li>
@@ -683,7 +690,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </div>
     <div class="opp-story">
       <h3>La parte que nadie le cuenta</h3>
-      <p>Esto es lo que hemos visto pasar, mercado tras mercado: los vecindarios donde ofrecemos estas casas no se quedan abajo para siempre. Con los años, muchos se recuperan. Los bancos que antes le decían "no" a la zona vuelven a prestar ahí. Y las personas que aguantaron — que siguieron haciendo ese pago mensual — son las que hoy tienen una casa a un precio que fijaron años atrás, en un vecindario que ahora vale más. Algunas refinanciaron. Otras vendieron y salieron adelante. Todas fueron dueñas de algo real.</p>
+      <p>Esto es lo que hemos visto pasar, mercado tras mercado: los vecindarios donde ofrecemos estas casas no se quedan abajo para siempre. Con los años, muchos se recuperan. Los bancos que antes le decían "no" a la zona vuelven a prestar ahí. Y las personas que aguantaron — que siguieron pagando esa mensualidad — son las que hoy tienen una casa a un precio que fijaron años atrás, en un vecindario que ahora vale más. Algunas refinanciaron. Otras vendieron y salieron adelante. Todas fueron dueñas de algo real.</p>
       <p>Por eso lo tratamos como una oportunidad de oro — y por eso no se la ofrecemos a cualquiera. Tomamos un número limitado de compradores a la vez, y buscamos gente seria que entienda la responsabilidad que viene con las llaves, y que quiera la recompensa que viene con ella.</p>
       <p>Nadie le puede prometer el futuro. Pero una cosa es segura: <strong>la renta nunca le devuelve nada.</strong></p>
       <p class="fine">Cada casa y cada mercado es diferente — lo que pasó antes no garantiza el valor futuro. Lo que sí está garantizado es lo que dice su acuerdo por escrito: su precio fijo y sus términos.</p>
@@ -707,8 +714,8 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <h2>Creemos que todos merecen un lugar al que llamar suyo.</h2>
     <div class="body">
       <p>Americas Best Home Solutions nació de una idea sencilla: ser dueño de una casa no debería estar fuera del alcance de las personas trabajadoras. Por generaciones, tener casa propia ha sido el corazón del sueño americano — y el camino más seguro para construir un patrimonio real y duradero.</p>
-      <p>Cuando renta, cada pago desaparece en el bolsillo de otra persona. Cuando es dueño, ese mismo pago mensual construye algo que es <em>suyo</em> — una casa que gana valor con los años — un lugar verdaderamente suyo, para conservar a largo plazo o un día tener como inversión. La renta le compra un lugar donde quedarse. Ser dueño le compra un futuro.</p>
-      <p>En los mercados donde trabajamos, hemos encontrado casas buenas y de calidad que podemos ofrecer con financiamiento del dueño — con un pago mensual comparable a la renta. Sin banco. Sin trámites hipotecarios. Solo un camino real y honesto hacia la puerta de una casa que de verdad es suya.</p>
+      <p>Cuando renta, cada pago desaparece en el bolsillo de otra persona. Cuando es dueño, esa misma mensualidad construye algo que es <em>suyo</em> — una casa que gana valor con los años — un lugar verdaderamente suyo, para conservar a largo plazo o un día tener como inversión. La renta le compra un lugar donde quedarse. Ser dueño le compra un futuro.</p>
+      <p>En los mercados donde trabajamos, hemos encontrado casas buenas y de calidad que podemos ofrecer con financiamiento del dueño — con una mensualidad comparable a la renta. Sin banco. Sin trámites hipotecarios. Solo un camino real y honesto hacia la puerta de una casa que de verdad es suya.</p>
       <blockquote>¿Por qué seguir pagando renta por una vida que nunca será suya — cuando podría <span>ser dueño de la casa?</span></blockquote>
     </div>
     <div class="sig">— El equipo de Americas Best Home Solutions</div>
@@ -751,7 +758,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <h2>Usted está comprando — no rentando</h2>
     <div class="benefits">
       <article><h3>Es dueño desde el primer día</h3><p>Su nombre está en el acuerdo el día que firma. Usted es el dueño, no un inquilino.</p></article>
-      <article><h3>Su pago no se mueve</h3><p>Un pago mensual fijo, por escrito. No sube cada año como la renta — lo único que podría moverlo es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p></article>
+      <article><h3>Su pago no se mueve</h3><p>Una mensualidad fija, por escrito. No sube cada año como la renta — lo único que podría moverla es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p></article>
       <article><h3>Un pago parecido a la renta</h3><p>Sea dueño de una casa por más o menos lo que le pagaría a un casero — y construye algo que es suyo.</p></article>
       <article><h3>Sin banco de por medio</h3><p>Sin solicitud hipotecaria y sin un banco decidiendo si le dan una casa.</p></article>
     </div>
@@ -759,7 +766,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="faq" id="faq">
       <details open><summary>¿Es lo mismo que rentar?</summary><p class="ans">No. Cuando renta, el dinero se va y la casa sigue siendo del casero. Aquí, usted es el comprador desde el primer día y cada pago va hacia ser dueño de la casa a un precio fijo.</p></details>
       <details><summary>¿Necesito un banco para comprar una de estas casas?</summary><p class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Agende una visita y recorra la casa usted mismo.</p></details>
-      <details><summary>¿Qué pago para mudarme?</summary><p class="ans">Cada casa muestra su pago de entrada y su pago mensual justo en su página. No hay números escondidos — repasamos todo con usted.</p></details>
+      <details><summary>¿Cuál es el enganche?</summary><p class="ans">Cada casa muestra su enganche y su mensualidad justo en su página. No hay números escondidos — repasamos todo con usted.</p></details>
       <details><summary>¿Puedo pintar, arreglar o mejorar la casa?</summary><p class="ans">Sí — es su casa. A muchos compradores les encanta hacerla suya. Cubrimos cualquier detalle específico en su acuerdo.</p></details>
     </div>
   </section>
@@ -786,6 +793,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
 <script src="listed-dates.js"></script>
 <script src="visitor-near.js"></script>
 <script src="homes.js"></script>
+<script src="photo-index.js"></script>
 <script src="homes-map.js"></script>
 <script src="homes-cart.js"></script>
 <script src="site-chrome.js"></script>
@@ -833,15 +841,23 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     return !!(raw && t && (Date.now() - t) <= 7 * 86400000);
   }
 
-  // Default order. Every home is featured, so: homes near the visitor first (their picked city, "Near me",
-  // or a keyless approximate lookup; see visitor-near.js), then newest listed first, then complete listings.
+  // Default order. Seller photos come before Street View-only homes. Inside each
+  // group: homes near the visitor first, then newest listed (visitor-near.js).
+  function realPhoto(h){
+    const meta = (window.PHOTO_INDEX || {})[h.id];
+    return meta && meta.real ? 1 : 0;
+  }
   function completeFirst(a, b){
-    return (photoReady.has(b.id) - photoReady.has(a.id)) || ((b.address?1:0) - (a.address?1:0));
+    return (realPhoto(b) - realPhoto(a)) || ((b.address?1:0) - (a.address?1:0));
   }
   function defaultOrder(){
-    if (window.VisitorNear) return VisitorNear.compare(completeFirst);
-    const t = h => Date.parse(((typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}))[h.id]) || "") || 0;
-    return (a, b) => (t(b) - t(a)) || completeFirst(a, b);
+    const within = window.VisitorNear
+      ? VisitorNear.compare((a, b) => (b.address?1:0) - (a.address?1:0))
+      : (a, b) => {
+          const t = h => Date.parse(((typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}))[h.id]) || "") || 0;
+          return (t(b) - t(a)) || ((b.address?1:0) - (a.address?1:0));
+        };
+    return (a, b) => (realPhoto(b) - realPhoto(a)) || within(a, b);
   }
 
   // filter options — built from whatever is in homes.js
@@ -877,20 +893,25 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   }
   function cardHTML(h, opts){
     const [a,b] = faceFor(h.city + h.state);
+    const rec = Number(h.beds);
     const specs = [
-      h.beds ? `${h.beds} hab` : "",
+      rec ? `${rec} recámara${rec===1?"":"s"}` : "",
       h.baths ? `${h.baths} ba` : "",
       (h.sqft && Number(h.sqft)) ? `${Number(h.sqft).toLocaleString("en-US")} pies²` : ""
     ].filter(Boolean).join(" | ");
-    const photoSrc = h.heroPhoto || `images/${h.id}.jpg`;
+    const meta = (window.PHOTO_INDEX || {})[h.id] || {};
     const pending = isPending(h);
     const tag = pending ? "" : ((opts && opts.featured && h.featured) ? "Destacada" : featureTag(h));
     const where = [h.address, h.city, h.state].filter(Boolean).join(", ");
+    const eager = opts && opts.eager;
+    const photo = meta.card
+      ? `<img src="${meta.card}" alt="Casa en ${h.city}, ${h.state}" width="${meta.w}" height="${meta.h}" loading="${eager?"eager":"lazy"}" decoding="async"${eager?' fetchpriority="high"':""}>`
+      : "";
     return `
     <a class="card${h.contractor?" is-cs":""}${pending?" is-pending":""}" data-hid="${h.id}" href="${encodeURIComponent(h.id)}.html">
       <div class="card-face" style="background:linear-gradient(135deg,${a},${b})">
-        <img src="${photoSrc}" alt="Casa en ${h.city}, ${h.state}" loading="lazy" data-sv="images/sv/${h.id}.jpg" style="opacity:0;transition:opacity .3s ease" onload="this.style.opacity=1" onerror="window.__svFallback(this)">
-        <span class="sv-badge" hidden>Vista de calle · © Google</span>
+        ${photo}
+        <span class="sv-badge"${meta.sv?"":" hidden"}>Vista de calle · © Google</span>
         ${(h.photos||[]).length>1?`<button type="button" class="pg pv" aria-label="Foto anterior">‹</button><button type="button" class="pg nx" aria-label="Foto siguiente">›</button><span class="pdots">${Array.from({length:Math.min(6,(h.photos||[]).length)},(_,k)=>`<i${k?"":" class=\"on\""}></i>`).join("")}</span>`:""}
         ${pending ? `<span class="status-tag pending">Pendiente</span>` : (tag ? `<span class="z-feat">${tag}</span>` : "")}
         ${window.HomesCart?HomesCart.heart(h):""}
@@ -899,14 +920,12 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
         <div class="card-price"><span class="num">${money(h.monthlyPayment)}</span><span class="per">/mes</span></div>
         <div class="card-specs">${specs}</div>
         <div class="card-where">${where}</div>
-        ${h.moveIn ? `<div class="card-down">${money(h.moveIn)} para mudarse</div>` : ""}
+        ${h.moveIn ? `<div class="card-down">${money(h.moveIn)} de enganche</div>` : ""}
         ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin-top:4px">${h._dist.toFixed(1)} mi</div>`:""}
       </div>
     </a>`;
   }
 
-  // homes that actually have a cover photo load into this set, then sort to the top
-  const photoReady = new Set();
   const PER_PAGE = 12;   // a short, scannable page; the pager does the rest
   let page = 1;
 
@@ -956,7 +975,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     const pages = Math.max(1, Math.ceil(shown.length / PER_PAGE));
     if (page > pages) page = 1;
     const slice = shown.slice((page-1)*PER_PAGE, page*PER_PAGE);
-    $("cards").innerHTML = slice.map(h => cardHTML(h)).join("");
+    $("cards").innerHTML = slice.map((h, i) => cardHTML(h, {eager: page===1 && i===0})).join("");
     $("empty").style.display = shown.length ? "none" : "block";
     const start = shown.length ? (page-1)*PER_PAGE+1 : 0;
     const end = Math.min(page*PER_PAGE, shown.length);
@@ -1037,12 +1056,15 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     dl.innerHTML = cities.map(c => `<option value="${c}">`).join("");
   })();
 
-
   // swipeable / arrow photo browsing on cards (cover first, then up to 5 more photos)
   (function(){
     const box = $("cards"); if(!box) return;
     const byId = id => LISTINGS.find(h => h.id === id);
-    const pics = h => { const cover = h.heroPhoto || `images/${h.id}.jpg`; return [cover, ...(h.photos||[]).filter(p => p !== cover && p !== h.heroPhoto)].slice(0,6); };
+    const pics = h => {
+      const meta = (window.PHOTO_INDEX || {})[h.id] || {};
+      const cover = meta.real ? (h.heroPhoto || `images/${h.id}.jpg`) : "";
+      return [cover, ...(h.photos||[])].filter((p, i, all) => p && all.indexOf(p) === i).slice(0, 6);
+    };
     // same picture as the cover (re-saved copies differ in bytes): compare 16x16 grayscale thumbnails
     const thumbCache = {};
     function thumb(src){ return thumbCache[src] || (thumbCache[src] = new Promise(res => { const im = new Image(); im.onload = () => { try{ const c = document.createElement("canvas"); c.width = c.height = 16; const x = c.getContext("2d"); x.drawImage(im,0,0,16,16); res(x.getImageData(0,0,16,16).data); }catch(e){ res(null); } }; im.onerror = () => res(null); im.src = src; })); }
@@ -1085,9 +1107,9 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       else if (hi) bits.push({ids:[hiId], label:`Hasta ${m(hi)}${unit}`});
     };
     addRange("fPayMin", "fPayMax", "/mes");
-    addRange("fDownMin", "fDown", " inicial");
+    addRange("fDownMin", "fDown", " de enganche");
     addRange("fPriceMin", "fPriceMax", "");
-    if ($("fBeds").value) bits.push({ids:["fBeds"], label: $("fBeds").value + "+ habitaciones"});
+    if ($("fBeds").value) bits.push({ids:["fBeds"], label: $("fBeds").value + "+ recámaras"});
     if ($("fBaths").value) bits.push({ids:["fBaths"], label: $("fBaths").value + "+ baños"});
     if ($("fState").value) bits.push({ids:["fState"], label: $("fState").value});
     if ($("fCity").value) bits.push({ids:["fCity"], label: $("fCity").value});
@@ -1237,14 +1259,6 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     }
     if (!location.hash) requestAnimationFrame(() => sec.scrollIntoView({ block: "start" }));
   })();
-  // detect which homes have a real cover photo (no homes.js editing needed — just
-  // drop images/<id>.jpg and it auto-prioritizes), then re-sort photo homes to the top
-  Promise.allSettled(HOMES.map(h => new Promise(res => {
-    const im = new Image();
-    im.onload  = () => { if (im.naturalWidth > 1) photoReady.add(h.id); res(); };
-    im.onerror = () => res();
-    im.src = h.heroPhoto || `images/${h.id}.jpg`;
-  }))).then(() => render());
 
   // scroll reveal (respects reduced-motion via CSS)
   if ("IntersectionObserver" in window){

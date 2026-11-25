@@ -243,8 +243,18 @@ body.page-search .card-down { font-weight: 800; margin-top: 6px; color: var(--in
   body.page-search #listings { height: auto; overflow: visible; }
   body.page-search #split { display: block !important; min-height: 0; }
   body.page-search #splitMap { display: none; position: static; height: calc(100vh - 210px); margin: 0; border-radius: 0; border: 0; }
-  /* phones: the quick filters are one swipeable row so the sticky header stays short */
-  body.page-search .z-quick { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  /* phones: one short sticky row (brand, search, sort). Filters stay on the filter button. */
+  body.page-search .topbar { padding: 6px 12px 4px; }
+  body.page-search .brand .mark { width: 22px; height: 22px; }
+  body.page-search .brand .bn { font-size: 15px; }
+  body.page-search .brand .bn small { display: none; }
+  body.page-search .hdr-search { margin-top: 6px; min-height: 40px; }
+  body.page-search .z-quick { display: none; }
+  body.page-search .z-sort { padding: 2px 0 0; }
+  body.page-search .buyer-intro { margin: 8px 12px 0; }
+  body.page-search .buyer-intro h2 { font-size: 20px; line-height: 1.2; }
+  body.page-search .buyer-intro p, body.page-search .buyer-intro ul { font-size: 14px; margin-top: 6px; }
+  body.page-search #cities { margin-top: 28px; }
   body.page-search .z-quick::-webkit-scrollbar { display: none; }
   body.page-search .z-quick .qf, body.page-search .z-quick button { flex: 0 0 auto; }
   body.page-search .z-quick select { min-width: 0; font-size: 16px; padding: 7px 8px; }
