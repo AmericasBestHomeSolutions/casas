@@ -249,9 +249,8 @@ const BOOK_HREF = {
 };
 const BOOK_CLOSED = ["carbondale-il-303-sycamore", "jackson-ms-1546-david", "springfield-il-1132-oak", "stlouis-mo-4121-clara", "stlouis-mo-5152-maffitt", "stlouis-mo-7534-blanding", "stlouis-mo-8800-jordan"];
 const BOOK_CRM = "https://owner.getownerfinancedhomes.com/book";
-const BOOK_LANG = "es";
 function bookHref(homeId){
-  if (BOOK_CLOSED.indexOf(homeId) !== -1) return encodeURIComponent(homeId) + '.html';
-  if (BOOK_HREF[homeId]) return BOOK_HREF[homeId];
-  return BOOK_CRM+'?home='+encodeURIComponent(homeId)+'&lang='+BOOK_LANG;
+  if(BOOK_CLOSED.indexOf(homeId) !== -1) return encodeURIComponent(homeId) + '.html';
+  if(BOOK_HREF[homeId]) return BOOK_HREF[homeId];
+  return BOOK_CRM + '?home=' + encodeURIComponent(homeId) + '&lang=es';
 }
