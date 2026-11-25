@@ -90,30 +90,52 @@
     });
   }
 
+  function withSearch(url) {
+    const onSearch = file === "index.html" || file === "" || location.pathname === "/";
+    if (!onSearch) return url;
+    const params = new URLSearchParams(location.search);
+    const keep = new URLSearchParams();
+    ["q", "down", "payMax"].forEach(function (key) {
+      if (params.get(key)) keep.set(key, params.get(key));
+    });
+    const qs = keep.toString();
+    return qs ? url + (url.indexOf("?") >= 0 ? "&" : "?") + qs : url;
+  }
+
   const esLink = nav.querySelector(".nav-es");
   if (esLink) {
     const tail = id ? "/" + id + ".html" : ((file === "index.html" || file === "") ? "/" : path);
-    esLink.href = there + tail;
+    esLink.href = withSearch(there + tail);
     esLink.textContent = es ? "English" : "Español";
     esLink.hreflang = es ? "en" : "es";
   }
 
-  if (!nav.querySelector(".lang")) {
-    const lang = document.createElement("div");
+  const tail = id ? "/" + id + ".html" : ((file === "index.html" || file === "") ? "/" : path);
+  let lang = nav.querySelector(".lang");
+  if (!lang) {
+    lang = document.createElement("div");
     lang.className = "lang";
     lang.setAttribute("role", "group");
     lang.setAttribute("aria-label", es ? "Idioma" : "Language");
     const aHere = document.createElement("a");
-    aHere.href = here + (id ? "/" + id + ".html" : ((file === "index.html" || file === "") ? "/" : path));
-    aHere.textContent = es ? "ES" : "EN";
-    aHere.hreflang = es ? "es" : "en";
-    aHere.setAttribute("aria-current", "page");
     const aThere = document.createElement("a");
-    aThere.href = there + (id ? "/" + id + ".html" : ((file === "index.html" || file === "") ? "/" : path));
-    aThere.textContent = es ? "EN" : "ES";
-    aThere.hreflang = es ? "en" : "es";
     lang.append(aHere, aThere);
-    menu.append(lang);
+    const toggle = nav.querySelector(".nav-toggle");
+    if (toggle) nav.insertBefore(lang, toggle);
+    else nav.append(lang);
+  }
+  const langLinks = lang.querySelectorAll("a");
+  if (langLinks[0]) {
+    langLinks[0].href = withSearch(here + tail);
+    langLinks[0].textContent = es ? "ES" : "EN";
+    langLinks[0].hreflang = es ? "es" : "en";
+    langLinks[0].setAttribute("aria-current", "page");
+  }
+  if (langLinks[1]) {
+    langLinks[1].href = withSearch(there + tail);
+    langLinks[1].textContent = es ? "EN" : "ES";
+    langLinks[1].hreflang = es ? "en" : "es";
+    langLinks[1].removeAttribute("aria-current");
   }
 
   if (!nav.querySelector("a.saved")) {
@@ -128,13 +150,15 @@
     saved.innerHTML = (es ? "Guardados" : "Saved") + (savedCount ? '<span class="count">' + savedCount + "</span>" : "");
     menu.append(saved);
   }
-  if (!nav.querySelector("a.my-account")) {
+  if (!nav.querySelector("a.acct-out")) {
     // Buyer account (sign in with an email code; see and change tours) lives on the CRM.
     const acct = document.createElement("a");
-    acct.className = "my-account";
-    acct.href = (es ? "/cuenta/" : "/account/") + "?lang=" + (es ? "es" : "en");
+    acct.className = "acct-out";
+    acct.href = "https://owner.getownerfinancedhomes.com/account?lang=" + (es ? "es" : "en");
     acct.rel = "noopener";
-    acct.textContent = es ? "Mi cuenta" : "My account";
-    menu.append(acct);
+    acct.textContent = es ? "Mi cuenta: visitas y documentos" : "My account: tours and paperwork";
+    const toggle = nav.querySelector(".nav-toggle");
+    if (toggle) nav.insertBefore(acct, toggle);
+    else nav.append(acct);
   }
 })();

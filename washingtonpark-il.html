@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://casasconfinanciamiento.com/images/_share-default.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;600;700&display=optional" rel="stylesheet">
 <link rel="stylesheet" href="/pages.css">
 <link rel="stylesheet" href="/nav.css">
 <style>
@@ -60,6 +60,12 @@
     <h1>Casas con financiamiento del dueño en Washington Park, IL</h1>
     <p class="lead">1 casa en Washington Park, IL que puede comprar con financiamiento del dueño. El precio, el enganche y la mensualidad están en cada anuncio. No hay banco ni solicitud hipotecaria.</p>
   </section>
+  <form class="city-search" action="/" method="get">
+    <label>Ciudad o código postal<input name="q" value="Washington Park, IL" autocomplete="off"></label>
+    <label>Enganche máximo<select name="down"><option value="">Cualquiera</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="2500">$2,500</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select></label>
+    <label>Mensualidad máxima<select name="payMax"><option value="">Cualquiera</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1100">$1,100</option><option value="1200">$1,200</option><option value="1300">$1,300</option><option value="1400">$1,400</option><option value="1500">$1,500</option></select></label>
+    <button type="submit">Buscar</button>
+  </form>
   <ul class="city-list">
       <li><a href="/washingtonpark-il-5617-warren.html">5617 Warren Ave.</a><span class="meta">Washington Park, IL · $59,900 · $1,400 de enganche · $672/mes · 2 recámaras, 1 baño</span></li>
   </ul>

@@ -14,15 +14,24 @@
   --ink:#16213a;
   --ink-soft:#5b6577;
   --line:#e2e8f2;
-  --pine:#15315e;
+  --brand-primary:#15315e;
+  --brand-accent:#d32f2f;
+  --pine:var(--brand-primary);
   --pine-deep:#0f2444;
   --honey:#e23b3b;
   --honey-soft:#eaf1fb;
-  --go:#d32f2f;
+  --go:var(--brand-accent);
   --go-hover:#b71c1c;
   --radius:18px;
 }
 html{scroll-behavior:smooth}
+.joe-intro{display:grid;grid-template-columns:120px 1fr;gap:8px 16px;align-items:start;margin:18px 0}
+.joe-intro .joe-photo{width:120px;aspect-ratio:600/717}
+.joe-intro .joe-photo img{width:100%;height:100%;object-fit:cover;border-radius:16px;display:block}
+.joe-intro .joe-sub{color:var(--ink-soft);font-size:14px}
+.joe-intro p{margin:0 0 8px}
+.joe-ph[hidden]{display:none !important}
+html[data-preview="1"] .joe-ph{display:block !important;border:1px dashed var(--brand-primary,#15315e);border-radius:12px;padding:12px 14px;margin:12px 0;background:#fff}
 body{
   background:var(--paper);color:var(--ink);
   font-family:'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;
