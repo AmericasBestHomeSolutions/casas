@@ -38,6 +38,8 @@ def _homes(records: list[tuple[str, list[str]]]) -> str:
 
 class MirrorTests(unittest.TestCase):
     def setUp(self) -> None:
+        if not hasattr(P, "mirror_english_photos"):
+            self.skipTest("card files are produced in the homes repo; casas only stamps the first screen")
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)
         self.es = self.root / "es"
@@ -140,6 +142,8 @@ class MirrorTests(unittest.TestCase):
 
 class ThumbnailAndSortTests(unittest.TestCase):
     def test_thumbnail_is_cached_and_real_photos_sort_first(self):
+        if not hasattr(P, "write_photo_index"):
+            self.skipTest("thumbnails are encoded in the homes repo")
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
         root = Path(tmp.name)
@@ -178,8 +182,15 @@ class HomepageContractTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         text = (root / "index.html").read_text(encoding="utf-8")
         self.assertNotIn("Promise.allSettled(HOMES.map", text)
-        self.assertIn("PHOTO_INDEX", text)
-        self.assertIn("realPhoto", text)
+        self.assertIn("first-cards:start", text)
+        self.assertIn('fetchpriority="high"', text)
+        self.assertIn("320w", text)
+        self.assertIn("480w", text)
+        self.assertNotIn('<script src="buyer-search.js"', text)
+        self.assertNotIn('<script src="homes.js"', text)
+        page = (root / "home-page.js").read_text(encoding="utf-8")
+        self.assertIn("PHOTO_INDEX", page)
+        self.assertIn("realPhoto", page)
         self.assertIn('loading="', text)
         self.assertIn("width=", text)
         home = (root / "home.html").read_text(encoding="utf-8")

@@ -375,8 +375,11 @@ def main() -> None:
     gone = excluded_homes.apply(ROOT, "es", extra=(ROOT.parent / "homes", ROOT / "_homes"))
     if gone:
         print("excluded (data/excluded-homes.json): " + ", ".join(gone))
-    import card_photos  # English photo files + photos[]; card thumbnails; photo-index.js
-    photos = card_photos.mirror_english_photos(ROOT)
+    import card_photos  # card thumbnails; first-screen HTML. Same file as the homes repo.
+    if hasattr(card_photos, "mirror_english_photos"):
+        photos = card_photos.mirror_english_photos(ROOT)
+    else:
+        photos = {"copied_covers": [], "copied_gallery": {}, "copied_sv": [], "photos_filled": [], "blank_before": [], "blank_after": []}
     if photos["copied_covers"] or photos["copied_gallery"] or photos["copied_sv"] or photos["photos_filled"]:
         print(
             "photos from the English site: "
@@ -400,8 +403,13 @@ def main() -> None:
     b = book_links.build(ROOT, "es", extra=(ROOT.parent / "homes", ROOT / "_homes"))
     import seo_pages  # unique titles, JSON-LD, hreflang, city pages; reads homes.js, does not edit it
     seo_note = seo_pages.rebuild(ROOT, "es")
-    indexed = card_photos.write_photo_index(ROOT)
+    if hasattr(card_photos, "write_photo_index"):
+        indexed = card_photos.write_photo_index(ROOT)
+    else:
+        indexed = {}
+    stamped = card_photos.stamp_first_screen(ROOT) if hasattr(card_photos, "stamp_first_screen") else 0
     real = sum(1 for meta in indexed.values() if meta.get("real"))
+    print(f"first screen cards: {stamped}")
     print(
         f"photo index: {len(indexed)} homes, {real} with a seller photo, "
         f"{sum(1 for meta in indexed.values() if meta.get('sv'))} street view only; "

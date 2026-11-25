@@ -113,7 +113,6 @@ const BOOK_HREF = {
   "decatur-il-989-packard": "/agendar/989-packard",
   "detroit-mi-15871-fairmount": "/agendar/15871-fairmount",
   "detroit-mi-8577-mark": "/agendar/8577-mark",
-  "duquoin-il-322-cole": "/agendar/322-cole",
   "eastalton-il-136-illinois": "/agendar/136-illinois",
   "eastalton-il-336-goulding": "/agendar/336-goulding",
   "eaststlouis-il-1422-54th": "/agendar/1422-54th",

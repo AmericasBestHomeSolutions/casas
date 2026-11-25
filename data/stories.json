@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "stories": [
+    {
+      "placeholder": false,
+      "name": "Logan, Decatur",
+      "en": "The simplicity of the process, the understanding from Joe and all of his help, and how fast we got it done! A very thorough process with a very helpful member to solve any problems and answer all of our questions made our experience a 10/10. Joe is excellent at what he does!",
+      "es": "La sencillez del proceso, la comprensión de Joe y toda su ayuda, y lo rápido que lo hicimos. Un proceso muy completo, con una persona del equipo muy servicial para resolver cualquier problema y contestar todas nuestras preguntas, hizo que nuestra experiencia fuera un 10 de 10. Joe es excelente en lo que hace.",
+      "source": "reviews.json",
+      "consent_date": "10/9/2026",
+      "verified_by": "published review"
+    }
+  ]
+}

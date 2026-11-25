@@ -15,7 +15,7 @@ const CONTACT = {
   makeWebhook: "https://hook.us2.make.com/h9jsckkipxxm4ngezfzldtflx4y2efo9",
 };
 
-/* --- las casas (254, generadas desde la web en inglés) --- */
+/* --- las casas (253, generadas desde la web en inglés) --- */
 const HOMES = [
   {
     id: "eaststlouis-il-2008-61st",
@@ -3464,35 +3464,6 @@ const HOMES = [
     hasPhoto: true,
     photoCount: 25,
     cardPhoto: "images/cards/carbondale-il-303-sycamore-480.webp",
-    cardWidth: 480,
-    cardHeight: 640,
-    cardW320: 320,
-  },
-  {
-    id: "duquoin-il-322-cole",
-    address:     "322 West Cole Street",
-    zip:         "62833",
-    description: "$975 al mes y $2,200 para mudarse le consigue tres recámaras y dos baños en Du Quoin, IL. Esta es una casa grande con potencial de verdad, y el techo ha sido completamente reemplazado, así que la preocupación más grande de arriba ya está resuelta. Atrás, el patio es suyo para usarlo como guste: un huerto, una parrilla, una taza de café tranquila mientras el sol se pone. Y nadie más tiene voz en si se queda. El precio de compra es $89,000, arreglado por escrito el día que firma, con financiamiento del dueño y sin banco en ningún lado. La casa se vende tal como está, así que venga y recorra cada cuarto y decida en persona. Las casas con este pago no esperan mucho. Agende una visita ahora y consiga una cita antes de que alguien más lo haga.",
-    descriptionLang: "es",
-    city:  "Du Quoin",
-    state: "IL",
-    beds:  3,
-    baths: 2,
-    sqft:  "",
-    lat:   38.019512,
-    lng:   -89.244178,
-    geo:   "exact",
-    status: "Available",
-    monthlyPayment: 975,
-    moveIn:         2200,
-    lockedPrice:    89000,
-    termText:       "Financiamiento del dueño a 30 años (contrato de compraventa)",
-    features: { backyard: "yes" },
-    heroPhoto: "",
-    photos:    ["images/duquoin-il-322-cole-1.jpg", "images/duquoin-il-322-cole-2.jpg", "images/duquoin-il-322-cole-3.jpg", "images/duquoin-il-322-cole-4.jpg", "images/duquoin-il-322-cole-5.jpg"],
-    hasPhoto: true,
-    photoCount: 6,
-    cardPhoto: "images/cards/duquoin-il-322-cole-480.webp",
     cardWidth: 480,
     cardHeight: 640,
     cardW320: 320,

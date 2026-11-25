@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script>if(/[?&]preview=1(?:&|$)/.test(location.search))document.documentElement.setAttribute("data-preview","1");</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path d='M24 3 41 9V23C41 33 33 41 24 45 15 41 7 33 7 23V9Z' fill='%2315315e'/><path d='M15 26 24 18 33 26Z' fill='%23e23b3b'/><rect x='17.5' y='26' width='13' height='9' fill='white'/><rect x='22' y='30' width='4' height='5' fill='%2315315e'/></svg>"/>
 <title>Cómo Funciona el Financiamiento del Dueño | Americas Best Home Solutions</title>
 <meta name="description" content="Cómo funciona el financiamiento del dueño, en palabras claras — el proceso, lo que recibe, y lo que se espera de usted como dueño de la casa."/>
@@ -30,16 +31,20 @@
   --ink:#16213a;
   --ink-soft:#5b6577;
   --line:#e2e8f2;
-  --pine:#15315e;
+  --brand-primary:#15315e; --brand-accent:#d32f2f;
+  --pine:var(--brand-primary);
   --pine-deep:#0f2444;
   --lime:#ffffff;
   --honey:#e23b3b;
   --honey-soft:#eaf1fb;
-  --go:#d32f2f;
+  --go:var(--brand-accent);
   --go-hover:#b71c1c;
   --radius:18px;
 }
 html{scroll-behavior:smooth}
+.joe-ph[hidden]{display:none !important}
+html[data-preview="1"] .joe-ph{display:block !important;border:1px dashed var(--brand-primary,#15315e);border-radius:12px;padding:12px 14px;margin:12px 0;background:#fff}
+.finance-stats{margin-top:14px;font-weight:700}
 body{
   background:var(--paper);color:var(--ink);
   font-family:'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;
@@ -209,7 +214,23 @@ body{
   <section class="section reveal">
     <div class="sec-label">La versión corta</div>
     <h2 class="sec-title">Usted compra — no renta</h2>
-    <p class="lede">Con el financiamiento del dueño, <strong>el dueño</strong> es el banco. En lugar de ir a conseguir una hipoteca, el dueño le financia la casa directamente con un acuerdo sencillo por escrito, y nosotros lo guiamos en el proceso. Usted se muda como comprador, paga una mensualidad, y esa mensualidad va hacia ser dueño de la casa — a un precio fijado el día que firma. Ninguna aprobación de banco de por medio.</p>
+    <p class="lede">Con el financiamiento del dueño, <strong>el dueño es el vendedor</strong>. No hay banco ni solicitud hipotecaria. El precio queda fijo en un acuerdo por escrito, con el enganche publicado y un plazo de 30 años.</p>
+  </section>
+
+  <section class="section">
+    <div class="sec-label">El camino</div>
+    <h2 class="sec-title">De la visita a las llaves</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div class="body"><h3>Visite y elija la casa</h3><p>Agende una visita, recorra la casa y elija la que quiere.</p></div></div>
+      <div class="step"><div class="n">2</div><div class="body"><h3>Le enviamos un paquete de bienvenida</h3><p>Después de la visita le mandamos el paquete de bienvenida.</p></div></div>
+      <div class="step"><div class="n">3</div><div class="body"><h3>Usted envía el enganche o el depósito</h3><p>Usted manda el enganche publicado, o el depósito.</p></div></div>
+      <div class="step"><div class="n">4</div><div class="body"><h3>Hacemos el papeleo</h3><p>Preparamos los documentos. Los términos finales se confirman ahí.</p></div></div>
+      <div class="step"><div class="n">5</div><div class="body"><h3>Las llaves</h3><p>En Illinois, después de firmar hay un derecho de cancelación de 3 días y luego entregamos las llaves. En los demás estados, las llaves se entregan enseguida después de firmar.</p></div></div>
+    </div>
+    <!-- finance-stats:start -->El enganche más bajo entre las casas disponibles es $500. 181 casas disponibles piden $2,500 de enganche o menos.<!-- finance-stats:end -->
+    <h2 class="sec-title" style="margin-top:28px">Qué necesita para comprar</h2>
+    <p>No necesita préstamo de banco. Lo hacemos sencillo: si el enganche y la mensualidad le funcionan, le guiamos en los siguientes pasos.</p>
+    <p>Lo que necesita: una identificación válida, el enganche y una mensualidad que le funcione.</p>
   </section>
 
   <!-- HONEST CONDITION -->
@@ -219,7 +240,7 @@ body{
     <p class="lede">Seremos honestos: la mayoría de nuestras casas son mayores y necesitan trabajo. Algunas poco, otras bastante. Las fotos son reales y no escondemos las partes difíciles — porque esa honestidad es justo el punto.</p>
     <p class="lede" style="margin-top:14px">Aquí está lo bonito. Esa condición es <strong>por lo que</strong> el precio es bajo, y <strong>por lo que</strong> el enganche y la mensualidad son parecidos a la renta. Un banco no financia una casa que necesita trabajo — así que personas trabajadoras que serían excelentes dueñas quedan afuera. Nosotros lo hacemos diferente: lo conectamos con dueños que lo reciben donde está, y lo guiamos hasta las llaves.</p>
     <p class="lede" style="margin-top:14px">Y desde ese día, es <strong>suya.</strong> La arregla a su ritmo, a su manera, a su gusto. Cada dólar y cada fin de semana que le mete construye <em>su</em> patrimonio — no el de un casero. Hágala la casa que usted merece — un lugar verdaderamente suyo, para conservar a largo plazo. La renta nunca le dio eso. Esto sí.</p>
-    <p class="lede" style="margin-top:14px;font-size:15px;color:var(--ink-soft,#5b6472)">Toda casa se vende tal como está. Siempre le recomendamos recorrer la casa y revisarla bien antes de firmar.</p>
+    <p class="lede" style="margin-top:14px;font-size:15px;color:var(--ink-soft,#5b6472)">Todas las casas se venden tal como están, necesitan algo de trabajo y tienen el precio de acuerdo con eso. Las reparaciones corren por cuenta del comprador. Recorra la casa antes de firmar.</p>
   </section>
 
   <!-- PROCESS -->
@@ -241,7 +262,7 @@ body{
     <h2 class="sec-title">Por qué la gente elige esto</h2>
     <div class="cards2">
       <div class="good-card"><h3>Es dueño desde el primer día</h3><p>Su nombre está en el acuerdo el día que firma. Usted es el dueño, no un inquilino.</p></div>
-      <div class="good-card"><h3>Su pago no se mueve</h3><p>Una mensualidad fija, por escrito. No sube cada año como la renta — lo único que podría moverla es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p></div>
+      <div class="good-card"><h3>Su pago no se mueve</h3><p>Una mensualidad fija, por escrito. No sube cada año como la renta.</p></div>
       <div class="good-card"><h3>Un pago parecido a la renta</h3><p>Sea dueño de una casa por más o menos lo que le pagaría a un casero — y construye algo que es suyo.</p></div>
       <div class="good-card"><h3>Sin banco de por medio</h3><p>Sin solicitud hipotecaria y sin un banco decidiendo si le dan una casa.</p></div>
     </div>
