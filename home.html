@@ -278,7 +278,9 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans','DM Sans Fal
     </ul>
   </section>
 
+  <!-- buyer-eval:start -->
   <div id="buyerEval"></div>
+  <!-- buyer-eval:end -->
 
   <!-- GALLERY -->
   <section class="section reveal" id="gallerySection">
@@ -394,15 +396,20 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans','DM Sans Fal
 
 </div>
 
-<script src="listed-dates.js" defer></script>
-<script src="book-links.js" defer></script>
-<script src="homes.js" defer></script>
-<script src="photo-index.js" defer></script>
+<!-- The hero photo is in the HTML. homes.js loads after that photo, so it does not compete with the LCP. -->
+<noscript><script src="homes.js" defer></script></noscript>
 <script>
 /* ---------- render (no editar — los datos de las casas viven en homes.js) ---------- */
-/* Espera a que homes.js con defer haya corrido. El título y el H1 los escribe scripts/seo_pages.py. */
-document.addEventListener("DOMContentLoaded", function(){
-  const wantedId = window.__HOME_ID__ || new URLSearchParams(location.search).get("home");
+/* El título y el H1 los escribe scripts/seo_pages.py. Esta función corre cuando homes.js ya cargó. */
+function listingId(){
+  if (window.__HOME_ID__) return window.__HOME_ID__;
+  const link = document.querySelector('link[rel="canonical"]');
+  const name = link ? (link.href.split("/").pop() || "") : "";
+  if (name.endsWith(".html")) return name.slice(0, -5);
+  return new URLSearchParams(location.search).get("home");
+}
+function renderListing(){
+  const wantedId = listingId();
   const home = (typeof HOMES !== "undefined") ? HOMES.find(h => h.id === wantedId) : null;
   // Las casas vendidas salen de la página. Pendiente se queda, con las visitas cerradas más abajo.
   if (home && /^sold$/i.test(String(home.status||"").trim())){
@@ -508,6 +515,14 @@ document.addEventListener("DOMContentLoaded", function(){
     const meta = (window.PHOTO_INDEX || {})[C.id];
     const sv = `images/sv/${C.id}.jpg`;
     img.alt = `Casa en venta en ${C.city}, ${C.state}`;
+    // The generator already put the sized thumbnail in the HTML with
+    // fetchpriority=high. Leave that src so it can be the LCP.
+    if (img.getAttribute("src")) {
+      img.hidden = false;
+      img.onload = ()=>{ $("heroFallback").style.display = "none"; $("heroCity").style.display="none"; };
+      if (img.complete && img.naturalWidth) img.onload();
+      return;
+    }
     function showStreetLink(){
       img.hidden = true; $("heroSvBadge").hidden = true;
       const L = $("heroSvLink");
@@ -625,30 +640,28 @@ document.addEventListener("DOMContentLoaded", function(){
   } else {
     document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"));
   }
-});
+  if (window.refreshSticky) window.refreshSticky();
+}
 </script>
-<script src="homes-map.js" defer></script>
-<script src="homes-cart.js" defer></script>
-<script src="site-chrome.js" defer></script>
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  const id = window.__HOME_ID__ || new URLSearchParams(location.search).get("home");
+function renderListedBadge(){
+  const id = listingId();
   const raw = (window.LISTED_ON || {})[id];
   const t = Date.parse(raw || "");
   const b = document.getElementById("newBadge");
   if (b && raw && t && (Date.now() - t) <= 7 * 86400000) b.hidden = false;
-});
+}
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  const id = window.__HOME_ID__ || new URLSearchParams(location.search).get("home");
+function renderMap(){
+  const id = listingId();
   const h = (typeof HOMES !== "undefined") ? HOMES.find(x => x.id === id) : null;
   if (!h || !window.HomesMap) return;
   const q = encodeURIComponent([h.address, h.city, h.state, h.zip].filter(Boolean).join(", "));
   document.getElementById("mapGoogle").href = "https://www.google.com/maps/search/?api=1&query=" + q;
   if (window.HomesCart){ const n = document.getElementById("ctaNote"); if (n) n.insertAdjacentHTML("afterend", '<div class="hc-hero">' + HomesCart.heart(h, true) + HomesCart.compare(h) + '</div>'); HomesCart.sync(); }
   HomesMap.mini({ el: document.getElementById("mapEl"), home: h, section: document.getElementById("mapSec"), note: document.getElementById("mapNote") });
-});
+}
 </script>
 <style>
 #stickyTour{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line,#dfe6f0);box-shadow:0 -6px 22px rgba(15,36,68,.12);transform:translateY(110%);transition:transform .25s}
@@ -686,6 +699,7 @@ document.addEventListener("DOMContentLoaded", function(){
     $("stLab").textContent=($("dMonthly").nextElementSibling||{}).textContent||"";
   }
   function show(on){ bar.classList.toggle("on", on); bar.setAttribute("aria-hidden", on?"false":"true"); }
+  window.refreshSticky = fill;
   fill();
   if (phoneBar()) show(true);
   if(main && "IntersectionObserver" in window){
@@ -707,6 +721,43 @@ document.addEventListener("DOMContentLoaded", function(){
   let x0=null; lb.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;},{passive:true});
   lb.addEventListener("touchend",e=>{ if(x0==null) return; const d=e.changedTouches[0].clientX-x0; if(Math.abs(d)>50) showPhoto(i+(d<0?1:-1)); x0=null; });
 });
+</script>
+<script>
+/* homes.js and the gallery wait until the hero photo has loaded, so they do not share its connection. */
+(function(){
+  var started = false;
+  function chain(srcs, done){
+    var i = 0;
+    function next(){
+      if (i >= srcs.length) { done(); return; }
+      var s = document.createElement("script");
+      s.src = srcs[i++];
+      s.async = false;
+      s.onload = s.onerror = next;
+      document.body.appendChild(s);
+    }
+    next();
+  }
+  function start(){
+    if (started) return;
+    started = true;
+    chain(["listed-dates.js","book-links.js","homes.js","photo-index.js","homes-map.js","homes-cart.js","site-chrome.js"], function(){
+      if (typeof renderListing === "function") renderListing();
+      if (typeof renderListedBadge === "function") renderListedBadge();
+      if (typeof renderMap === "function") renderMap();
+    });
+  }
+  var hero = document.getElementById("heroImg");
+  if (hero && hero.getAttribute("src")) {
+    if (hero.complete && hero.naturalWidth) start();
+    else {
+      hero.addEventListener("load", start, {once:true});
+      hero.addEventListener("error", start, {once:true});
+    }
+  } else {
+    window.addEventListener("load", start);
+  }
+})();
 </script>
 </body>
 </html>

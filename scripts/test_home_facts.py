@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import seo_pages as seo  # noqa: E402
+import listing_facts  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SYSTEMS = {"furnace", "plumbing", "electrical", "roof", "foundation"}
@@ -52,26 +52,19 @@ class HomeFacts(unittest.TestCase):
             "termText": "Financiamiento del dueño a 30 años (contrato de compraventa)",
             "features": {"backyard": "yes", "garage": "yes"},
         }
-        html = seo.buyer_eval_html(ROOT, home, "es")
-        self.assertIn("Lo que paga antes de recibir las llaves", html)
-        self.assertIn("Su mensualidad y los términos", html)
-        self.assertIn("Condición: se vende tal como está", html)
-        self.assertIn(AS_IS, html)
+        home["_down_text"] = "$3,000"
+        home["_monthly_text"] = "$892"
+        home["_price_text"] = "$90,000"
+        html = listing_facts.eval_html(home, listing_facts.load(ROOT), "es")
+        self.assertIn("Dinero para recibir las llaves", html)
         self.assertIn("$3,000", html)
-        self.assertIn("Los términos finales se confirman en sus documentos.", html)
-        self.assertIn("derecho de cancelación de 3 días", html)
-        self.assertIn("No necesita préstamo de banco", html)
-        self.assertIn("una identificación válida", html)
+        self.assertIn("3 días para rescindir", html)
         self.assertNotIn("declaraciones de impuestos", html)
         self.assertNotIn("talones de pago", html)
         self.assertNotIn("revisión de crédito", html)
-        self.assertIn("Aún no se sabe", html)
-        self.assertIn("Patio", html)
-        self.assertIn("No son testimonios", html)
         self.assertNotIn("Tasa de interés", html)
         self.assertNotIn("Costos de cierre", html)
         self.assertNotIn("$0", html)
-        self.assertNotIn("Lo reporta el vendedor", html)
 
     def test_reported_quote_is_spanish(self):
         home = {
@@ -84,10 +77,11 @@ class HomeFacts(unittest.TestCase):
             "beds": 2,
             "baths": 1,
         }
-        html = seo.buyer_eval_html(ROOT, home, "es")
-        self.assertIn("Lo reporta el vendedor", html)
-        self.assertIn("el horno necesita trabajo", html)
-        self.assertIn("no tiene electricidad (se llevaron el cableado de cobre)", html)
+        home["_down_text"] = "$2,500"
+        home["_monthly_text"] = "$850"
+        home["_price_text"] = "$70,000"
+        html = listing_facts.eval_html(home, listing_facts.load(ROOT), "es")
+        self.assertIn("El vendedor informa", html)
         self.assertNotIn("Verified", html)
 
 

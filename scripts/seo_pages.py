@@ -75,7 +75,7 @@ PILL_CSS = """
 .city-pills a{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line,#e2e8f2);border-radius:999px;padding:8px 14px;font-weight:700;font-size:14.5px;color:var(--pine,#15315e);text-decoration:none}
 .city-pills a:hover{border-color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb)}
 .city-pills .n{font-weight:600;color:var(--ink-soft,#5b6577)}
-body.page-search #cities{margin:0;padding:14px 16px 16px;background:#fff;border-bottom:1px solid var(--line,#e2e8f2)}
+body.page-search #cities{margin:28px 0 0;padding:14px 16px 28px;background:#fff;border-top:1px solid var(--line,#e2e8f2);border-bottom:1px solid var(--line,#e2e8f2)}
 body.page-search #cities .sec-title{font-size:clamp(22px,3vw,28px)}
 body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
 """.strip()
@@ -225,9 +225,9 @@ def facts_text(home: dict, lang: str) -> str:
         if price:
             parts.append(f"Precio de compra {price}.")
         if down:
-            parts.append(f"Enganche de {down}.")
+            parts.append(f"Enganche {down}.")
         if monthly:
-            parts.append(f"Mensualidad de {monthly}.")
+            parts.append(f"Pago mensual {monthly}.")
         if size:
             parts.append(size + ".")
         if sq:
@@ -376,9 +376,9 @@ def listing_graph(home: dict, lang: str, image: str) -> dict:
         term = (home.get("termText") or "").strip()
         if lang == "es":
             if down:
-                extra.append(f"Enganche de {down}")
+                extra.append(f"Enganche {down}")
             if monthly:
-                extra.append(f"Mensualidad de {monthly}")
+                extra.append(f"Pago mensual {monthly}")
         else:
             if down:
                 extra.append(f"Down payment {down}")
@@ -443,7 +443,7 @@ def term_rows(home: dict, lang: str) -> list[dict]:
     term = (home.get("termText") or "").strip()
     if lang == "es":
         rows = [
-            ("Mensualidad", monthly, True),
+            ("Pago mensual", monthly, True),
             ("Enganche", down, False),
             ("Precio de compra", price, False),
             ("Financiamiento", term, False),
@@ -465,241 +465,6 @@ def term_rows(home: dict, lang: str) -> list[dict]:
 def _replace_once(page: str, pattern: str, repl: str, flags=0) -> str:
     new, n = re.subn(pattern, repl, page, count=1, flags=flags)
     return new if n else page
-
-
-SYSTEMS = (
-    ("furnace", {"en": "Furnace / heating", "es": "Calefacción / caldera"}),
-    ("plumbing", {"en": "Plumbing", "es": "Plomería"}),
-    ("electrical", {"en": "Electrical", "es": "Sistema eléctrico"}),
-    ("roof", {"en": "Roof", "es": "Techo"}),
-    ("foundation", {"en": "Foundation", "es": "Cimientos"}),
-)
-FEATURE_KEYS = ("backyard", "fenced_yard", "garage", "basement", "off_street_parking")
-FEATURE_LABELS = {
-    "en": {
-        "backyard": "Yard",
-        "fenced_yard": "Fenced yard",
-        "garage": "Garage",
-        "basement": "Basement",
-        "off_street_parking": "Parking",
-    },
-    "es": {
-        "backyard": "Patio",
-        "fenced_yard": "Patio cercado",
-        "garage": "Garaje",
-        "basement": "Sótano",
-        "off_street_parking": "Estacionamiento",
-    },
-}
-UNKNOWN = {"en": "Not yet known", "es": "Aún no se sabe"}
-AS_IS = {
-    "en": "Every home is sold as-is, needs some work, and is priced for that. The buyer handles the repairs. Walk through the home before you sign.",
-    "es": "Todas las casas se venden tal como están, necesitan algo de trabajo y tienen el precio de acuerdo con eso. Las reparaciones corren por cuenta del comprador. Recorra la casa antes de firmar.",
-}
-_FACTS_CACHE: dict[str, dict] = {}
-
-
-def load_facts(root: Path) -> dict:
-    key = str(Path(root).resolve())
-    if key in _FACTS_CACHE:
-        return _FACTS_CACHE[key]
-    path = Path(root) / "data" / "home-facts.json"
-    data = {"homes": {}}
-    if path.is_file():
-        try:
-            loaded = json.loads(path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError:
-            loaded = {}
-        if isinstance(loaded, dict):
-            data = loaded
-    _FACTS_CACHE[key] = data
-    return data
-
-
-def _home_facts(root: Path, hid: str) -> dict:
-    homes = load_facts(root).get("homes") or {}
-    row = homes.get(hid) or {}
-    return row if isinstance(row, dict) else {}
-
-
-def _unknown(lang: str) -> str:
-    return UNKNOWN["es" if lang == "es" else "en"]
-
-
-def _cond_row(lang: str, key: str, label: str, row: dict | None) -> str:
-    row = row or {}
-    status = str(row.get("status") or "unknown")
-    if status not in {"verified", "reported", "unknown"}:
-        status = "unknown"
-    quote = (row.get("es") if lang == "es" else row.get("en")) or ""
-    if status == "reported" and not str(quote).strip():
-        status = "unknown"
-    source = str(row.get("source") or "").strip()
-    as_of = str(row.get("as_of") or "").strip()
-    if lang == "es":
-        state = {"verified": "Verificado", "reported": "Lo reporta el vendedor", "unknown": _unknown(lang)}[status]
-        if source == "listing note":
-            source_label = "nota del anuncio"
-        else:
-            source_label = source
-        icon = {"verified": "✓", "reported": "“", "unknown": "?"}[status]
-    else:
-        state = {"verified": "Verified", "reported": "Seller reports", "unknown": _unknown(lang)}[status]
-        source_label = source
-        icon = {"verified": "✓", "reported": "“", "unknown": "?"}[status]
-    extra = ""
-    if status == "reported" and quote:
-        extra += f' <q>{esc(quote)}</q>'
-    if status in {"verified", "reported"} and source_label:
-        extra += f' <span class="cond-src">{esc(source_label)}</span>'
-    if status == "verified" and as_of:
-        extra += f' <span class="cond-src">{esc(as_of)}</span>'
-    return (
-        f'<li class="cond cond-{status}"><span class="cond-ic" aria-hidden="true">{icon}</span>'
-        f'<span class="cond-name">{esc(label)}</span> <strong>{esc(state)}</strong>{extra}</li>'
-    )
-
-
-def buyer_eval_html(root: Path, home: dict, lang: str) -> str:
-    """Cash, monthly terms, and condition. Written into the static page."""
-    es = lang == "es"
-    facts = _home_facts(root, home.get("id") or "")
-    condition = facts.get("condition") if isinstance(facts.get("condition"), dict) else {}
-    down = money(home.get("moveIn"))
-    price = money(home.get("lockedPrice"))
-    monthly = money(home.get("monthlyPayment"))
-    unk = _unknown(lang)
-    state = (home.get("state") or "").strip().upper()
-    if es:
-        cash_title = "Lo que paga antes de recibir las llaves"
-        down_label = "Enganche"
-        terms_line = "Los términos finales se confirman en sus documentos."
-        month_title = "Su mensualidad y los términos"
-        month_rows = (
-            ("Mensualidad", monthly or unk),
-            ("Precio fijo", price or unk),
-            ("Plazo", (home.get("termText") or "").strip() or unk),
-        )
-        qualify = ("No necesita préstamo de banco. Lo hacemos sencillo: si el enganche y la mensualidad le funcionan, le guiamos en los siguientes pasos. "
-                   "Lo que necesita: una identificación válida, el enganche y una mensualidad que le funcione.")
-        if state == "IL":
-            keys_line = ("En Illinois, después de firmar hay un derecho de cancelación de 3 días. "
-                         "Luego entregamos las llaves.")
-        else:
-            keys_line = "Después de firmar, las llaves se entregan enseguida."
-        cond_title = "Condición: se vende tal como está"
-        fit_title = "Cómo podría servirle esta casa"
-        fit_note = "Estos ejemplos usan solo los datos de esta casa. No son testimonios."
-        family_title = "Para una familia"
-        rent_title = "Para renovar y rentar"
-        beds_word = "recámaras"
-        baths_word = "baños"
-        sq_word = "pies cuadrados"
-    else:
-        cash_title = "Cash to get the keys"
-        down_label = "Down payment"
-        terms_line = "The final terms are confirmed in your paperwork."
-        month_title = "Your monthly payment and terms"
-        month_rows = (
-            ("Monthly payment", monthly or unk),
-            ("Fixed price", price or unk),
-            ("Term", (home.get("termText") or "").strip() or unk),
-        )
-        qualify = ("You do not need a bank loan. We keep it simple: if the down payment and the monthly payment work for you, we guide you through the next steps. "
-                   "What you need: a valid ID, the down payment, and a monthly payment that works for you.")
-        if state == "IL":
-            keys_line = ("In Illinois there is a 3-day right to cancel after you sign. "
-                         "Then you get the keys.")
-        else:
-            keys_line = "After you sign, you get the keys right away."
-        cond_title = "Condition: sold as-is"
-        fit_title = "How this home could fit"
-        fit_note = "These examples use only this home's own facts. They are not testimonials."
-        family_title = "For a family"
-        rent_title = "To renovate and rent"
-        beds_word = "beds"
-        baths_word = "baths"
-        sq_word = "square feet"
-    cash_items = [(down_label, down or unk)]
-    def rows(pairs):
-        return "".join(
-            f'<li><span class="k">{esc(k)}</span><span class="v">{esc(v)}</span></li>'
-            for k, v in pairs if k)
-    cond_html = "".join(
-        _cond_row(lang, key, labels["es" if es else "en"], condition.get(key) if isinstance(condition.get(key), dict) else None)
-        for key, labels in SYSTEMS)
-    family = []
-    beds, baths = num(home.get("beds")), num(home.get("baths"))
-    if beds:
-        n = int(beds) if isinstance(beds, float) and beds == int(beds) else beds
-        family.append(f"{n:g} {beds_word}" if es or n != 1 else f"{n:g} bed")
-    if baths:
-        n = int(baths) if isinstance(baths, float) and baths == int(baths) else baths
-        family.append(f"{n:g} {baths_word}" if es or n != 1 else f"{n:g} bath")
-    sq = sqft_of(home)
-    if sq:
-        family.append(f"{sq:,} {sq_word}")
-    features = home.get("features") if isinstance(home.get("features"), dict) else {}
-    labels = FEATURE_LABELS["es" if es else "en"]
-    for key in FEATURE_KEYS:
-        if features.get(key) == "yes" and key in labels:
-            family.append(labels[key])
-    fit_fit = facts.get("fit") if isinstance(facts.get("fit"), dict) else {}
-    family_note = (fit_fit.get("family_es") if es else fit_fit.get("family_en")) or ""
-    if isinstance(family_note, str) and family_note.strip():
-        family.append(family_note.strip())
-    facts_html = "".join(f"<li>{esc(bit)}</li>" for bit in family)
-    family_html = ""
-    rent_html = ""
-    if family:
-        family_html = f'<article class="fit-card"><h3>{esc(family_title)}</h3><ul>{facts_html}</ul></article>'
-        rent_html = f'<article class="fit-card"><h3>{esc(rent_title)}</h3><ul>{facts_html}</ul></article>'
-    return (
-        f'<section class="buyer-eval" id="buyerEval">'
-        f'<h2>{esc(cash_title)}</h2><ul class="eval-rows">{rows(cash_items)}</ul>'
-        f'<p class="eval-total">{esc(terms_line)}</p>'
-        f'<h2>{esc(month_title)}</h2><ul class="eval-rows">{rows(month_rows)}</ul>'
-        f'<p class="qualify-line">{esc(qualify)}</p>'
-        f'<p class="keys-line">{esc(keys_line)}</p>'
-        f'<h2>{esc(cond_title)}</h2><p class="as-is">{esc(AS_IS["es" if es else "en"])}</p>'
-        f'<ul class="cond-list">{cond_html}</ul>'
-        f'<h2>{esc(fit_title)}</h2><p class="fit-note">{esc(fit_note)}</p>'
-        f'<div class="fit-cards">{family_html}{rent_html}</div></section>'
-    )
-
-
-def finance_stats_text(homes: list[dict], lang: str) -> str:
-    available = [h for h in homes if str(h.get("status") or "").strip().lower() == "available"]
-    downs = [num(h.get("moveIn")) for h in available]
-    downs = [d for d in downs if d]
-    if not downs:
-        return ""
-    low = min(downs)
-    at_or_under = sum(1 for d in downs if d <= 2500)
-    low_s = money(low)
-    if lang == "es":
-        noun = "casa disponible" if at_or_under == 1 else "casas disponibles"
-        return (f"El enganche más bajo en una casa disponible es {low_s}. "
-                f"{at_or_under} {noun} tienen un enganche de $2,500 o menos.")
-    noun = "available home" if at_or_under == 1 else "available homes"
-    return (f"The lowest down payment on an available home is {low_s}. "
-            f"{at_or_under} {noun} are at $2,500 down or less.")
-
-
-def _stamp_finance_stats(root: Path, homes: list[dict], lang: str) -> None:
-    text = finance_stats_text(homes, lang)
-    if not text:
-        return
-    block = f"<!-- finance-stats:start -->\n<p class=\"finance-stats\">{esc(text)}</p>\n<!-- finance-stats:end -->"
-    for name in ("index.html", "como-funciona.html", "how-it-works.html"):
-        path = Path(root) / name
-        if not path.is_file():
-            continue
-        raw = path.read_text(encoding="utf-8")
-        if "<!-- finance-stats:start -->" not in raw:
-            continue
-        raw = re.sub(r"<!-- finance-stats:start -->[\s\S]*?<!-- finance-stats:end -->", lambda _m: block, raw, count=1)
-        _write_if_changed(path, raw)
 
 
 def write_listing(root: Path, home: dict, lang: str, template: str | None = None) -> str:
@@ -745,6 +510,13 @@ def write_listing(root: Path, home: dict, lang: str, template: str | None = None
     label = status if pending else available
     if pending:
         page = page.replace('class="status-tag" id="statusTag"', 'class="status-tag pending" id="statusTag"', 1)
+        page = page.replace('id="toursOpen"', 'id="toursOpen" hidden', 1)
+        closed = "Visitas cerradas: ver casas parecidas" if lang == "es" else "Tours closed: see similar homes"
+        page = page.replace(">Book a tour</a>", ">" + closed + "</a>")
+        similar = "/" + "?q=" + html.escape(f"{city}, {state}", quote=True) + "#nearby" if city and state else "/#nearby"
+        page = page.replace('id="ctaText" href="#"', f'id="ctaText" href="{similar}"', 1)
+        page = page.replace('id="ctaText2" href="#"', f'id="ctaText2" href="{similar}"', 1)
+        page = page.replace('id="stBtn" class="st-go" href="#"', f'id="stBtn" class="st-go" href="{similar}"', 1)
     page = _replace_once(page, r'(id="statusTag"[^>]*>)[^<]*', lambda m: m.group(1) + label)
     page = _replace_once(page, r'(<div class="num" id="dMonthly">)[^<]*',
                          lambda m: m.group(1) + esc(money(home.get("monthlyPayment"))))
@@ -752,6 +524,14 @@ def write_listing(root: Path, home: dict, lang: str, template: str | None = None
                          lambda m: m.group(1) + esc(money(home.get("moveIn"))))
     page = _replace_once(page, r'(<div class="num" id="dPrice">)[^<]*',
                          lambda m: m.group(1) + esc(money(home.get("lockedPrice"))))
+    if 'id="conditionLine"' in page:
+        cond = str(home.get("condition") or "").strip()
+        if cond:
+            slot = f'<p class="condition-line" id="conditionLine"><span class="k">Condition</span> {esc(cond)}</p>'
+        else:
+            slot = '<p class="condition-line" id="conditionLine" hidden></p>'
+        page = _replace_once(page, r'<p class="condition-line" id="conditionLine"[^>]*>.*?</p>',
+                             lambda _m, slot=slot: slot, re.S)
     blurb = prose(home)
     if blurb:
         page = page.replace('id="aboutHomeSec" hidden', 'id="aboutHomeSec"', 1)
@@ -763,16 +543,50 @@ def write_listing(root: Path, home: dict, lang: str, template: str | None = None
         for r in rows)
     page = _replace_once(page, r'<div class="terms" id="termsList">.*?</div>',
                          lambda _m, rows_html=rows_html: f'<div class="terms" id="termsList">{rows_html}</div>', re.S)
-    if 'id="buyerEval"' in page:
-        page = _replace_once(
-            page,
-            r'<div id="buyerEval">\s*</div>|<section class="buyer-eval" id="buyerEval">.*?</section>',
-            lambda _m, home=home, lang=lang, root=root: buyer_eval_html(root, home, lang),
-            re.S,
-        )
     terms_tag = f'<script type="application/json" id="seo-terms">{json_ld(rows)}</script>'
     page = re.sub(r'\n?<script type="application/json" id="seo-terms">.*?</script>', "", page, count=1, flags=re.S)
     page = page.replace('<div class="terms" id="termsList">', terms_tag + '\n<div class="terms" id="termsList">', 1)
+    photo_flag = str(home.get("hasPhoto") or "").strip().lower()
+    card_rel = str(home.get("cardPhoto") or "")
+    hero_src = ""
+    if card_rel and (root / card_rel).is_file():
+        hero_src = card_rel
+    elif photo_flag in {"true", "1", "yes"} and (root / "images" / f"{home['id']}.jpg").is_file():
+        hero_src = f"images/{home['id']}.jpg"
+    elif photo_flag in {"false", "0"} and (root / "images" / "sv" / f"{home['id']}.jpg").is_file():
+        hero_src = f"images/sv/{home['id']}.jpg"
+    if hero_src:
+        try:
+            width = int(float(home.get("cardWidth") or 480))
+            height = int(float(home.get("cardHeight") or 360))
+        except (TypeError, ValueError):
+            width, height = 480, 360
+        if width <= 0:
+            width = 480
+        if height <= 0:
+            height = 360
+        alt = esc(f"Home for sale in {home.get('city') or ''}, {home.get('state') or ''}")
+        img = (f'<img id="heroImg" alt="{alt}" src="{esc(hero_src)}" fetchpriority="high" '
+               f'width="{width}" height="{height}">')
+        page = _replace_once(page, r'<img id="heroImg"[^>]*>', lambda _m, img=img: img)
+        if photo_flag in {"false", "0"}:
+            page = page.replace('id="heroSvBadge" hidden', 'id="heroSvBadge"', 1)
+        if 'rel="preload" as="image"' not in page:
+            preload = f'<link rel="preload" as="image" href="{esc(hero_src)}" fetchpriority="high"/>'
+            page = page.replace("</head>", preload + "\n</head>", 1)
+    if "<!-- buyer-eval:start -->" in page:
+        import listing_facts
+        baked = dict(home)
+        baked["_down_text"] = money(home.get("moveIn"))
+        baked["_monthly_text"] = money(home.get("monthlyPayment"))
+        baked["_price_text"] = money(home.get("lockedPrice"))
+        block_html = listing_facts.eval_html(baked, listing_facts.load(root), lang)
+        page = re.sub(
+            r"<!-- buyer-eval:start -->[\s\S]*?<!-- buyer-eval:end -->",
+            "<!-- buyer-eval:start -->\n" + block_html + "\n<!-- buyer-eval:end -->",
+            page,
+            count=1,
+        )
     if "DOMContentLoaded" in page:
         for src in ("listed-dates.js", "book-links.js", "homes.js", "homes-map.js", "homes-cart.js", "site-chrome.js"):
             page = page.replace(f'<script src="{src}"></script>', f'<script src="{src}" defer></script>')
@@ -797,16 +611,11 @@ def _field(block: str, key: str):
     return raw
 
 
-def _features(block: str) -> dict:
-    match = re.search(r"\n    features:\s*(\{.*?\})\s*,", block)
+def _features_of(block: str) -> dict:
+    match = re.search(r"\n    features:\s*\{([^}]*)\}", block)
     if not match:
         return {}
-    raw = re.sub(r"([A-Za-z_][A-Za-z0-9_]*)\s*:", r'"\1":', match.group(1))
-    try:
-        value = json.loads(raw)
-    except json.JSONDecodeError:
-        return {}
-    return value if isinstance(value, dict) else {}
+    return {key: value for key, value in re.findall(r"([A-Za-z0-9_]+)\s*:\s*\"([^\"]*)\"", match.group(1))}
 
 
 def _photos(block: str) -> list[str]:
@@ -841,13 +650,19 @@ def load_homes(root: Path) -> list[dict]:
             "lockedPrice": _field(block, "lockedPrice"),
             "termText": _field(block, "termText") or "",
             "heroPhoto": _field(block, "heroPhoto") or "",
+            "hasPhoto": _field(block, "hasPhoto"),
+            "condition": _field(block, "condition") or "",
             "copy": _field(block, "copy") or "",
             "description": _field(block, "description") or "",
             "lat": _field(block, "lat"),
             "lng": _field(block, "lng"),
             "photos": _photos(block),
             "contractor": _field(block, "contractor") or "",
-            "features": _features(block),
+            "features": _features_of(block),
+            "hasPhoto": _field(block, "hasPhoto"),
+            "cardPhoto": _field(block, "cardPhoto") or "",
+            "cardWidth": _field(block, "cardWidth"),
+            "cardHeight": _field(block, "cardHeight"),
         }
         homes.append(home)
     return homes
@@ -876,6 +691,8 @@ def normalize(row: dict, lang: str) -> dict:
         "lockedPrice": pick("lockedPrice", "price", "Price"),
         "termText": pick("termText") or TERMS[lang],
         "heroPhoto": pick("heroPhoto") or "",
+        "hasPhoto": pick("hasPhoto"),
+        "condition": pick("condition", "Condition") or "",
         "copy": pick("copy") or "",
         "description": pick("description") or "",
         "lat": pick("lat"),
@@ -883,6 +700,7 @@ def normalize(row: dict, lang: str) -> dict:
         "photos": row.get("photos") or [],
         "contractor": pick("contractor") or "",
         "features": row.get("features") if isinstance(row.get("features"), dict) else {},
+        "hasPhoto": pick("hasPhoto"),
     }
 
 
@@ -897,30 +715,11 @@ def group_cities(homes: list[dict]) -> list[dict]:
         bucket["homes"].append(home)
     out = [g for g in groups.values() if g["homes"]]
     out.sort(key=lambda g: (-len(g["homes"]), g["city"].lower(), g["state"]))
+    from card_photos import listing_sort_key
     for g in out:
-        g["homes"].sort(key=lambda h: (h.get("address") or "", h["id"]))
+        # Real seller photos first, then Street View-only homes, then address.
+        g["homes"].sort(key=listing_sort_key)
     return out
-
-
-def city_search_form(city: str, state: str, lang: str) -> str:
-    """A GET form back to the homepage search. No homes.js on the city page."""
-    q = f"{city}, {state}"
-    if lang == "es":
-        labels = ("Ciudad o código postal", "Enganche máximo", "Mensualidad máxima", "Buscar")
-        any_label = "Cualquiera"
-    else:
-        labels = ("City or ZIP", "Max down payment", "Max monthly", "Search")
-        any_label = "Any"
-    downs = (1000, 1500, 2000, 2500, 3000, 4000, 5000)
-    pays = tuple(range(500, 1600, 100))
-    down_opts = "".join(f'<option value="{n}">${n:,}</option>' for n in downs)
-    pay_opts = "".join(f'<option value="{n}">${n:,}</option>' for n in pays)
-    return f"""<form class="city-search" action="/" method="get">
-    <label>{esc(labels[0])}<input name="q" value="{esc(q)}" autocomplete="off"></label>
-    <label>{esc(labels[1])}<select name="down"><option value="">{esc(any_label)}</option>{down_opts}</select></label>
-    <label>{esc(labels[2])}<select name="payMax"><option value="">{esc(any_label)}</option>{pay_opts}</select></label>
-    <button type="submit">{esc(labels[3])}</button>
-  </form>"""
 
 
 def _city_page(group: dict, lang: str) -> str:
@@ -931,13 +730,13 @@ def _city_page(group: dict, lang: str) -> str:
     url = f"{domain}/{slug}"
     n = len(group["homes"])
     if lang == "es":
-        title = f"Casas con financiamiento del dueño en {city}, {state}"
+        title = f"Casas con Financiamiento del Dueño en {city}, {state}"
         h1 = title
         noun = "casa" if n == 1 else "casas"
         desc = (f"{n} {noun} con financiamiento del dueño en {city}, {state}. "
-                f"Cada anuncio muestra la dirección, el precio, el enganche y la mensualidad. Sin banco.")
+                f"Cada anuncio muestra la dirección, el precio, el enganche y el pago mensual. Sin banco.")
         lead = (f"{n} {'casa' if n == 1 else 'casas'} en {city}, {state} que puede comprar con financiamiento del dueño. "
-                f"El precio, el enganche y la mensualidad están en cada anuncio. No hay banco ni solicitud hipotecaria.")
+                f"El precio, el enganche y el pago mensual están en cada anuncio. No hay banco ni solicitud hipotecaria.")
         eyebrow = "Financiamiento del dueño"
         browse = "Ver todas las casas"
         nav = [(" /#listings".replace(" ", ""), "Casas"), ("/como-funciona.html", "Cómo funciona"),
@@ -973,8 +772,13 @@ def _city_page(group: dict, lang: str) -> str:
         pending = str(home.get("status") or "").strip().lower() == "pending"
         flag = f' <span class="pending">{pending_word}</span>' if pending else ""
         href = f"/{home['id']}.html"
+        down_n = num(home.get("moveIn"))
+        pay_n = num(home.get("monthlyPayment"))
+        photo = "1" if str(home.get("hasPhoto") or "").strip().lower() in {"1", "true", "yes"} else "0"
         items.append(
-            f'<li><a href="{esc(href)}">{esc(home.get("address") or home["id"])}</a>{flag}'
+            f'<li data-id="{esc(home["id"])}" data-down="{"" if down_n is None else down_n}" '
+            f'data-pay="{"" if pay_n is None else pay_n}" data-status="{esc(str(home.get("status") or "Available"))}" '
+            f'data-photo="{photo}"><a href="{esc(href)}">{esc(home.get("address") or home["id"])}</a>{flag}'
             f'<span class="meta">{esc(" · ".join(bits))}</span></li>')
     list_items = []
     for i, home in enumerate(group["homes"], 1):
@@ -1033,7 +837,7 @@ def _city_page(group: dict, lang: str) -> str:
 <meta property="og:image" content="{domain}/images/_share-default.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;600;700&display=optional" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/pages.css">
 <link rel="stylesheet" href="/nav.css">
 <style>
@@ -1044,7 +848,16 @@ def _city_page(group: dict, lang: str) -> str:
 .city-list .meta{{display:block;color:var(--ink-soft);font-size:15px;margin-top:3px}}
 .city-list .pending{{display:inline-block;margin-left:8px;background:#c2410c;color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:2px 8px;vertical-align:2px}}
 .city-back{{margin:8px 0 28px}}
+.buyer-panel{{display:grid;gap:10px;margin:0 0 18px}}
+.buyer-panel label{{display:grid;gap:4px;font-size:13px;font-weight:700;color:var(--ink-soft,#5b6577)}}
+.buyer-panel input,.buyer-panel select{{font:600 16px "DM Sans",system-ui,sans-serif;padding:12px;border-radius:12px;border:1.5px solid var(--line);min-height:48px;background:#fff;color:var(--ink,#16213a)}}
+.buyer-budgets{{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
+.buyer-group{{margin:18px 0}}
+.buyer-group h2{{font-size:20px;margin:0 0 8px}}
+.joe-slot[hidden]{{display:none !important}}
+html.preview .joe-slot[hidden]{{display:block !important;border:1.5px dashed var(--brand-primary,#15315e);border-radius:12px;padding:12px 14px;margin:10px 0}}
 </style>
+<script>(function(){{if(/[?&]preview=1(?:&|$)/.test(location.search))document.documentElement.classList.add("preview");}})();</script>
 <script type="application/ld+json" id="seo-jsonld">{json_ld(graph)}</script>
 </head>
 <body>
@@ -1067,17 +880,43 @@ def _city_page(group: dict, lang: str) -> str:
       </div>
     </nav>
   </header>
+  <form class="buyer-panel" id="buyerSearch" action="/" method="get" data-city="{esc(city)}" data-state="{esc(state)}">
+    <label>{'Ciudad o código postal' if lang == 'es' else 'City or ZIP'}
+      <input id="fQ" name="q" type="search" value="{esc(city)}, {esc(state)}" autocomplete="off" enterkeyhint="search">
+    </label>
+    <div class="buyer-budgets">
+      <label>{'Enganche máximo' if lang == 'es' else 'Max down payment'}
+        <select id="fDown" name="down">
+          <option value="">{'Cualquiera' if lang == 'es' else 'Any'}</option>
+          <option value="1000">$1,000</option><option value="1500">$1,500</option>
+          <option value="2000">$2,000</option><option value="2500">$2,500</option>
+          <option value="3000">$3,000</option><option value="4000">$4,000</option>
+          <option value="5000">$5,000</option>
+        </select>
+      </label>
+      <label>{'Mensualidad máxima' if lang == 'es' else 'Max monthly'}
+        <select id="fPayMax" name="payMax">
+          <option value="">{'Cualquiera' if lang == 'es' else 'Any'}</option>
+          <option value="500">$500</option><option value="600">$600</option><option value="700">$700</option>
+          <option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option>
+          <option value="1100">$1,100</option><option value="1200">$1,200</option><option value="1300">$1,300</option>
+          <option value="1400">$1,400</option><option value="1500">$1,500</option>
+        </select>
+      </label>
+    </div>
+  </form>
   <section class="phead">
     <span class="eyebrow">{esc(eyebrow)}</span>
     <h1>{esc(h1)}</h1>
     <p class="lead">{esc(lead)}</p>
   </section>
-  {city_search_form(city, state, lang)}
-  <ul class="city-list">
+  <ul class="city-list" id="cityHomes">
       {rows}
   </ul>
+  <div id="buyerExtra"></div>
   <p class="city-back"><a href="/">{esc(browse)}</a></p>
 </div>
+<script src="/buyer-search.js" defer></script>
 <script src="/site-chrome.js"></script>
 </body>
 </html>
@@ -1174,7 +1013,7 @@ def _stamp_static(root: Path, lang: str, today: str, prev: dict[str, str]) -> li
 def _city_section(groups: list[dict], lang: str) -> str:
     if lang == "es":
         label, heading = "Por ciudad", "Casas con financiamiento del dueño por ciudad"
-        sub = "Cada ciudad tiene su página con la dirección, el precio, el enganche y la mensualidad."
+        sub = "Cada ciudad tiene su página con la dirección, el precio, el enganche y el pago mensual."
     else:
         label, heading = "By city", "Owner financed homes by city"
         sub = "Each city page lists the homes there with the address, purchase price, down payment, and monthly payment."
@@ -1206,10 +1045,13 @@ def _stamp_cities_on_index(root: Path, groups: list[dict], lang: str) -> bool:
     if "<!-- city-landings:start -->" in text:
         text = re.sub(r"<!-- city-landings:start -->[\s\S]*?<!-- city-landings:end -->", lambda _m: section, text, count=1)
     else:
-        needle = '<section class="section" id="listings">'
-        if needle in text:
-            text = text.replace(needle, section + "\n\n  " + needle, 1)
-        else:
+        placed = False
+        for anchor in ('<section class="section" id="soldSec"', '<footer class="foot">', "</body>"):
+            if anchor in text:
+                text = text.replace(anchor, section + "\n\n  " + anchor, 1)
+                placed = True
+                break
+        if not placed:
             text = text.replace("</body>", section + "\n</body>", 1)
     return _write_if_changed(index, text)
 
@@ -1228,6 +1070,56 @@ def _drop_stale_cities(root: Path, keep: set[str]) -> list[str]:
             path.unlink()
             removed.append(path.name)
     return removed
+
+
+def _write_buyer_index(root: Path, homes: list[dict]) -> bool:
+    """Compact catalog for city-page search. Fetched only after the visitor changes the search."""
+    rows = []
+    for home in homes:
+        try:
+            lat, lng = float(home.get("lat")), float(home.get("lng"))
+        except (TypeError, ValueError):
+            lat, lng = None, None
+        rows.append({
+            "id": home.get("id") or "",
+            "address": home.get("address") or "",
+            "city": home.get("city") or "",
+            "state": home.get("state") or "",
+            "zip": clean_zip(home.get("zip")),
+            "moveIn": num(home.get("moveIn")),
+            "monthlyPayment": num(home.get("monthlyPayment")),
+            "lockedPrice": num(home.get("lockedPrice")),
+            "status": home.get("status") or "Available",
+            "lat": lat,
+            "lng": lng,
+            "hasPhoto": str(home.get("hasPhoto") or "").strip().lower() in {"1", "true", "yes"},
+        })
+    path = Path(root) / "data" / "buyer-index.json"
+    path.parent.mkdir(exist_ok=True)
+    return _write_if_changed(path, json.dumps({"homes": rows}, separators=(",", ":")))
+
+
+def _stamp_finance(root: Path, homes: list[dict], lang: str) -> bool:
+    import listing_facts
+    _lowest, _count, line = listing_facts.finance_line(homes, lang)
+    if not line:
+        return False
+    changed = False
+    names = ("index.html", "how-it-works.html") if lang == "en" else ("index.html", "como-funciona.html")
+    for name in names:
+        path = Path(root) / name
+        if not path.is_file() or "<!-- finance-stats:start -->" not in path.read_text(encoding="utf-8"):
+            continue
+        text = path.read_text(encoding="utf-8")
+        new = re.sub(
+            r"<!-- finance-stats:start -->[\s\S]*?<!-- finance-stats:end -->",
+            "<!-- finance-stats:start -->" + esc(line) + "<!-- finance-stats:end -->",
+            text,
+            count=1,
+        )
+        if _write_if_changed(path, new):
+            changed = True
+    return changed
 
 
 def rebuild(root: Path, lang: str = "en") -> str:
@@ -1266,8 +1158,10 @@ def rebuild(root: Path, lang: str = "en") -> str:
         entries.append((loc, lastmod, "0.7", en, es))
         city_names.append(slug)
     _drop_stale_cities(root, set(city_names))
-    _stamp_finance_stats(root, homes, lang)
-    if _stamp_cities_on_index(root, groups, lang):
+    _write_buyer_index(root, homes)
+    index_changed = bool(_stamp_cities_on_index(root, groups, lang))
+    index_changed = _stamp_finance(root, homes, lang) or index_changed
+    if index_changed:
         index_loc = domain + "/"
         entries = [(loc, today if loc == index_loc else last, pri, en, es) for loc, last, pri, en, es in entries]
     for home in homes:

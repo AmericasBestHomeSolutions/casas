@@ -6,9 +6,10 @@
       "condition": {
         "roof": {
           "status": "reported",
-          "en": "slate roof needs repair or replacement (duplex)",
-          "es": "el techo de pizarra necesita reparación o reemplazo (dúplex)",
-          "source": "listing note"
+          "en": "Slate roof needs repair or replacement (duplex)",
+          "es": "El techo de pizarra necesita reparación o reemplazo (dúplex)",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -22,15 +23,17 @@
       "condition": {
         "electrical": {
           "status": "reported",
-          "en": "no electrical (copper wiring taken)",
-          "es": "no tiene electricidad (se llevaron el cableado de cobre)",
-          "source": "listing note"
+          "en": "No electrical (copper wiring taken)",
+          "es": "No hay instalación eléctrica (se llevaron el cableado de cobre)",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         },
         "furnace": {
           "status": "reported",
-          "en": "furnace needs work",
-          "es": "el horno necesita trabajo",
-          "source": "listing note"
+          "en": "Furnace needs work",
+          "es": "La calefacción necesita trabajo",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -44,15 +47,17 @@
       "condition": {
         "roof": {
           "status": "reported",
-          "en": "roof needs some repair",
-          "es": "el techo necesita algo de reparación",
-          "source": "listing note"
+          "en": "Roof needs some repair",
+          "es": "El techo necesita algo de reparación",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         },
         "electrical": {
           "status": "reported",
-          "en": "wiring pulled from the fuse box",
-          "es": "le sacaron el cableado de la caja de fusibles",
-          "source": "listing note"
+          "en": "Wiring pulled from the fuse box",
+          "es": "El cableado fue retirado de la caja de fusibles",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -66,9 +71,10 @@
       "condition": {
         "roof": {
           "status": "reported",
-          "en": "hole in the roof that needs repair",
-          "es": "hay un hueco en el techo que necesita reparación",
-          "source": "listing note"
+          "en": "Hole in the roof that needs repair",
+          "es": "Hay un agujero en el techo que necesita reparación",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -80,23 +86,26 @@
     },
     "decatur-il-2827-hickory": {
       "condition": {
-        "roof": {
+        "plumbing": {
           "status": "reported",
-          "en": "needs a new roof",
-          "es": "necesita techo nuevo",
-          "source": "listing note"
+          "en": "Needs a new roof, new electrical and plumbing, drywall, and a rebuilt kitchen and bath",
+          "es": "Necesita un techo nuevo, electricidad y plomería nuevas, tablaroca, y una cocina y un baño reconstruidos",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         },
         "electrical": {
           "status": "reported",
-          "en": "needs new electrical",
-          "es": "necesita electricidad nueva",
-          "source": "listing note"
+          "en": "Needs a new roof, new electrical and plumbing, drywall, and a rebuilt kitchen and bath",
+          "es": "Necesita un techo nuevo, electricidad y plomería nuevas, tablaroca, y una cocina y un baño reconstruidos",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         },
-        "plumbing": {
+        "roof": {
           "status": "reported",
-          "en": "needs new plumbing",
-          "es": "necesita plomería nueva",
-          "source": "listing note"
+          "en": "Needs a new roof, new electrical and plumbing, drywall, and a rebuilt kitchen and bath",
+          "es": "Necesita un techo nuevo, electricidad y plomería nuevas, tablaroca, y una cocina y un baño reconstruidos",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -110,15 +119,17 @@
       "condition": {
         "plumbing": {
           "status": "reported",
-          "en": "plumbing needs a licensed plumber",
-          "es": "la plomería necesita un plomero con licencia",
-          "source": "listing note"
+          "en": "Plumbing needs a licensed plumber",
+          "es": "La plomería necesita un plomero con licencia",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         },
         "electrical": {
           "status": "reported",
-          "en": "full electrical rewire",
-          "es": "hay que volver a cablear toda la instalación eléctrica",
-          "source": "listing note"
+          "en": "Full electrical rewire",
+          "es": "Hay que volver a cablear toda la electricidad",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -132,9 +143,10 @@
       "condition": {
         "electrical": {
           "status": "reported",
-          "en": "electric meter removed and power is off; electrical service must be updated before power can be restored",
-          "es": "le quitaron el medidor eléctrico y no hay corriente; hay que actualizar el servicio eléctrico antes de restablecer la corriente",
-          "source": "listing note"
+          "en": "Electric meter removed and power is off; Electrical service must be updated before power can be restored",
+          "es": "Quitaron el medidor eléctrico y no hay luz; Hay que actualizar el servicio eléctrico antes de restablecer la luz",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -148,9 +160,10 @@
       "condition": {
         "foundation": {
           "status": "reported",
-          "en": "basement needs foundation repair",
-          "es": "el sótano necesita reparación de cimientos",
-          "source": "listing note"
+          "en": "Basement needs foundation repair",
+          "es": "El sótano necesita reparación de los cimientos",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -162,23 +175,26 @@
     },
     "stlouis-mo-2207-oakdale": {
       "condition": {
-        "plumbing": {
-          "status": "reported",
-          "en": "plumbing needs work from licensed pros",
-          "es": "la plomería necesita trabajo de profesionales con licencia",
-          "source": "listing note"
-        },
         "furnace": {
           "status": "reported",
-          "en": "HVAC needs work from licensed pros",
-          "es": "el sistema de aire y calefacción (HVAC) necesita trabajo de profesionales con licencia",
-          "source": "listing note"
+          "en": "Plumbing, HVAC and electrical all need work from licensed pros",
+          "es": "La plomería, la calefacción y la electricidad necesitan trabajo de profesionales con licencia",
+          "source": "listing note",
+          "as_of": "2026-11-25"
+        },
+        "plumbing": {
+          "status": "reported",
+          "en": "Plumbing, HVAC and electrical all need work from licensed pros",
+          "es": "La plomería, la calefacción y la electricidad necesitan trabajo de profesionales con licencia",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         },
         "electrical": {
           "status": "reported",
-          "en": "electrical needs work from licensed pros",
-          "es": "la electricidad necesita trabajo de profesionales con licencia",
-          "source": "listing note"
+          "en": "Plumbing, HVAC and electrical all need work from licensed pros",
+          "es": "La plomería, la calefacción y la electricidad necesitan trabajo de profesionales con licencia",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -190,17 +206,19 @@
     },
     "eaststlouis-il-5807-forest": {
       "condition": {
-        "plumbing": {
-          "status": "reported",
-          "en": "needs plumbing work",
-          "es": "necesita trabajo de plomería",
-          "source": "listing note"
-        },
         "furnace": {
           "status": "reported",
-          "en": "needs a new furnace and AC unit",
-          "es": "necesita un horno y un aire acondicionado nuevos",
-          "source": "listing note"
+          "en": "Needs plumbing work, a new furnace and AC unit, and new siding",
+          "es": "Necesita trabajo de plomería, una calefacción y un aire acondicionado nuevos, y revestimiento nuevo",
+          "source": "listing note",
+          "as_of": "2026-11-25"
+        },
+        "plumbing": {
+          "status": "reported",
+          "en": "Needs plumbing work, a new furnace and AC unit, and new siding",
+          "es": "Necesita trabajo de plomería, una calefacción y un aire acondicionado nuevos, y revestimiento nuevo",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -214,15 +232,17 @@
       "condition": {
         "plumbing": {
           "status": "reported",
-          "en": "needs plumbing",
-          "es": "necesita plomería",
-          "source": "listing note"
+          "en": "Needs plumbing, electrical and mechanicals",
+          "es": "Necesita plomería, electricidad y sistemas mecánicos",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         },
         "electrical": {
           "status": "reported",
-          "en": "needs electrical",
-          "es": "necesita electricidad",
-          "source": "listing note"
+          "en": "Needs plumbing, electrical and mechanicals",
+          "es": "Necesita plomería, electricidad y sistemas mecánicos",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {
@@ -236,9 +256,10 @@
       "condition": {
         "electrical": {
           "status": "reported",
-          "en": "needs electrical work",
-          "es": "necesita trabajo eléctrico",
-          "source": "listing note"
+          "en": "Needs electrical and mechanical work",
+          "es": "Necesita trabajo eléctrico y mecánico",
+          "source": "listing note",
+          "as_of": "2026-11-25"
         }
       },
       "fit": {

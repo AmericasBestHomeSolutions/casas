@@ -102,7 +102,7 @@ class T(unittest.TestCase):
             self.assertIn("BOOK_CRM", js)
             self.assertIn("function bookHref", js)
             self.assertIn(
-                "return BOOK_CRM+'?home='+encodeURIComponent(homeId)+'&lang='+BOOK_LANG",
+                "return BOOK_CRM + '?home=' + encodeURIComponent(homeId) + '&lang=es'",
                 js,
             )
             self.assertNotIn("'/agendar/'+encodeURIComponent", js)

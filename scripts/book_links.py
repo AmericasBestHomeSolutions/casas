@@ -33,16 +33,22 @@ from pathlib import Path
 BOOKING = "https://owner.getownerfinancedhomes.com/book"
 FEEDBACK = "https://owner.getownerfinancedhomes.com/feedback/"
 ACCOUNT = "https://owner.getownerfinancedhomes.com/account"
-# /cuenta/ (and /account/ on the English site) forward to the CRM buyer sign-in; only these query keys pass through.
-ACCOUNT_KEEP = ("lang",)
+# Buyer account on the public site: getownerfinancedhomes.com/account/ forwards here with a small whitelist
+# (lang, home for sign-in deep links). Never forward ``next`` or other open-redirect params.
+ACCOUNT_KEEP = ("lang", "home")
 ACCOUNT_SITES = {
     "en": {"dir": "account", "title": "My account", "go": "Open my account", "wait": "Opening your account…"},
     "es": {"dir": "cuenta", "title": "Mi cuenta", "go": "Abrir mi cuenta", "wait": "Abriendo su cuenta…"},
 }
 # After-tour feedback links (Joe, 2026-11-01): getownerfinancedhomes.com/feedback/<slug> and
 # casasconfinanciamiento.com/opinion/<slug> open the CRM's feedback form for that home (photo + address on top, tap to
-# pick likes and what held them back) and keep the link's query (name, phone, tour, prop, lang). Unlike booking, a
-# feedback link keeps working after a home leaves the site, because buyers answer after the tour.
+# pick likes and what held them back). Unlike booking, a feedback link keeps working after a home leaves the site,
+# because buyers answer after the tour.
+# Since 2026-11-01 (CRM Auditor, Filling-CRM #132) a text carries ONE signed token, ?t=, minted by the CRM (staff route
+# GET /api/tours/<tour id>/feedback-link, or feedback_link() below with a token from it). Never a phone or name: the
+# redirect forwards only FEEDBACK_KEEP and drops anything else (old links' name=/phone=/tour= stay on this page).
+# This repo never holds the signing secret.
+FEEDBACK_KEEP = ("t", "prop", "lang")
 FEEDBACK_SITES = {
     "en": {"dir": "feedback", "title": "How was your tour? {addr}", "go": "Open the feedback form",
            "wait": "Opening the feedback form…"},
@@ -148,14 +154,17 @@ def account_url(lang: str) -> str:
     return f"{ACCOUNT}?lang={lang}"
 
 
-_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]{20,400}")
+def redirect_target_from_page(html_text: str) -> str:
+    """CRM URL embedded in a generated redirect page's inline script (for tests)."""
+    m = re.search(r"new URL\((\"(?:\\.|[^\"\\])*\")\)", html_text)
+    if not m:
+        raise ValueError("no redirect URL in page")
+    return json.loads(m.group(1))
 
 
-def feedback_link(slug: str, token: str, lang: str = "en") -> str:
-    """Short public feedback link: <site>/opinion/<slug>?t=<token>. Token comes from the CRM only."""
-    if not _TOKEN_RE.fullmatch(str(token or "")):
-        raise ValueError("feedback token must come from the CRM")
-    return f"{SITES[lang]['domain']}/{FEEDBACK_SITES[lang]['dir']}/{slug}?t={token}"
+def meta_property(html_text: str, prop: str) -> str | None:
+    m = re.search(rf'<meta property="{re.escape(prop)}" content="([^"]*)"', html_text)
+    return m.group(1) if m else None
 
 
 def _addr(rec: dict) -> str:
@@ -204,15 +213,26 @@ def feedback_url(home_id: str, lang: str) -> str:
     return f"{FEEDBACK}{home_id}?lang={lang}"
 
 
+_TOKEN_RE = re.compile(r"[A-Za-z0-9_.-]{20,400}")
+
+
+def feedback_link(slug: str, token: str, lang: str = "en") -> str:
+    """The short public link to text a buyer: <site>/feedback/<slug>?t=<token>. ``token`` comes from the CRM (staff
+    route GET /api/tours/<tour id>/feedback-link); a phone, name or tour id is never put in the link."""
+    if not _TOKEN_RE.fullmatch(str(token or "")):
+        raise ValueError("feedback token must come from the CRM")
+    return f"{SITES[lang]['domain']}/{FEEDBACK_SITES[lang]['dir']}/{slug}?t={token}"
+
+
 def feedback_page_for(root: Path, home_id: str, rec: dict, lang: str, path: str) -> str:
     t, f = SITES[lang], FEEDBACK_SITES[lang]
     target = feedback_url(home_id, lang)
     addr = _addr(rec or {}) or home_id
     title = f["title"].format(addr=addr)
     e = lambda s: html.escape(s, quote=True)  # noqa: E731
-    js = ("(function(){var u=new URL(%s),q=new URLSearchParams(location.search);"
-          "q.forEach(function(v,k){if(k!=='home')u.searchParams.set(k,v)});"
-          "u.hash=location.hash;location.replace(u.toString())})();") % json.dumps(target)
+    js = ("(function(){var u=new URL(%s),q=new URLSearchParams(location.search),keep=%s;"
+          "keep.forEach(function(k){if(q.has(k))u.searchParams.set(k,q.get(k))});"
+          "location.replace(u.toString())})();") % (json.dumps(target), json.dumps(list(FEEDBACK_KEEP)))
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -234,17 +254,17 @@ def feedback_page_for(root: Path, home_id: str, rec: dict, lang: str, path: str)
 """
 
 
-def account_page_for(lang: str, public_path: str) -> str:
-    """Redirect /cuenta/ (or /account/) to the CRM buyer account page; whitelisted query params only."""
-    a = ACCOUNT_SITES[lang]
+def account_page_for(root: Path, lang: str) -> str:
+    a, t = ACCOUNT_SITES[lang], SITES[lang]
     target = account_url(lang)
-    t = SITES[lang]
-    public_url = f"{t['domain']}/{public_path.lstrip('/')}"
     e = lambda s: html.escape(s, quote=True)  # noqa: E731
+    img = ""
+    if (Path(root) / "images" / "_share-default.jpg").is_file():
+        img = f'<meta property="og:image" content="{t["domain"]}/images/_share-default.jpg"/>\n'
     js = ("(function(){var u=new URL(%s),q=new URLSearchParams(location.search),keep=%s;"
           "keep.forEach(function(k){if(q.has(k))u.searchParams.set(k,q.get(k))});"
-          "u.hash=location.hash;location.replace(u.toString())})();") % (
-              json.dumps(target), json.dumps(list(ACCOUNT_KEEP)))
+          "location.replace(u.toString())})();") % (json.dumps(target), json.dumps(list(ACCOUNT_KEEP)))
+    public = f"{t['domain']}/{a['dir']}/"
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
@@ -255,8 +275,8 @@ def account_page_for(lang: str, public_path: str) -> str:
 <title>{e(a["title"])} | Americas Best Home Solutions</title>
 <link rel="canonical" href="{e(target)}"/>
 <meta property="og:title" content="{e(a["title"])}"/>
-<meta property="og:url" content="{e(public_url)}"/>
-<script>{js}</script>
+<meta property="og:url" content="{e(public)}"/>
+{img}<script>{js}</script>
 <noscript><meta http-equiv="refresh" content="0;url={e(target)}"/></noscript>
 </head>
 <body>
@@ -277,7 +297,7 @@ PENDING_NOTE = {
 
 
 def pending_page(lang: str, home_id: str) -> str:
-    """Old /agendar/<slug> links for a pending home. No CRM booking URL."""
+    """Old /book/<slug> links for a pending home. No CRM booking URL."""
     t = SITES[lang]
     title, detail, see, all_homes = PENDING_NOTE[lang]
     listing = f"/{home_id}.html"
@@ -329,7 +349,7 @@ def _write(f: Path, text: str) -> bool:
 
 
 def write_book_links_js(root: Path, lang: str, live: dict[str, str], closed: list[str] | None = None) -> bool:
-    """Listing pages call bookHref(id): short /agendar/ path, or direct CRM booking if unmapped.
+    """Map home id → /book/<slug> for listing CTAs; unknown ids fall back to the CRM booking URL.
 
     Pending ids are listed in BOOK_CLOSED and bookHref returns the listing page, never the CRM form.
     """
@@ -340,13 +360,12 @@ def write_book_links_js(root: Path, lang: str, live: dict[str, str], closed: lis
         "/* Generated by scripts/book_links.py — do not hand-edit. */\n"
         "const BOOK_HREF = " + json.dumps(mapping, indent=2) + ";\n"
         "const BOOK_CLOSED = " + json.dumps(closed_ids) + ";\n"
-        f"const BOOK_CRM = {json.dumps(BOOKING)};\n"
-        f"const BOOK_LANG = {json.dumps(lang)};\n"
-        "function bookHref(homeId){\n"
-        "  if (BOOK_CLOSED.indexOf(homeId) !== -1) return encodeURIComponent(homeId) + '.html';\n"
-        "  if (BOOK_HREF[homeId]) return BOOK_HREF[homeId];\n"
-        "  return BOOK_CRM+'?home='+encodeURIComponent(homeId)+'&lang='+BOOK_LANG;\n"
-        "}\n"
+        "const BOOK_CRM = " + json.dumps(BOOKING) + ";\n"
+        f"function bookHref(homeId){{\n"
+        f"  if(BOOK_CLOSED.indexOf(homeId) !== -1) return encodeURIComponent(homeId) + '.html';\n"
+        f"  if(BOOK_HREF[homeId]) return BOOK_HREF[homeId];\n"
+        f"  return BOOK_CRM + '?home=' + encodeURIComponent(homeId) + '&lang={lang}';\n"
+        f"}}\n"
     )
     return _write(root / "book-links.js", body)
 
@@ -363,8 +382,7 @@ def build(root: Path, lang: str | None = None, extra: tuple[Path, ...] = ()) -> 
     state = assign(load_state(root), ids, others)
     (root / STATE).parent.mkdir(parents=True, exist_ok=True)
     by_id = {hid: s for s, hid in state["slugs"].items()}
-    # "live": what a text should carry for each home that can still be booked (the CRM reads this file).
-    # A pending home stays on the site, but its short link is not offered for new texts.
+    # "live": what a text should carry for each home on the site right now (the CRM reads this file from the site).
     published = {**state, "live": {hid: by_id.get(hid, hid) for hid in ids}}
     _write(root / STATE, json.dumps(published, indent=2) + "\n")
     write_book_links_js(root, lang, published["live"], sorted(pending))
@@ -392,23 +410,23 @@ def build(root: Path, lang: str | None = None, extra: tuple[Path, ...] = ()) -> 
     _write(out / "index.html", gone_page(lang, "index").replace(t["gone"], t["all"]))
 
     # Feedback links: every live id, every short slug ever issued (live or not), and any full id that already has a
-    # booking or feedback page, so a text sent before a home went pending still opens the feedback form.
+    # booking or feedback page, so a text sent before a home went pending still opens the form.
+    # Pending homes are not bookable, but the feedback page still names the house the buyer toured.
     fdir = root / FEEDBACK_SITES[lang]["dir"]
-    known = {**homes, **pending}
+    labeled = {**homes, **pending}
     targets: dict[str, str] = {hid: hid for hid in ids}
-    targets.update({hid: hid for hid in pending})
     targets.update({s: hid for s, hid in state["slugs"].items()})
     for d in (out, fdir):
         if d.is_dir():
             for sub in d.iterdir():
                 if sub.is_dir() and sub.name not in targets and short_slug(sub.name) and ID_RE.match(sub.name):
                     targets[sub.name] = sub.name
-    changed += sum(_write(fdir / key / "index.html", feedback_page_for(root, hid, known.get(hid, {}), lang, key))
+    changed += sum(_write(fdir / key / "index.html", feedback_page_for(root, hid, labeled.get(hid, {}), lang, key))
                    for key, hid in targets.items())
     _write(fdir / "index.html", gone_page(lang, "index").replace(t["gone"], t["all"]))
 
     adir = root / ACCOUNT_SITES[lang]["dir"]
-    changed += int(_write(adir / "index.html", account_page_for(lang, f"{ACCOUNT_SITES[lang]['dir']}/")))
+    changed += int(_write(adir / "index.html", account_page_for(root, lang)))
 
     live_short = sum(1 for hid in state["slugs"].values() if hid in homes)
     return {"homes": len(ids), "short": live_short, "gone": sum(1 for p in pages.values() if " gone -->" in p),
