@@ -2,7 +2,7 @@
 .brand .bn small, .brand .name small {
   text-transform: none !important;
   letter-spacing: 0 !important;
-  font-family: "DM Sans", system-ui, sans-serif !important;
+  font-family: "DM Sans", "DM Sans Fallback", system-ui, sans-serif !important;
   font-size: 12px !important;
   font-weight: 600 !important;
 }
@@ -23,7 +23,7 @@ body.page-search .hdr-search {
   padding-left: 10px; min-width: 0; color: #5b6577;
 }
 body.page-search .hdr-search input {
-  flex: 1; border: 0; outline: none; font: 600 16px "DM Sans", system-ui, sans-serif;
+  flex: 1; border: 0; outline: none; font: 600 16px "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
   padding: 10px 4px; min-width: 0; color: var(--ink, #16213a); background: transparent;
 }
 body.page-search .hdr-search button.filter-btn {
@@ -34,7 +34,7 @@ body.page-search .hdr-search button.filter-btn {
 body.page-search .hdr-search .fcount {
   position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 4px;
   border-radius: 99px; background: var(--go, #e23b3b); color: #fff;
-  font: 800 11px "DM Sans", system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center;
+  font: 800 11px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center;
 }
 body.page-search .hdr-search .fcount[hidden] { display: none; }
 body.page-search .chipbar {
@@ -60,7 +60,7 @@ body.page-search .more-panel {
   box-shadow: 0 10px 30px rgba(15,36,68,.12);
 }
 body.page-search .more-panel label { display: grid; gap: 2px; font-size: 12px; font-weight: 700; color: #5b6577; }
-body.page-search .more-panel select { font: 600 14px "DM Sans", system-ui, sans-serif; padding: 8px; border-radius: 8px; border: 1px solid #e2e8f2; }
+body.page-search .more-panel select { font: 600 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; padding: 8px; border-radius: 8px; border: 1px solid #e2e8f2; }
 body.page-search .nav-hide { display: none; }
 body.page-search .whyband { display: none !important; }
 body.page-search .topbar { display: block; padding: 10px 16px 8px; }
@@ -70,19 +70,19 @@ body.page-search .z-chips { display: flex; gap: 8px; overflow-x: auto; padding: 
 body.page-search .z-chips:empty { display: none; }
 body.page-search .z-chips button {
   flex: 0 0 auto; border: 0; background: var(--pine, #15315e); color: #fff;
-  font: 700 14px "DM Sans", system-ui, sans-serif; border-radius: 999px; padding: 8px 12px; cursor: pointer;
+  font: 700 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; border-radius: 999px; padding: 8px 12px; cursor: pointer;
 }
 /* Always-visible quick filters: city, bedrooms, price range, monthly. The rest live under "More filters". */
 body.page-search .z-quick { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 10px; padding: 10px 0 2px; }
-body.page-search .z-quick .qf { display: grid; gap: 3px; font: 800 11px "DM Sans", system-ui, sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #5b6577; }
+body.page-search .z-quick .qf { display: grid; gap: 3px; font: 800 11px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #5b6577; }
 body.page-search .z-quick select {
-  font: 700 14px "DM Sans", system-ui, sans-serif; color: var(--ink, #16213a); background: #fff;
+  font: 700 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; color: var(--ink, #16213a); background: #fff;
   border: 1.5px solid #cfd6e4; border-radius: 10px; padding: 8px 10px; min-width: 120px; max-width: 220px; cursor: pointer;
 }
 body.page-search .z-quick #fState { min-width: 0; max-width: 150px; }  /* two-letter codes; keeps City in view on phones */
 body.page-search .z-quick select:focus { outline: none; border-color: var(--pine, #15315e); box-shadow: 0 0 0 3px rgba(21,49,94,.15); }
 body.page-search .z-quick .qf-more, body.page-search .z-quick .qf-clear {
-  font: 800 14px "DM Sans", system-ui, sans-serif; border-radius: 10px; padding: 9px 12px; cursor: pointer;
+  font: 800 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; border-radius: 10px; padding: 9px 12px; cursor: pointer;
   border: 1.5px solid var(--pine, #15315e); background: #fff; color: var(--pine, #15315e);
 }
 body.page-search .z-quick .qf-clear { border-color: transparent; text-decoration: underline; }
@@ -91,7 +91,7 @@ body.page-search .z-sort { display: flex; align-items: center; justify-content: 
 body.page-search .z-sort .count { padding: 0; font-weight: 700; }
 body.page-search .sort-pill { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px; }
 body.page-search .sort-pill select {
-  border: 1.5px solid #cfd6e4; border-radius: 999px; background: #fff; font: 700 14px "DM Sans", system-ui, sans-serif; padding: 8px 12px;
+  border: 1.5px solid #cfd6e4; border-radius: 999px; background: #fff; font: 700 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; padding: 8px 12px;
 }
 body.page-search .filter-sheet {
   position: absolute; right: 16px; top: calc(100% - 4px); z-index: 45; width: min(460px, calc(100vw - 24px));
@@ -100,11 +100,11 @@ body.page-search .filter-sheet {
 }
 body.page-search .filter-sheet[hidden] { display: none !important; }
 body.page-search .filter-sheet label { display: grid; gap: 4px; font-size: 12px; font-weight: 800; color: #5b6577; }
-body.page-search .filter-sheet select { font: 600 14px "DM Sans", system-ui, sans-serif; padding: 8px; border-radius: 8px; border: 1px solid #e2e8f2; width: 100%; }
+body.page-search .filter-sheet select { font: 600 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; padding: 8px; border-radius: 8px; border: 1px solid #e2e8f2; width: 100%; }
 body.page-search .filter-sheet .sheet-wide { grid-column: 1 / -1; }
 body.page-search .z-feat {
   position: absolute; top: 12px; left: 12px; z-index: 5; background: #fff; color: #16213a;
-  font: 700 13px "DM Sans", system-ui, sans-serif; padding: 6px 10px; border-radius: 8px;
+  font: 700 13px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; padding: 6px 10px; border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0,0,0,.18);
 }
 body.page-search #featuredSec { display: none !important; }
@@ -121,7 +121,7 @@ body.page-search .chipbar { position: sticky; top: 69px; z-index: 28; }
 body.page-search #listings .listings-head { justify-content: flex-start; }
 body.page-search #alertBtn {
   background: none !important; border: 0 !important; color: var(--pine, #15315e) !important;
-  padding: 0 !important; font: 700 14px "DM Sans", system-ui, sans-serif !important;
+  padding: 0 !important; font: 700 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif !important;
   text-decoration: underline; cursor: pointer; box-shadow: none !important;
 }
 body.page-search #copyLink { display: none !important; }
@@ -154,7 +154,7 @@ body.page-search .story { max-width: 980px; margin: 28px auto; padding: 0 16px; 
 .lang a[aria-current="page"] { background: var(--pine, #15315e); color: #fff; }
 .topnav a.acct, .topnav a[href="account.html"] { font-weight: 700; }
 .near {
-  font: 800 14px "DM Sans", system-ui, sans-serif;
+  font: 800 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
   border: 1.5px solid var(--pine, #15315e);
   background: #fff;
   color: var(--pine, #15315e);
@@ -169,7 +169,7 @@ body.page-search .story { max-width: 980px; margin: 28px auto; padding: 0 16px; 
   z-index: 5;
   background: var(--pine, #15315e);
   color: #fff;
-  font: 800 11px "DM Sans", system-ui, sans-serif;
+  font: 800 11px "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
   letter-spacing: .06em;
   text-transform: uppercase;
   border-radius: 999px;
@@ -215,7 +215,7 @@ body.page-search .card-down { font-weight: 800; margin-top: 6px; color: var(--in
 .faq summary { cursor: pointer; font-weight: 800; padding: 12px 14px; }
 .faq .ans { padding: 0 14px 14px; color: var(--ink-soft, #5b6577); }
 .story { margin-top: 28px; }
-.story h2 { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; letter-spacing: -.4px; }
+.story h2 { font-family: "Bricolage Grotesque", "Bricolage Fallback", sans-serif; font-weight: 800; letter-spacing: -.4px; }
 .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
 .benefits article { background: #fff; border: 1px solid var(--line, #e2e8f2); border-radius: 14px; padding: 12px 14px; }
 .benefits h3 { margin: 0 0 4px; font-size: 16px; }
@@ -243,8 +243,18 @@ body.page-search .card-down { font-weight: 800; margin-top: 6px; color: var(--in
   body.page-search #listings { height: auto; overflow: visible; }
   body.page-search #split { display: block !important; min-height: 0; }
   body.page-search #splitMap { display: none; position: static; height: calc(100vh - 210px); margin: 0; border-radius: 0; border: 0; }
-  /* phones: the quick filters are one swipeable row so the sticky header stays short */
-  body.page-search .z-quick { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  /* phones: one short sticky row (brand, search, sort). Filters stay on the filter button. */
+  body.page-search .topbar { padding: 6px 12px 4px; }
+  body.page-search .brand .mark { width: 22px; height: 22px; }
+  body.page-search .brand .bn { font-size: 15px; }
+  body.page-search .brand .bn small { display: none; }
+  body.page-search .hdr-search { margin-top: 6px; min-height: 40px; }
+  body.page-search .z-quick { display: none; }
+  body.page-search .z-sort { padding: 2px 0 0; }
+  body.page-search .buyer-intro { margin: 8px 12px 0; }
+  body.page-search .buyer-intro h2 { font-size: 20px; line-height: 1.2; }
+  body.page-search .buyer-intro p, body.page-search .buyer-intro ul { font-size: 14px; margin-top: 6px; }
+  body.page-search #cities { margin-top: 28px; }
   body.page-search .z-quick::-webkit-scrollbar { display: none; }
   body.page-search .z-quick .qf, body.page-search .z-quick button { flex: 0 0 auto; }
   body.page-search .z-quick select { min-width: 0; font-size: 16px; padding: 7px 8px; }

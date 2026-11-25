@@ -24,7 +24,20 @@
 <script type="application/ld+json" id="seo-jsonld">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://casasconfinanciamiento.com/#organization","name":"Americas Best Home Solutions","legalName":"Americas Best Home Solutions LLC","url":"https://casasconfinanciamiento.com/","logo":"https://casasconfinanciamiento.com/images/brand/logo-mark-480.png","email":"admin@americasbesthomesolutions.com","address":{"@type":"PostalAddress","streetAddress":"30 N Gould St, Ste R","addressLocality":"Sheridan","addressRegion":"WY","postalCode":"82801","addressCountry":"US"}},{"@type":"Offer","@id":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html#offer","url":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html","priceCurrency":"USD","price":"78000","availability":"https://schema.org/InStock","itemOffered":{"@id":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html#home"},"seller":{"@id":"https://casasconfinanciamiento.com/#organization"},"description":"Enganche de $2,000. Mensualidad de $850. Financiamiento del dueño a 30 años (contrato de compraventa)"},{"@type":"RealEstateListing","@id":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html#listing","name":"2448 East Wood Street, Decatur, IL — $78,000, $2,000 de enganche, $850/mes","url":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html","description":"Casa con financiamiento del dueño en 2448 East Wood Street, Decatur, IL. Precio de compra $78,000. Enganche de $2,000. Mensualidad de $850. 2 recámaras, 1 baño. 800 pies cuadrados. Financiamiento del dueño a 30 años (contrato de compraventa).","mainEntity":{"@id":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html#home"},"image":"https://casasconfinanciamiento.com/images/decatur-il-2448-wood.jpg","offers":{"@id":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html#offer"}},{"@type":"House","@id":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html#home","name":"2448 East Wood Street, Decatur, IL","address":{"@type":"PostalAddress","addressCountry":"US","streetAddress":"2448 East Wood Street","addressLocality":"Decatur","addressRegion":"IL"},"numberOfBedrooms":2,"numberOfBathroomsTotal":1,"floorSize":{"@type":"QuantitativeValue","value":800,"unitCode":"FTK"},"geo":{"@type":"GeoCoordinates","latitude":39.841871,"longitude":-88.919304}},{"@type":"BreadcrumbList","@id":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Casas","item":"https://casasconfinanciamiento.com/"},{"@type":"ListItem","position":2,"name":"Casas con financiamiento del dueño en Decatur, IL","item":"https://casasconfinanciamiento.com/decatur-il.html"},{"@type":"ListItem","position":3,"name":"2448 East Wood Street","item":"https://casasconfinanciamiento.com/decatur-il-2448-wood.html"}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=optional" rel="stylesheet">
+<style id="font-fallback">
+@font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Arimo"),local("Liberation Sans");font-weight:400;font-style:normal;size-adjust:93.01%;ascent-override:106.65%;descent-override:33.33%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"DM Sans Fallback";src:local("Arial Bold"),local("Arimo Bold"),local("Liberation Sans Bold");font-weight:700;font-style:normal;size-adjust:93.01%;ascent-override:106.65%;descent-override:33.33%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"Bricolage Fallback";src:local("Arial"),local("Arimo"),local("Liberation Sans");font-weight:400;font-style:normal;size-adjust:85.78%;ascent-override:108.42%;descent-override:31.48%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"Bricolage Fallback";src:local("Arial Bold"),local("Arimo Bold"),local("Liberation Sans Bold");font-weight:700;font-style:normal;size-adjust:85.78%;ascent-override:108.42%;descent-override:31.48%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"DM Mono Fallback";src:local("Courier New"),local("Liberation Mono"),local("DejaVu Sans Mono");font-weight:400;font-style:normal;size-adjust:99.98%;ascent-override:99.22%;descent-override:31.01%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"DM Mono Fallback";src:local("Courier New Bold"),local("Liberation Mono Bold"),local("DejaVu Sans Mono Bold");font-weight:700;font-style:normal;size-adjust:99.98%;ascent-override:99.22%;descent-override:31.01%;line-gap-override:0%;font-display:optional}
+.headline{font-size:clamp(24px,5.2vw,34px);line-height:1.15;letter-spacing:-.5px}
+.seo-facts{font-size:17px;line-height:1.55;color:var(--ink,#16213a);margin:0 0 8px;max-width:52ch}
+.seo-city{margin:0 0 12px}
+.seo-city a{color:var(--pine,#15315e);font-weight:700}
+</style>
+
 
 <!-- ════════════════════════════════════════════════════════════════════════
      AMERICAS BEST HOME SOLUTIONS — PÁGINA DE PROPIEDAD (plantilla — sirve a TODAS las casas)
@@ -38,18 +51,18 @@
 :root{
   --paper:#f4f7fc; --card:#ffffff; --ink:#16213a; --ink-soft:#5b6577; --line:#e2e8f2;
   --pine:#15315e; --pine-deep:#0f2444; --lime:#ffffff; --honey:#e23b3b; --honey-soft:#eaf1fb;
-  --go:#e23b3b; --go-hover:#c92f2f; --radius:18px;
+  --go:#d32f2f; --go-hover:#b71c1c; --radius:18px;
 }
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans','DM Sans Fallback',system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:680px;margin:0 auto;padding:0 20px}
 
 /* ── TOP BAR ─────────────────────────────────────────────── */
 .topbar{padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:9px;text-decoration:none}
 .brand .mark{width:30px;height:30px;flex-shrink:0}
-.brand .bn{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.4px;color:var(--pine);line-height:1}
-.brand .bn small{display:block;font-family:'DM Mono',monospace;font-weight:400;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:2px}
+.brand .bn{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.4px;color:var(--pine);line-height:1}
+.brand .bn small{display:block;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-weight:400;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:2px}
 .topnav{display:flex;align-items:center;gap:8px}
 .topnav a{font-size:14px;font-weight:600;color:var(--ink-soft);text-decoration:none;padding:8px 10px;border-radius:10px}
 .topnav a:hover{color:var(--pine);background:#eef2f9}
@@ -67,46 +80,46 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-photo img[hidden]{display:none}
 .hero-photo .fallback{opacity:.9}
-.hero-photo .sv-badge{position:absolute;right:14px;bottom:14px;z-index:3;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.5px;background:rgba(11,20,40,.62);color:#fff;padding:5px 9px;border-radius:999px}
+.hero-photo .sv-badge{position:absolute;right:14px;bottom:14px;z-index:3;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:10px;letter-spacing:.5px;background:rgba(11,20,40,.62);color:#fff;padding:5px 9px;border-radius:999px}
 .hero-photo .sv-badge[hidden]{display:none}
-.hero-photo .sv-link{position:absolute;right:14px;bottom:14px;z-index:3;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.3px;background:rgba(255,255,255,.94);color:#15315e;padding:8px 13px;border-radius:999px;text-decoration:none;font-weight:600}
+.hero-photo .sv-link{position:absolute;right:14px;bottom:14px;z-index:3;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:12px;letter-spacing:.3px;background:rgba(255,255,255,.94);color:#15315e;padding:8px 13px;border-radius:999px;text-decoration:none;font-weight:600}
 .hero-photo .sv-link:hover{background:#fff;text-decoration:underline}
 .hero-photo .sv-link[hidden]{display:none}
 .hero-photo .fcity{position:absolute;left:16px;bottom:14px;z-index:2;color:#fff}
-.hero-photo .fcity .c{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.5px;line-height:1}
-.hero-photo .fcity .s{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:4px}
-.status-tag{position:absolute;top:14px;left:14px;z-index:2;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;background:var(--lime);color:var(--pine-deep);padding:6px 11px;border-radius:999px;font-weight:500}
+.hero-photo .fcity .c{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.5px;line-height:1}
+.hero-photo .fcity .s{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:4px}
+.status-tag{position:absolute;top:14px;left:14px;z-index:2;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;background:var(--lime);color:var(--pine-deep);padding:6px 11px;border-radius:999px;font-weight:500}
 .status-tag.pending{background:#c2410c;color:#fff}
 .pending-note{background:#fff7ed;border:1.5px solid #fdba74;color:#7c2d12;border-radius:14px;padding:14px 16px;font-weight:600;margin:0;line-height:1.45}
-.headline{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(30px,8vw,46px);line-height:1.05;letter-spacing:-1px;margin:22px 0 8px;color:var(--ink)}
+.headline{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(30px,8vw,46px);line-height:1.05;letter-spacing:-1px;margin:22px 0 8px;color:var(--ink)}
 .headline em{font-style:normal;color:var(--pine)}
 .subhead{font-size:18px;color:var(--ink-soft);max-width:34ch}
 
 /* ── DEAL STRIP ──────────────────────────────────────────── */
 .deal-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:22px 0 8px}
 .deal-cell{background:var(--card);padding:16px 14px;text-align:center}
-.deal-cell .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(20px,5.5vw,26px);color:var(--pine);line-height:1}
-.deal-cell .lab{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-top:7px}
+.deal-cell .num{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:700;font-size:clamp(20px,5.5vw,26px);color:var(--pine);line-height:1}
+.deal-cell .lab{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-top:7px}
 .deal-cell.hero-cell{background:var(--pine)}
 .deal-cell.hero-cell .num{color:#fff}
 .deal-cell.hero-cell .lab{color:#a9c4e8}
 
 /* ── CTA BUTTONS ─────────────────────────────────────────── */
 .cta-group{display:flex;gap:10px;margin:18px 0 6px;flex-wrap:wrap}
-.btn{flex:1;min-width:150px;text-align:center;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:17px;padding:16px 18px;border-radius:14px;transition:transform .12s ease,background .15s ease}
+.btn{flex:1;min-width:150px;text-align:center;text-decoration:none;font-family:'DM Sans','DM Sans Fallback',sans-serif;font-weight:700;font-size:17px;padding:16px 18px;border-radius:14px;transition:transform .12s ease,background .15s ease}
 .btn-primary{background:var(--go);color:#fff}
 .btn-primary:hover{background:var(--go-hover)}
 .btn-secondary{background:var(--card);color:var(--pine);border:1.5px solid var(--pine)}
 .btn-secondary:hover{background:#eef3fb}
 .btn:active{transform:scale(.98)}
 .btn:focus-visible{outline:3px solid var(--honey);outline-offset:2px}
-.cta-note{font-family:'DM Mono',monospace;font-size:12px;color:var(--ink-soft);margin-top:4px}
+.cta-note{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:12px;color:var(--ink-soft);margin-top:4px}
 
 /* ── SECTIONS ────────────────────────────────────────────── */
 .section{margin-top:46px}
-.sec-label{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--honey);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.sec-label{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--honey);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 .sec-label::after{content:'';flex:1;height:1px;background:var(--line)}
-.sec-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:28px;letter-spacing:-.5px;margin-bottom:6px}
+.sec-title{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:700;font-size:28px;letter-spacing:-.5px;margin-bottom:6px}
 
 /* ── CARACTERÍSTICAS DE LA CASA ──────────────────────────── */
 .features{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 14px}
@@ -121,46 +134,46 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 .term-row{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);gap:16px}
 .term-row:last-child{border-bottom:none}
 .term-row .k{color:var(--ink-soft);font-size:15px}
-.term-row .v{font-family:'DM Mono',monospace;font-weight:500;font-size:17px;color:var(--ink);text-align:right}
+.term-row .v{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-weight:500;font-size:17px;color:var(--ink);text-align:right}
 .term-row.big .v{font-size:20px;color:var(--pine);font-weight:500}
 
 .steps{display:flex;flex-direction:column;gap:14px}
 .step{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-.step .n{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:var(--lime);background:var(--pine);width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step .body h3{font-family:'DM Sans',sans-serif;font-weight:700;font-size:18px;margin-bottom:2px}
+.step .n{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:22px;color:var(--lime);background:var(--pine);width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step .body h3{font-family:'DM Sans','DM Sans Fallback',sans-serif;font-weight:700;font-size:18px;margin-bottom:2px}
 .step .body p{font-size:15px;color:var(--ink-soft)}
 
 .why{display:grid;gap:12px}
 .why-card{background:var(--honey-soft);border:1px solid #d9e5f5;border-radius:14px;padding:18px}
-.why-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;color:var(--pine)}
+.why-card h3{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;color:var(--pine)}
 .why-card p{font-size:15px;color:#44566f}
 
 .gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .gallery .tile{aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#eaeef5;display:flex;align-items:center;justify-content:center}
 .gallery .tile img{width:100%;height:100%;object-fit:cover;display:block}
-.gallery .ph{font-family:'DM Mono',monospace;font-size:11px;color:#97a0b2;letter-spacing:1px}
+.gallery .ph{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;color:#97a0b2;letter-spacing:1px}
 
 .lead{margin-top:48px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 22px;text-align:center}
-.lead h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(22px,5.5vw,28px);letter-spacing:-.5px;color:var(--pine);margin-bottom:6px}
+.lead h2{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(22px,5.5vw,28px);letter-spacing:-.5px;color:var(--pine);margin-bottom:6px}
 .lead p.sub{color:var(--ink-soft);margin-bottom:20px;max-width:40ch;margin-left:auto;margin-right:auto}
 .lead form{max-width:420px;margin:0 auto;display:flex;flex-direction:column;gap:12px;text-align:left}
-.lead label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:-6px}
+.lead label{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:-6px}
 .lead input,.lead select{font-family:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;width:100%}
 .lead input:focus,.lead select:focus{outline:none;border-color:var(--pine)}
 .lead .btn-primary{margin-top:6px;cursor:pointer;border:none}
-.lead .form-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:2px}
+.lead .form-note{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;color:var(--ink-soft);margin-top:2px}
 .lead .thanks{display:none;padding:18px 8px}
-.lead .thanks h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:var(--pine);margin-bottom:6px}
+.lead .thanks h3{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:22px;color:var(--pine);margin-bottom:6px}
 .lead .thanks p{color:var(--ink-soft)}
 .lead.sent form{display:none}
 .lead.sent .thanks{display:block}
 
 .other-homes{margin-top:22px;text-align:center}
-.other-homes a{font-family:'DM Sans',sans-serif;font-weight:700;font-size:16px;color:var(--pine);text-decoration:none;border-bottom:2px solid var(--go);padding-bottom:2px}
+.other-homes a{font-family:'DM Sans','DM Sans Fallback',sans-serif;font-weight:700;font-size:16px;color:var(--pine);text-decoration:none;border-bottom:2px solid var(--go);padding-bottom:2px}
 .other-homes a:hover{color:var(--pine-deep)}
 
 .closer{margin-top:48px;background:var(--pine);border-radius:var(--radius);padding:34px 24px;text-align:center;color:#fff}
-.closer h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(24px,6vw,32px);letter-spacing:-.5px;margin-bottom:8px}
+.closer h2{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(24px,6vw,32px);letter-spacing:-.5px;margin-bottom:8px}
 .closer p{color:#cfe0f5;margin-bottom:20px}
 .closer .btn-primary{background:var(--go);color:#fff}
 .closer .btn-primary:hover{background:#f05252}
@@ -168,7 +181,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 .closer .btn-secondary:hover{background:rgba(255,255,255,.08)}
 
 .foot{margin:48px 0 34px;text-align:center;color:var(--ink-soft);font-size:13px;line-height:1.7}
-.foot .fb{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;color:var(--pine);letter-spacing:-.4px;margin-bottom:4px}
+.foot .fb{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:18px;color:var(--pine);letter-spacing:-.4px;margin-bottom:4px}
 .foot .fcontact a{color:var(--pine);font-weight:600;text-decoration:none}
 .foot .legal{max-width:64ch;margin:12px auto 0;font-size:12px;color:#8b93a3}
 
@@ -176,10 +189,6 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} html{scroll-behavior:auto} }
 @media (min-width:560px){ body{font-size:18px} }
-.headline{font-size:clamp(24px,5.2vw,34px);line-height:1.15;letter-spacing:-.5px}
-.seo-facts{font-size:17px;line-height:1.55;color:var(--ink,#16213a);margin:0 0 8px;max-width:52ch}
-.seo-city{margin:0 0 12px}
-.seo-city a{color:var(--pine,#15315e);font-weight:700}
 </style>
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="nav.css">
@@ -243,13 +252,14 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     </div>
 
     <div class="deal-strip">
-      <div class="deal-cell hero-cell"><div class="num" id="dMonthly">$850</div><div class="lab">por mes</div></div>
-      <div class="deal-cell"><div class="num" id="dMoveIn">$2,000</div><div class="lab">para mudarse</div></div>
+      <div class="deal-cell hero-cell"><div class="num" id="dMonthly">$850</div><div class="lab">mensualidad</div></div>
+      <div class="deal-cell"><div class="num" id="dMoveIn">$2,000</div><div class="lab">enganche</div></div>
       <div class="deal-cell"><div class="num" id="dPrice">$78,000</div><div class="lab">precio fijo</div></div>
     </div>
 
     <div class="cta-group">
       <a class="btn btn-primary" id="ctaText" href="#">Agende una visita</a>
+      <a class="btn btn-secondary" id="ctaSms" href="#" hidden>¿Tiene una pregunta? Envíenos un texto</a>
     </div>
     <p class="cta-note" id="ctaNote"></p>
     <ul class="why-compact">
@@ -272,12 +282,12 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <div class="sec-label">Sobre esta casa</div>
     <h2 class="sec-title">Lo que está recibiendo</h2>
     <p class="about-desc" id="aboutDesc" style="font-size:16px;line-height:1.7;color:var(--ink,#1c1b17);margin-bottom:8px">Dos recámaras en Decatur, $850 al mes, y $2,000 le ponen las llaves en la mano. Esta vivienda de 2 recámaras y 1 baño le da 800 pies² para llamar suyo, con financiamiento del dueño que salta el banco completamente: sin solicitud de hipoteca, sin esperar la respuesta de un oficial de préstamo. Su pago de $850 está escrito en su acuerdo, así que el número que presupuesta este mes es el mismo que presupuestará el próximo año, sin que el casero lo suba cuando se vence el contrato. El precio de compra es $78,000, establecido el día que firma, y no hay banco involucrado. La vivienda se vende tal como está, así que venga a recorrer cada cuarto en persona y decida cómo se ajusta a su vida. Casas como esta no se quedan mucho tiempo. Agende una visita ahora y agendemos una cita.</p>
-    <p class="about-desc-src" id="aboutDescSrc" hidden style="font-size:12.5px;color:var(--ink-soft,#5b6472);font-family:'DM Mono',monospace;margin-bottom:20px"></p>
+    <p class="about-desc-src" id="aboutDescSrc" hidden style="font-size:12.5px;color:var(--ink-soft,#5b6472);font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;margin-bottom:20px"></p>
     <div class="asis-badges" style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px">
       <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Se vende tal como está</span>
       <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Financiada por el dueño</span>
       <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Sin solicitud hipotecaria</span>
-      <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Pago de entrada + identificación para mudarse</span>
+      <span style="font-size:13px;font-weight:600;color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb);border-radius:999px;padding:7px 14px">Enganche + identificación para mudarse</span>
     </div>
     <p style="font-size:15px;line-height:1.65;color:var(--ink-soft,#5b6472);background:var(--honey-soft,#eaf1fb);border-radius:14px;padding:16px 18px">
       <strong style="color:var(--pine,#15315e)">Esta es la oportunidad:</strong> Los bancos solo prestan para casas que cumplen con todos sus requisitos — así que casas como esta se quedan de lado, y también las personas que las cuidarían muy bien. <em>Por eso</em> el precio está donde está y el pago es parecido a la renta. Nosotros nos saltamos el banco. Desde el día que se muda, es suya para hacerla a su gusto — a su ritmo, a su manera — y cada mejora construye su patrimonio, no el de un casero. Se vende tal como está: venga a recorrerla en persona y véala con sus propios ojos.
@@ -307,6 +317,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <h2 class="sec-title">Números claros y honestos</h2>
     <script type="application/json" id="seo-terms">[{"k":"Mensualidad","v":"$850","big":true},{"k":"Enganche","v":"$2,000","big":false},{"k":"Precio de compra","v":"$78,000","big":false},{"k":"Financiamiento","v":"Financiamiento del dueño a 30 años (contrato de compraventa)","big":false},{"k":"La casa","v":"2 recámaras, 1 baño · 800 pies cuadrados","big":false},{"k":"Ubicación","v":"2448 East Wood Street, Decatur, IL","big":false}]</script>
 <div class="terms" id="termsList"><div class="term-row big"><span class="k">Mensualidad</span><span class="v">$850</span></div><div class="term-row"><span class="k">Enganche</span><span class="v">$2,000</span></div><div class="term-row"><span class="k">Precio de compra</span><span class="v">$78,000</span></div><div class="term-row"><span class="k">Financiamiento</span><span class="v">Financiamiento del dueño a 30 años (contrato de compraventa)</span></div><div class="term-row"><span class="k">La casa</span><span class="v">2 recámaras, 1 baño · 800 pies cuadrados</span></div><div class="term-row"><span class="k">Ubicación</span><span class="v">2448 East Wood Street, Decatur, IL</span></div></div>
+    <div class="terms" id="conditionSlot" hidden style="margin-top:8px"><div class="term-row"><span class="k">Condición</span><span class="v" id="conditionText"></span></div></div>
   </section>
 
   <!-- QUÉ PASA CUANDO NOS CONTACTA -->
@@ -316,8 +327,8 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <div class="steps">
       <div class="step"><div class="n">01</div><div class="body"><h3>Agende una visita</h3><p>Elija una hora en esta página. Una persona real confirma — casi siempre el mismo día.</p></div></div>
       <div class="step"><div class="n">02</div><div class="body"><h3>Recorra la casa en persona</h3><p>Las visitas son en persona, no por video — la ve exactamente como está. A todos les pedimos una identificación con foto antes de la visita; así llevamos un registro de quién ha entrado a la casa.</p></div></div>
-      <div class="step"><div class="n">03</div><div class="body"><h3>Sus términos por escrito</h3><p>Los números de arriba — precio, pago de entrada, pago mensual, tasa fija, sin penalidad por pago anticipado — le llegan en un desglose claro por escrito junto con su factura del pago de entrada. Nunca le pediremos dinero para "apartar" una casa que no ha visto.</p></div></div>
-      <div class="step"><div class="n">04</div><div class="body"><h3>Pago de entrada, y las llaves</h3><p>Desde ese día, cada pago mensual va hacia ser dueño de la casa — al precio que acordó.</p></div></div>
+      <div class="step"><div class="n">03</div><div class="body"><h3>Sus términos por escrito</h3><p>Los números de arriba — precio, enganche, mensualidad, tasa fija, sin penalidad por pago anticipado — le llegan en un desglose claro por escrito junto con su factura del enganche. Nunca le pediremos dinero para "apartar" una casa que no ha visto.</p></div></div>
+      <div class="step"><div class="n">04</div><div class="body"><h3>Enganche, y las llaves</h3><p>Desde ese día, cada mensualidad va hacia ser dueño de la casa — al precio que acordó.</p></div></div>
     </div>
     <p class="other-homes" style="margin-top:16px"><a href="como-funciona.html">¿Quiere todos los detalles? Vea cómo funciona el financiamiento del dueño →</a></p>
   </section>
@@ -328,7 +339,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <h2 class="sec-title">No es rentar</h2>
     <div class="why">
       <div class="why-card"><h3>Usted compra, no renta</h3><p>Su nombre está en el acuerdo de compra desde el primer día. Usted es el comprador, no un inquilino — cada pago lo acerca a que la casa sea completamente suya.</p></div>
-      <div class="why-card"><h3>Su pago no se mueve</h3><p>Un pago mensual fijo, por escrito. No sube cada año como la renta — solo un cambio en los impuestos o el seguro de la propiedad podría moverlo, y eso queda explicado en sus términos.</p></div>
+      <div class="why-card"><h3>Su pago no se mueve</h3><p>Una mensualidad fija, por escrito. No sube cada año como la renta — solo un cambio en los impuestos o el seguro de la propiedad podría moverla, y eso queda explicado en sus términos.</p></div>
       <div class="why-card"><h3>Un pago parecido a la renta</h3><p>Más o menos lo que hoy le entrega a un casero — solo que cada día primero, este pago va construyendo una casa con su nombre.</p></div>
     </div>
   </section>
@@ -350,6 +361,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     <p id="closerLead">Agende una visita y coordinamos una hora para recorrerla. Sin presión, sin banco.</p>
     <div class="cta-group" style="max-width:400px;margin:0 auto">
       <a class="btn btn-primary" id="ctaText2" href="#">Agende una visita</a>
+      <a class="btn btn-secondary" id="ctaSms2" href="#" hidden>¿Tiene una pregunta? Envíenos un texto</a>
     </div>
   </section>
 
@@ -376,6 +388,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 <script src="book-links.js" defer></script>
 <script>window.__HOME_ID__="decatur-il-2448-wood";</script>
 <script src="homes.js" defer></script>
+<script src="photo-index.js" defer></script>
 <script>
 /* ---------- render (no editar — los datos de las casas viven en homes.js) ---------- */
 /* Espera a que homes.js con defer haya corrido. El título y el H1 los escribe scripts/seo_pages.py. */
@@ -416,9 +429,9 @@ document.addEventListener("DOMContentLoaded", function(){
     document.title = place + (bits.length ? " — " + bits.join(" · ") : "") + " | Financiamiento del dueño";
     if ($("headline")) $("headline").textContent = place + (bits.length ? " — " + bits.join(", ") : "");
   }
-  $("subhead").textContent = "Esto es comprar, no rentar. Un pago mensual fijo parecido a la renta — y cada día primero, ese pago va construyendo una casa que es suya.";
+  $("subhead").textContent = "Esto es comprar, no rentar. Una mensualidad fija parecida a la renta — y cada día primero, esa mensualidad va construyendo una casa que es suya.";
   $("propSpecs").innerHTML = [
-    C.beds ? `<span>${C.beds} habitaci${Number(C.beds)===1?"ón":"ones"}</span>` : "",
+    C.beds ? `<span>${C.beds} recámara${Number(C.beds)===1?"":"s"}</span>` : "",
     C.baths ? `<span>${C.baths} baño${Number(C.baths)===1?"":"s"}</span>` : "",
     C.sqft ? `<span style="font-weight:500;color:var(--ink-soft)">${Number(C.sqft).toLocaleString("en-US")} pies²</span>` : ""
   ].filter(Boolean).join(`<span style="color:var(--line)">·</span>`);
@@ -478,32 +491,43 @@ document.addEventListener("DOMContentLoaded", function(){
   if (moveInText) $("dMoveIn").textContent = moveInText;
   if (shown(C.lockedPrice)) $("dPrice").textContent = shown(C.lockedPrice);
 
-  // hero photo — uses heroPhoto if set, otherwise auto-tries images/<id>.jpg;
-  // falls back to the branded navy face + city label if there's no photo.
+  // hero photo — photo-index.js says whether the seller cover or Street View file
+  // exists, so the page does not request a file that 404s. No index (a photo just
+  // dropped in by hand) still tries images/<id>.jpg, then Street View.
   (function(){
     const img = $("heroImg");
+    const meta = (window.PHOTO_INDEX || {})[C.id];
     const sv = `images/sv/${C.id}.jpg`;
-    img.src = C.heroPhoto || `images/${C.id}.jpg`;
     img.alt = `Casa en venta en ${C.city}, ${C.state}`;
+    function showStreetLink(){
+      img.hidden = true; $("heroSvBadge").hidden = true;
+      const L = $("heroSvLink");
+      L.href = (C.lat && C.lng)
+        ? `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${C.lat},${C.lng}`
+        : "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(`${C.address||""}, ${C.city}, ${C.state} ${C.zip||""}`);
+      L.hidden = false;
+    }
+    function show(src, street){
+      img.hidden = false;
+      img.onload = ()=>{ $("heroFallback").style.display = "none"; $("heroCity").style.display="none"; if(street) $("heroSvBadge").hidden = false; };
+      img.src = src;
+    }
+    if (meta){
+      if (meta.real) show(C.heroPhoto || `images/${C.id}.jpg`, false);
+      else if (meta.sv) show(sv, true);
+      else showStreetLink();
+      return;
+    }
     img.hidden = false;
     img.onload = ()=>{ $("heroFallback").style.display = "none"; $("heroCity").style.display="none"; };
-    // foto real del vendedor → foto de Google Street View (etiquetada) → cara navy
     img.onerror = ()=>{
       if(!img.dataset.svTried){
         img.dataset.svTried = 1;
         img.onload = ()=>{ $("heroFallback").style.display="none"; $("heroCity").style.display="none"; $("heroSvBadge").hidden = false; };
         img.src = sv;
-      } else {
-        img.hidden = true; $("heroSvBadge").hidden = true;
-        // no photo and no Street View image yet: link to Street View itself (Google Maps URLs,
-        // keyless and free, opens on Google's own site; no image is copied)
-        const L = $("heroSvLink");
-        L.href = (C.lat && C.lng)
-          ? `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${C.lat},${C.lng}`
-          : "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(`${C.address||""}, ${C.city}, ${C.state} ${C.zip||""}`);
-        L.hidden = false;
-      }
+      } else showStreetLink();
     };
+    img.src = C.heroPhoto || `images/${C.id}.jpg`;
   })();
 
   const beds = [C.beds ? `${C.beds} recámara${Number(C.beds)===1?"":"s"}` : "", C.baths ? `${C.baths} baño${Number(C.baths)===1?"":"s"}` : "", C.sqft ? `${Number(C.sqft).toLocaleString("en-US")} pies cuadrados` : ""].filter(Boolean).join(" · ");
@@ -519,6 +543,10 @@ document.addEventListener("DOMContentLoaded", function(){
   $("termsList").innerHTML = terms.map(([k,v,big])=>
     `<div class="term-row${big?" big":""}"><span class="k">${k}</span><span class="v">${v}</span></div>`
   ).join("");
+  if (C.condition){
+    $("conditionText").textContent = String(C.condition);
+    $("conditionSlot").hidden = false;
+  }
 
   // gallery — uses photos[] (the exact list, baked in by refresh_listings.py from
   // what's really on disk — no cap) if set. Otherwise (e.g. a photo was just dropped
@@ -535,8 +563,8 @@ document.addEventListener("DOMContentLoaded", function(){
   };
   if (C.photos && C.photos.length){
     g.innerHTML = C.photos.map(src=>tile(src, true)).join("");
-  } else {
-    // probe -1.jpg, -2.jpg… in order and stop at the first miss; nothing → section hides
+  } else if (!C.photos){
+    // photos was not recorded yet: try -1.jpg, -2.jpg… and stop at the first miss
     $("gallerySection").hidden = true;
     (function probe(i){
       if (i > MAX_GALLERY) return;
@@ -545,6 +573,8 @@ document.addEventListener("DOMContentLoaded", function(){
       im.onerror = () => {};
       im.src = src;
     })(1);
+  } else {
+    $("gallerySection").hidden = true;
   }
 
   if (pending) {
@@ -568,6 +598,14 @@ document.addEventListener("DOMContentLoaded", function(){
   } else {
     ["ctaText","ctaText2"].forEach(id=>$(id).href = (typeof bookHref === "function" ? bookHref(C.id) : `https://owner.getownerfinancedhomes.com/book?home=${encodeURIComponent(C.id)}&lang=es`));
     $("ctaNote").textContent = "Las visitas son en persona. Elija una hora y nos vemos allá.";
+    // Same sms: link as the English "Text us" button: the buyer's own phone app,
+    // the number already in CONTACT, and a body the CRM answers only when it
+    // contains getownerfinancedhomes.com/<id>.html. The site does not send the text.
+    const tel = String(C.phone||"").replace(/[^\d+]/g,"");
+    if (tel) {
+      const smsBody = encodeURIComponent(`Hi, I'm looking at ${C.address ? C.address + " in " : ""}${C.city}, ${C.state}:\nhttps://getownerfinancedhomes.com/${C.id}.html\n\nMy question: `);
+      ["ctaSms","ctaSms2"].forEach(id => { const el = $(id); if (el) { el.href = `sms:${tel}?&body=${smsBody}`; el.hidden = false; } });
+    }
   }
 
   if ("IntersectionObserver" in window){
@@ -606,16 +644,17 @@ document.addEventListener("DOMContentLoaded", function(){
 <style>
 #stickyTour{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line,#dfe6f0);box-shadow:0 -6px 22px rgba(15,36,68,.12);transform:translateY(110%);transition:transform .25s}
 #stickyTour.on{transform:none}
-#stickyTour .st-p{flex:1;min-width:0;font:800 20px 'Bricolage Grotesque',sans-serif;color:var(--pine,#15315e);line-height:1.1}
-#stickyTour .st-p small{display:block;font:500 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft,#5b6b82)}
-#stickyTour a{flex:0 0 auto;background:var(--go,#e23b3b);color:#fff;text-decoration:none;font:700 15px 'DM Sans',sans-serif;padding:13px 18px;border-radius:12px}
+#stickyTour .st-p{flex:1;min-width:0;font:800 20px 'Bricolage Grotesque','Bricolage Fallback',sans-serif;color:var(--pine,#15315e);line-height:1.1}
+#stickyTour .st-p small{display:block;font:500 11px 'DM Mono','DM Mono Fallback',ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft,#5b6b82)}
+#stickyTour a{flex:0 0 auto;background:var(--go,#d32f2f);color:#fff;text-decoration:none;font:700 15px 'DM Sans','DM Sans Fallback',sans-serif;padding:13px 18px;border-radius:12px}
+@media(max-width:899px){#stickyTour{transform:none}}
 @media(min-width:900px){#stickyTour{left:auto;right:24px;bottom:24px;border:1px solid var(--line,#dfe6f0);border-radius:16px;max-width:460px}}
 #lb{position:fixed;inset:0;z-index:200;background:rgba(8,16,30,.94);display:none;align-items:center;justify-content:center;touch-action:pan-y}
 #lb.on{display:flex}
 #lb img{max-width:100%;max-height:86vh;object-fit:contain;user-select:none}
 #lb button{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;width:46px;height:46px;font-size:22px;cursor:pointer}
 #lb .x{top:14px;right:14px}#lb .pv{left:12px;top:50%}#lb .nx{right:12px;top:50%}
-#lb .ct{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#cfd9ea;font:500 13px 'DM Mono',monospace}
+#lb .ct{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#cfd9ea;font:500 13px 'DM Mono','DM Mono Fallback',ui-monospace,monospace}
 #gallery img,#heroImg{cursor:zoom-in}
 </style>
 <div id="stickyTour" aria-hidden="true"><div class="st-p"><span id="stPay"></span><small id="stLab"></small></div><a id="stBtn" href="#"></a></div>
@@ -623,11 +662,16 @@ document.addEventListener("DOMContentLoaded", function(){
 <script>
 document.addEventListener("DOMContentLoaded", function(){
   const $=id=>document.getElementById(id);
-  // barra fija de "Agende una visita": aparece cuando el botón principal sale de la pantalla
+  // barra fija de "Agende una visita": en el teléfono se ve desde que carga;
+  // en pantallas grandes aparece cuando el botón principal sale de la pantalla
   const main=$("ctaText"), bar=$("stickyTour");
-  function fill(){ $("stBtn").href=main.href; $("stBtn").textContent=main.textContent; $("stPay").textContent=($("dMonthly").textContent||"").trim(); $("stLab").textContent=($("dMonthly").nextElementSibling||{}).textContent||""; }
+  const phoneBar = () => matchMedia("(max-width:899px)").matches;
+  function fill(){ if(!main) return; $("stBtn").href=main.href; $("stBtn").textContent=main.textContent; $("stPay").textContent=($("dMonthly").textContent||"").trim(); $("stLab").textContent=($("dMonthly").nextElementSibling||{}).textContent||""; }
+  function show(on){ bar.classList.toggle("on", on); bar.setAttribute("aria-hidden", on?"false":"true"); }
+  fill();
+  if (phoneBar()) show(true);
   if(main && "IntersectionObserver" in window){
-    new IntersectionObserver(es=>{ fill(); const out=!es[0].isIntersecting && es[0].boundingClientRect.top<0; bar.classList.toggle("on",out); bar.setAttribute("aria-hidden",out?"false":"true"); }).observe(main);
+    new IntersectionObserver(es=>{ fill(); if(phoneBar()){ show(true); return; } const out=!es[0].isIntersecting && es[0].boundingClientRect.top<0; show(out); }).observe(main);
   }
   // full-screen photo viewer with swipe + arrows
   const lb=$("lb"), im=lb.querySelector("img"), ct=lb.querySelector(".ct"); let list=[], i=0;

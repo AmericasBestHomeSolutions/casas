@@ -26,7 +26,16 @@
 <script type="application/ld+json" id="seo-org">{"@context":"https://schema.org","@type":"Organization","@id":"https://casasconfinanciamiento.com/#organization","name":"Americas Best Home Solutions","legalName":"Americas Best Home Solutions LLC","url":"https://casasconfinanciamiento.com/","logo":"https://casasconfinanciamiento.com/images/brand/logo-mark-480.png","email":"admin@americasbesthomesolutions.com","address":{"@type":"PostalAddress","streetAddress":"30 N Gould St, Ste R","addressLocality":"Sheridan","addressRegion":"WY","postalCode":"82801","addressCountry":"US"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=optional" rel="stylesheet">
+<style id="font-fallback">
+@font-face{font-family:"DM Sans Fallback";src:local("Arial"),local("Arimo"),local("Liberation Sans");font-weight:400;font-style:normal;size-adjust:93.01%;ascent-override:106.65%;descent-override:33.33%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"DM Sans Fallback";src:local("Arial Bold"),local("Arimo Bold"),local("Liberation Sans Bold");font-weight:700;font-style:normal;size-adjust:93.01%;ascent-override:106.65%;descent-override:33.33%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"Bricolage Fallback";src:local("Arial"),local("Arimo"),local("Liberation Sans");font-weight:400;font-style:normal;size-adjust:85.78%;ascent-override:108.42%;descent-override:31.48%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"Bricolage Fallback";src:local("Arial Bold"),local("Arimo Bold"),local("Liberation Sans Bold");font-weight:700;font-style:normal;size-adjust:85.78%;ascent-override:108.42%;descent-override:31.48%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"DM Mono Fallback";src:local("Courier New"),local("Liberation Mono"),local("DejaVu Sans Mono");font-weight:400;font-style:normal;size-adjust:99.98%;ascent-override:99.22%;descent-override:31.01%;line-gap-override:0%;font-display:optional}
+@font-face{font-family:"DM Mono Fallback";src:local("Courier New Bold"),local("Liberation Mono Bold"),local("DejaVu Sans Mono Bold");font-weight:700;font-style:normal;size-adjust:99.98%;ascent-override:99.22%;descent-override:31.01%;line-gap-override:0%;font-display:optional}
+</style>
+
 
 <!-- ════════════════════════════════════════════════════════════════════════
      AMERICAS BEST HOME SOLUTIONS — CASAS CON FINANCIAMIENTO (versión español)
@@ -50,14 +59,14 @@
   --lime:#ffffff;          /* white accent on navy (steps/tags) */
   --honey:#e23b3b;         /* RED accent (section labels)       */
   --honey-soft:#eaf1fb;    /* soft blue tint (icon backgrounds) */
-  --go:#e23b3b;            /* RED call-to-action buttons        */
-  --go-hover:#c92f2f;      /* darker red on hover               */
+  --go:#d32f2f;            /* RED call-to-action, white text >= 4.5:1 */
+  --go-hover:#b71c1c;      /* darker red on hover               */
   --radius:18px;
 }
 html{scroll-behavior:smooth}
 body{
   background:var(--paper);color:var(--ink);
-  font-family:'DM Sans',system-ui,sans-serif;font-size:17px;line-height:1.6;
+  font-family:'DM Sans','DM Sans Fallback',system-ui,sans-serif;font-size:17px;line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
 .wrap{max-width:960px;margin:0 auto;padding:0 20px}
@@ -67,8 +76,8 @@ body{
 .topbar{padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:9px;text-decoration:none}
 .brand .mark{width:30px;height:30px;flex-shrink:0}
-.brand .bn{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.4px;color:var(--pine);line-height:1}
-.brand .bn small{display:block;font-family:'DM Mono',monospace;font-weight:400;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:2px}
+.brand .bn{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.4px;color:var(--pine);line-height:1}
+.brand .bn small{display:block;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-weight:400;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:2px}
 .topnav{display:flex;align-items:center;gap:8px}
 .topnav a{font-size:14px;font-weight:600;color:var(--ink-soft);text-decoration:none;padding:8px 10px;border-radius:10px}
 .topnav a:hover{color:var(--pine);background:#eef2f9}
@@ -80,14 +89,14 @@ body{
 .hero{position:relative;background:linear-gradient(160deg,#17376a 0%,#0f2444 100%);color:#fff;border-radius:22px;overflow:hidden;margin-top:6px;padding:22px 24px 14px}
 .hero-art{position:relative;width:100%;height:auto;max-height:44px;display:block;opacity:.7;margin-top:10px;pointer-events:none}
 .hero-inner{position:relative;z-index:2;max-width:720px}
-.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a9c4e8;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;margin-bottom:10px}
-.hero h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(32px,7vw,52px);line-height:1.03;letter-spacing:-1.2px;margin-bottom:10px}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a9c4e8;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;margin-bottom:10px}
+.hero h1{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(32px,7vw,52px);line-height:1.03;letter-spacing:-1.2px;margin-bottom:10px}
 .hero h1 em{font-style:normal;color:#ff5c5c}
 .hero p.hero-lead{font-size:clamp(14px,2vw,15.5px);line-height:1.5;color:#d3e3f7;max-width:62ch;margin-bottom:6px}
 .hero p.reassure{font-size:13.5px;line-height:1.45;color:#9fbce4;max-width:62ch;margin-bottom:14px}
 .hero-cta{display:flex;gap:10px;flex-wrap:wrap}
 .hero .hero-cta .btn{padding:11px 18px;font-size:15px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;text-decoration:none;font-family:'DM Sans',sans-serif;font-weight:700;font-size:16px;padding:15px 22px;border-radius:13px;transition:transform .12s ease,background .15s ease;cursor:pointer;border:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-align:center;text-decoration:none;font-family:'DM Sans','DM Sans Fallback',sans-serif;font-weight:700;font-size:16px;padding:15px 22px;border-radius:13px;transition:transform .12s ease,background .15s ease;cursor:pointer;border:none}
 .btn:active{transform:scale(.98)}
 .btn:focus-visible{outline:3px solid var(--honey);outline-offset:2px}
 .btn-lime{background:var(--go);color:#fff}
@@ -98,21 +107,21 @@ body{
 /* trust stat strip under hero */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:12px;position:relative;z-index:3}
 .stat{background:var(--card);padding:10px 12px;text-align:center}
-.stat .n{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(18px,4vw,24px);color:var(--pine);line-height:1}
-.stat .l{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+.stat .n{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(18px,4vw,24px);color:var(--pine);line-height:1}
+.stat .l{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:9.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
 @media (max-width:600px){ .stats{display:none} }
 
 /* ── SECTION SCAFFOLD ────────────────────────────────────── */
 .section{margin-top:52px}
 .sec-head{text-align:center;max-width:40ch;margin:0 auto 26px}
-.sec-label{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--honey);margin-bottom:8px}
-.sec-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(26px,5vw,36px);letter-spacing:-.6px;line-height:1.08}
+.sec-label{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--honey);margin-bottom:8px}
+.sec-title{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(26px,5vw,36px);letter-spacing:-.6px;line-height:1.08}
 .sec-sub{color:var(--ink-soft);margin-top:8px;font-size:16px}
 
 /* ── ONE TEAM, ONE NUMBER ────────────────────────────────── */
 .oneteam{margin-top:44px;background:var(--pine);color:#fff;border-radius:22px;padding:34px 26px}
 .oneteam-inner{max-width:620px;margin:0 auto}
-.oneteam h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(22px,4.6vw,30px);letter-spacing:-.5px;line-height:1.12;margin-bottom:18px}
+.oneteam h2{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(22px,4.6vw,30px);letter-spacing:-.5px;line-height:1.12;margin-bottom:18px}
 .oneteam ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
 .oneteam li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:#dbe7f6}
 .oneteam li strong{color:#fff}
@@ -124,7 +133,7 @@ body{
 @media (max-width:420px){ .trust{grid-template-columns:1fr} }
 .trust-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px}
 .trust-card .ic{width:40px;height:40px;border-radius:11px;background:var(--honey-soft);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-.trust-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;color:var(--pine);margin-bottom:3px;letter-spacing:-.2px}
+.trust-card h3{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:700;font-size:17px;color:var(--pine);margin-bottom:3px;letter-spacing:-.2px}
 .trust-card p{font-size:14px;color:var(--ink-soft);line-height:1.5}
 
 /* ── STEPS ───────────────────────────────────────────────── */
@@ -132,8 +141,8 @@ body{
 @media (max-width:760px){ .steps{grid-template-columns:1fr 1fr} }
 @media (max-width:420px){ .steps{grid-template-columns:1fr} }
 .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px}
-.step .n{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;color:var(--lime);background:var(--pine);width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-.step h3{font-family:'DM Sans',sans-serif;font-weight:700;font-size:17px;margin-bottom:4px}
+.step .n{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:20px;color:var(--lime);background:var(--pine);width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.step h3{font-family:'DM Sans','DM Sans Fallback',sans-serif;font-weight:700;font-size:17px;margin-bottom:4px}
 .step p{font-size:14px;color:var(--ink-soft);line-height:1.5}
 
 /* ── FILTERS + LISTINGS ──────────────────────────────────── */
@@ -141,10 +150,10 @@ body{
 .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
 .filter{min-width:150px}
 @media (max-width:560px){ .filters{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px} .filter{min-width:0} }
-.filter label{display:block;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.filter label{display:block;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
 .filter select{width:100%;font-family:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
 .filter select:focus{outline:none;border-color:var(--pine)}
-.count{font-family:'DM Mono',monospace;font-size:12px;color:var(--ink-soft);white-space:nowrap;padding-bottom:12px}
+.count{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:12px;color:var(--ink-soft);white-space:nowrap;padding-bottom:12px}
 
 .cards{display:grid;gap:22px;margin-top:20px;grid-template-columns:1fr}
 @media (min-width:640px){ .cards{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))} }
@@ -156,20 +165,20 @@ body{
 .card-face .fmark{position:absolute;right:-14px;bottom:-18px;opacity:.16;color:#fff;z-index:0}
 .card-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;display:block}
 .card-face .scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(11,20,40,.55),rgba(11,20,40,0) 55%);pointer-events:none}
-.card-face .sv-badge{position:absolute;bottom:12px;right:12px;z-index:3;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.5px;background:rgba(11,20,40,.62);color:#fff;padding:4px 8px;border-radius:999px;pointer-events:none}
+.card-face .sv-badge{position:absolute;bottom:12px;right:12px;z-index:3;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:9px;letter-spacing:.5px;background:rgba(11,20,40,.62);color:#fff;padding:4px 8px;border-radius:999px;pointer-events:none}
 .card-face .sv-badge[hidden]{display:none}
 .card-face .fcity{position:relative;z-index:3;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.4)}
-.card-face .fcity .c{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.4px;line-height:1.05}
-.card-face .fcity .s{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:3px}
+.card-face .fcity .c{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.4px;line-height:1.05}
+.card-face .fcity .s{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:3px}
 
 .filter.range .rng{display:flex;align-items:center;gap:6px}
 .filter.range .rng select{min-width:0;flex:1}
 .filter.range .rng span{color:var(--ink-soft)}
-.cs-tag{position:absolute;top:44px;left:12px;z-index:3;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:#b45309;color:#fff;padding:5px 10px;border-radius:999px;font-weight:500}
+.cs-tag{position:absolute;top:44px;left:12px;z-index:3;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:#b45309;color:#fff;padding:5px 10px;border-radius:999px;font-weight:500}
 .card.is-cs .card-cta{background:#b45309}
 .cs-note{font-size:13px;color:#92400e;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:6px 9px;margin:0 0 10px}
 .buyer-intro{max-width:1180px;margin:0 auto;padding:16px 16px 4px}
-.buyer-intro h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(22px,3.2vw,32px);line-height:1.15;color:var(--pine);margin:0 0 8px}
+.buyer-intro h2{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(22px,3.2vw,32px);line-height:1.15;color:var(--pine);margin:0 0 8px}
 .buyer-intro p{font-size:16px;line-height:1.5;color:var(--ink);margin:0 0 10px;max-width:760px}
 .buyer-intro ul{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;margin:0 0 6px;padding:0;font-weight:700;font-size:14.5px;color:var(--pine)}
 .buyer-intro li::before{content:"✓ ";color:var(--pine)}
@@ -177,57 +186,57 @@ body{
 .buyer-intro .bi-cta a{color:var(--pine);font-weight:700}
 @media (max-width:560px){ .buyer-intro{padding:12px 12px 2px} .buyer-intro p{font-size:15px} }
 .filter-chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
-.filter-chips button{font:600 13px 'DM Sans',system-ui,sans-serif;padding:7px 12px;border-radius:999px;border:1.5px solid var(--pine,#15315e);background:#fff;color:var(--pine,#15315e);cursor:pointer}
+.filter-chips button{font:600 13px 'DM Sans','DM Sans Fallback',system-ui,sans-serif;padding:7px 12px;border-radius:999px;border:1.5px solid var(--pine,#15315e);background:#fff;color:var(--pine,#15315e);cursor:pointer}
 @media(min-width:1100px){
   /* layout lives in site.css: homes on the left, a narrow sticky map (about a quarter of the screen) on the right */
   #split .cards{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
   #listings .hm-bar{display:none}
 }
-.status-tag{position:absolute;top:12px;left:12px;z-index:3;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:var(--lime);color:var(--pine-deep);padding:5px 10px;border-radius:999px;font-weight:500}
+.status-tag{position:absolute;top:12px;left:12px;z-index:3;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:var(--lime);color:var(--pine-deep);padding:5px 10px;border-radius:999px;font-weight:500}
 .status-tag.pending{background:#c2410c;color:#fff}
 .card.is-pending .card-cta{background:var(--pine)}
 .pend-note{font-size:13px;font-weight:600;color:var(--honey);margin:-2px 0 10px}
-.feat-tag{position:absolute;top:12px;right:12px;z-index:4;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:var(--honey);color:#fff;padding:5px 10px;border-radius:999px;font-weight:500}
+.feat-tag{position:absolute;top:12px;right:12px;z-index:4;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;background:var(--honey);color:#fff;padding:5px 10px;border-radius:999px;font-weight:500}
 .spot-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.spot-head h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;color:var(--pine);margin:0}
+.spot-head h2{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:26px;color:var(--pine);margin:0}
 .spot-sub{font-size:14px;color:var(--ink-soft)}
 .sold-strip{display:grid;gap:14px;margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
 .sold-card{position:relative;border-radius:var(--radius);padding:18px 16px;color:#fff;min-height:120px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:linear-gradient(135deg,#0f2444,#24508a)}
-.sold-card .ribbon{position:absolute;top:12px;left:12px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;background:var(--honey);color:#fff;padding:5px 10px;border-radius:999px;font-weight:500}
-.sold-card .c{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1.1}
-.sold-card .d{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:4px}
+.sold-card .ribbon{position:absolute;top:12px;left:12px;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;background:var(--honey);color:#fff;padding:5px 10px;border-radius:999px;font-weight:500}
+.sold-card .c{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:20px;line-height:1.1}
+.sold-card .d{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:4px}
 /* Photo cards. sold-cards.js repeats these rules. */
 #soldSec .sold-strip{display:flex;gap:12px;margin-top:16px;overflow-x:auto;max-width:100%;min-width:0;scroll-snap-type:x mandatory;padding:2px 2px 12px;-webkit-overflow-scrolling:touch}
 #soldSec .sold-card{flex:0 0 min(85vw,270px);width:min(85vw,270px);max-width:min(85vw,270px);min-width:0;scroll-snap-align:start;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:18px;overflow:hidden;min-height:0;padding:0;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(15,36,68,.06)}
 #soldSec .sold-card .frame{position:relative;aspect-ratio:4/3;background:#e6eef8;overflow:hidden}
 #soldSec .sold-card img{width:100%;height:100%;object-fit:cover;display:block}
-#soldSec .sold-badge{position:absolute;top:10px;left:10px;z-index:2;background:#e23b3b;color:#fff;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;border-radius:999px;font-weight:500}
+#soldSec .sold-badge{position:absolute;top:10px;left:10px;z-index:2;background:#e23b3b;color:#fff;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;border-radius:999px;font-weight:500}
 #soldSec .sold-cap{padding:12px 14px 14px}
-#soldSec .sold-label{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.3px;color:var(--pine);line-height:1.25;margin:0}
+#soldSec .sold-label{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.3px;color:var(--pine);line-height:1.25;margin:0}
 #soldSec .sold-label .dot{color:var(--ink-soft);font-weight:600}
-#soldSec .sold-when{margin:4px 0 0;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+#soldSec .sold-when{margin:4px 0 0;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
 @media (min-width:800px){
   #soldSec .sold-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));overflow:visible;max-width:100%;scroll-snap-type:none}
   #soldSec .sold-card{flex:none;width:auto;max-width:100%}
 }
 
-.of-tag{position:absolute;top:12px;right:12px;z-index:3;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;background:rgba(0,0,0,.28);color:#fff;padding:5px 9px;border-radius:999px}
+.of-tag{position:absolute;top:12px;right:12px;z-index:3;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;background:rgba(0,0,0,.28);color:#fff;padding:5px 9px;border-radius:999px}
 .card-body{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1}
 .card-price{display:flex;align-items:baseline;gap:6px}
-.card-price .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;letter-spacing:-.5px;color:var(--ink);line-height:1}
-.card-price .per{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px}
+.card-price .num{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:32px;letter-spacing:-.5px;color:var(--ink);line-height:1}
+.card-price .per{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px}
 .card-mini{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:2px 0 12px}
-.card-specs{font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;color:var(--ink);margin:10px 0 4px;display:flex;gap:10px;flex-wrap:wrap}
+.card-specs{font-family:'DM Sans','DM Sans Fallback',sans-serif;font-size:17px;font-weight:700;color:var(--ink);margin:10px 0 4px;display:flex;gap:10px;flex-wrap:wrap}
 .card-specs span{display:inline-flex;align-items:center;gap:5px}
 .card-specs .dot{color:var(--line)}
 .mini{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
-.mini .k{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.5px;text-transform:uppercase;color:var(--ink-soft)}
-.mini .v{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;color:var(--pine);margin-top:1px}
+.mini .k{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:9px;letter-spacing:.5px;text-transform:uppercase;color:var(--ink-soft)}
+.mini .v{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:700;font-size:15px;color:var(--pine);margin-top:1px}
 .card-cta{margin-top:auto;display:block;text-align:center;font-weight:700;font-size:15px;color:#fff;background:var(--go);border-radius:12px;padding:12px 14px}
 .card:hover .card-cta{background:var(--go-hover)}
 
 .empty{display:none;background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);padding:36px 20px;text-align:center;margin-top:18px}
-.empty h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;color:var(--pine);margin-bottom:4px}
+.empty h3{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:700;font-size:20px;color:var(--pine);margin-bottom:4px}
 .empty p{font-size:15px;color:var(--ink-soft)}
 
 /* ── TESTIMONIALS ────────────────────────────────────────── */
@@ -237,21 +246,21 @@ body{
 .quote .stars{color:var(--honey);font-size:15px;letter-spacing:2px;margin-bottom:10px}
 .quote p{font-size:15px;color:var(--ink);line-height:1.55;margin-bottom:14px}
 .quote .who{display:flex;align-items:center;gap:10px}
-.quote .av{width:36px;height:36px;border-radius:999px;background:var(--pine);color:var(--lime);display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:15px}
+.quote .av{width:36px;height:36px;border-radius:999px;background:var(--pine);color:var(--lime);display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:15px}
 .quote .who .nm{font-weight:700;font-size:14px}
-.quote .who .lo{font-family:'DM Mono',monospace;font-size:11px;color:var(--ink-soft)}
-.ph-note{text-align:center;font-family:'DM Mono',monospace;font-size:11px;color:#9aa3b5;margin-top:14px}
+.quote .who .lo{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;color:var(--ink-soft)}
+.ph-note{text-align:center;font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;color:#9aa3b5;margin-top:14px}
 
 /* ── MISSION / WHY WE EXIST ──────────────────────────────── */
 .about{margin-top:52px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:44px 30px;text-align:center}
 .about .emblem{width:60px;height:60px;margin:0 auto 18px;display:block}
-.about .lbl{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--honey);margin-bottom:12px}
-.about h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(26px,5vw,38px);letter-spacing:-.7px;color:var(--pine);line-height:1.08;margin:0 auto 20px;max-width:20ch}
+.about .lbl{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--honey);margin-bottom:12px}
+.about h2{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(26px,5vw,38px);letter-spacing:-.7px;color:var(--pine);line-height:1.08;margin:0 auto 20px;max-width:20ch}
 .about .body{max-width:58ch;margin:0 auto}
 .about .body p{font-size:16px;color:var(--ink);line-height:1.7;margin-bottom:15px}
-.about blockquote{margin:24px auto;max-width:46ch;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(19px,3.2vw,24px);line-height:1.3;color:var(--pine);letter-spacing:-.3px}
+.about blockquote{margin:24px auto;max-width:46ch;font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:700;font-size:clamp(19px,3.2vw,24px);line-height:1.3;color:var(--pine);letter-spacing:-.3px}
 .about blockquote span{color:var(--go)}
-.about .sig{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin:20px 0 24px}
+.about .sig{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin:20px 0 24px}
 .about .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
 .about .chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--pine);background:var(--honey-soft);border:1px solid #d9e5f5;padding:6px 12px;border-radius:999px}
 .about .abtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;font-size:15px;color:#fff;background:var(--go);padding:13px 24px;border-radius:12px}
@@ -261,7 +270,7 @@ body{
 .opp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media (max-width:640px){ .opp-grid{grid-template-columns:1fr} }
 .opp-card{border-radius:18px;padding:24px 22px}
-.opp-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.3px;margin-bottom:14px}
+.opp-card h3{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.3px;margin-bottom:14px}
 .opp-card ul{list-style:none;display:flex;flex-direction:column;gap:11px}
 .opp-card li{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.45}
 .opp-card li .m{flex-shrink:0;width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-top:1px;font-weight:800;font-size:12px}
@@ -275,7 +284,7 @@ body{
 .opp-own li .m{background:rgba(255,255,255,.15);color:#7ee8a2}
 .opp-own li strong{color:#fff}
 .opp-story{margin-top:14px;background:var(--honey-soft);border:1px solid #d9e5f5;border-radius:18px;padding:26px 24px}
-.opp-story h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:21px;letter-spacing:-.3px;color:var(--pine);margin-bottom:10px}
+.opp-story h3{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:21px;letter-spacing:-.3px;color:var(--pine);margin-bottom:10px}
 .opp-story p{font-size:15.5px;color:var(--ink);line-height:1.65;margin-bottom:12px}
 .opp-story p:last-of-type{margin-bottom:0}
 .opp-story .fine{font-size:12.5px;color:var(--ink-soft)}
@@ -294,23 +303,23 @@ body{
 /* ── LEAD FORM ───────────────────────────────────────────── */
 .lead{margin-top:52px;background:var(--pine);border-radius:26px;padding:38px 26px;color:#fff;position:relative;overflow:hidden}
 .lead .lead-inner{position:relative;z-index:2;max-width:460px;margin:0 auto}
-.lead h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(24px,5vw,32px);letter-spacing:-.5px;text-align:center;margin-bottom:6px}
+.lead h2{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:clamp(24px,5vw,32px);letter-spacing:-.5px;text-align:center;margin-bottom:6px}
 .lead p.sub{color:#cfe0f5;text-align:center;margin-bottom:22px}
 .lead form{display:flex;flex-direction:column;gap:12px;text-align:left}
-.lead label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a9c4e8;margin-bottom:-6px}
+.lead label{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a9c4e8;margin-bottom:-6px}
 .lead input,.lead select{font-family:inherit;font-size:16px;color:var(--ink);background:#fff;border:1.5px solid transparent;border-radius:12px;padding:14px;width:100%}
 .lead input:focus,.lead select:focus{outline:none;border-color:var(--go)}
 .lead .btn-lime{margin-top:6px;width:100%}
-.lead .form-note{font-family:'DM Mono',monospace;font-size:11px;color:#9fbce4;text-align:center;margin-top:2px}
+.lead .form-note{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:11px;color:#9fbce4;text-align:center;margin-top:2px}
 .lead .thanks{display:none;text-align:center;padding:14px 8px}
-.lead .thanks h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#fff;margin-bottom:6px}
+.lead .thanks h3{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:24px;color:#fff;margin-bottom:6px}
 .lead .thanks p{color:#cfe0f5}
 .lead.sent form{display:none}
 .lead.sent .thanks{display:block}
 
 /* ── FOOTER ──────────────────────────────────────────────── */
 .foot{margin:48px 0 34px;text-align:center;color:var(--ink-soft);font-size:13px;line-height:1.7}
-.foot .fb{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;color:var(--pine);letter-spacing:-.4px;margin-bottom:4px}
+.foot .fb{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:800;font-size:18px;color:var(--pine);letter-spacing:-.4px;margin-bottom:4px}
 .foot .fcontact a{color:var(--pine);font-weight:600;text-decoration:none}
 .foot .legal{max-width:64ch;margin:12px auto 0;font-size:12px;color:#8b93a3}
 /* <!-- CUMPLIMIENTO: las divulgaciones requeridas por su RMLO / abogado (en español) van en el bloque .legal de abajo antes de publicar o pautar anuncios --> */
@@ -321,7 +330,7 @@ body{
 @media (prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} html{scroll-behavior:auto} }
 .searchbar{position:relative;margin:0 0 14px;width:100%;flex:1 1 100%;max-width:none}
 .searchbar .mag{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:17px;opacity:.55;pointer-events:none}
-.searchbar input{width:100%;box-sizing:border-box;font:600 17px 'DM Sans',sans-serif;padding:15px 16px 15px 46px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink);box-shadow:0 4px 16px rgba(15,36,68,.06)}
+.searchbar input{width:100%;box-sizing:border-box;font:600 17px 'DM Sans','DM Sans Fallback',sans-serif;padding:15px 16px 15px 46px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--ink);box-shadow:0 4px 16px rgba(15,36,68,.06)}
 .searchbar input:focus{outline:none;border-color:var(--pine,#15315e);box-shadow:0 0 0 3px rgba(21,49,94,.15)}
 .card-face .pg{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#15315e;font-size:20px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);opacity:0;transition:opacity .15s}
 .card-face .pg.pv{left:8px}.card-face .pg.nx{right:8px}
@@ -333,7 +342,16 @@ body{
 .city-pills a{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--line,#e2e8f2);border-radius:999px;padding:8px 14px;font-weight:700;font-size:14.5px;color:var(--pine,#15315e);text-decoration:none}
 .city-pills a:hover{border-color:var(--pine,#15315e);background:var(--honey-soft,#eaf1fb)}
 .city-pills .n{font-weight:600;color:var(--ink-soft,#5b6577)}
+body.page-search .hero,body.page-search .stats,body.page-search #featuredSec,body.page-search .whyband{display:none}
+body.page-search .card-face{aspect-ratio:16/10}
+body.page-search .card-body{min-height:124px}
 body.page-search #cities{margin:0;padding:14px 16px 16px;background:#fff;border-bottom:1px solid var(--line,#e2e8f2)}
+@media(max-width:860px){
+  body.page-search .topbar{min-height:92px}
+  body.page-search .card{min-height:348px}
+  body.page-search #cards{min-height:4640px}
+  body.page-search #cities{min-height:1080px}
+}
 body.page-search #cities .sec-title{font-size:clamp(22px,3vw,28px)}
 body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
 </style>
@@ -380,10 +398,10 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="z-quick" id="quickFilters" role="group" aria-label="Filtrar casas">
       <label class="qf"><span>Estado</span><select id="fState" aria-label="Estado"><option value="">Todos los estados</option></select></label>
       <label class="qf"><span>Ciudad</span><select id="fCity" aria-label="Ciudad"><option value="">Todas las ciudades</option></select></label>
-      <label class="qf"><span>Habitaciones</span><select id="fBeds" aria-label="Habitaciones"><option value="">Cualquiera</option><option value="1">1+ hab.</option><option value="2">2+ hab.</option><option value="3">3+ hab.</option><option value="4">4+ hab.</option></select></label>
+      <label class="qf"><span>Recámaras</span><select id="fBeds" aria-label="Recámaras"><option value="">Cualquiera</option><option value="1">1+ rec.</option><option value="2">2+ rec.</option><option value="3">3+ rec.</option><option value="4">4+ rec.</option></select></label>
       <label class="qf"><span>Precio desde</span><select id="fPriceMin" aria-label="Precio mínimo"><option value="">Sin mín.</option><option value="40000">$40k+</option><option value="50000">$50k+</option><option value="60000">$60k+</option><option value="70000">$70k+</option><option value="80000">$80k+</option><option value="90000">$90k+</option><option value="100000">$100k+</option><option value="150000">$150k+</option></select></label>
       <label class="qf"><span>Precio hasta</span><select id="fPriceMax" aria-label="Precio máximo"><option value="">Sin máx.</option><option value="50000">Hasta $50k</option><option value="60000">Hasta $60k</option><option value="70000">Hasta $70k</option><option value="80000">Hasta $80k</option><option value="90000">Hasta $90k</option><option value="100000">Hasta $100k</option><option value="150000">Hasta $150k</option></select></label>
-      <label class="qf"><span>Mensual</span><select id="fPayMax" aria-label="Pago mensual máximo"><option value="">Cualquiera</option><option value="600">Hasta $600</option><option value="800">Hasta $800</option><option value="1000">Hasta $1,000</option><option value="1200">Hasta $1,200</option><option value="1500">Hasta $1,500</option><option value="1800">Hasta $1,800</option></select></label>
+      <label class="qf"><span>Mensualidad</span><select id="fPayMax" aria-label="Mensualidad máxima"><option value="">Cualquiera</option><option value="600">Hasta $600</option><option value="800">Hasta $800</option><option value="1000">Hasta $1,000</option><option value="1200">Hasta $1,200</option><option value="1500">Hasta $1,500</option><option value="1800">Hasta $1,800</option></select></label>
       <button type="button" class="qf-more" id="moreFilters" aria-controls="filterSheet">Más filtros</button>
       <button type="button" class="qf-clear" id="clearFilters" hidden>Borrar todo</button>
     </div>
@@ -391,18 +409,18 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="z-sort">
       <p class="count" id="count"></p>
       <label class="sort-pill">Orden
-        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="monthly-asc">Mensual ↑</option><option value="down-asc">Inicial ↑</option><option value="price-asc">Precio ↑</option></select>
+        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="monthly-asc">Mensualidad ↑</option><option value="down-asc">Enganche ↑</option><option value="price-asc">Precio ↑</option></select>
       </label>
     </div>
     <div class="filter-sheet" id="filterSheet" hidden>
-      <label>Mensual mín.
-        <select id="fPayMin" aria-label="Pago mensual mínimo"><option value="">Sin mín.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option></select>
+      <label>Mensualidad mín.
+        <select id="fPayMin" aria-label="Mensualidad mínima"><option value="">Sin mín.</option><option value="500">$500</option><option value="600">$600</option><option value="700">$700</option><option value="800">$800</option><option value="900">$900</option><option value="1000">$1,000</option><option value="1200">$1,200</option><option value="1500">$1,500</option></select>
       </label>
-      <label>Inicial mín.
-        <select id="fDownMin" aria-label="Pago inicial mínimo"><option value="">Sin mín.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option></select>
+      <label>Enganche mín.
+        <select id="fDownMin" aria-label="Enganche mínimo"><option value="">Sin mín.</option><option value="1000">$1,000</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option></select>
       </label>
-      <label>Inicial máx.
-        <select id="fDown" aria-label="Pago inicial máximo"><option value="">Sin máx.</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
+      <label>Enganche máx.
+        <select id="fDown" aria-label="Enganche máximo"><option value="">Sin máx.</option><option value="1500">$1,500</option><option value="2000">$2,000</option><option value="3000">$3,000</option><option value="4000">$4,000</option><option value="5000">$5,000</option></select>
       </label>
       <label>Baños
         <select id="fBaths" aria-label="Baños"><option value="">Cualquiera</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select>
@@ -421,7 +439,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="hero-inner">
       <span class="eyebrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2 3 7v6c0 5 3.8 8.4 9 11 5.2-2.6 9-6 9-11V7l-9-5z"/></svg> Financiamiento del Dueño · Sin Banco</span>
       <h1>Sea dueño de la casa.<br><em>Sin pasar por el banco.</em></h1>
-      <p class="hero-lead">Casas con financiamiento del dueño en Illinois, Missouri, Michigan, Alabama y más — un pago mensual fijo, parecido a lo que hoy le entrega a un casero. La diferencia: el día primero de cada mes, ese pago regresa a usted como una casa que es suya.</p>
+      <p class="hero-lead">Casas con financiamiento del dueño en Illinois, Missouri, Michigan, Alabama y más — una mensualidad fija, parecida a lo que hoy le entrega a un casero. La diferencia: el día primero de cada mes, esa mensualidad regresa a usted como una casa que es suya.</p>
       <p class="reassure">Su pasado no tiene por qué decidir su futuro. Si los bancos le han cerrado la puerta, esto se hizo para usted.</p>
       <div class="hero-cta">
         <a class="btn btn-lime" href="#listings">Ver las casas</a>
@@ -479,7 +497,31 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </ul>
   </section>
 
-  <!-- city-landings:start -->
+  
+
+  <section class="section" id="listings">
+    <div class="buyer-intro">
+      <h2>Casas con financiamiento del dueño. Enganche bajo. Sin banco.</h2>
+      <p>Les vendemos casas a personas trabajadoras y honestas, incluso a quienes el banco les ha dicho que no. Todas las casas se venden tal como están: usted la arregla a su manera, la hace suya y se queda por mucho tiempo. Más adelante puede rentarla, o conservarla como un lugar verdaderamente suyo a largo plazo. Es su casa.</p>
+      <ul>
+        <li>Nosotros le financiamos, no un banco</li>
+        <li>Enganche bajo</li>
+        <li>Es dueño desde el primer día</li>
+      </ul>
+      <p class="bi-cta">Encuentre una casa que le guste aquí abajo y toque <strong>Agende una visita</strong> en su página. <a href="como-funciona.html">Cómo funciona</a></p>
+    </div>
+    <div class="cards" id="cards"></div>
+    <button type="button" class="view-toggle" id="mapToggle" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="2"/></svg><span>Mapa</span></button>
+
+    <nav class="pager" id="pager" style="display:none;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px"></nav>
+
+    <div class="empty" id="empty">
+      <h3>Ninguna casa coincide con esos filtros — todavía</h3>
+      <p>Cada semana entran casas nuevas. Quite un filtro o amplíe la mensualidad o el enganche.</p>
+    </div>
+  </section>
+
+<!-- city-landings:start -->
   <section class="section" id="cities">
     <div class="sec-label">Por ciudad</div>
     <h2 class="sec-title">Casas con financiamiento del dueño por ciudad</h2>
@@ -534,28 +576,6 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   </section>
 <!-- city-landings:end -->
 
-  <section class="section" id="listings">
-    <div class="buyer-intro">
-      <h2>Casas con financiamiento del dueño. Pago inicial bajo. Sin banco.</h2>
-      <p>Les vendemos casas a personas trabajadoras y honestas, incluso a quienes el banco les ha dicho que no. Todas las casas se venden tal como están: usted la arregla a su manera, la hace suya y se queda por mucho tiempo. Más adelante puede rentarla, o conservarla como un lugar verdaderamente suyo a largo plazo. Es su casa.</p>
-      <ul>
-        <li>Nosotros le financiamos, no un banco</li>
-        <li>Pago inicial bajo</li>
-        <li>Es dueño desde el primer día</li>
-      </ul>
-      <p class="bi-cta">Encuentre una casa que le guste aquí abajo y toque <strong>Agende una visita</strong> en su página. <a href="como-funciona.html">Cómo funciona</a></p>
-    </div>
-    <div class="cards" id="cards"></div>
-    <button type="button" class="view-toggle" id="mapToggle" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="2"/></svg><span>Mapa</span></button>
-
-    <nav class="pager" id="pager" style="display:none;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px"></nav>
-
-    <div class="empty" id="empty">
-      <h3>Ninguna casa coincide con esos filtros — todavía</h3>
-      <p>Cada semana entran casas nuevas. Quite un filtro o amplíe el pago mensual o el inicial.</p>
-    </div>
-  </section>
-
   <section class="section" id="soldSec" style="margin-top:48px" hidden>
     <div class="spot-head"><h2>Vendidas recientemente</h2><span class="spot-sub">Estas casas ya encontraron a su comprador. La próxima podría ser suya.</span></div>
     <div class="sold-strip" id="soldStrip"></div>
@@ -597,7 +617,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <div class="trust-card">
         <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e23b3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <h3>El precio queda fijo</h3>
-        <p>Un pago mensual fijo, por escrito. No sube cada año como la renta — lo único que podría moverlo es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p>
+        <p>Una mensualidad fija, por escrito. No sube cada año como la renta — lo único que podría moverla es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p>
       </div>
       <div class="trust-card">
         <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e23b3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
@@ -618,7 +638,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <div class="step"><div class="n">1</div><h3>Elija una casa</h3><p>Vea la lista y agende una visita en la casa que quiere recorrer.</p></div>
       <div class="step"><div class="n">2</div><h3>Visite una casa</h3><p>Elija una casa que le guste y coordinamos una hora para recorrerla juntos.</p></div>
       <div class="step"><div class="n">3</div><h3>Firme un acuerdo sencillo</h3><p>Nosotros mismos la financiamos con un contrato de compraventa — en lenguaje claro, sin sorpresas.</p></div>
-      <div class="step"><div class="n">4</div><h3>Reciba las llaves</h3><p>Haga su pago de entrada y la casa es suya para vivir desde el primer día.</p></div>
+      <div class="step"><div class="n">4</div><h3>Reciba las llaves</h3><p>Haga su enganche y la casa es suya para vivir desde el primer día.</p></div>
     </div>
     <p style="text-align:center;margin-top:18px"><a href="como-funciona.html" style="font-weight:700;color:var(--pine);text-decoration:none;border-bottom:2px solid var(--go);padding-bottom:2px">Vea exactamente cómo funciona el financiamiento del dueño →</a></p>
   </section>
@@ -674,7 +694,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
         <h3>Cuando es dueño</h3>
         <ul>
           <li><span class="m">✓</span>Cada pago lo acerca a una casa que es <strong>suya</strong></li>
-          <li><span class="m">✓</span>Su pago mensual queda <strong>fijo por escrito</strong> — no sube cada año como la renta</li>
+          <li><span class="m">✓</span>Su mensualidad queda <strong>fija por escrito</strong> — no sube cada año como la renta</li>
           <li><span class="m">✓</span>Píntela, arréglela, hágala suya — es su propiedad</li>
           <li><span class="m">✓</span>Un bien — algo <strong>verdaderamente suyo</strong>, para conservar a largo plazo</li>
           <li><span class="m">✓</span>Si su vecindario sube de valor, esa ganancia es <strong>suya</strong></li>
@@ -683,7 +703,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </div>
     <div class="opp-story">
       <h3>La parte que nadie le cuenta</h3>
-      <p>Esto es lo que hemos visto pasar, mercado tras mercado: los vecindarios donde ofrecemos estas casas no se quedan abajo para siempre. Con los años, muchos se recuperan. Los bancos que antes le decían "no" a la zona vuelven a prestar ahí. Y las personas que aguantaron — que siguieron haciendo ese pago mensual — son las que hoy tienen una casa a un precio que fijaron años atrás, en un vecindario que ahora vale más. Algunas refinanciaron. Otras vendieron y salieron adelante. Todas fueron dueñas de algo real.</p>
+      <p>Esto es lo que hemos visto pasar, mercado tras mercado: los vecindarios donde ofrecemos estas casas no se quedan abajo para siempre. Con los años, muchos se recuperan. Los bancos que antes le decían "no" a la zona vuelven a prestar ahí. Y las personas que aguantaron — que siguieron pagando esa mensualidad — son las que hoy tienen una casa a un precio que fijaron años atrás, en un vecindario que ahora vale más. Algunas refinanciaron. Otras vendieron y salieron adelante. Todas fueron dueñas de algo real.</p>
       <p>Por eso lo tratamos como una oportunidad de oro — y por eso no se la ofrecemos a cualquiera. Tomamos un número limitado de compradores a la vez, y buscamos gente seria que entienda la responsabilidad que viene con las llaves, y que quiera la recompensa que viene con ella.</p>
       <p>Nadie le puede prometer el futuro. Pero una cosa es segura: <strong>la renta nunca le devuelve nada.</strong></p>
       <p class="fine">Cada casa y cada mercado es diferente — lo que pasó antes no garantiza el valor futuro. Lo que sí está garantizado es lo que dice su acuerdo por escrito: su precio fijo y sus términos.</p>
@@ -707,8 +727,8 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <h2>Creemos que todos merecen un lugar al que llamar suyo.</h2>
     <div class="body">
       <p>Americas Best Home Solutions nació de una idea sencilla: ser dueño de una casa no debería estar fuera del alcance de las personas trabajadoras. Por generaciones, tener casa propia ha sido el corazón del sueño americano — y el camino más seguro para construir un patrimonio real y duradero.</p>
-      <p>Cuando renta, cada pago desaparece en el bolsillo de otra persona. Cuando es dueño, ese mismo pago mensual construye algo que es <em>suyo</em> — una casa que gana valor con los años — un lugar verdaderamente suyo, para conservar a largo plazo o un día tener como inversión. La renta le compra un lugar donde quedarse. Ser dueño le compra un futuro.</p>
-      <p>En los mercados donde trabajamos, hemos encontrado casas buenas y de calidad que podemos ofrecer con financiamiento del dueño — con un pago mensual comparable a la renta. Sin banco. Sin trámites hipotecarios. Solo un camino real y honesto hacia la puerta de una casa que de verdad es suya.</p>
+      <p>Cuando renta, cada pago desaparece en el bolsillo de otra persona. Cuando es dueño, esa misma mensualidad construye algo que es <em>suyo</em> — una casa que gana valor con los años — un lugar verdaderamente suyo, para conservar a largo plazo o un día tener como inversión. La renta le compra un lugar donde quedarse. Ser dueño le compra un futuro.</p>
+      <p>En los mercados donde trabajamos, hemos encontrado casas buenas y de calidad que podemos ofrecer con financiamiento del dueño — con una mensualidad comparable a la renta. Sin banco. Sin trámites hipotecarios. Solo un camino real y honesto hacia la puerta de una casa que de verdad es suya.</p>
       <blockquote>¿Por qué seguir pagando renta por una vida que nunca será suya — cuando podría <span>ser dueño de la casa?</span></blockquote>
     </div>
     <div class="sig">— El equipo de Americas Best Home Solutions</div>
@@ -751,7 +771,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <h2>Usted está comprando — no rentando</h2>
     <div class="benefits">
       <article><h3>Es dueño desde el primer día</h3><p>Su nombre está en el acuerdo el día que firma. Usted es el dueño, no un inquilino.</p></article>
-      <article><h3>Su pago no se mueve</h3><p>Un pago mensual fijo, por escrito. No sube cada año como la renta — lo único que podría moverlo es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p></article>
+      <article><h3>Su pago no se mueve</h3><p>Una mensualidad fija, por escrito. No sube cada año como la renta — lo único que podría moverla es un cambio en los impuestos o el seguro de la propiedad, y eso queda explicado en sus términos.</p></article>
       <article><h3>Un pago parecido a la renta</h3><p>Sea dueño de una casa por más o menos lo que le pagaría a un casero — y construye algo que es suyo.</p></article>
       <article><h3>Sin banco de por medio</h3><p>Sin solicitud hipotecaria y sin un banco decidiendo si le dan una casa.</p></article>
     </div>
@@ -759,7 +779,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="faq" id="faq">
       <details open><summary>¿Es lo mismo que rentar?</summary><p class="ans">No. Cuando renta, el dinero se va y la casa sigue siendo del casero. Aquí, usted es el comprador desde el primer día y cada pago va hacia ser dueño de la casa a un precio fijo.</p></details>
       <details><summary>¿Necesito un banco para comprar una de estas casas?</summary><p class="ans">No — no hay banco ni solicitud hipotecaria. El dueño de la casa es el vendedor, así que la compra se acuerda en un contrato por escrito entre usted y el dueño; nosotros somos su especialista de mercadeo y lo guiamos en el proceso. Agende una visita y recorra la casa usted mismo.</p></details>
-      <details><summary>¿Qué pago para mudarme?</summary><p class="ans">Cada casa muestra su pago de entrada y su pago mensual justo en su página. No hay números escondidos — repasamos todo con usted.</p></details>
+      <details><summary>¿Cuál es el enganche?</summary><p class="ans">Cada casa muestra su enganche y su mensualidad justo en su página. No hay números escondidos — repasamos todo con usted.</p></details>
       <details><summary>¿Puedo pintar, arreglar o mejorar la casa?</summary><p class="ans">Sí — es su casa. A muchos compradores les encanta hacerla suya. Cubrimos cualquier detalle específico en su acuerdo.</p></details>
     </div>
   </section>
@@ -786,6 +806,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
 <script src="listed-dates.js"></script>
 <script src="visitor-near.js"></script>
 <script src="homes.js"></script>
+<script src="photo-index.js"></script>
 <script src="homes-map.js"></script>
 <script src="homes-cart.js"></script>
 <script src="site-chrome.js"></script>
@@ -833,15 +854,23 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     return !!(raw && t && (Date.now() - t) <= 7 * 86400000);
   }
 
-  // Default order. Every home is featured, so: homes near the visitor first (their picked city, "Near me",
-  // or a keyless approximate lookup; see visitor-near.js), then newest listed first, then complete listings.
+  // Default order. Seller photos come before Street View-only homes. Inside each
+  // group: homes near the visitor first, then newest listed (visitor-near.js).
+  function realPhoto(h){
+    const meta = (window.PHOTO_INDEX || {})[h.id];
+    return meta && meta.real ? 1 : 0;
+  }
   function completeFirst(a, b){
-    return (photoReady.has(b.id) - photoReady.has(a.id)) || ((b.address?1:0) - (a.address?1:0));
+    return (realPhoto(b) - realPhoto(a)) || ((b.address?1:0) - (a.address?1:0));
   }
   function defaultOrder(){
-    if (window.VisitorNear) return VisitorNear.compare(completeFirst);
-    const t = h => Date.parse(((typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}))[h.id]) || "") || 0;
-    return (a, b) => (t(b) - t(a)) || completeFirst(a, b);
+    const within = window.VisitorNear
+      ? VisitorNear.compare((a, b) => (b.address?1:0) - (a.address?1:0))
+      : (a, b) => {
+          const t = h => Date.parse(((typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}))[h.id]) || "") || 0;
+          return (t(b) - t(a)) || ((b.address?1:0) - (a.address?1:0));
+        };
+    return (a, b) => (realPhoto(b) - realPhoto(a)) || within(a, b);
   }
 
   // filter options — built from whatever is in homes.js
@@ -877,20 +906,25 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   }
   function cardHTML(h, opts){
     const [a,b] = faceFor(h.city + h.state);
+    const rec = Number(h.beds);
     const specs = [
-      h.beds ? `${h.beds} hab` : "",
+      rec ? `${rec} recámara${rec===1?"":"s"}` : "",
       h.baths ? `${h.baths} ba` : "",
       (h.sqft && Number(h.sqft)) ? `${Number(h.sqft).toLocaleString("en-US")} pies²` : ""
     ].filter(Boolean).join(" | ");
-    const photoSrc = h.heroPhoto || `images/${h.id}.jpg`;
+    const meta = (window.PHOTO_INDEX || {})[h.id] || {};
     const pending = isPending(h);
     const tag = pending ? "" : ((opts && opts.featured && h.featured) ? "Destacada" : featureTag(h));
     const where = [h.address, h.city, h.state].filter(Boolean).join(", ");
+    const eager = opts && opts.eager;
+    const photo = meta.card
+      ? `<img src="${meta.card}" alt="Casa en ${h.city}, ${h.state}" width="${meta.w}" height="${meta.h}" loading="${eager?"eager":"lazy"}" decoding="async"${eager?' fetchpriority="high"':""}>`
+      : "";
     return `
     <a class="card${h.contractor?" is-cs":""}${pending?" is-pending":""}" data-hid="${h.id}" href="${encodeURIComponent(h.id)}.html">
       <div class="card-face" style="background:linear-gradient(135deg,${a},${b})">
-        <img src="${photoSrc}" alt="Casa en ${h.city}, ${h.state}" loading="lazy" data-sv="images/sv/${h.id}.jpg" style="opacity:0;transition:opacity .3s ease" onload="this.style.opacity=1" onerror="window.__svFallback(this)">
-        <span class="sv-badge" hidden>Vista de calle · © Google</span>
+        ${photo}
+        <span class="sv-badge"${meta.sv?"":" hidden"}>Vista de calle · © Google</span>
         ${(h.photos||[]).length>1?`<button type="button" class="pg pv" aria-label="Foto anterior">‹</button><button type="button" class="pg nx" aria-label="Foto siguiente">›</button><span class="pdots">${Array.from({length:Math.min(6,(h.photos||[]).length)},(_,k)=>`<i${k?"":" class=\"on\""}></i>`).join("")}</span>`:""}
         ${pending ? `<span class="status-tag pending">Pendiente</span>` : (tag ? `<span class="z-feat">${tag}</span>` : "")}
         ${window.HomesCart?HomesCart.heart(h):""}
@@ -899,14 +933,12 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
         <div class="card-price"><span class="num">${money(h.monthlyPayment)}</span><span class="per">/mes</span></div>
         <div class="card-specs">${specs}</div>
         <div class="card-where">${where}</div>
-        ${h.moveIn ? `<div class="card-down">${money(h.moveIn)} para mudarse</div>` : ""}
+        ${h.moveIn ? `<div class="card-down">${money(h.moveIn)} de enganche</div>` : ""}
         ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin-top:4px">${h._dist.toFixed(1)} mi</div>`:""}
       </div>
     </a>`;
   }
 
-  // homes that actually have a cover photo load into this set, then sort to the top
-  const photoReady = new Set();
   const PER_PAGE = 12;   // a short, scannable page; the pager does the rest
   let page = 1;
 
@@ -956,7 +988,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     const pages = Math.max(1, Math.ceil(shown.length / PER_PAGE));
     if (page > pages) page = 1;
     const slice = shown.slice((page-1)*PER_PAGE, page*PER_PAGE);
-    $("cards").innerHTML = slice.map(h => cardHTML(h)).join("");
+    $("cards").innerHTML = slice.map((h, i) => cardHTML(h, {eager: page===1 && i===0})).join("");
     $("empty").style.display = shown.length ? "none" : "block";
     const start = shown.length ? (page-1)*PER_PAGE+1 : 0;
     const end = Math.min(page*PER_PAGE, shown.length);
@@ -978,7 +1010,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     pager.style.display = "flex";
     const btn = (label, p, opts={}) =>
       `<button class="page-btn${opts.active?" active":""}" ${opts.disabled?"disabled":""} data-p="${p}"
-        style="font-family:'DM Mono',monospace;font-size:14px;min-width:44px;padding:12px 14px;border-radius:10px;cursor:${opts.disabled?"default":"pointer"};
+        style="font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:14px;min-width:44px;padding:12px 14px;border-radius:10px;cursor:${opts.disabled?"default":"pointer"};
         border:1px solid ${opts.active?"var(--pine,#15315e)":"var(--line,#dfe4ec)"};
         background:${opts.active?"var(--pine,#15315e)":"#fff"};color:${opts.active?"#fff":"var(--ink,#1c1b17)"};${opts.disabled?"opacity:.4":""}">${label}</button>`;
     let html = btn("‹ Anterior", page-1, {disabled: page===1});
@@ -1037,12 +1069,15 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     dl.innerHTML = cities.map(c => `<option value="${c}">`).join("");
   })();
 
-
   // swipeable / arrow photo browsing on cards (cover first, then up to 5 more photos)
   (function(){
     const box = $("cards"); if(!box) return;
     const byId = id => LISTINGS.find(h => h.id === id);
-    const pics = h => { const cover = h.heroPhoto || `images/${h.id}.jpg`; return [cover, ...(h.photos||[]).filter(p => p !== cover && p !== h.heroPhoto)].slice(0,6); };
+    const pics = h => {
+      const meta = (window.PHOTO_INDEX || {})[h.id] || {};
+      const cover = meta.real ? (h.heroPhoto || `images/${h.id}.jpg`) : "";
+      return [cover, ...(h.photos||[])].filter((p, i, all) => p && all.indexOf(p) === i).slice(0, 6);
+    };
     // same picture as the cover (re-saved copies differ in bytes): compare 16x16 grayscale thumbnails
     const thumbCache = {};
     function thumb(src){ return thumbCache[src] || (thumbCache[src] = new Promise(res => { const im = new Image(); im.onload = () => { try{ const c = document.createElement("canvas"); c.width = c.height = 16; const x = c.getContext("2d"); x.drawImage(im,0,0,16,16); res(x.getImageData(0,0,16,16).data); }catch(e){ res(null); } }; im.onerror = () => res(null); im.src = src; })); }
@@ -1085,9 +1120,9 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       else if (hi) bits.push({ids:[hiId], label:`Hasta ${m(hi)}${unit}`});
     };
     addRange("fPayMin", "fPayMax", "/mes");
-    addRange("fDownMin", "fDown", " inicial");
+    addRange("fDownMin", "fDown", " de enganche");
     addRange("fPriceMin", "fPriceMax", "");
-    if ($("fBeds").value) bits.push({ids:["fBeds"], label: $("fBeds").value + "+ habitaciones"});
+    if ($("fBeds").value) bits.push({ids:["fBeds"], label: $("fBeds").value + "+ recámaras"});
     if ($("fBaths").value) bits.push({ids:["fBaths"], label: $("fBaths").value + "+ baños"});
     if ($("fState").value) bits.push({ids:["fState"], label: $("fState").value});
     if ($("fCity").value) bits.push({ids:["fCity"], label: $("fCity").value});
@@ -1188,7 +1223,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   // ── destacadas + vendidas recientemente (datos de homes.js) ─────────────
   function drawFeatured(){  // every home is featured: near the visitor first, then newest listed
     const feats = LISTINGS.filter(h => !isPending(h)).slice().sort(defaultOrder()).slice(0, 6);
-    if (feats.length){
+    if (feats.length && !document.body.classList.contains("page-search")){
       $("featuredCards").innerHTML = feats.map(h => cardHTML(h, {featured:true})).join("");
       $("featuredSec").hidden = false;
     }
@@ -1237,14 +1272,6 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     }
     if (!location.hash) requestAnimationFrame(() => sec.scrollIntoView({ block: "start" }));
   })();
-  // detect which homes have a real cover photo (no homes.js editing needed — just
-  // drop images/<id>.jpg and it auto-prioritizes), then re-sort photo homes to the top
-  Promise.allSettled(HOMES.map(h => new Promise(res => {
-    const im = new Image();
-    im.onload  = () => { if (im.naturalWidth > 1) photoReady.add(h.id); res(); };
-    im.onerror = () => res();
-    im.src = h.heroPhoto || `images/${h.id}.jpg`;
-  }))).then(() => render());
 
   // scroll reveal (respects reduced-motion via CSS)
   if ("IntersectionObserver" in window){

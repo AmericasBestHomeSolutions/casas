@@ -375,6 +375,21 @@ def main() -> None:
     gone = excluded_homes.apply(ROOT, "es", extra=(ROOT.parent / "homes", ROOT / "_homes"))
     if gone:
         print("excluded (data/excluded-homes.json): " + ", ".join(gone))
+    import card_photos  # English photo files + photos[]; card thumbnails; photo-index.js
+    photos = card_photos.mirror_english_photos(ROOT)
+    if photos["copied_covers"] or photos["copied_gallery"] or photos["copied_sv"] or photos["photos_filled"]:
+        print(
+            "photos from the English site: "
+            f"covers {len(photos['copied_covers'])}, "
+            f"gallery files {sum(photos['copied_gallery'].values())}, "
+            f"street view {len(photos['copied_sv'])}, "
+            f"photos arrays filled {len(photos['photos_filled'])}; "
+            f"blank tiles {len(photos['blank_before'])} -> {len(photos['blank_after'])}"
+        )
+        if photos["blank_before"]:
+            print("  blank before: " + ", ".join(photos["blank_before"]))
+        if photos["blank_after"]:
+            print("  blank after: " + ", ".join(photos["blank_after"]))
     _cleaned, fields, phrases = sanitize_homes_js()
     json_fields, json_phrases = sanitize_descriptions_json()
     ids = home_ids()
@@ -385,6 +400,12 @@ def main() -> None:
     b = book_links.build(ROOT, "es", extra=(ROOT.parent / "homes", ROOT / "_homes"))
     import seo_pages  # unique titles, JSON-LD, hreflang, city pages; reads homes.js, does not edit it
     seo_note = seo_pages.rebuild(ROOT, "es")
+    indexed = card_photos.write_photo_index(ROOT)
+    real = sum(1 for meta in indexed.values() if meta.get("real"))
+    print(
+        f"photo index: {len(indexed)} homes, {real} with a seller photo, "
+        f"{sum(1 for meta in indexed.values() if meta.get('sv'))} street view only; "
+    )
     print(
         f"sanitized {phrases} invitations in {fields} home descriptions "
         f"and {json_phrases} in {json_fields} translation strings, "
