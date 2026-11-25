@@ -383,11 +383,14 @@ def main() -> None:
     import book_links   # /agendar/<slug>/ embed pages: short booking links buyer texts carry
     # the English site's slugs win (data/book-links.json in ../homes on the Mac, _homes in the daily sync)
     b = book_links.build(ROOT, "es", extra=(ROOT.parent / "homes", ROOT / "_homes"))
+    import seo_pages  # unique titles, JSON-LD, hreflang, city pages; reads homes.js, does not edit it
+    seo_note = seo_pages.rebuild(ROOT, "es")
     print(
         f"sanitized {phrases} invitations in {fields} home descriptions "
         f"and {json_phrases} in {json_fields} translation strings, "
         f"recorded {len(ids)} homes, rewrote {n} listing pages, "
-        f"booking links for {b['homes']} homes ({b['short']} short, {b['gone']} retired)"
+        f"booking links for {b['homes']} homes ({b['short']} short, {b['gone']} retired); "
+        f"{seo_note}"
     )
 
 

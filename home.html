@@ -349,12 +349,13 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 
 </div>
 
-<script src="listed-dates.js"></script>
-<script src="book-links.js"></script>
-<script src="homes.js"></script>
+<script src="listed-dates.js" defer></script>
+<script src="book-links.js" defer></script>
+<script src="homes.js" defer></script>
 <script>
 /* ---------- render (no editar — los datos de las casas viven en homes.js) ---------- */
-(function(){
+/* Espera a que homes.js con defer haya corrido. El título y el H1 los escribe scripts/seo_pages.py. */
+document.addEventListener("DOMContentLoaded", function(){
   const wantedId = window.__HOME_ID__ || new URLSearchParams(location.search).get("home");
   const home = (typeof HOMES !== "undefined") ? HOMES.find(h => h.id === wantedId) : null;
   // Las casas vendidas salen de la página. Pendiente se queda, con las visitas cerradas más abajo.
@@ -370,8 +371,14 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   const C = Object.assign({}, CONTACT, home);
 
   const $ = id => document.getElementById(id);
-  const money = n => "$" + Number(n||0).toLocaleString("en-US");            // exacto (tabla de términos)
-  const moneyR = n => "$" + Math.round(Number(n||0)).toLocaleString("en-US"); // dólares enteros (encabezado)
+  const shown = n => {
+    if (n === "" || n == null) return "";
+    const v = Number(n);
+    if (!isFinite(v) || v === 0) return "";
+    return "$" + Math.round(v).toLocaleString("en-US");
+  };
+  const money = shown;
+  const moneyR = shown;
   const statusEs = s => {
     const k = (s||"").toLowerCase();
     if (k === "pending")  return "Pendiente";
@@ -379,9 +386,12 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     return s;
   };
 
-  document.title = `Casa en ${C.city}, ${C.state} — Financiamiento del Dueño | Americas Best Home Solutions`;
-
-  $("headline").innerHTML = `Sea dueño de una casa en <em>${C.city}</em>.<br>Sin banco.`;
+  if (document.documentElement.getAttribute("data-seo") !== "1") {
+    const place = [C.address, [C.city, C.state].filter(Boolean).join(", ")].filter(Boolean).join(", ");
+    const bits = [shown(C.lockedPrice), shown(C.moveIn) ? shown(C.moveIn) + " de enganche" : "", shown(C.monthlyPayment) ? shown(C.monthlyPayment) + "/mes" : ""].filter(Boolean);
+    document.title = place + (bits.length ? " — " + bits.join(" · ") : "") + " | Financiamiento del dueño";
+    if ($("headline")) $("headline").textContent = place + (bits.length ? " — " + bits.join(", ") : "");
+  }
   $("subhead").textContent = "Esto es comprar, no rentar. Un pago mensual fijo parecido a la renta — y cada día primero, ese pago va construyendo una casa que es suya.";
   $("propSpecs").innerHTML = [
     C.beds ? `<span>${C.beds} habitaci${Number(C.beds)===1?"ón":"ones"}</span>` : "",
@@ -439,10 +449,10 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   }
   $("heroCity").innerHTML = `<div class="c">${C.city}</div><div class="s">${C.state}</div>`;
 
-  const moveInText = C.moveIn ? money(C.moveIn) : "Pregúntenos";
-  $("dMonthly").textContent = moneyR(C.monthlyPayment);
-  $("dMoveIn").textContent  = moveInText;
-  $("dPrice").textContent   = C.lockedPrice ? moneyR(C.lockedPrice) : "Pregúntenos";
+  const moveInText = shown(C.moveIn);
+  if (shown(C.monthlyPayment)) $("dMonthly").textContent = shown(C.monthlyPayment);
+  if (moveInText) $("dMoveIn").textContent = moveInText;
+  if (shown(C.lockedPrice)) $("dPrice").textContent = shown(C.lockedPrice);
 
   // hero photo — uses heroPhoto if set, otherwise auto-tries images/<id>.jpg;
   // falls back to the branded navy face + city label if there's no photo.
@@ -472,15 +482,16 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
     };
   })();
 
-  const beds = `${C.beds} hab · ${C.baths} baño${Number(C.baths)===1?"":"s"}${C.sqft?` · ${Number(C.sqft).toLocaleString("en-US")} pies²`:""}`;
+  const beds = [C.beds ? `${C.beds} recámara${Number(C.beds)===1?"":"s"}` : "", C.baths ? `${C.baths} baño${Number(C.baths)===1?"":"s"}` : "", C.sqft ? `${Number(C.sqft).toLocaleString("en-US")} pies cuadrados` : ""].filter(Boolean).join(" · ");
+  const zip = C.zip ? String(C.zip).replace(/\.0$/, "") : "";
   const terms = [
-    ["Su pago mensual", money(C.monthlyPayment), true],
-    ["Pago de entrada", moveInText, false],
-    ["Precio de compra fijo", C.lockedPrice ? money(C.lockedPrice) : "Pregúntenos", false],
-    ["Financiamiento", C.termText, false],
+    ["Mensualidad", shown(C.monthlyPayment), true],
+    ["Enganche", moveInText, false],
+    ["Precio de compra", shown(C.lockedPrice), false],
+    ["Financiamiento", C.termText || "", false],
     ["La casa", beds, false],
-    ["Ubicación", `${C.address?C.address+", ":""}${C.city}, ${C.state}${C.zip?" "+C.zip:""}`, false],
-  ];
+    ["Ubicación", [C.address, `${C.city}, ${C.state}${zip ? " " + zip : ""}`].filter(Boolean).join(", "), false],
+  ].filter(([, v]) => v);
   $("termsList").innerHTML = terms.map(([k,v,big])=>
     `<div class="term-row${big?" big":""}"><span class="k">${k}</span><span class="v">${v}</span></div>`
   ).join("");
@@ -543,22 +554,22 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   } else {
     document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"));
   }
-})();
+});
 </script>
-<script src="homes-map.js"></script>
-<script src="homes-cart.js"></script>
-<script src="site-chrome.js"></script>
+<script src="homes-map.js" defer></script>
+<script src="homes-cart.js" defer></script>
+<script src="site-chrome.js" defer></script>
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
   const id = window.__HOME_ID__ || new URLSearchParams(location.search).get("home");
   const raw = (window.LISTED_ON || {})[id];
   const t = Date.parse(raw || "");
   const b = document.getElementById("newBadge");
   if (b && raw && t && (Date.now() - t) <= 7 * 86400000) b.hidden = false;
-})();
+});
 </script>
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
   const id = window.__HOME_ID__ || new URLSearchParams(location.search).get("home");
   const h = (typeof HOMES !== "undefined") ? HOMES.find(x => x.id === id) : null;
   if (!h || !window.HomesMap) return;
@@ -566,7 +577,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   document.getElementById("mapGoogle").href = "https://www.google.com/maps/search/?api=1&query=" + q;
   if (window.HomesCart){ const n = document.getElementById("ctaNote"); if (n) n.insertAdjacentHTML("afterend", '<div class="hc-hero">' + HomesCart.heart(h, true) + HomesCart.compare(h) + '</div>'); HomesCart.sync(); }
   HomesMap.mini({ el: document.getElementById("mapEl"), home: h, section: document.getElementById("mapSec"), note: document.getElementById("mapNote") });
-})();
+});
 </script>
 <style>
 #stickyTour{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line,#dfe6f0);box-shadow:0 -6px 22px rgba(15,36,68,.12);transform:translateY(110%);transition:transform .25s}
@@ -586,7 +597,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
 <div id="stickyTour" aria-hidden="true"><div class="st-p"><span id="stPay"></span><small id="stLab"></small></div><a id="stBtn" href="#"></a></div>
 <div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Cerrar">&#10005;</button><button class="pv" aria-label="Anterior">&#8249;</button><img alt=""><button class="nx" aria-label="Siguiente">&#8250;</button><div class="ct"></div></div>
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function(){
   const $=id=>document.getElementById(id);
   // barra fija de "Agende una visita": aparece cuando el botón principal sale de la pantalla
   const main=$("ctaText"), bar=$("stickyTour");
@@ -609,7 +620,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sa
   document.addEventListener("keydown",e=>{ if(!lb.classList.contains("on")) return; if(e.key==="Escape")close(); if(e.key==="ArrowLeft")show(i-1); if(e.key==="ArrowRight")show(i+1); });
   let x0=null; lb.addEventListener("touchstart",e=>{x0=e.touches[0].clientX;},{passive:true});
   lb.addEventListener("touchend",e=>{ if(x0==null) return; const d=e.changedTouches[0].clientX-x0; if(Math.abs(d)>50) show(i+(d<0?1:-1)); x0=null; });
-})();
+});
 </script>
 </body>
 </html>
