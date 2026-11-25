@@ -329,26 +329,30 @@
     return "$" + n.toLocaleString("en-US");
   }
   function syncSummary(){
-    const node = $("filterSummaryText");
+    const node = $("filterSlimText");
     if (!node) return;
-    const place = ($("fQ").value || $("fCity").value || "Todas las ciudades").split(",")[0].trim();
-    const bits = [place || "Todas las ciudades"];
+    const place = ($("fQ").value || $("fCity").value || "").split(",")[0].trim();
+    const bits = [];
+    if (place) bits.push(place);
     const dlo = $("fDownMin").value, dhi = $("fDown").value;
     const plo = $("fPayMin").value, phi = $("fPayMax").value;
     const beds = $("fBeds").value;
+    const bedsOn = $("bedChips") && !$("bedChips").hidden;
     if (dlo || dhi) bits.push("enganche " + (dlo && dhi ? shortMoney(dlo) + "–" + shortMoney(dhi) : dlo ? shortMoney(dlo) + "+" : "hasta " + shortMoney(dhi)));
     if (plo || phi) bits.push((plo && phi ? shortMoney(plo) + "–" + shortMoney(phi) : plo ? shortMoney(plo) + "+" : "hasta " + shortMoney(phi)) + "/mes");
-    if (beds) bits.push(beds + "+ rec.");
-    node.textContent = bits.join(" · ");
+    if (beds && bedsOn) bits.push(beds + "+ rec.");
+    node.textContent = bits.length ? bits.join(" · ") : "Busque una casa";
+    const edit = $("filterSlimEdit");
+    if (edit) edit.textContent = bits.length ? "Editar" : "Filtros";
   }
   function syncBeds(){
-    const row = $("bedRow");
-    if (!row) return;
+    const box = $("bedChips"), label = $("bedLabel");
     const place = findPlace($("fQ").value);
     const on = !!($("fCity").value || (place && place.kind === "city"));
-    row.hidden = !on;
-    const val = $("fBeds").value || "";
-    row.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", (b.dataset.beds || "") === val ? "true" : "false"));
+    if (box) box.hidden = !on;
+    if (label) label.hidden = !on;
+    const val = ($("fBeds") && $("fBeds").value) || "";
+    if (box) box.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", (b.dataset.beds || "") === val ? "true" : "false"));
   }
   function render(scroll){
     const place = findPlace($("fQ").value);
@@ -596,8 +600,12 @@
     const more = $("moreFilters");
     if (more && filterBtn) more.addEventListener("click", () => { filterBtn.click(); more.setAttribute("aria-expanded", filterBtn.getAttribute("aria-expanded")); });
     const clr = $("clearFilters");
-    if (clr) clr.addEventListener("click", () => {
+    if (clr) clr.addEventListener("click", (e) => {
+      e.preventDefault();
       ["fState",...FILTER_IDS].filter(id => id !== "fSort").forEach(id => { const el = $(id); if (el) el.value = ""; });
+      document.querySelectorAll(".range-chips").forEach(group => {
+        group.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", i === 0 ? "true" : "false"));
+      });
       fillCities(); page = 1; render(false); syncURL();
     });
     const mapToggle = document.getElementById("mapToggle");

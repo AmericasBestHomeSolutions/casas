@@ -112,7 +112,7 @@
 
   const tail = id ? "/" + id + ".html" : ((file === "index.html" || file === "") ? "/" : path);
   let lang = nav.querySelector(".lang");
-  if (!lang) {
+  if (!lang && !nav.querySelector(".nav-lang")) {
     lang = document.createElement("div");
     lang.className = "lang";
     lang.setAttribute("role", "group");
@@ -169,30 +169,22 @@
   });
 })();
 
-/* City pages: collapse the filter block to one line until Editar. */
+/* City pages: filters stay in the page. A 56px bar appears only after they scroll away. */
 (function () {
   const form = document.getElementById("buyerSearch");
-  if (!form || !form.querySelector(".range-chips") || document.getElementById("filterSummary")) return;
-  const beds = form.querySelector("#bedChips");
-  if (beds && !beds.previousElementSibling?.classList.contains("chip-label")) {
-    const label = document.createElement("p");
-    label.className = "chip-label";
-    label.textContent = "RECÁMARAS";
-    beds.before(label);
-  }
-  const summary = document.createElement("button");
-  summary.type = "button";
-  summary.className = "filter-summary";
-  summary.id = "filterSummary";
-  summary.setAttribute("aria-expanded", "false");
-  summary.setAttribute("aria-controls", "buyerSearch");
+  if (!form || !form.querySelector(".range-chips") || document.getElementById("filterSlim")) return;
+  const slim = document.createElement("button");
+  slim.type = "button";
+  slim.id = "filterSlim";
+  slim.className = "filter-slim";
+  slim.hidden = true;
   const text = document.createElement("span");
+  text.id = "filterSlimText";
   const edit = document.createElement("span");
-  edit.className = "edit";
+  edit.id = "filterSlimEdit";
   edit.textContent = "Editar";
-  summary.append(text, edit);
-  form.before(summary);
-  form.hidden = true;
+  slim.append(text, edit);
+  form.after(slim);
   function money(n) {
     n = Number(n);
     if (!n) return "";
@@ -204,8 +196,9 @@
   }
   function line() {
     const q = (form.querySelector("#fQ") || {}).value || "";
-    const city = q.split(",")[0].trim() || "Todas las ciudades";
-    const bits = [city];
+    const bits = [];
+    const city = q.split(",")[0].trim();
+    if (city) bits.push(city);
     const down = pressed(form.querySelector("[data-min='chipDownMin']"));
     const pay = pressed(form.querySelector("[data-max='chipPayMax']"));
     const bed = pressed(form.querySelector("#bedChips"));
@@ -218,14 +211,17 @@
       bits.push((lo && hi ? money(lo) + "–" + money(hi) : lo ? money(lo) + "+" : "hasta " + money(hi)) + "/mes");
     }
     if (bed && bed.getAttribute("data-min")) bits.push(bed.getAttribute("data-min") + "+ rec.");
-    text.textContent = bits.join(" · ");
+    text.textContent = bits.join(" · ") || "Busque una casa";
   }
   line();
   form.addEventListener("change", line);
-  summary.addEventListener("click", function () {
-    const open = form.hidden;
-    form.hidden = !open;
-    summary.setAttribute("aria-expanded", open ? "true" : "false");
-    if (!open) line();
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      slim.hidden = entries[0].isIntersecting;
+      if (!slim.hidden) line();
+    }, { rootMargin: "-8px 0px 0px 0px", threshold: 0 }).observe(form);
+  }
+  slim.addEventListener("click", function () {
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 })();

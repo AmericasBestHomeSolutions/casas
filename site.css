@@ -358,8 +358,8 @@ body.page-search #cards:not(:has(.swipe-block)) > .card,
 body.page-search #cards:not(:has(.swipe-block)) > article.card {
   flex: 0 0 min(78vw, 300px); scroll-snap-align: start; min-width: 0;
 }
-.city-pills.swipe-row { flex-wrap: nowrap; padding-inline: 0; }
-.city-pills.swipe-row a { flex: 0 0 auto; scroll-snap-align: start; min-height: 48px; }
+body.page-search .city-pills { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; }
+body.page-search .city-pills a { flex: 0 0 auto; scroll-snap-align: start; min-height: 48px; }
 .swipe-block { margin: 8px 0 22px; }
 .swipe-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px 8px; }
 .swipe-head h2 { margin: 0; font-size: 22px; color: var(--brand-primary, #15315e); }
@@ -393,14 +393,27 @@ body.page-search .brand { min-width: 0; }
 body.page-search .brand .bn { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 body.page-search .topnav { flex: 0 0 auto; flex-wrap: nowrap; }
 a.acct-out { max-width: none; white-space: nowrap; font-size: 14px; }
-.filter-summary {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;
-  min-height: 44px; margin: 0; padding: 8px 12px; border-radius: 999px;
-  border: 1.5px solid var(--brand-primary, #15315e); background: #fff; color: var(--brand-primary, #15315e);
-  font: 700 14px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; text-align: left; cursor: pointer;
+body.page-search .topbar { position: sticky; top: 0; }
+body.page-search .buyer-panel { position: static; display: grid; gap: 8px; margin: 0; padding: 12px 16px 8px; background: #fff; }
+body.page-search .z-quick, body.page-search .z-sort, body.page-search .z-chips, body.page-search .hdr-search, body.page-search .bed-row { display: none !important; }
+.filter-slim {
+  position: fixed; z-index: 28; left: 8px; right: 8px; top: var(--zhead, 64px);
+  height: 56px; max-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 0 14px; border: 1px solid var(--line, #e2e8f2); border-radius: 14px; background: #fff;
+  box-shadow: 0 8px 22px rgba(15, 36, 68, .12); color: var(--brand-primary, #15315e);
+  font: 700 14px system-ui, sans-serif; text-align: left; cursor: pointer;
 }
-.filter-summary .edit { flex: 0 0 auto; text-decoration: underline; }
-#filterPanel[hidden] { display: none !important; }
+.filter-slim[hidden] { display: none !important; }
+.filter-slim #filterSlimText { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.filter-slim #filterSlimEdit {
+  flex: 0 0 auto; min-height: 36px; padding: 0 12px; border-radius: 999px;
+  background: var(--brand-primary, #15315e); color: #fff; display: inline-flex; align-items: center;
+}
+body.page-search .view-toggle {
+  position: static !important; left: auto !important; bottom: auto !important; transform: none !important;
+  margin: 12px 16px 20px; z-index: 1;
+}
+.range-chips[hidden], .chip-label[hidden] { display: none !important; }
 .chip-label { margin: 0; font: 700 11px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; letter-spacing: .12em; color: var(--ink-soft, #5b6577); }
 body.page-search { padding-bottom: 88px; }
 body.page-search .view-toggle { bottom: 16px; }
