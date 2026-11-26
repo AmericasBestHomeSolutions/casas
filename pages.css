@@ -164,3 +164,7 @@ a.nav-account,a.acct-out{white-space:nowrap;font-size:14px;font-weight:800}
   .brand .mark{width:22px;height:22px}
   .topnav{gap:4px}
 }
+@media (min-width:900px){
+  .buyer-panel{position:sticky !important;top:64px;z-index:24}
+  .filter-slim{display:none !important}
+}

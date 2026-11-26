@@ -29,6 +29,7 @@
 <link rel="alternate" hreflang="es" href="https://casasconfinanciamiento.com/"/>
 <link rel="alternate" hreflang="x-default" href="https://getownerfinancedhomes.com/"/>
 <script type="application/ld+json" id="seo-org">{"@context":"https://schema.org","@type":"Organization","@id":"https://casasconfinanciamiento.com/#organization","name":"Americas Best Home Solutions","legalName":"Americas Best Home Solutions LLC","url":"https://casasconfinanciamiento.com/","logo":"https://casasconfinanciamiento.com/images/brand/logo-mark-480.png","email":"admin@americasbesthomesolutions.com","address":{"@type":"PostalAddress","streetAddress":"30 N Gould St, Ste R","addressLocality":"Sheridan","addressRegion":"WY","postalCode":"82801","addressCountry":"US"}}</script>
+<script type="application/ld+json" id="seo-faq">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Es esto una estafa?","acceptedAnswer":{"@type":"Answer","text":"La empresa de este sitio es Americas Best Home Solutions LLC. La oficina está en 30 N Gould St, Ste R, Sheridan, WY 82801. Joseph Hernandez es el director ejecutivo y su foto está en este sitio. Las reseñas son de Logan y Trinity, en Decatur. Usted visita la casa en persona antes de pagar algo para reservarla. Usted visita la casa en persona primero. Usted firma los documentos antes de recibir las llaves. Puede escribir a admin@americasbesthomesolutions.com."}}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=optional" rel="stylesheet">
@@ -432,6 +433,10 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <button type="button" class="near sheet-wide" id="nearMe">Cerca de mí</button>
     </div>
   </header>
+  <p class="hero-promise">Vea el enganche y la mensualidad, y luego visite la casa.</p>
+  <!-- weekly-hero:start -->
+<figure class="week-hero"><img src="images/cards/oblong-il-807-illinois-480.webp" alt="Una casa real que puede visitar: 807 W Illinois St, Oblong, IL" width="480" height="360" fetchpriority="high"><figcaption>Una casa real que puede visitar: 807 W Illinois St, Oblong, IL</figcaption></figure>
+<!-- weekly-hero:end -->
   <form class="buyer-panel" id="buyerSearch" action="/" method="get">
     <label>Ciudad o código postal
       <input id="fQ" name="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" list="qHints" placeholder="Springfield o 62703" aria-label="Ciudad o código postal">
@@ -467,6 +472,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </div>
     <button type="button" class="chip-clear" id="clearFilters">Borrar filtros</button>
   </form>
+  <div class="filter-backdrop" id="filterBackdrop" hidden></div>
   <button type="button" id="filterSlim" class="filter-slim" hidden>
     <span id="filterSlimText">Busque una casa</span>
     <span id="filterSlimEdit">Editar</span>
@@ -561,17 +567,25 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </div>
   </section>
 
-  <section class="section joe-intro" id="joeIntro">
-    <picture class="joe-photo">
-      <source type="image/webp" srcset="images/joe-headshot-600.webp">
-      <img src="images/joe-headshot-600.jpg" width="600" height="717" alt="Joseph Hernandez" loading="lazy" decoding="async">
-    </picture>
-    <div class="joe-copy">
-      <p class="joe-name"><strong>Joseph Hernandez, Director Ejecutivo</strong></p>
-      <p class="joe-sub">Director Ejecutivo, Americas Best Home Solutions · Casas con financiamiento del dueño, sin banco · Bilingüe</p>
-      <p>Soy Joseph Hernandez. Ayudo a familias a conseguir una casa propia sin préstamo de banco. Cada casa se vende tal como está y tiene un precio acorde al trabajo que necesita, y usted trata directamente conmigo y mi equipo desde la primera visita hasta la entrega de llaves.</p>
-      <p><a href="https://www.linkedin.com/in/joseph-hernandez-9511958" rel="noopener">LinkedIn</a> · <a href="/como-funciona.html">Cómo funciona</a></p>
-    </div>
+  <section class="meet-joe" id="joeIntro">
+    <article class="meet-bio">
+      <picture>
+        <source type="image/webp" srcset="images/joe-headshot-600.webp">
+        <img src="images/joe-headshot-600.jpg" alt="Joseph Hernandez" width="600" height="717" loading="lazy" decoding="async">
+      </picture>
+      <h3>Joseph Hernandez, Director Ejecutivo</h3>
+      <p>Soy Joseph Hernandez. Usted trata conmigo desde la primera visita hasta las llaves.</p>
+      <p><a href="/como-funciona.html">Cómo funciona</a> · <a href="https://www.linkedin.com/in/joseph-hernandez-9511958" rel="noopener">LinkedIn</a></p>
+    </article>
+    <article class="meet-navy" id="oneTeam">
+      <div class="sec-label" style="color:#ffb3b3">Con quién va a hablar</div>
+      <h2>Un número. Un equipo. Todas las casas de este sitio.</h2>
+      <ul>
+        <li><span class="m">✓</span><span><strong>Sabrá exactamente con quién trata.</strong> Agende una visita y conocerá a las mismas personas que abren la puerta y le muestran la casa.</span></li>
+        <li><span class="m">✓</span><span><strong>La ve con sus propios ojos antes de decidir.</strong> <span id="otWalk">Cada casa se recorre en persona, y no le pediremos dinero para "apartar" una casa en la que no ha estado. La oficina está en 30 N Gould St, Ste R, Sheridan, WY 82801.</span></span></li>
+        <li><span class="m">✓</span><span><strong>Si la que quería se vende, no empieza de cero.</strong> <span id="otHomes">230</span> casas en <span id="otCities">45</span> pueblos. Díganos qué necesita y le mandamos la siguiente.</span></li>
+      </ul>
+    </article>
   </section>
   <!-- JOE-INPUT: brand-colors -->
   <p class="joe-ph" hidden>Placeholder: la paleta de Joe (brand-colors). Hoy sigue el azul marino #15315e y el rojo #d32f2f.</p>
@@ -636,24 +650,8 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="sold-strip" id="soldStrip"></div>
   </section>
 
-  <!-- UN NÚMERO, UN EQUIPO — the same band as the English site, from the buyer's seat -->
-  <section class="oneteam reveal">
-    <div class="oneteam-inner">
-      <div class="sec-label" style="color:#ffb3b3">Con quién va a hablar</div>
-      <h2>Un número. Un equipo. Todas las casas de este sitio.</h2>
-      <ul>
-        <li><span class="m">✓</span><span><strong>Sabrá exactamente con quién trata.</strong> Agende una visita y conocerá a las mismas personas que abren la puerta y le muestran la casa — casi siempre el mismo día.</span></li>
-        <li><span class="m">✓</span><span><strong>La ve con sus propios ojos antes de decidir.</strong> Cada casa se recorre en persona, y nunca le pediremos dinero para "apartar" una casa en la que no ha estado.</span></li>
-        <li><span class="m">✓</span><span><strong>Si la que quería se vende, no empieza de cero.</strong> <span id="otHomes">—</span> casas en <span id="otCities">—</span> ciudades y pueblos, actualizadas cada semana — díganos qué necesita y le mandamos la siguiente.</span></li>
-      </ul>
-      <div class="hero-cta">
-        <a class="btn btn-lime" href="/#listings">Ver las casas</a>
-      </div>
-    </div>
-  </section>
-
   <!-- TRUST BAND -->
-  <section class="section reveal">
+  <section class="section reveal" id="trustBand">
     <div class="sec-head">
       <div class="sec-label">Por qué nos eligen</div>
       <h2 class="sec-title">Un camino real para ser dueño — <br>sin el banco de por medio</h2>
@@ -683,22 +681,29 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   </section>
 
   <!-- 4 STEPS -->
-  <section class="section reveal">
+  <section class="section reveal" id="how">
     <div class="sec-head">
       <div class="sec-label">Sencillo, del inicio a las llaves</div>
       <h2 class="sec-title">De la visita a las llaves</h2>
-      <p class="sec-sub">El dueño es el vendedor. No hay banco ni solicitud hipotecaria.</p>
+      <p class="sec-sub"><!-- finance-stats:start -->El enganche más bajo entre las casas disponibles es $500. 181 casas disponibles piden $2,500 de enganche o menos.<!-- finance-stats:end --></p>
     </div>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Elija una casa y visítela</h3><p>Agende una visita, recorra la casa y elija la que quiere.</p></div>
-      <div class="step"><div class="n">2</div><h3>Le enviamos un paquete de bienvenida</h3><p>Después de la visita le mandamos el paquete de bienvenida.</p></div>
-      <div class="step"><div class="n">3</div><h3>Usted envía el enganche o depósito</h3><p>Usted manda el enganche publicado, o el depósito.</p></div>
-      <div class="step"><div class="n">4</div><h3>Hacemos el papeleo</h3><p>Preparamos los documentos. Los términos finales se confirman ahí.</p></div>
-      <div class="step"><div class="n">5</div><h3>Recibe las llaves</h3><p>En Illinois hay 3 días de derecho de rescisión después de firmar. En los demás estados, las llaves se entregan al firmar.</p></div>
+      <div class="step"><div class="n">1</div><h3>Elija una casa y visítela</h3><p>Elija una casa y recórrala en persona.</p></div>
+      <div class="step"><div class="n">2</div><h3>Le enviamos un paquete de bienvenida</h3><p>Recibe el paquete de la casa que eligió.</p></div>
+      <div class="step"><div class="n">3</div><h3>Usted envía el enganche o depósito</h3><p>El efectivo antes de las llaves es el enganche del anuncio.</p></div>
+      <div class="step"><div class="n">4</div><h3>Hacemos el papeleo</h3><p>El acuerdo por escrito es donde se confirman los términos.</p></div>
+      <div class="step"><div class="n">5</div><h3>Recibe las llaves</h3><p>En Illinois hay 3 días de derecho de rescisión después de firmar, y luego las llaves. En los demás estados, las llaves al firmar.</p></div>
+      <div class="step"><div class="n">✓</div><h3>Lo que necesita</h3><p>Una identificación válida, el enganche y un pago mensual que se ajuste a su presupuesto.</p></div>
     </div>
-    <p class="need-line">Lo que necesita: una identificación válida, el enganche y una mensualidad que le quede cómoda.</p>
-    <!-- finance-stats:start -->El enganche más bajo entre las casas disponibles es $500. 181 casas disponibles piden $2,500 de enganche o menos.<!-- finance-stats:end -->
     <p style="text-align:center;margin-top:18px"><a href="como-funciona.html" style="font-weight:700;color:var(--pine);text-decoration:none;border-bottom:2px solid var(--go);padding-bottom:2px">Vea exactamente cómo funciona el financiamiento del dueño →</a></p>
+  </section>
+
+  <section class="section" id="faq">
+    <details id="scamFaq">
+      <summary>¿Es esto una estafa?</summary>
+      <p class="ans" id="scamAnswerEs">La empresa de este sitio es Americas Best Home Solutions LLC. La oficina está en 30 N Gould St, Ste R, Sheridan, WY 82801. Joseph Hernandez es el director ejecutivo y su foto está en este sitio. Las reseñas son de Logan y Trinity, en Decatur. Usted visita la casa en persona antes de pagar algo para reservarla. Usted visita la casa en persona primero. Usted firma los documentos antes de recibir las llaves. Puede escribir a admin@americasbesthomesolutions.com.</p>
+    </details>
+      <details id="petsFaq"><summary>¿Se permiten mascotas?</summary><p class="ans" id="petsAnswerEs">Sí, se permiten mascotas.</p></details>
   </section>
 
   <section class="section" id="stories">
@@ -815,7 +820,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <h2>Usted está comprando — no rentando</h2>
     <div class="benefits">
       <article><h3>Es dueño desde el primer día</h3><p>Su nombre está en el acuerdo el día que firma. Usted es el dueño, no un inquilino.</p></article>
-      <article><h3>Su pago no se mueve</h3><p>Una mensualidad fija, por escrito. No sube cada año como la renta.</p></article>
+      <article><h3>Su pago no se mueve</h3><p>Una mensualidad acordada por escrito. No sube cada año como la renta.</p></article>
       <article><h3>Un pago parecido a la renta</h3><p>Sea dueño de una casa por más o menos lo que le pagaría a un casero — y construye algo que es suyo.</p></article>
       <article><h3>Sin banco de por medio</h3><p>Sin solicitud hipotecaria y sin un banco decidiendo si le dan una casa.</p></article>
     </div>
@@ -829,7 +834,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   </section>
   <footer class="foot">
     <div class="fb">Americas Best Home Solutions</div>
-    <p class="fcontact" style="opacity:.78;margin-top:2px">casasconfinanciamiento.com es operado por <a href="https://americasbesthomesolutions.com">Americas Best Home Solutions LLC</a></p>
+    <p class="fcontact" style="margin-top:2px;color:#3d4a5c">casasconfinanciamiento.com es operado por <a href="https://americasbesthomesolutions.com">Americas Best Home Solutions LLC</a></p>
     <address class="fcontact" style="font-style:normal;margin-top:8px">
       30 N Gould St, Ste R, Sheridan, WY 82801<br>
       <a href="mailto:admin@americasbesthomesolutions.com">admin@americasbesthomesolutions.com</a>
@@ -884,8 +889,23 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       slim.hidden = entries[0].isIntersecting;
     }, { rootMargin: "-8px 0px 0px 0px", threshold: 0 }).observe(panel);
   }
-  slim.addEventListener("click", function () {
-    panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  var backdrop = document.getElementById("filterBackdrop");
+  function openSheet(){
+    document.body.classList.add("sheet-open");
+    if (backdrop) backdrop.hidden = false;
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-modal", "true");
+  }
+  function closeSheet(){
+    document.body.classList.remove("sheet-open");
+    if (backdrop) backdrop.hidden = true;
+    panel.removeAttribute("role");
+    panel.removeAttribute("aria-modal");
+  }
+  slim.addEventListener("click", openSheet);
+  if (backdrop) backdrop.addEventListener("click", closeSheet);
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeSheet();
   });
 })();
 </script>
@@ -897,7 +917,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   function boot() {
     if (started) return;
     started = true;
-    var srcs = ["listed-dates.js","visitor-near.js","book-links.js","homes.js","photo-index.js","homes-map.js","homes-cart.js","buyer-search.js","site-chrome.js","home-page.js"];
+    var srcs = ["listed-dates.js","visitor-near.js","book-links.js","homes.js","sold-cards.js","photo-index.js","homes-map.js","homes-cart.js","buyer-search.js","site-chrome.js","home-page.js"];
     var i = 0;
     function next() {
       if (i >= srcs.length) return;

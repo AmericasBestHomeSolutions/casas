@@ -76,11 +76,15 @@
   fillCities();
 
   // hero stats — pending stays listed, but the count is homes still available
-  const availableCount = LISTINGS.filter(h => !isPending(h)).length;
-  $("statHomes").textContent = availableCount;
-  $("statCities").textContent = allCities.length;
-  $("otHomes").textContent = availableCount;
-  $("otCities").textContent = allCities.length;
+  const availableHomes = LISTINGS.filter(h => !isPending(h) && h.id !== "duquoin-il-322-cole");
+  const availableCount = availableHomes.length;
+  const availableCities = [...new Set(availableHomes.map(h => h.city).filter(Boolean))];
+  if ($("statHomes")) $("statHomes").textContent = availableCount;
+  if ($("statCities")) $("statCities").textContent = availableCities.length;
+  const mapHomes = availableHomes.filter(h => typeof h.lat === "number" && typeof h.lng === "number" && !h.contractor);
+  const mapTowns = new Set(mapHomes.map(h => (h.city || "") + "|" + (h.state || "")).filter(key => key !== "|"));
+  if ($("otHomes")) $("otHomes").textContent = String(mapHomes.length);
+  if ($("otCities")) $("otCities").textContent = String(mapTowns.size);
 
   function featureTag(h){
     if (isNewHome(h)) return "Nuevo";
@@ -129,6 +133,7 @@
         ${(h.photos||[]).length>1?`<button type="button" class="pg pv" aria-label="Foto anterior">‹</button><button type="button" class="pg nx" aria-label="Foto siguiente">›</button><span class="pdots">${Array.from({length:Math.min(6,(h.photos||[]).length)},(_,k)=>`<i${k?"":" class=\"on\""}></i>`).join("")}</span>`:""}
         ${pending ? `<span class="status-tag pending">Pendiente</span>` : (tag ? `<span class="z-feat">${tag}</span>` : "")}
         ${window.HomesCart?HomesCart.heart(h):""}
+        ${!pending && window.HomesCart && HomesCart.tour ? HomesCart.tour(h) : ""}
       </div>
       <div class="card-body">
         <div class="card-price"><span class="num">${money(h.monthlyPayment)}</span><span class="per">/mes</span></div>
@@ -140,7 +145,6 @@
         ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin-top:4px">${h._dist.toFixed(1)} mi</div>`:""}
       </div>
       </a>
-      ${action}
     </div>`;
   }
 
@@ -293,8 +297,8 @@
     const pending = match.filter(isPending).sort(defaultOrder());
     const parts = [];
     const paint = (list, opts) => list.map((h,i) => cardHTML(h, Object.assign({eager: i===0}, opts||{}))).join("");
-    if (available.length) parts.push(swipeBlock("Disponibles ahora", paint(available)));
-    if (pending.length) parts.push(swipeBlock("Pendiente: visitas cerradas", paint(pending)));
+    if (available.length) parts.push(rowOf("Disponibles ahora", available));
+    if (pending.length) parts.push(rowOf("Pendiente: visitas cerradas", pending));
     if (available.length < 3 && origin){
       const near = pool.filter(h => !isPending(h) && fitsBudget(h) && !inPlace(h, place, origin)).map(h => {
         const p = pointOf(h);
@@ -308,12 +312,28 @@
     if (over.length){
       parts.push(swipeBlock("Un poco arriba de su presupuesto", paint(over)));
     }
-    return {html: parts.join(""), count: match.length + (parts.length ? 0 : 0), any: parts.length > 0, shown: available.length + pending.length};
+    return {html: parts.join(""), count: match.length + (parts.length ? 0 : 0), any: parts.length > 0, shown: available.length + pending.length, pins: available};
   }
 
   function swipeBlock(title, html, compact){
     if (!html) return "";
-    return `<section class="swipe-block${compact?" is-compact":""}"><div class="swipe-head"><h2>${title}</h2><div class="swipe-nav"><button type="button" class="swipe-prev" aria-label="Anterior">‹</button><button type="button" class="swipe-next" aria-label="Siguiente">›</button></div></div><div class="swipe-row">${html}</div></section>`;
+    return `<section class="swipe-block${compact?" is-compact":""}"><div class="swipe-head"><h2>${title}</h2><div class="swipe-nav"><button type="button" class="swipe-prev" aria-label="Anterior">‹</button><button type="button" class="swipe-next" aria-label="Siguiente">›</button></div></div><p class="row-hint">Deslice hacia el lado. La siguiente casa se asoma.</p><div class="swipe-row">${html}</div></section>`;
+  }
+  function rowOf(title, homes, compact){
+    const cap = compact ? 8 : 12;
+    const shown = homes.slice(0, cap);
+    const cards = shown.map((h, i) => cardHTML(h, {eager: i === 0 && !compact})).join("");
+    const more = homes.length > cap ? `<a class="card see-all" href="/#cities">Ver las ${homes.length} casas</a>` : "";
+    return swipeBlock(title, cards + more, compact);
+  }
+  function mapPins(list){
+    return (list || []).filter(h => !isPending(h) && h.id !== "duquoin-il-322-cole" && typeof h.lat === "number" && typeof h.lng === "number");
+  }
+  function showMap(list){
+    const pins = mapPins(list);
+    const n = pins.length;
+    if ($("count")) $("count").textContent = n ? `${n} casa${n===1?"":"s"}` : "";
+    if (window.HomesMap) HomesMap.update(pins);
   }
   function wireSwipe(root){
     (root || document).querySelectorAll(".swipe-block").forEach(block => {
@@ -369,7 +389,7 @@
       $("count").textContent = bits ? `${bits} casa${bits===1?"":"s"}` : "";
       $("pager").style.display = "none";
       $("pager").innerHTML = "";
-      if (window.HomesMap) HomesMap.update([]);
+      showMap(grouped.pins || []);
       if (window.HomesCart) HomesCart.sync();
       chips();
       wireSwipe($("cards"));
@@ -385,19 +405,18 @@
     const pending = shown.filter(isPending);
     const sold = shown.filter(isSold);
     const blocks = [
-      swipeBlock("Disponibles ahora", available.map((h,i) => cardHTML(h, {eager: i===0})).join("")),
-      swipeBlock("Pendiente: visitas cerradas", pending.map(h => cardHTML(h)).join("")),
-      swipeBlock("Vendidas recientemente", sold.map(h => cardHTML(h)).join(""), true)
+      rowOf("Disponibles ahora", available),
+      rowOf("Pendiente: visitas cerradas", pending),
+      rowOf("Vendidas recientemente", sold, true)
     ].join("");
     $("cards").innerHTML = blocks;
     $("empty").style.display = shown.length ? "none" : "block";
-    $("count").textContent = shown.length ? `${shown.length} casa${shown.length===1?"":"s"}` : "";
     $("pager").style.display = "none";
     $("pager").innerHTML = "";
     wireSwipe($("cards"));
     syncBeds();
     syncSummary();
-    if (window.HomesMap) HomesMap.update(shown);
+    showMap(shown);
     if (window.HomesCart) HomesCart.sync();
     chips();
     const head = document.querySelector("body.page-search .topbar");
@@ -465,7 +484,12 @@
   (function(){
     const q = $("fQ"), dl = $("qHints"); let t;
     q.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { page = 1; render(false); syncURL(); chips(); }, 160); });
-    q.addEventListener("keydown", e => { if (e.key === "Enter"){ q.blur(); render(true); } });
+    q.addEventListener("keydown", e => {
+      if (e.key !== "Enter") return;
+      const hit = window.BuyerSearch && BuyerSearch.uniqueListing(q.value, LISTINGS);
+      if (hit) { location.href = hit.id + ".html"; return; }
+      q.blur(); render(true);
+    });
     const cities = [...new Set(LISTINGS.map(h => h.city + ", " + h.state))].sort();
     dl.innerHTML = cities.map(c => `<option value="${c}">`).join("");
   })();
@@ -569,6 +593,10 @@
   })();
 
   applyURL();
+  (function () {
+    const hit = window.BuyerSearch && BuyerSearch.uniqueListing($("fQ") && $("fQ").value, LISTINGS);
+    if (hit) location.replace(hit.id + ".html");
+  })();
   if (window.HomesMap) HomesMap.mount({ rerender: render, sync: syncURL });
   // escritorio: un mapa pequeño arriba de las casas. En el teléfono queda el botón Lista / Mapa.
   (function(){
