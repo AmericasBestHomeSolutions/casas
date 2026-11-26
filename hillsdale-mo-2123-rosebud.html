@@ -328,7 +328,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans','DM Sans Fal
 
   <!-- buyer-eval:start -->
 <div class="buyer-eval" id="buyerEval" data-baked="1">
-<p class="qualify-line">No hace falta un préstamo bancario. Lo mantenemos simple: si el enganche y el pago mensual caben en su presupuesto, le acompañamos en los siguientes pasos.</p>
+<p class="qualify-line">una identificación válida, el enganche y un pago mensual que se ajuste a su presupuesto</p>
 <section class="eval-block" id="cashKeys"><h2>Dinero para recibir las llaves</h2><ul class="eval-lines"><li><span class="k">Enganche</span><span class="v">$1,250</span></li></ul><p class="price-small">Precio $65,000</p><p class="eval-total">Las condiciones finales se confirman en sus documentos.</p></section>
 <details class="scam-note" id="scamNote"><summary>¿Es esto una estafa?</summary><p>La empresa de este sitio es Americas Best Home Solutions LLC. Joseph Hernandez es el director ejecutivo y su foto está en este sitio. Las reseñas son de Logan y Trinity, en Decatur. Usted visita la casa en persona primero. Usted firma los documentos antes de recibir las llaves. Puede escribir a admin@americasbesthomesolutions.com.</p></details>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Es esto una estafa?", "acceptedAnswer": {"@type": "Answer", "text": "La empresa de este sitio es Americas Best Home Solutions LLC. Joseph Hernandez es el director ejecutivo y su foto está en este sitio. Las reseñas son de Logan y Trinity, en Decatur. Usted visita la casa en persona primero. Usted firma los documentos antes de recibir las llaves. Puede escribir a admin@americasbesthomesolutions.com."}}]}</script>
@@ -689,7 +689,10 @@ function renderListing(){
     const tel = String(C.phone||"").replace(/[^\d+]/g,"");
     if (tel) {
       const smsBody = encodeURIComponent(`Hi, I'm looking at ${C.address ? C.address + " in " : ""}${C.city}, ${C.state}:\nhttps://getownerfinancedhomes.com/${C.id}.html\n\nMy question: `);
-      ["ctaSms","ctaSms2"].forEach(id => { const el = $(id); if (el) { el.href = `sms:${tel}?&body=${smsBody}`; el.hidden = false; } });
+      const smsHref = `sms:${tel}?&body=${smsBody}`;
+      ["ctaSms","ctaSms2"].forEach(id => { const el = $(id); if (el) { el.href = smsHref; el.hidden = false; } });
+      const ask = document.getElementById("askText");
+      if (ask) { ask.href = smsHref; ask.hidden = false; }
     }
   }
 

@@ -461,13 +461,26 @@ body.page-search .view-toggle { bottom: 16px; }
 .week-hero img{width:100%;height:140px;object-fit:cover;object-position:50% 60%;border-radius:16px;display:block}
 .week-hero figcaption{font-size:13px;color:#5b6577;margin-top:6px}
 body.page-search .week-hero img{height:100px}
+body.page-search #joeIntro .meet-bio img{width:88px !important;height:auto}
 body.page-search .hero,
+body.page-search .stats,
+body.page-search .buyer-intro,
 body.page-search #why-strip,
 body.page-search #featuredSec,
+body.page-search #trustBand,
 body.page-search #por-que,
+body.page-search #why-buy,
+body.page-search .about,
 body.page-search .legit,
 body.page-search #story,
 body.page-search .whyband{display:none !important}
+body.page-search #how{margin-top:8px}
+body.page-search #how .steps{gap:6px}
+body.page-search #how .step{padding:8px 10px;gap:8px}
+body.page-search #how .step h3{font-size:15px;margin:0}
+body.page-search #how .step p{font-size:13px;margin:0}
+body.page-search #how,body.page-search #faq,body.page-search #stories,body.page-search #joeIntro,body.page-search #cities,body.page-search #soldSec{margin-top:8px}
+body.page-search .city-pills{flex-wrap:nowrap !important;overflow-x:auto}
 .row-hint{margin:0 16px 6px;font-size:13px;color:#5b6577}
 .filter-backdrop{display:none}
 body.sheet-open .filter-backdrop{display:block;position:fixed;inset:0;background:rgba(15,36,68,.45);z-index:70}

@@ -656,7 +656,10 @@ function renderListing(){
     const tel = String(C.phone||"").replace(/[^\d+]/g,"");
     if (tel) {
       const smsBody = encodeURIComponent(`Hi, I'm looking at ${C.address ? C.address + " in " : ""}${C.city}, ${C.state}:\nhttps://getownerfinancedhomes.com/${C.id}.html\n\nMy question: `);
-      ["ctaSms","ctaSms2"].forEach(id => { const el = $(id); if (el) { el.href = `sms:${tel}?&body=${smsBody}`; el.hidden = false; } });
+      const smsHref = `sms:${tel}?&body=${smsBody}`;
+      ["ctaSms","ctaSms2"].forEach(id => { const el = $(id); if (el) { el.href = smsHref; el.hidden = false; } });
+      const ask = document.getElementById("askText");
+      if (ask) { ask.href = smsHref; ask.hidden = false; }
     }
   }
 
