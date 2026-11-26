@@ -79,10 +79,12 @@
   const availableHomes = LISTINGS.filter(h => !isPending(h) && h.id !== "duquoin-il-322-cole");
   const availableCount = availableHomes.length;
   const availableCities = [...new Set(availableHomes.map(h => h.city).filter(Boolean))];
-  $("statHomes").textContent = availableCount;
-  $("statCities").textContent = availableCities.length;
-  $("otHomes").textContent = availableCount;
-  $("otCities").textContent = availableCities.length;
+  if ($("statHomes")) $("statHomes").textContent = availableCount;
+  if ($("statCities")) $("statCities").textContent = availableCities.length;
+  const mapHomes = availableHomes.filter(h => typeof h.lat === "number" && typeof h.lng === "number" && !h.contractor);
+  const mapTowns = new Set(mapHomes.map(h => (h.city || "") + "|" + (h.state || "")).filter(key => key !== "|"));
+  if ($("otHomes")) $("otHomes").textContent = String(mapHomes.length);
+  if ($("otCities")) $("otCities").textContent = String(mapTowns.size);
 
   function featureTag(h){
     if (isNewHome(h)) return "Nuevo";
