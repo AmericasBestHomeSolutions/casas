@@ -16,6 +16,43 @@ import re
 from pathlib import Path
 
 PATH = Path("data") / "home-facts.json"
+
+# Joe has not confirmed these two sentences. Leave them False until he does.
+# Turning one line to True and rebuilding publishes that sentence in the scam
+# answer, the listing note, and the question sheet.
+CONFIRM_TOUR_BEFORE_PAY = False
+CONFIRM_WYOMING_ADDRESS = False
+
+
+def scam_answer(lang: str = "en") -> str:
+    """Buyer-facing scam answer. The two unconfirmed lines stay off."""
+    if lang == "es":
+        parts = [
+            "La empresa de este sitio es Americas Best Home Solutions LLC.",
+            "Joseph Hernandez es el director ejecutivo y su foto está en este sitio.",
+            "Las reseñas son de Logan y Trinity, en Decatur.",
+            "Usted visita la casa en persona primero.",
+            "Usted firma los documentos antes de recibir las llaves.",
+            "Puede escribir a admin@americasbesthomesolutions.com.",
+        ]
+        if CONFIRM_TOUR_BEFORE_PAY:
+            parts.insert(3, "Usted visita la casa en persona antes de pagar algo para reservarla.")
+        if CONFIRM_WYOMING_ADDRESS:
+            parts.insert(1, "La oficina está en 30 N Gould St, Ste R, Sheridan, WY 82801.")
+        return " ".join(parts)
+    parts = [
+        "Americas Best Home Solutions LLC is the company on this site.",
+        "Joseph Hernandez is the Executive Director, and his photo is on this site.",
+        "The buyer reviews are from Logan and Trinity in Decatur.",
+        "You tour the home in person first.",
+        "You sign the paperwork before you get the keys.",
+        "You can write admin@americasbesthomesolutions.com.",
+    ]
+    if CONFIRM_TOUR_BEFORE_PAY:
+        parts.insert(3, "You tour the home in person before you pay anything to hold it.")
+    if CONFIRM_WYOMING_ADDRESS:
+        parts.insert(1, "The office address is 30 N Gould St, Ste R, Sheridan, WY 82801.")
+    return " ".join(parts)
 SYSTEMS = ("furnace", "plumbing", "electrical", "roof", "foundation")
 SYSTEM_LABELS = {
     "en": {
@@ -287,6 +324,8 @@ def eval_html(home: dict, facts_doc: dict, lang: str) -> str:
             keys_note = "En Illinois hay 3 días para rescindir después de firmar, y después recibe las llaves."
         else:
             keys_note = f"En {state}, las llaves se entregan enseguida después de firmar." if state else "En los demás estados, las llaves se entregan enseguida después de firmar."
+        scam_q = "¿Es esto una estafa?"
+        scam_a = scam_answer("es")
     else:
         cash_title, down_label = "Cash to get the keys", "Down payment"
         paperwork = "Final terms are confirmed in your paperwork."
@@ -311,6 +350,8 @@ def eval_html(home: dict, facts_doc: dict, lang: str) -> str:
             keys_note = "In Illinois there is a 3-day right of rescission after signing, then keys."
         else:
             keys_note = f"In {state}, keys right away after signing." if state else "In other states, keys right away after signing."
+        scam_q = "Is this a scam?"
+        scam_a = scam_answer("en")
 
     cash_rows = []
     if down:
@@ -347,16 +388,17 @@ def eval_html(home: dict, facts_doc: dict, lang: str) -> str:
             f'<div class="fit-grid">{family_html}{rental_html}</div></section>'
         )
     key_items = "".join(f"<li>{_esc(step)}</li>" for step in keys)
+    price_small = f'<p class="price-small">{_esc(price_l)} {_esc(price)}</p>' if price else ""
     return (
         '<div class="buyer-eval" id="buyerEval" data-baked="1">\n'
         f'<p class="qualify-line">{_esc(qualify)}</p>\n'
         f'<section class="eval-block" id="cashKeys"><h2>{_esc(cash_title)}</h2>'
         f'<ul class="eval-lines">{"".join(cash_rows)}</ul>'
+        f'{price_small}'
         f'<p class="eval-total">{_esc(paperwork)}</p></section>\n'
-        f'<section class="eval-block" id="termsBlock"><h2>{_esc(month_title)}</h2><ul class="eval-lines">'
-        f'{_row(month_l, monthly) if monthly else ""}'
-        f'{_row(price_l, price) if price else ""}'
-        f'</ul><p class="eval-total">{_esc(paperwork)}</p></section>\n'
+        f'<details class="scam-note" id="scamNote"><summary>{_esc(scam_q)}</summary>'
+        f'<p>{_esc(scam_a)}</p></details>\n'
+        f'<script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": scam_q, "acceptedAnswer": {"@type": "Answer", "text": scam_a}}]}, ensure_ascii=False).replace("<", "\\u003c")}</script>\n'
         f'<section class="eval-block" id="keysBlock"><h2>{_esc(keys_title)}</h2>'
         f'<ol class="key-steps">{key_items}</ol><p>{_esc(keys_note)}</p></section>\n'
         f'<section class="eval-block" id="conditionBlock"><h2>{_esc(cond_title)}</h2>'
