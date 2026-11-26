@@ -95,7 +95,7 @@
     const [a,b] = faceFor(h.city + h.state);
     const rec = Number(h.beds);
     const specs = [
-      rec ? `${rec} recámara${rec===1?"":"s"}` : "",
+      rec ? `${rec} recámara${rec===1?"":"s"}` : "recámaras no indicadas",
       h.baths ? `${h.baths} ba` : "",
       (h.sqft && Number(h.sqft)) ? `${Number(h.sqft).toLocaleString("en-US")} pies²` : ""
     ].filter(Boolean).join(" | ");
@@ -104,8 +104,13 @@
     const tag = pending ? "" : ((opts && opts.featured && h.featured) ? "Destacada" : featureTag(h));
     const where = [h.address, h.city, h.state].filter(Boolean).join(", ");
     const eager = opts && opts.eager;
-    const photo = meta.card
-      ? `<img src="${meta.card}" alt="Casa en ${h.city}, ${h.state}" width="${meta.w}" height="${meta.h}" loading="${eager?"eager":"lazy"}" decoding="async"${eager?' fetchpriority="high"':""}>`
+    const CARD_SIZES = "(max-width: 860px) calc(100vw - 20px), 480px";
+    const w = Number(h.cardWidth) || 480, ht = Number(h.cardHeight) || 360;
+    const webp = [];
+    if (Number(h.cardW320)) webp.push(`images/cards/${h.id}-320.webp ${Number(h.cardW320)}w`);
+    if (h.cardPhoto && w) webp.push(`images/cards/${h.id}-480.webp ${w}w`);
+    const photo = webp.length
+      ? `<picture><source type="image/webp" srcset="${webp.join(", ")}" sizes="${CARD_SIZES}"><img src="images/cards/${h.id}-480.webp" alt="Casa en ${h.city}, ${h.state}" width="${w}" height="${ht}" ${eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}></picture>`
       : "";
     const book = (typeof bookHref === "function")
       ? bookHref(h.id)
@@ -288,25 +293,72 @@
     const pending = match.filter(isPending).sort(defaultOrder());
     const parts = [];
     const paint = (list, opts) => list.map((h,i) => cardHTML(h, Object.assign({eager: i===0}, opts||{}))).join("");
-    if (match.length) parts.push(available.concat(pending).map((h,i) => cardHTML(h, {eager: i===0})).join(""));
+    if (available.length) parts.push(swipeBlock("Disponibles ahora", paint(available)));
+    if (pending.length) parts.push(swipeBlock("Pendiente: visitas cerradas", paint(pending)));
     if (available.length < 3 && origin){
       const near = pool.filter(h => !isPending(h) && fitsBudget(h) && !inPlace(h, place, origin)).map(h => {
         const p = pointOf(h);
         return p ? {h, d: milesBetween(origin, p)} : null;
       }).filter(x => x && x.d <= 50).sort((a,b) => a.d - b.d);
       if (near.length){
-        parts.push(`<h2 class="result-group">Casas cercanas dentro de su presupuesto</h2>`);
-        parts.push(near.map((x,i) => cardHTML(x.h, {away: Math.round(x.d), eager: !match.length && i===0})).join(""));
+        parts.push(swipeBlock("Casas cercanas dentro de su presupuesto", near.map((x,i) => cardHTML(x.h, {away: Math.round(x.d), eager: !match.length && i===0})).join("")));
       }
     }
     const over = here.filter(h => justOver(h)).sort(defaultOrder());
     if (over.length){
-      parts.push(`<h2 class="result-group">Un poco arriba de su presupuesto</h2>`);
-      parts.push(paint(over));
+      parts.push(swipeBlock("Un poco arriba de su presupuesto", paint(over)));
     }
     return {html: parts.join(""), count: match.length + (parts.length ? 0 : 0), any: parts.length > 0, shown: available.length + pending.length};
   }
 
+  function swipeBlock(title, html, compact){
+    if (!html) return "";
+    return `<section class="swipe-block${compact?" is-compact":""}"><div class="swipe-head"><h2>${title}</h2><div class="swipe-nav"><button type="button" class="swipe-prev" aria-label="Anterior">‹</button><button type="button" class="swipe-next" aria-label="Siguiente">›</button></div></div><div class="swipe-row">${html}</div></section>`;
+  }
+  function wireSwipe(root){
+    (root || document).querySelectorAll(".swipe-block").forEach(block => {
+      const row = block.querySelector(".swipe-row");
+      const prev = block.querySelector(".swipe-prev");
+      const next = block.querySelector(".swipe-next");
+      if (!row || !prev || !next || prev.dataset.wired) return;
+      prev.dataset.wired = "1";
+      const step = () => Math.max(220, row.clientWidth * 0.8);
+      prev.addEventListener("click", () => row.scrollBy({left: -step(), behavior: "smooth"}));
+      next.addEventListener("click", () => row.scrollBy({left: step(), behavior: "smooth"}));
+    });
+  }
+  function shortMoney(n){
+    n = Number(n);
+    if (!n) return "";
+    if (n % 1000 === 0) return "$" + (n / 1000) + "k";
+    return "$" + n.toLocaleString("en-US");
+  }
+  function syncSummary(){
+    const node = $("filterSlimText");
+    if (!node) return;
+    const place = ($("fQ").value || $("fCity").value || "").split(",")[0].trim();
+    const bits = [];
+    if (place) bits.push(place);
+    const dlo = $("fDownMin").value, dhi = $("fDown").value;
+    const plo = $("fPayMin").value, phi = $("fPayMax").value;
+    const beds = $("fBeds").value;
+    const bedsOn = $("bedChips") && !$("bedChips").hidden;
+    if (dlo || dhi) bits.push("enganche " + (dlo && dhi ? shortMoney(dlo) + "–" + shortMoney(dhi) : dlo ? shortMoney(dlo) + "+" : "hasta " + shortMoney(dhi)));
+    if (plo || phi) bits.push((plo && phi ? shortMoney(plo) + "–" + shortMoney(phi) : plo ? shortMoney(plo) + "+" : "hasta " + shortMoney(phi)) + "/mes");
+    if (beds && bedsOn) bits.push(beds + "+ rec.");
+    node.textContent = bits.length ? bits.join(" · ") : "Busque una casa";
+    const edit = $("filterSlimEdit");
+    if (edit) edit.textContent = bits.length ? "Editar" : "Filtros";
+  }
+  function syncBeds(){
+    const box = $("bedChips"), label = $("bedLabel");
+    const place = findPlace($("fQ").value);
+    const on = !!($("fCity").value || (place && place.kind === "city"));
+    if (box) box.hidden = !on;
+    if (label) label.hidden = !on;
+    const val = ($("fBeds") && $("fBeds").value) || "";
+    if (box) box.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", (b.dataset.beds || "") === val ? "true" : "false"));
+  }
   function render(scroll){
     const place = findPlace($("fQ").value);
     if (place){
@@ -320,23 +372,31 @@
       if (window.HomesMap) HomesMap.update([]);
       if (window.HomesCart) HomesCart.sync();
       chips();
+      wireSwipe($("cards"));
+      syncBeds();
+      syncSummary();
       const head = document.querySelector("body.page-search .topbar");
       if (head) document.documentElement.style.setProperty("--zhead", (head.offsetHeight + 8) + "px");
       if (scroll) document.getElementById("listings").scrollIntoView({block:"start", behavior:"smooth"});
       return;
     }
     const shown = filtered();
-    const pages = Math.max(1, Math.ceil(shown.length / PER_PAGE));
-    if (page > pages) page = 1;
-    const slice = shown.slice((page-1)*PER_PAGE, page*PER_PAGE);
-    $("cards").innerHTML = slice.map((h, i) => cardHTML(h, {eager: page===1 && i===0})).join("");
+    const available = shown.filter(h => !isPending(h) && !isSold(h));
+    const pending = shown.filter(isPending);
+    const sold = shown.filter(isSold);
+    const blocks = [
+      swipeBlock("Disponibles ahora", available.map((h,i) => cardHTML(h, {eager: i===0})).join("")),
+      swipeBlock("Pendiente: visitas cerradas", pending.map(h => cardHTML(h)).join("")),
+      swipeBlock("Vendidas recientemente", sold.map(h => cardHTML(h)).join(""), true)
+    ].join("");
+    $("cards").innerHTML = blocks;
     $("empty").style.display = shown.length ? "none" : "block";
-    const start = shown.length ? (page-1)*PER_PAGE+1 : 0;
-    const end = Math.min(page*PER_PAGE, shown.length);
-    $("count").textContent = shown.length
-      ? `Mostrando ${start}–${end} de ${shown.length} casa${shown.length===1?"":"s"}`
-      : "";
-    renderPager(pages);
+    $("count").textContent = shown.length ? `${shown.length} casa${shown.length===1?"":"s"}` : "";
+    $("pager").style.display = "none";
+    $("pager").innerHTML = "";
+    wireSwipe($("cards"));
+    syncBeds();
+    syncSummary();
     if (window.HomesMap) HomesMap.update(shown);
     if (window.HomesCart) HomesCart.sync();
     chips();
@@ -545,8 +605,12 @@
     const more = $("moreFilters");
     if (more && filterBtn) more.addEventListener("click", () => { filterBtn.click(); more.setAttribute("aria-expanded", filterBtn.getAttribute("aria-expanded")); });
     const clr = $("clearFilters");
-    if (clr) clr.addEventListener("click", () => {
+    if (clr) clr.addEventListener("click", (e) => {
+      e.preventDefault();
       ["fState",...FILTER_IDS].filter(id => id !== "fSort").forEach(id => { const el = $(id); if (el) el.value = ""; });
+      document.querySelectorAll(".range-chips").forEach(group => {
+        group.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", i === 0 ? "true" : "false"));
+      });
       fillCities(); page = 1; render(false); syncURL();
     });
     const mapToggle = document.getElementById("mapToggle");
@@ -574,6 +638,7 @@
     const sold = (typeof RECENTLY_SOLD !== "undefined" && RECENTLY_SOLD) || [];
     if (sold.length){
       const mo = d => { const t = new Date(d + "T12:00:00"); return t.toLocaleDateString("es-US", {month:"long"}) + " " + t.getFullYear(); };
+      $("soldStrip").classList.add("swipe-row");
       $("soldStrip").innerHTML = sold.map(x =>
         `<div class="sold-card"><span class="ribbon">Vendida</span><div class="c">${x.city}, ${x.state}</div><div class="d">Vendida ${mo(x.soldOn)}</div></div>`).join("");
       $("soldSec").hidden = false;
@@ -594,6 +659,28 @@
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ block: "start" });
   }
+  const summaryBtn = $("filterSummary");
+  if (summaryBtn) summaryBtn.addEventListener("click", () => { if (summaryBtn.getAttribute("aria-expanded") !== "true") syncSummary(); });
+  const bedRow = $("bedRow");
+  if (bedRow) bedRow.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    $("fBeds").value = b.dataset.beds || "";
+    page = 1; render(false); syncURL();
+  });
+  document.querySelectorAll(".city-pills a").forEach(a => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const label = a.textContent.replace(/\s+\d+\s*$/, "").trim();
+      const city = label.split(",")[0].trim();
+      const st = (label.split(",")[1] || "").trim();
+      $("fQ").value = label;
+      if (st) $("fState").value = st;
+      fillCities();
+      if ([...$("fCity").options].some(o => o.value === city)) $("fCity").value = city;
+      page = 1; render(true); syncURL();
+    });
+  });
   render();
   revealHash();
   if (window.HomesMap) HomesMap.fromURL(new URLSearchParams(location.search));

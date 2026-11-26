@@ -9,6 +9,15 @@
       "source": "reviews.json",
       "consent_date": "10/9/2026",
       "verified_by": "published review"
+    },
+    {
+      "placeholder": false,
+      "name": "Trinity, Decatur",
+      "en": "The process was simple and very straightforward! Joe was great to work with and made sure he was there for every step! If you’re looking for a home to buy without a traditional loan, this is the way to go!",
+      "es": "El proceso fue sencillo y muy claro. Joe fue excelente para trabajar y se aseguró de estar en cada paso. Si usted busca una casa sin un préstamo de banco, este es el camino.",
+      "source": "reviews.json",
+      "consent_date": "10/15/2026",
+      "verified_by": "published review"
     }
   ]
 }
