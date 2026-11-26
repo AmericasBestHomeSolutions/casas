@@ -113,7 +113,6 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans','DM Sans Fal
 .photo-row .hero-photo,.photo-row .tile{flex:0 0 88%;scroll-snap-align:start;aspect-ratio:4/3;max-height:42vh}
 .photo-row .gallery{display:contents}
 .deal-cell.price-cell{display:none}
-.deal-strip{grid-template-columns:1.4fr 1fr}
 .cta-group .btn-secondary{display:none !important}
 .cta-group .btn-primary{flex:1 1 100%;height:56px;min-height:56px;max-height:60px;display:flex;align-items:center;justify-content:center;padding:0 18px}
 .scam-note{background:#fff;border:1px solid var(--line,#d5dbe6);border-radius:16px;padding:12px 14px;margin:12px 0}
@@ -144,7 +143,7 @@ body{background:var(--paper);color:var(--ink);font-family:'DM Sans','DM Sans Fal
 .subhead{font-size:18px;color:var(--ink-soft);max-width:34ch}
 
 /* ── DEAL STRIP ──────────────────────────────────────────── */
-.deal-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:22px 0 8px}
+.deal-strip{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:22px 0 8px}
 .deal-cell{background:var(--card);padding:16px 14px;text-align:center}
 .deal-cell .num{font-family:'Bricolage Grotesque','Bricolage Fallback',sans-serif;font-weight:700;font-size:clamp(20px,5.5vw,26px);color:var(--pine);line-height:1}
 .deal-cell .lab{font-family:'DM Mono','DM Mono Fallback',ui-monospace,monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-top:7px}
@@ -735,7 +734,9 @@ function renderMap(){
 #stickyTour .st-ask{flex:0 0 auto;border:0;background:transparent;color:#15315e;font:600 13px system-ui,sans-serif;text-decoration:underline;padding:8px 4px;cursor:pointer}
 #askSheet{border:0;border-radius:18px 18px 0 0;padding:16px 16px 24px;width:min(560px,100%);max-height:80vh;overflow:auto}
 #askSheet::backdrop{background:rgba(15,36,68,.45)}
-#askSheet h2{margin:0 0 8px;font-size:22px}
+#askSheet .ask-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 8px}
+#askSheet .ask-head h2{margin:0;font-size:22px}
+#askSheet .ask-x{width:36px;height:36px;border:0;border-radius:999px;background:#e8eef6;color:#15315e;font-size:22px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;flex:none}
 #askSheet details{border-top:1px solid #e2e8f2;padding:10px 0}
 #askSheet summary{font-weight:700;cursor:pointer}
 #askSheet p{margin:8px 0 0;line-height:1.45}
@@ -752,7 +753,7 @@ function renderMap(){
 </style>
 <div id="stickyTour" hidden aria-hidden="true"><div class="st-p"><span id="stPay"></span><small id="stLab">al mes</small></div><button type="button" id="stAsk" class="st-ask">¿Tiene una pregunta?</button><a id="stBtn" href="#">Agendar visita</a></div>
 <dialog id="askSheet">
-  <h2>Respuestas rápidas</h2>
+  <div class="ask-head"><h2>Respuestas rápidas</h2><form method="dialog"><button type="submit" class="ask-x" aria-label="Cerrar">&#10005;</button></form></div>
   <details open><summary>¿Es esto una estafa?</summary><p id="scamSheetAnswerEs">La empresa de este sitio es Americas Best Home Solutions LLC. Joseph Hernandez es el director ejecutivo y su foto está en este sitio. Las reseñas son de Logan y Trinity, en Decatur. Usted visita la casa en persona primero. Usted firma los documentos antes de recibir las llaves. Puede escribir a admin@americasbesthomesolutions.com.</p></details>
   <details><summary>¿Qué cubre el enganche?</summary><p>El enganche es el efectivo que aparece en el anuncio. Es lo que usted envía antes de las llaves. Lo repasamos con usted antes de firmar.</p></details>
   <details><summary>¿Qué incluye la mensualidad?</summary><p>Lo que incluye su pago mensual se confirma en sus documentos.</p></details>
@@ -761,7 +762,6 @@ function renderMap(){
   <details><summary>¿Cuándo recibo las llaves?</summary><p>En Illinois hay 3 días de derecho de rescisión después de firmar, y luego las llaves. En los demás estados, las llaves al firmar.</p></details>
   <details><summary>¿Puedo visitar primero?</summary><p>Usted visita la casa en persona primero.</p></details>
   <p><a id="askText" class="ask-text" href="#" hidden>¿Sigue con una pregunta? Envíenos un texto</a></p>
-  <form method="dialog"><button type="submit">Cerrar</button></form>
 </dialog>
 <div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Cerrar">&#10005;</button><button class="pv" aria-label="Anterior">&#8249;</button><img alt=""><button class="nx" aria-label="Siguiente">&#8250;</button><div class="ct"></div></div>
 <script>
