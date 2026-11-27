@@ -337,7 +337,7 @@ const REVIEW = {
 
   // ── boot: fail closed unless keys are recorded for THIS deal ─
   (async function(){
-    if (!validHome || !dealCode) return lock("Este enlace no está completo", "Por favor use el enlace que le enviamos.");
+    if (!validHome || !dealCode) return lock("A este enlace le falta algo", "Abra de nuevo el enlace de su mensaje. Si no funciona, escríbanos a admin@americasbesthomesolutions.com.");
     let ok = false;
     try { ok = await keysDelivered(); }
     catch(e){ return lock("No pudimos cargar esto en este momento", "Por favor actualice en un minuto."); }

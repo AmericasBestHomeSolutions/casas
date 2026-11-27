@@ -140,7 +140,7 @@
         <div class="card-specs">${specs}</div>
         <div class="card-where">${where}</div>
         ${h.moveIn ? `<div class="card-down">${money(h.moveIn)} de enganche</div>` : ""}
-        <div class="card-avail">${pending ? "Pendiente: visitas cerradas" : "Disponible ahora"}</div>
+        <div class="card-avail">${pending ? "Pendiente · sin visitas por ahora" : "Disponible ahora"}</div>
         ${away}
         ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin-top:4px">${h._dist.toFixed(1)} mi</div>`:""}
       </div>
@@ -298,7 +298,7 @@
     const parts = [];
     const paint = (list, opts) => list.map((h,i) => cardHTML(h, Object.assign({eager: i===0}, opts||{}))).join("");
     if (available.length) parts.push(rowOf("Disponibles ahora", available));
-    if (pending.length) parts.push(rowOf("Pendiente: visitas cerradas", pending));
+    if (pending.length) parts.push(rowOf("Pendiente · sin visitas por ahora", pending));
     if (available.length < 3 && origin){
       const near = pool.filter(h => !isPending(h) && fitsBudget(h) && !inPlace(h, place, origin)).map(h => {
         const p = pointOf(h);
@@ -317,13 +317,14 @@
 
   function swipeBlock(title, html, compact){
     if (!html) return "";
-    return `<section class="swipe-block${compact?" is-compact":""}"><div class="swipe-head"><h2>${title}</h2><div class="swipe-nav"><button type="button" class="swipe-prev" aria-label="Anterior">‹</button><button type="button" class="swipe-next" aria-label="Siguiente">›</button></div></div><p class="row-hint">Deslice hacia el lado. La siguiente casa se asoma.</p><div class="swipe-row">${html}</div></section>`;
+    return `<section class="swipe-block${compact?" is-compact":""}"><div class="swipe-head"><h2>${title}</h2><div class="swipe-nav"><button type="button" class="swipe-prev" aria-label="Anterior">‹</button><button type="button" class="swipe-next" aria-label="Siguiente">›</button></div></div><p class="row-hint">Deslice para ver más casas.</p><div class="swipe-row">${html}</div></section>`;
   }
   function rowOf(title, homes, compact){
     const cap = compact ? 8 : 12;
     const shown = homes.slice(0, cap);
     const cards = shown.map((h, i) => cardHTML(h, {eager: i === 0 && !compact})).join("");
-    const more = homes.length > cap ? `<a class="card see-all" href="/#cities">Ver las ${homes.length} casas</a>` : "";
+    let more = homes.length > cap ? `<a class="card see-all" href="/#cities">Ver las ${homes.length} casas</a>` : "";
+    if (String(title).indexOf("Pendiente") === 0) more += `<a class="card see-all" href="/#listings">Ver casas disponibles parecidas</a>`;
     return swipeBlock(title, cards + more, compact);
   }
   function mapPins(list){
@@ -406,7 +407,7 @@
     const sold = shown.filter(isSold);
     const blocks = [
       rowOf("Disponibles ahora", available),
-      rowOf("Pendiente: visitas cerradas", pending),
+      rowOf("Pendiente · sin visitas por ahora", pending),
       rowOf("Vendidas recientemente", sold, true)
     ].join("");
     $("cards").innerHTML = blocks;
@@ -709,6 +710,17 @@
       page = 1; render(true); syncURL();
     });
   });
+  (function newThisWeek(){
+    const src = (typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}));
+    const now = Date.now();
+    let k = 0;
+    Object.keys(src).forEach(id => {
+      const t = Date.parse(src[id] || "");
+      if (t && (now - t) <= 7 * 86400000) k++;
+    });
+    const el = $("newWeek");
+    if (el && k > 0) { el.hidden = false; el.textContent = k + " casas nuevas esta semana"; }
+  })();
   render();
   revealHash();
   if (window.HomesMap) HomesMap.fromURL(new URLSearchParams(location.search));
