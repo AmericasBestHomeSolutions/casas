@@ -185,9 +185,11 @@
       (!words.length || (hay => words.every(w => hay.includes(w)))(((h.address||"")+" "+(h.city||"")+" "+(h.state||"")+" "+(h.zip||"")).toLowerCase().replace(/[.,#]/g," ")))
     );
     const num = (v, fallback=0) => Number(v) || fallback;
+    const listedAt = h => Date.parse(((typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}))[h.id]) || "") || 0;
     if (sort === "monthly-asc")   list.sort((a,b) => num(a.monthlyPayment,Infinity) - num(b.monthlyPayment,Infinity));
     else if (sort === "down-asc") list.sort((a,b) => num(a.moveIn,Infinity) - num(b.moveIn,Infinity));  // "Pregúntenos" ($0) sorts last
     else if (sort === "price-asc")list.sort((a,b) => num(a.lockedPrice,Infinity) - num(b.lockedPrice,Infinity));
+    else if (sort === "listed-desc") list.sort((a,b) => listedAt(b) - listedAt(a));
     else list.sort(defaultOrder());  // Destacadas (every home is): near the visitor first, then newest listed first
     return window.HomesMap ? HomesMap.applyGeo(list) : list;
   }
@@ -713,13 +715,16 @@
   (function newThisWeek(){
     const src = (typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}));
     const now = Date.now();
-    let k = 0;
-    Object.keys(src).forEach(id => {
-      const t = Date.parse(src[id] || "");
-      if (t && (now - t) <= 7 * 86400000) k++;
-    });
-    const el = $("newWeek");
-    if (el && k > 0) { el.hidden = false; el.textContent = k + " casas nuevas esta semana"; }
+    const k = (typeof LISTINGS !== "undefined" ? LISTINGS : []).filter(h => {
+      if (isPending(h)) return false;
+      const t = Date.parse(src[h.id] || "");
+      return !!(t && (now - t) <= 7 * 86400000);
+    }).length;
+    const el = $("newThisWeek");
+    if (el && k > 0) {
+      el.hidden = false;
+      el.textContent = k + (k === 1 ? " casa nueva esta semana" : " casas nuevas esta semana");
+    }
   })();
   render();
   revealHash();

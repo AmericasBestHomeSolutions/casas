@@ -418,7 +418,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="z-sort">
       <p class="count" id="count"></p>
       <label class="sort-pill">Orden
-        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="monthly-asc">Mensualidad ↑</option><option value="down-asc">Enganche ↑</option><option value="price-asc">Precio ↑</option></select>
+        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="listed-desc">Más nuevas</option><option value="monthly-asc">Mensualidad ↑</option><option value="down-asc">Enganche ↑</option><option value="price-asc">Precio ↑</option></select>
       </label>
     </div>
     <div class="filter-sheet" id="filterSheet" hidden>
@@ -433,11 +433,13 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <button type="button" class="near sheet-wide" id="nearMe">Cerca de mí</button>
     </div>
   </header>
-  <p class="hero-promise">Sea dueño de su casa sin préstamo de banco. Vea el enganche y la mensualidad de cada casa, y visítela con nuestro equipo.</p>
-  <p class="hero-promise" id="newWeek" hidden></p>
+  <div class="hero-block">
+  <h1 class="hero-promise">Sea dueño de su casa sin préstamo de banco. Vea el enganche y la mensualidad de cada casa, y visítela con nuestro equipo.</h1>
+  <a id="newThisWeek" class="new-chip" href="/?sort=listed-desc#listings" hidden></a>
   <!-- weekly-hero:start -->
 <figure class="week-hero"><img src="images/cards/oblong-il-807-illinois-480.webp" alt="Una casa real que puede visitar: 807 W Illinois St, Oblong, IL" width="480" height="360" fetchpriority="high"><figcaption>Una casa real que puede visitar: 807 W Illinois St, Oblong, IL</figcaption></figure>
 <!-- weekly-hero:end -->
+  </div>
   <form class="buyer-panel" id="buyerSearch" action="/" method="get">
     <label>Ciudad o código postal
       <input id="fQ" name="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" list="qHints" placeholder="Springfield o 62703" aria-label="Ciudad o código postal">
@@ -483,7 +485,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   <section class="hero">
     <div class="hero-inner">
       <span class="eyebrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2 3 7v6c0 5 3.8 8.4 9 11 5.2-2.6 9-6 9-11V7l-9-5z"/></svg> Financiamiento del Dueño · Sin Banco</span>
-      <h1>Sea dueño de la casa.<br><em>Sin pasar por el banco.</em></h1>
+      <h2>Sea dueño de la casa.<br><em>Sin pasar por el banco.</em></h2>
       <p class="hero-lead">Casas con financiamiento del dueño en Illinois, Missouri, Michigan, Alabama y más. Cada anuncio muestra el enganche y la mensualidad.</p>
       <p class="reassure">Su pasado no tiene por qué decidir su futuro. Si los bancos le han cerrado la puerta, esto se hizo para usted.</p>
       <div class="hero-cta">
@@ -949,7 +951,9 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   });
   if (filter) filter.addEventListener("click", boot);
   var params = new URLSearchParams(location.search);
-  if (params.get("q") || params.get("down") || params.get("payMax")) boot();
+  if (params.get("q") || params.get("down") || params.get("payMax") || params.get("sort")) boot();
+  if ("requestIdleCallback" in window) requestIdleCallback(boot);
+  else window.addEventListener("load", boot);
 })();
 </script>
 
