@@ -58,8 +58,8 @@ footer{padding:22px 0 30px;text-align:center;font-size:13px;color:var(--ink-soft
         <path d="M16 28v22h32V28" stroke="rgba(255,255,255,.85)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
         <rect x="27" y="36" width="10" height="14" rx="1.5" stroke="#ff5c5c" stroke-width="3"/>
       </svg>
-      <h1>Esta casa quizás ya <em>encontró a su dueño.</em></h1>
-      <p class="sub">La página que busca no está aquí — puede que la casa ya se vendió, o que el enlace sea viejo. La buena noticia: hay muchas más casas esperando.</p>
+      <h1>Esta casa quizás ya tiene dueño.</h1>
+      <p class="sub" id="goneNote">Puede que se haya vendido o que el enlace sea viejo. Hay casas disponibles ahora, y nuestro equipo con gusto le muestra una.</p>
       <div class="ctas">
         <a class="btn btn-red" href="index.html">Ver casas disponibles</a>
         <a class="btn btn-ghost" href="como-funciona.html">Cómo funciona el financiamiento del dueño</a>
@@ -74,5 +74,19 @@ footer{padding:22px 0 30px;text-align:center;font-size:13px;color:var(--ink-soft
   <a href="/" style="color:inherit">Casas</a> · <a href="/como-funciona" style="color:inherit">Cómo funciona</a> · <a href="/nosotros" style="color:inherit">Nosotros</a> · <a href="/contacto" style="color:inherit">Contacto</a> · <a href="/politica-de-privacidad" style="color:inherit">Política de Privacidad</a> · <a href="/terminos-de-mensajes" style="color:inherit">Términos de Mensajes</a><br>
   © 2026 Americas Best Home Solutions LLC
 </footer></div>
+<script src="/homes.js"></script>
+<script>
+(function(){
+  var homes = (window.HOMES || []).filter(function(h){
+    if (String(h.status || "").toLowerCase() === "pending") return false;
+    if (h.id === "duquoin-il-322-cole") return false;
+    if (String(h.contractor || "").trim()) return false;
+    var lat = Number(h.lat), lng = Number(h.lng);
+    return lat === lat && lng === lng;
+  });
+  var note = document.getElementById("goneNote");
+  if (note && homes.length) note.textContent = "Puede que se haya vendido o que el enlace sea viejo. Hay " + homes.length + " casas disponibles ahora, y nuestro equipo con gusto le muestra una.";
+})();
+</script>
 </body>
 </html>

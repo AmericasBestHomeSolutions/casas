@@ -140,7 +140,7 @@
         <div class="card-specs">${specs}</div>
         <div class="card-where">${where}</div>
         ${h.moveIn ? `<div class="card-down">${money(h.moveIn)} de enganche</div>` : ""}
-        <div class="card-avail">${pending ? "Pendiente: visitas cerradas" : "Disponible ahora"}</div>
+        <div class="card-avail">${pending ? "Pendiente · sin visitas por ahora" : "Disponible ahora"}</div>
         ${away}
         ${h._dist!=null?`<div style="font-size:13px;color:var(--ink-soft);margin-top:4px">${h._dist.toFixed(1)} mi</div>`:""}
       </div>
@@ -185,9 +185,11 @@
       (!words.length || (hay => words.every(w => hay.includes(w)))(((h.address||"")+" "+(h.city||"")+" "+(h.state||"")+" "+(h.zip||"")).toLowerCase().replace(/[.,#]/g," ")))
     );
     const num = (v, fallback=0) => Number(v) || fallback;
+    const listedAt = h => Date.parse(((typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}))[h.id]) || "") || 0;
     if (sort === "monthly-asc")   list.sort((a,b) => num(a.monthlyPayment,Infinity) - num(b.monthlyPayment,Infinity));
     else if (sort === "down-asc") list.sort((a,b) => num(a.moveIn,Infinity) - num(b.moveIn,Infinity));  // "Pregúntenos" ($0) sorts last
     else if (sort === "price-asc")list.sort((a,b) => num(a.lockedPrice,Infinity) - num(b.lockedPrice,Infinity));
+    else if (sort === "listed-desc") list.sort((a,b) => listedAt(b) - listedAt(a));
     else list.sort(defaultOrder());  // Destacadas (every home is): near the visitor first, then newest listed first
     return window.HomesMap ? HomesMap.applyGeo(list) : list;
   }
@@ -298,7 +300,7 @@
     const parts = [];
     const paint = (list, opts) => list.map((h,i) => cardHTML(h, Object.assign({eager: i===0}, opts||{}))).join("");
     if (available.length) parts.push(rowOf("Disponibles ahora", available));
-    if (pending.length) parts.push(rowOf("Pendiente: visitas cerradas", pending));
+    if (pending.length) parts.push(rowOf("Pendiente · sin visitas por ahora", pending));
     if (available.length < 3 && origin){
       const near = pool.filter(h => !isPending(h) && fitsBudget(h) && !inPlace(h, place, origin)).map(h => {
         const p = pointOf(h);
@@ -317,13 +319,14 @@
 
   function swipeBlock(title, html, compact){
     if (!html) return "";
-    return `<section class="swipe-block${compact?" is-compact":""}"><div class="swipe-head"><h2>${title}</h2><div class="swipe-nav"><button type="button" class="swipe-prev" aria-label="Anterior">‹</button><button type="button" class="swipe-next" aria-label="Siguiente">›</button></div></div><p class="row-hint">Deslice hacia el lado. La siguiente casa se asoma.</p><div class="swipe-row">${html}</div></section>`;
+    return `<section class="swipe-block${compact?" is-compact":""}"><div class="swipe-head"><h2>${title}</h2><div class="swipe-nav"><button type="button" class="swipe-prev" aria-label="Anterior">‹</button><button type="button" class="swipe-next" aria-label="Siguiente">›</button></div></div><p class="row-hint">Deslice para ver más casas.</p><div class="swipe-row">${html}</div></section>`;
   }
   function rowOf(title, homes, compact){
     const cap = compact ? 8 : 12;
     const shown = homes.slice(0, cap);
     const cards = shown.map((h, i) => cardHTML(h, {eager: i === 0 && !compact})).join("");
-    const more = homes.length > cap ? `<a class="card see-all" href="/#cities">Ver las ${homes.length} casas</a>` : "";
+    let more = homes.length > cap ? `<a class="card see-all" href="/#cities">Ver las ${homes.length} casas</a>` : "";
+    if (String(title).indexOf("Pendiente") === 0) more += `<a class="card see-all" href="/#listings">Ver casas disponibles parecidas</a>`;
     return swipeBlock(title, cards + more, compact);
   }
   function mapPins(list){
@@ -406,7 +409,7 @@
     const sold = shown.filter(isSold);
     const blocks = [
       rowOf("Disponibles ahora", available),
-      rowOf("Pendiente: visitas cerradas", pending),
+      rowOf("Pendiente · sin visitas por ahora", pending),
       rowOf("Vendidas recientemente", sold, true)
     ].join("");
     $("cards").innerHTML = blocks;
@@ -709,6 +712,20 @@
       page = 1; render(true); syncURL();
     });
   });
+  (function newThisWeek(){
+    const src = (typeof LISTED_ON !== "undefined" ? LISTED_ON : (window.LISTED_ON || {}));
+    const now = Date.now();
+    const k = (typeof LISTINGS !== "undefined" ? LISTINGS : []).filter(h => {
+      if (isPending(h)) return false;
+      const t = Date.parse(src[h.id] || "");
+      return !!(t && (now - t) <= 7 * 86400000);
+    }).length;
+    const el = $("newThisWeek");
+    if (el && k > 0) {
+      el.hidden = false;
+      el.textContent = k + (k === 1 ? " casa nueva esta semana" : " casas nuevas esta semana");
+    }
+  })();
   render();
   revealHash();
   if (window.HomesMap) HomesMap.fromURL(new URLSearchParams(location.search));

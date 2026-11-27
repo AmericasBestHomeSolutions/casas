@@ -112,16 +112,16 @@
 
     <div class="thanks">
       <h3>Mensaje recibido.</h3>
-      <p>Gracias — le responderemos pronto. Si algo no sale, inténtelo de nuevo en un momento.</p>
+      <p>Gracias. Una persona de nuestro equipo le responderá personalmente.</p>
     </div>
   </section>
 
   <div class="prose">
     <h2>Qué pasa después de que nos escribe</h2>
     <ul>
-      <li><strong>Compradores.</strong> Confirmamos si la casa que le interesa sigue disponible, repasamos el enganche y la mensualidad, y coordinamos una hora para que la vea por dentro.</li>
+      <li><strong>Compradores.</strong> Confirmamos si la casa que le interesa sigue disponible, repasamos el enganche y la mensualidad, y coordinamos una hora para que la vea por dentro. <a href="/">Vea casas y agende una visita</a></li>
       <li><strong>Dueños y agentes.</strong> Le pedimos la dirección, en qué condición está y cuánto necesita recibir, y le damos un sí o un no directo.</li>
-      <li><strong>Todos.</strong> Si no somos la opción correcta para usted, se lo decimos en vez de darle largas.</li>
+      <li><strong>Todos.</strong> Si no somos la opción indicada, nuestro equipo se lo dirá con honestidad.</li>
     </ul>
     <p>Marcar la casilla de mensajes de texto es completamente opcional y nunca es condición para comprar, vender ni recibir una respuesta de nosotros. Puede cancelar en cualquier momento respondiendo STOP. Los detalles completos están en nuestros <a href="/terminos-de-mensajes">Términos de Mensajes</a>.</p>
   </div>
@@ -156,7 +156,7 @@
   const id   = (CONTACT.formspreeId || "").trim();
   const hook = (CONTACT.makeWebhook || "").trim();
 
-  note.textContent = (id || hook) ? "Normalmente respondemos el mismo día."
+  note.textContent = (id || hook) ? "Gracias. Una persona de nuestro equipo le responderá personalmente."
     : "⚠ El formulario aún no está conectado — agregue un ID de Formspree o webhook de Make en homes.js.";
 
   form.addEventListener("submit", async (e) => {
@@ -178,7 +178,7 @@
     const results = await Promise.allSettled(targets);
 
     if (results.some(r => r.status === "fulfilled" && r.value.ok)) { card.classList.add("sent"); }
-    else { btn.disabled = false; btn.textContent = "Enviar mensaje"; note.textContent = "Algo salió mal — inténtelo de nuevo en un momento."; }
+    else { btn.disabled = false; btn.textContent = "Enviar mensaje"; note.textContent = "No se pudo enviar, y el problema es nuestro. Inténtelo de nuevo. Si sigue sin funcionar, escríbanos a admin@americasbesthomesolutions.com y nuestro equipo lo resuelve."; }
   });
 })();
 </script>

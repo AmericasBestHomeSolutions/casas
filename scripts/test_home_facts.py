@@ -56,9 +56,9 @@ class HomeFacts(unittest.TestCase):
         home["_monthly_text"] = "$892"
         home["_price_text"] = "$90,000"
         html = listing_facts.eval_html(home, listing_facts.load(ROOT), "es")
-        self.assertIn("Dinero para recibir las llaves", html)
+        self.assertIn("Enganche para mudarse", html)
         self.assertIn("$3,000", html)
-        self.assertIn("3 días para rescindir", html)
+        self.assertIn("3 días después de firmar para cambiar de opinión", html)
         self.assertNotIn("declaraciones de impuestos", html)
         self.assertNotIn("talones de pago", html)
         self.assertNotIn("revisión de crédito", html)
@@ -92,7 +92,9 @@ class Placeholders(unittest.TestCase):
         self.assertIn("data-preview", index)
         self.assertIn("Joseph Hernandez", index)
         self.assertIn("Director Ejecutivo", index)
-        self.assertIn("joe-headshot-600.webp", index)
+        about = (ROOT / "nosotros.html").read_text(encoding="utf-8")
+        self.assertIn("joe-headshot-600.webp", about)
+        self.assertNotIn("joe-headshot-600.webp", index)
         self.assertIn('loading="lazy"', index)
         self.assertNotIn("Gerente", index)
         self.assertIn("Logan, Decatur", index)

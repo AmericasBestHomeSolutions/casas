@@ -418,7 +418,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <div class="z-sort">
       <p class="count" id="count"></p>
       <label class="sort-pill">Orden
-        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="monthly-asc">Mensualidad ↑</option><option value="down-asc">Enganche ↑</option><option value="price-asc">Precio ↑</option></select>
+        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="listed-desc">Más nuevas</option><option value="monthly-asc">Mensualidad ↑</option><option value="down-asc">Enganche ↑</option><option value="price-asc">Precio ↑</option></select>
       </label>
     </div>
     <div class="filter-sheet" id="filterSheet" hidden>
@@ -433,10 +433,13 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <button type="button" class="near sheet-wide" id="nearMe">Cerca de mí</button>
     </div>
   </header>
-  <p class="hero-promise">Vea el enganche y la mensualidad, y luego visite la casa.</p>
+  <div class="hero-block">
+  <h1 class="hero-promise">Sea dueño de su casa sin préstamo de banco. Vea el enganche y la mensualidad de cada casa, y visítela con nuestro equipo.</h1>
+  <a id="newThisWeek" class="new-chip" href="/?sort=listed-desc#listings" hidden></a>
   <!-- weekly-hero:start -->
 <figure class="week-hero"><img src="images/cards/oblong-il-807-illinois-480.webp" alt="Una casa real que puede visitar: 807 W Illinois St, Oblong, IL" width="480" height="360" fetchpriority="high"><figcaption>Una casa real que puede visitar: 807 W Illinois St, Oblong, IL</figcaption></figure>
 <!-- weekly-hero:end -->
+  </div>
   <form class="buyer-panel" id="buyerSearch" action="/" method="get">
     <label>Ciudad o código postal
       <input id="fQ" name="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" list="qHints" placeholder="Springfield o 62703" aria-label="Ciudad o código postal">
@@ -482,8 +485,8 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   <section class="hero">
     <div class="hero-inner">
       <span class="eyebrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2 3 7v6c0 5 3.8 8.4 9 11 5.2-2.6 9-6 9-11V7l-9-5z"/></svg> Financiamiento del Dueño · Sin Banco</span>
-      <h1>Sea dueño de la casa.<br><em>Sin pasar por el banco.</em></h1>
-      <p class="hero-lead">Casas con financiamiento del dueño en Illinois, Missouri, Michigan, Alabama y más — una mensualidad fija, parecida a lo que hoy le entrega a un casero. La diferencia: el día primero de cada mes, esa mensualidad regresa a usted como una casa que es suya.</p>
+      <h2>Sea dueño de la casa.<br><em>Sin pasar por el banco.</em></h2>
+      <p class="hero-lead">Casas con financiamiento del dueño en Illinois, Missouri, Michigan, Alabama y más. Cada anuncio muestra el enganche y la mensualidad.</p>
       <p class="reassure">Su pasado no tiene por qué decidir su futuro. Si los bancos le han cerrado la puerta, esto se hizo para usted.</p>
       <div class="hero-cta">
         <a class="btn btn-lime" href="#listings">Ver las casas</a>
@@ -535,7 +538,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <h2>Por qué comprar en vez de rentar</h2>
     <ul>
       <li>Es dueño desde el primer día</li>
-      <li>Su pago no se mueve</li>
+      <li>Su mensualidad, por escrito</li>
       <li>Un pago parecido a la renta</li>
       <li>Sin banco de por medio</li>
     </ul>
@@ -562,29 +565,26 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     <nav class="pager" id="pager" style="display:none;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px"></nav>
 
     <div class="empty" id="empty">
-      <h3>Ninguna casa coincide con esos filtros</h3>
-      <p>Toque <strong>Borrar filtros</strong> o amplíe el enganche y la mensualidad. Cada semana entran casas nuevas.</p>
+      <h3>Ninguna casa coincide con esos filtros por ahora</h3>
+      <p>Pruebe un rango más amplio o una ciudad cercana, o toque «Avíseme por texto de casas nuevas» y le avisamos cuando llegue una.</p>
     </div>
   </section>
 
   <section class="meet-joe" id="joeIntro">
     <article class="meet-bio">
-      <picture>
-        <source type="image/webp" srcset="images/joe-headshot-600.webp">
-        <img src="images/joe-headshot-600.jpg" alt="Joseph Hernandez" width="600" height="717" loading="lazy" decoding="async">
-      </picture>
-      <h3>Joseph Hernandez, Director Ejecutivo</h3>
-      <p>Soy Joseph Hernandez. Usted trata conmigo desde la primera visita hasta las llaves.</p>
-      <p><a href="/como-funciona.html">Cómo funciona</a> · <a href="https://www.linkedin.com/in/joseph-hernandez-9511958" rel="noopener">LinkedIn</a></p>
+      <h3>Americas Best Home Solutions</h3>
+      <p>Ayudamos a familias a tener casa propia sin préstamo de banco. Promovemos estas casas en nombre de sus vendedores, las mostramos todas en persona, preparamos el papeleo y lo acompañamos desde la primera visita hasta las llaves. Cada casa se vende tal como está y tiene un precio acorde al trabajo que necesita.</p>
+      <p><a href="/como-funciona.html">Vea cómo funciona →</a></p>
     </article>
     <article class="meet-navy" id="oneTeam">
-      <div class="sec-label" style="color:#ffb3b3">Con quién va a hablar</div>
+      <div class="sec-label" style="color:#ffb3b3">Con quién va a trabajar</div>
       <h2>Un número. Un equipo. Todas las casas de este sitio.</h2>
       <ul>
-        <li><span class="m">✓</span><span><strong>Sabrá exactamente con quién trata.</strong> Agende una visita y conocerá a las mismas personas que abren la puerta y le muestran la casa.</span></li>
+        <li><span class="m">✓</span><span><strong>Un solo equipo de la visita a las llaves.</strong> Agende una visita y nuestro equipo lo recibe en la casa, se la muestra y prepara el papeleo cuando usted esté listo.</span></li>
         <li><span class="m">✓</span><span><strong>La ve con sus propios ojos antes de decidir.</strong> <span id="otWalk">Cada casa se recorre en persona, y no le pediremos dinero para "apartar" una casa en la que no ha estado. La oficina está en 30 N Gould St, Ste R, Sheridan, WY 82801.</span></span></li>
         <li><span class="m">✓</span><span><strong>Si la que quería se vende, no empieza de cero.</strong> <span id="otHomes">230</span> casas en <span id="otCities">45</span> pueblos. Díganos qué necesita y le mandamos la siguiente.</span></li>
       </ul>
+      <p style="margin:16px 0 0"><a id="otSee" href="/#listings" style="color:#fff;font-weight:800">Ver las casas</a></p>
     </article>
   </section>
   <!-- JOE-INPUT: brand-colors -->
@@ -644,6 +644,18 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </div>
   </section>
 <!-- city-landings:end -->
+<script>
+(function(){
+  var sec = document.getElementById("cities");
+  if (!sec) return;
+  var h = sec.querySelector(".sec-title");
+  var p = sec.querySelector(".sec-sub");
+  if (h) h.textContent = "Encuentre casa en su pueblo";
+  if (p) p.textContent = "Elija un pueblo y vea todas sus casas, con precio, enganche y mensualidad.";
+  var see = document.getElementById("otSee"), n = document.getElementById("otHomes");
+  if (see && n && n.textContent.trim()) see.textContent = "Ver las " + n.textContent.trim() + " casas";
+})();
+</script>
 
   <section class="section" id="soldSec" style="margin-top:48px" hidden>
     <div class="spot-head"><h2>Vendidas recientemente</h2><span class="spot-sub">Estas casas ya encontraron a su comprador. La próxima podría ser suya.</span></div>
@@ -670,12 +682,12 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <div class="trust-card">
         <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e23b3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <h3>Lo que necesita</h3>
-        <p>Una identificación válida, el enganche y una mensualidad que le quede cómoda.</p>
+        <p>Una identificación válida, el enganche y un pago mensual que se ajuste a su presupuesto.</p>
       </div>
       <div class="trust-card">
         <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e23b3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
         <h3>Un pago parecido a la renta</h3>
-        <p>Más o menos lo que hoy le entrega a un casero — solo que ahora, cada día primero, está un pago más cerca de una casa con su nombre.</p>
+        <p>Su mensualidad queda escrita en su acuerdo, así que conoce su número antes de firmar.</p>
       </div>
     </div>
   </section>
@@ -684,26 +696,28 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   <section class="section reveal" id="how">
     <div class="sec-head">
       <div class="sec-label">Sencillo, del inicio a las llaves</div>
-      <h2 class="sec-title">De la visita a las llaves</h2>
+      <h2 class="sec-title">De la primera visita a sus llaves, en 5 pasos</h2>
       <p class="sec-sub"><!-- finance-stats:start -->El enganche más bajo entre las casas disponibles es $500. 181 casas disponibles piden $2,500 de enganche o menos.<!-- finance-stats:end --></p>
     </div>
     <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Elija una casa y visítela</h3><p>Elija una casa y recórrala en persona.</p></div>
+      <div class="step"><div class="n">1</div><h3>Elija una casa y visítela</h3><p>Agende una hora y nuestro equipo le muestra la casa en persona.</p></div>
       <div class="step"><div class="n">2</div><h3>Le enviamos un paquete de bienvenida</h3><p>Recibe el paquete de la casa que eligió.</p></div>
-      <div class="step"><div class="n">3</div><h3>Usted envía el enganche o depósito</h3><p>El efectivo antes de las llaves es el enganche del anuncio.</p></div>
-      <div class="step"><div class="n">4</div><h3>Hacemos el papeleo</h3><p>El acuerdo por escrito es donde se confirman los términos.</p></div>
-      <div class="step"><div class="n">5</div><h3>Recibe las llaves</h3><p>En Illinois hay 3 días de derecho de rescisión después de firmar, y luego las llaves. En los demás estados, las llaves al firmar.</p></div>
+      <div class="step"><div class="n">3</div><h3>Usted envía el enganche o depósito</h3><p>Usted envía el enganche que aparece en la página de la casa, o el depósito.</p></div>
+      <div class="step"><div class="n">4</div><h3>Hacemos el papeleo</h3><p>Preparamos el papeleo, y usted lo revisa y lo firma antes de recibir las llaves.</p></div>
+      <div class="step"><div class="n">5</div><h3>Recibe las llaves</h3><p>Las llaves son suyas. En Illinois primero tiene 3 días después de firmar para cambiar de opinión; en los demás estados, recibe las llaves al firmar.</p></div>
       <div class="step"><div class="n">✓</div><h3>Lo que necesita</h3><p>Una identificación válida, el enganche y un pago mensual que se ajuste a su presupuesto.</p></div>
     </div>
-    <p style="text-align:center;margin-top:18px"><a href="como-funciona.html" style="font-weight:700;color:var(--pine);text-decoration:none;border-bottom:2px solid var(--go);padding-bottom:2px">Vea exactamente cómo funciona el financiamiento del dueño →</a></p>
+    <p style="text-align:center;margin-top:18px"><a href="/#listings" style="font-weight:700;color:var(--pine);text-decoration:none;border-bottom:2px solid var(--go);padding-bottom:2px">Encuentre una casa para visitar</a></p>
   </section>
 
   <section class="section" id="faq">
+    <h2 class="sec-title">Sus preguntas, respondidas</h2>
     <details id="scamFaq">
       <summary>¿Es esto una estafa?</summary>
       <div class="ans" id="scamAnswerEs"><p>No. Suena diferente porque casi todos conocen una sola forma de comprar casa: con un préstamo del banco. Aquí, el vendedor financia la casa, así que no hay banco de por medio.</p><p>Solo necesita una identificación válida, el enganche y un pago mensual que se ajuste a su presupuesto. La página de cada casa muestra su enganche y su pago mensual.</p><p>Las casas se venden tal como están, por eso usted las visita en persona antes de pagar cualquier cosa para apartarlas. Firma los papeles antes de recibir las llaves.</p><p>Joseph Hernandez, Director Ejecutivo de Americas Best Home Solutions LLC, y su equipo lo acompañan desde la primera visita hasta las llaves.</p></div>
     </details>
       <details id="petsFaq"><summary>¿Se permiten mascotas?</summary><p class="ans" id="petsAnswerEs">Sí, se permiten mascotas.</p></details>
+    <p style="margin:16px"><a href="/#listings" style="font-weight:800;color:var(--pine,#15315e)">Ver casas disponibles</a></p>
   </section>
 
   <section class="section" id="stories">
@@ -716,6 +730,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <p>El proceso fue sencillo y muy claro. Joe fue excelente para trabajar y se aseguró de estar en cada paso. Si usted busca una casa sin un préstamo de banco, este es el camino.</p>
       <footer>Trinity, Decatur · 10/15/2026 · reseña publicada</footer>
     </blockquote>
+    <p style="margin:16px 0 0"><a href="/#listings" style="font-weight:800;color:var(--pine,#15315e)">Encuentre su casa</a></p>
   </section>
 
   <!-- TESTIMONIALS — removed 2026-09-24 (Joe): the old quotes were invented drafts. Add a section back here ONLY with real buyers' words (first name + city), after real closings. -->
@@ -816,11 +831,11 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   <section class="section story" id="story">
     <h2>Quiénes somos</h2>
     <p class="lede">Americas Best Home Solutions LLC promueve casas con financiamiento del dueño a compradores en nombre de sus dueños, y compra propiedades a dueños y agentes que buscan una venta sencilla.</p>
-    <p class="lede">La compañía nació de una sola observación: en muchos pueblos de Estados Unidos, el costo mensual de rentar es más alto que el costo mensual de ser dueño de la misma casa — y lo único que separa a una familia que renta de una casa propia es la aprobación del banco. Buscamos casas en esos pueblos cuyos dueños las venden a plazos, y las conectamos con las personas que quieren vivir en ellas.</p>
+    <p class="lede">La compañía nació de una sola observación: en muchos pueblos de Estados Unidos, el costo mensual de rentar es más alto que el costo mensual de ser dueño de la misma casa — y lo único que separa a una familia que renta de una casa propia es la aprobación del banco. Buscamos casas en esos pueblos y las conectamos con las personas que quieren vivir en ellas.</p>
     <h2>Usted está comprando — no rentando</h2>
     <div class="benefits">
       <article><h3>Es dueño desde el primer día</h3><p>Su nombre está en el acuerdo el día que firma. Usted es el dueño, no un inquilino.</p></article>
-      <article><h3>Su pago no se mueve</h3><p>Una mensualidad acordada por escrito. No sube cada año como la renta.</p></article>
+      <article><h3>Una mensualidad con la que puede planear</h3><p>Su mensualidad queda escrita en su acuerdo, así que conoce su número antes de firmar.</p></article>
       <article><h3>Un pago parecido a la renta</h3><p>Sea dueño de una casa por más o menos lo que le pagaría a un casero — y construye algo que es suyo.</p></article>
       <article><h3>Sin banco de por medio</h3><p>Sin solicitud hipotecaria y sin un banco decidiendo si le dan una casa.</p></article>
     </div>
@@ -936,7 +951,9 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   });
   if (filter) filter.addEventListener("click", boot);
   var params = new URLSearchParams(location.search);
-  if (params.get("q") || params.get("down") || params.get("payMax")) boot();
+  if (params.get("q") || params.get("down") || params.get("payMax") || params.get("sort")) boot();
+  if ("requestIdleCallback" in window) requestIdleCallback(boot);
+  else window.addEventListener("load", boot);
 })();
 </script>
 
