@@ -515,3 +515,5 @@ body.page-search #hmWrap,body.page-search #hmMapEl{width:100%;height:520px;min-h
 #scamFaq{margin:8px 16px 16px;background:#fff;border:1px solid var(--line,#d5dbe6);border-radius:16px;padding:12px 14px}
 #scamFaq summary{font-weight:800;cursor:pointer}
 #scamFaq .ans{margin:8px 0 0;line-height:1.5}
+#scamAnswerEs p{margin:0 0 .75em}
+#scamAnswerEs p:last-child{margin-bottom:0}
