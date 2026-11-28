@@ -395,19 +395,19 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
     </div>
   </header>
   <div class="hero-block">
-  <h1 class="hero-promise">Sea dueño de su casa sin préstamo de banco. Vea el enganche y la mensualidad de cada casa, y visítela con nuestro equipo.</h1>
+  <h1 class="hero-promise">Sea dueño de su casa sin préstamo de banco. <span class="hp-more">Vea el enganche y la mensualidad de cada casa, y visítela con nuestro equipo.</span></h1>
   <a id="newThisWeek" class="new-chip" href="/?sort=listed-desc#listings" hidden></a>
   </div>
   <form class="buyer-panel" id="buyerSearch" action="/" method="get">
-    <label>Dirección, ciudad o código postal
+    <label><span class="fq-lab">Dirección, ciudad o código postal</span>
       <input id="fQ" name="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="Dirección, ciudad o código postal" aria-label="Dirección, ciudad o código postal">
     </label>
     <datalist id="qHints"></datalist>
     <div class="place-row">
-      <label>Estado
+      <label><span class="fq-lab">Estado</span>
         <select id="fState" aria-label="Estado"><option value="">Todos los estados</option></select>
       </label>
-      <label>Ciudad
+      <label><span class="fq-lab">Ciudad</span>
         <select id="fCity" aria-label="Ciudad"><option value="">Todas las ciudades</option></select>
       </label>
       <div class="filter-pop">
@@ -951,5 +951,32 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
 })();
 </script>
 
+<script>
+/* Phones: Enganche and Mensualidad chips live inside Filtros, so the first home shows on the first screen (mirrors the English site). */
+(function () {
+  var sheet = document.getElementById("filterSheet"), panel = document.getElementById("buyerSearch");
+  if (!sheet || !panel) return;
+  var groups = [].slice.call(panel.querySelectorAll('.range-chips[data-lo="fDownMin"], .range-chips[data-lo="fPayMin"]'));
+  if (!groups.length) return;
+  var nodes = [];
+  groups.forEach(function (g) { var l = g.previousElementSibling; if (l && l.classList.contains("chip-label")) nodes.push(l); nodes.push(g); });
+  var anchor = document.createComment("range chips");
+  nodes[0].parentNode.insertBefore(anchor, nodes[0]);
+  var box = document.createElement("div");
+  box.className = "sheet-wide sheet-chips";
+  var mq = window.matchMedia("(max-width: 860px)");
+  function place() {
+    if (mq.matches) {
+      nodes.forEach(function (n) { box.appendChild(n); });
+      sheet.insertBefore(box, sheet.firstChild);
+    } else {
+      nodes.forEach(function (n) { anchor.parentNode.insertBefore(n, anchor); });
+      if (box.parentNode) box.parentNode.removeChild(box);
+    }
+  }
+  place();
+  if (mq.addEventListener) mq.addEventListener("change", place); else mq.addListener(place);
+})();
+</script>
 </body>
 </html>
