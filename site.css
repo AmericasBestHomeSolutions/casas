@@ -442,9 +442,37 @@ body.page-search .buyer-intro { display: none; }
 body.page-search .buyer-panel [hidden] { display: none !important; }
 body.page-search .buyer-panel { padding: 8px 16px 4px; gap: 4px; }
 body.page-search .buyer-panel label { font: 700 13px system-ui, sans-serif; color: #5b6577; display: grid; gap: 4px; }
-body.page-search .buyer-panel input {
+body.page-search .buyer-panel input,
+body.page-search .place-row select {
   font: 600 16px system-ui, sans-serif; min-height: 44px; padding: 8px 12px;
   border: 1.5px solid var(--line, #d5dbe6); border-radius: 12px; background: #fff;
+  color: #16213a; width: 100%; box-sizing: border-box;
+}
+body.page-search .place-row {
+  display: grid; grid-template-columns: 1fr; gap: 8px; align-items: end;
+}
+body.page-search .place-row .filter-pop { grid-column: 1 / -1; position: relative; }
+body.page-search .place-row .filter-btn {
+  box-sizing: border-box; width: 100%; min-height: 44px; padding: 8px 14px;
+  border: 1.5px solid var(--line, #d5dbe6); border-radius: 12px; background: #fff;
+  color: #15315e; font: 800 16px system-ui, sans-serif;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+}
+body.page-search .filter-pop .filter-sheet { left: 0; right: 0; top: calc(100% + 6px); width: auto; }
+body.page-search .filter-pop .fcount {
+  min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: #e23b3b; color: #fff;
+  font: 800 11px system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center;
+}
+body.page-search .filter-pop .fcount[hidden] { display: none !important; }
+@media (min-width: 720px) {
+  body.page-search .place-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; }
+  body.page-search .place-row .filter-pop { grid-column: auto; }
+  body.page-search .place-row .filter-btn { width: auto; }
+  body.page-search .filter-pop .filter-sheet { left: auto; right: 0; width: min(460px, calc(100vw - 32px)); }
+}
+body.page-search .results-bar.z-sort {
+  display: flex !important; align-items: center; justify-content: space-between; gap: 12px;
+  margin: 4px 16px 0; padding: 8px 0 4px;
 }
 .chip-label { margin: 0; font: 700 11px "DM Sans", "DM Sans Fallback", system-ui, sans-serif; letter-spacing: .12em; color: var(--ink-soft, #5b6577); }
 body.page-search { padding-bottom: 88px; }

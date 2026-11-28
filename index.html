@@ -355,7 +355,7 @@ body.page-search .card-face{aspect-ratio:16/10}
 body.page-search .card-body{min-height:124px}
 body.page-search #cities{margin:0;padding:14px 16px 16px;background:#fff;border-bottom:1px solid var(--line,#e2e8f2)}
 @media(max-width:860px){
-  body.page-search .topbar{min-height:92px}
+  body.page-search .topbar{min-height:0}
   body.page-search .card-face{min-height:180px}
 }
 body.page-search #cities .sec-title{font-size:clamp(22px,3vw,28px)}
@@ -393,35 +393,30 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       </div>
     </nav>
     </div>
-    <form class="hdr-search" hidden>
-      <button type="button" class="filter-btn" id="filterBtn" aria-expanded="false" aria-controls="filterSheet" aria-label="Filtros">
-        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="7" r="2.2" fill="currentColor"/><circle cx="15" cy="12" r="2.2" fill="currentColor"/><circle cx="10" cy="17" r="2.2" fill="currentColor"/></svg>
-        <span class="fcount" id="fCount" hidden>0</span>
-      </button>
-    </form>
-    <div class="z-quick" id="quickFilters" role="group" aria-label="Filtrar casas">
-      <label class="qf"><span>Estado</span><select id="fState" aria-label="Estado"><option value="">Todos los estados</option></select></label>
-      <label class="qf"><span>Ciudad</span><select id="fCity" aria-label="Ciudad"><option value="">Todas las ciudades</option></select></label>
-      <label class="qf"><span>Precio desde</span><select id="fPriceMin" aria-label="Precio mínimo"><option value="">Sin mín.</option><option value="40000">$40k+</option><option value="50000">$50k+</option><option value="60000">$60k+</option><option value="70000">$70k+</option><option value="80000">$80k+</option><option value="90000">$90k+</option><option value="100000">$100k+</option><option value="150000">$150k+</option></select></label>
-      <label class="qf"><span>Precio hasta</span><select id="fPriceMax" aria-label="Precio máximo"><option value="">Sin máx.</option><option value="50000">Hasta $50k</option><option value="60000">Hasta $60k</option><option value="70000">Hasta $70k</option><option value="80000">Hasta $80k</option><option value="90000">Hasta $90k</option><option value="100000">Hasta $100k</option><option value="150000">Hasta $150k</option></select></label>
-      <button type="button" class="qf-more" id="moreFilters" aria-controls="filterSheet">Más filtros</button>
-    </div>
-    <div class="bed-row" id="bedRow" hidden>
-      <span class="chip-label">RECÁMARAS</span>
-      <button type="button" data-beds="" aria-pressed="true">Cualquiera</button>
-      <button type="button" data-beds="1">1+</button>
-      <button type="button" data-beds="2">2+</button>
-      <button type="button" data-beds="3">3+</button>
-      <button type="button" data-beds="4">4+</button>
-    </div>
-    <div class="z-chips" id="chips"></div>
-    <div class="z-sort">
-      <p class="count" id="count"></p>
-      <label class="sort-pill">Orden
-        <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="listed-desc">Más nuevas</option><option value="monthly-asc">Mensualidad ↑</option><option value="down-asc">Enganche ↑</option><option value="price-asc">Precio ↑</option></select>
+  </header>
+  <div class="hero-block">
+  <h1 class="hero-promise">Sea dueño de su casa sin préstamo de banco. Vea el enganche y la mensualidad de cada casa, y visítela con nuestro equipo.</h1>
+  <a id="newThisWeek" class="new-chip" href="/?sort=listed-desc#listings" hidden></a>
+  </div>
+  <form class="buyer-panel" id="buyerSearch" action="/" method="get">
+    <label>Dirección, ciudad o código postal
+      <input id="fQ" name="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="Dirección, ciudad o código postal" aria-label="Dirección, ciudad o código postal">
+    </label>
+    <datalist id="qHints"></datalist>
+    <div class="place-row">
+      <label>Estado
+        <select id="fState" aria-label="Estado"><option value="">Todos los estados</option></select>
       </label>
-    </div>
-    <div class="filter-sheet" id="filterSheet" hidden>
+      <label>Ciudad
+        <select id="fCity" aria-label="Ciudad"><option value="">Todas las ciudades</option></select>
+      </label>
+      <div class="filter-pop">
+        <button type="button" class="filter-btn" id="filterBtn" aria-expanded="false" aria-controls="filterSheet">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="7" r="2.2" fill="currentColor"/><circle cx="15" cy="12" r="2.2" fill="currentColor"/><circle cx="10" cy="17" r="2.2" fill="currentColor"/></svg>
+          Filtros
+          <span class="fcount" id="fCount" hidden>0</span>
+        </button>
+        <div class="filter-sheet" id="filterSheet" hidden>
       <label>Baños
         <select id="fBaths" aria-label="Baños"><option value="">Cualquiera</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select>
       </label>
@@ -431,20 +426,11 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <label id="fTypeWrap" hidden>Tipo de trabajo <select id="fType" aria-label="Tipo de trabajo"><option value="">Menos trabajo</option><option value="contractor">Proyectos más grandes</option><option value="all">Todas</option></select></label>
       <label>Dentro de <select id="fMiles"><option value="10">10 millas</option><option value="25" selected>25 millas</option><option value="50">50 millas</option><option value="100">100 millas</option></select></label>
       <button type="button" class="near sheet-wide" id="nearMe">Cerca de mí</button>
+        </div>
+      </div>
     </div>
-  </header>
-  <div class="hero-block">
-  <h1 class="hero-promise">Sea dueño de su casa sin préstamo de banco. Vea el enganche y la mensualidad de cada casa, y visítela con nuestro equipo.</h1>
-  <a id="newThisWeek" class="new-chip" href="/?sort=listed-desc#listings" hidden></a>
-  <!-- weekly-hero:start -->
-<figure class="week-hero"><img src="images/cards/oblong-il-807-illinois-480.webp" alt="Una casa real que puede visitar: 807 W Illinois St, Oblong, IL" width="480" height="360" fetchpriority="high"><figcaption>Una casa real que puede visitar: 807 W Illinois St, Oblong, IL</figcaption></figure>
-<!-- weekly-hero:end -->
-  </div>
-  <form class="buyer-panel" id="buyerSearch" action="/" method="get">
-    <label>Dirección, ciudad o código postal
-      <input id="fQ" name="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search" placeholder="Dirección, ciudad o código postal" aria-label="Dirección, ciudad o código postal">
-    </label>
-    <datalist id="qHints"></datalist>
+    <select id="fPriceMin" hidden aria-label="Precio mínimo"><option value="">Sin mín.</option><option value="40000">$40k+</option><option value="50000">$50k+</option><option value="60000">$60k+</option><option value="70000">$70k+</option><option value="80000">$80k+</option><option value="90000">$90k+</option><option value="100000">$100k+</option><option value="150000">$150k+</option></select>
+    <select id="fPriceMax" hidden aria-label="Precio máximo"><option value="">Sin máx.</option><option value="50000">Hasta $50k</option><option value="60000">Hasta $60k</option><option value="70000">Hasta $70k</option><option value="80000">Hasta $80k</option><option value="90000">Hasta $90k</option><option value="100000">Hasta $100k</option><option value="150000">Hasta $150k</option></select>
     <select id="fDownMin" hidden aria-label="Enganche desde"><option value=""></option><option value="1000">1000</option><option value="1500">1500</option><option value="2000">2000</option><option value="2500">2500</option><option value="3000">3000</option><option value="4000">4000</option><option value="5000">5000</option></select>
     <select id="fDown" hidden aria-label="Enganche hasta"><option value=""></option><option value="1000">1000</option><option value="1999">1999</option><option value="2000">2000</option><option value="4000">4000</option><option value="5000">5000</option></select>
     <select id="fPayMin" hidden aria-label="Mensualidad desde"><option value=""></option><option value="800">800</option><option value="1000">1000</option><option value="1300">1300</option></select>
@@ -474,6 +460,7 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
       <button type="button" data-beds="4">4+</button>
     </div>
     <button type="button" class="chip-clear" id="clearFilters">Borrar filtros</button>
+    <div class="z-chips" id="chips"></div>
   </form>
   <div class="filter-backdrop" id="filterBackdrop" hidden></div>
   <button type="button" id="filterSlim" class="filter-slim" hidden>
@@ -545,6 +532,13 @@ body.page-search #cities .sec-sub{margin:4px 0 0;max-width:62ch}
   </section>
 
   
+
+  <div class="results-bar z-sort">
+    <p class="count" id="count"></p>
+    <label class="sort-pill">Orden
+      <select id="fSort" aria-label="Orden"><option value="">Destacadas</option><option value="listed-desc">Más nuevas</option><option value="monthly-asc">Mensualidad ↑</option><option value="down-asc">Enganche ↑</option><option value="price-asc">Precio ↑</option></select>
+    </label>
+  </div>
 
   <section class="section" id="listings">
     <div class="buyer-intro">
